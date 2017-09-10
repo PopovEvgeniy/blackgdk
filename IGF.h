@@ -411,7 +411,6 @@ void IGF_Frame::draw_pixel(unsigned long int x,unsigned long int y,unsigned char
   buffer[offset].red=red;
   buffer[offset].green=green;
   buffer[offset].blue=blue;
-  buffer[offset].alpha=0;
  }
 
 }
@@ -987,6 +986,7 @@ class IGF_Multimedia: public IGF_Base
  public:
  IGF_Multimedia();
  ~IGF_Multimedia();
+ void initialize();
  void load(const char *target);
  void play();
  void stop();
@@ -995,37 +995,19 @@ class IGF_Multimedia: public IGF_Base
 
 IGF_Multimedia::IGF_Multimedia()
 {
- if(CoCreateInstance(CLSID_FilterGraph,NULL,CLSCTX_INPROC_SERVER,IID_IGraphBuilder,(void**)&loader)!=S_OK)
- {
-  puts("Can't create a multimedia loader");
-  exit(EXIT_FAILURE);
- }
- if(loader->QueryInterface(IID_IMediaControl,(void**)&player)!=S_OK)
- {
-  puts("Can't create a multimedia player");
-  exit(EXIT_FAILURE);
- }
- if(loader->QueryInterface(IID_IMediaSeeking,(void**)&controler)!=S_OK)
- {
-  puts("Can't create a player controler");
-  exit(EXIT_FAILURE);
- }
- if(loader->QueryInterface(IID_IVideoWindow,(void**)&video)!=S_OK)
- {
-  puts("Can't create a video player");
-  exit(EXIT_FAILURE);
- }
-
+ loader=NULL;
+ player=NULL;
+ controler=NULL;
+ video=NULL;
 }
-
 
 IGF_Multimedia::~IGF_Multimedia()
 {
- player->Stop();
- video->Release();
- controler->Release();
- player->Release();
- loader->Release();
+ if(player!=NULL) player->Stop();
+ if(video!=NULL) video->Release();
+ if(controler!=NULL) controler->Release();
+ if(player!=NULL) player->Release();
+ if(loader!=NULL) loader->Release();
 }
 
 wchar_t *IGF_Multimedia::convert_file_name(const char *target)
@@ -1057,6 +1039,31 @@ void IGF_Multimedia::open(const wchar_t *target)
   exit(EXIT_FAILURE);
  }
  video->put_FullScreenMode(OATRUE);
+}
+
+void IGF_Multimedia::initialize()
+{
+ if(CoCreateInstance(CLSID_FilterGraph,NULL,CLSCTX_INPROC_SERVER,IID_IGraphBuilder,(void**)&loader)!=S_OK)
+ {
+  puts("Can't create a multimedia loader");
+  exit(EXIT_FAILURE);
+ }
+ if(loader->QueryInterface(IID_IMediaControl,(void**)&player)!=S_OK)
+ {
+  puts("Can't create a multimedia player");
+  exit(EXIT_FAILURE);
+ }
+ if(loader->QueryInterface(IID_IMediaSeeking,(void**)&controler)!=S_OK)
+ {
+  puts("Can't create a player controler");
+  exit(EXIT_FAILURE);
+ }
+ if(loader->QueryInterface(IID_IVideoWindow,(void**)&video)!=S_OK)
+ {
+  puts("Can't create a video player");
+  exit(EXIT_FAILURE);
+ }
+
 }
 
 void IGF_Multimedia::load(const char *target)
@@ -1136,10 +1143,10 @@ class IGF_System
  IGF_System();
  ~IGF_System();
  unsigned long int get_random(const unsigned long int number);
- void pause(const unsigned int long second);
  void quit();
  void run(const char *command);
  char* read_environment(const char *variable);
+ void enable_logging(const char *name);
 };
 
 IGF_System::IGF_System()
@@ -1157,17 +1164,6 @@ unsigned long int IGF_System::get_random(const unsigned long int number)
  return rand()%number;
 }
 
-void IGF_System::pause(const unsigned int long second)
-{
- time_t start,stop;
- start=time(NULL);
- do
- {
-  stop=time(NULL);
- } while(difftime(stop,start)<second);
-
-}
-
 void IGF_System::quit()
 {
  exit(EXIT_SUCCESS);
@@ -1181,6 +1177,16 @@ void IGF_System::run(const char *command)
 char* IGF_System::read_environment(const char *variable)
 {
  return getenv(variable);
+}
+
+void IGF_System::enable_logging(const char *name)
+{
+ if(freopen(name,"wt",stdout)==NULL)
+ {
+  puts("Can't create log file");
+  exit(EXIT_FAILURE);
+ }
+
 }
 
 class IGF_Timer

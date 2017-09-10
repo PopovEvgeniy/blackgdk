@@ -6,6 +6,7 @@ int main(void)
  unsigned char frame;
  IGF_Timer timer;
  IGF_Screen screen;
+ IGF_System System;
  IGF_Keyboard keyboard;
  IGF_Mouse mouse;
  IGF_Gamepad gamepad;
@@ -14,6 +15,7 @@ int main(void)
  IGF_Background space;
  IGF_Sprite ship,font;
  IGF_Text text;
+ System.enable_logging("log.txt");
  screen.initialize();
  space.initialize(screen.get_handle());
  ship.initialize(screen.get_handle());
@@ -36,6 +38,7 @@ int main(void)
  frame=1;
  mouse.hide();
  timer.set_timer(1);
+ media.initialize();
  media.load("space.mp3");
  media.play();
  while(screen.sync()==false)
