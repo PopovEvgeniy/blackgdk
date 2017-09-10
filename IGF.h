@@ -781,16 +781,19 @@ class IGF_Gamepad
  bool write_state();
  void set_motor(const unsigned short int left,const unsigned short int right);
  bool check_button(XINPUT_STATE &target,const unsigned short int button);
+ bool check_trigger(XINPUT_STATE &target,const unsigned char trigger);
  public:
  IGF_Gamepad();
  ~IGF_Gamepad();
  void set_active(const unsigned long int gamepad);
  bool check_connection();
  void update();
- bool check_hold(const unsigned short int button);
- bool check_press(const unsigned short int button);
- bool check_release(const unsigned short int button);
- bool check_trigger(const unsigned char trigger);
+ bool check_button_hold(const unsigned short int button);
+ bool check_button_press(const unsigned short int button);
+ bool check_button_release(const unsigned short int button);
+ bool check_trigger_hold(const unsigned char trigger);
+ bool check_trigger_press(const unsigned char trigger);
+ bool check_trigger_release(const unsigned char trigger);
  bool set_vibration(const unsigned short int left,const unsigned short int right);
  char get_stick_x(const unsigned char stick);
  char get_stick_y(const unsigned char stick);
@@ -847,6 +850,15 @@ bool IGF_Gamepad::check_button(XINPUT_STATE &target,const unsigned short int but
  return result;
 }
 
+bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const unsigned char trigger)
+{
+ bool result;
+ result=false;
+ if((trigger==IGF_GAMEPAD_LEFT_TRIGGER)&&(target.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ if((trigger==IGF_GAMEPAD_RIGHT_TRIGGER)&&(target.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ return result;
+}
+
 void IGF_Gamepad::set_active(const unsigned long int gamepad)
 {
  active=gamepad;
@@ -863,12 +875,12 @@ void IGF_Gamepad::update()
  if(this->read_state()==false) this->clear_state();
 }
 
-bool IGF_Gamepad::check_hold(const unsigned short int button)
+bool IGF_Gamepad::check_button_hold(const unsigned short int button)
 {
  return this->check_button(current,button);
 }
 
-bool IGF_Gamepad::check_press(const unsigned short int button)
+bool IGF_Gamepad::check_button_press(const unsigned short int button)
 {
  bool result;
  result=false;
@@ -879,7 +891,7 @@ bool IGF_Gamepad::check_press(const unsigned short int button)
  return result;
 }
 
-bool IGF_Gamepad::check_release(const unsigned short int button)
+bool IGF_Gamepad::check_button_release(const unsigned short int button)
 {
  bool result;
  result=false;
@@ -890,14 +902,31 @@ bool IGF_Gamepad::check_release(const unsigned short int button)
  return result;
 }
 
-bool IGF_Gamepad::check_trigger(const unsigned char trigger)
+bool IGF_Gamepad::check_trigger_hold(const unsigned char trigger)
+{
+ return this->check_trigger(current,trigger);
+}
+
+bool IGF_Gamepad::check_trigger_press(const unsigned char trigger)
 {
  bool result;
  result=false;
- if((trigger==IGF_GAMEPAD_LEFT_TRIGGER)&&(current.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
- if((trigger==IGF_GAMEPAD_RIGHT_TRIGGER)&&(current.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ if(this->check_trigger(current,trigger)==true)
+ {
+  if(this->check_trigger(preversion,trigger)==false) result=true;
+ }
  return result;
+}
 
+bool IGF_Gamepad::check_trigger_release(const unsigned char trigger)
+{
+ bool result;
+ result=false;
+ if(this->check_trigger(current,trigger)==false)
+ {
+  if(this->check_trigger(preversion,trigger)==true) result=true;
+ }
+ return result;
 }
 
 bool IGF_Gamepad::set_vibration(const unsigned short int left,const unsigned short int right)
