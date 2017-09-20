@@ -32,7 +32,6 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Linker>
@@ -43,6 +42,7 @@
 			<Add library="strmiids" />
 			<Add library="xinput" />
 		</Linker>
+		<Unit filename="IGF.cpp" />
 		<Unit filename="IGF.h" />
 		<Unit filename="demo.cpp" />
 		<Extensions>
