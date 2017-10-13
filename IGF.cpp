@@ -1496,7 +1496,7 @@ void IGF_Text::set_position(const unsigned long int x,const unsigned long int y)
 void IGF_Text::load_font(IGF_Sprite *font)
 {
  sprite=font;
- sprite->set_frames(128);
+ sprite->set_frames(256);
 }
 
 void IGF_Text::draw_text(const char *text)
@@ -1507,9 +1507,9 @@ void IGF_Text::draw_text(const char *text)
  step_y=current_y;
  for (index=0;index<length;index++)
  {
-  if (text[index]>31)
+  if ((text[index]>31)||(text[index]<0))
   {
-   sprite->draw_sprite_frame(step_x,step_y,text[index]+1);
+   sprite->draw_sprite_frame(step_x,step_y,(unsigned char)text[index]+1);
    step_x+=sprite->get_sprite_width();
   }
 
