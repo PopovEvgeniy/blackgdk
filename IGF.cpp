@@ -560,12 +560,21 @@ IGF_Gamepad::IGF_Gamepad()
  memset(&current,0,length);
  memset(&preversion,0,length);
  memset(&vibration,0,sizeof(XINPUT_VIBRATION));
+ memset(&battery,0,sizeof(XINPUT_BATTERY_INFORMATION));
  active=0;
 }
 
 IGF_Gamepad::~IGF_Gamepad()
 {
  XInputEnable(FALSE);
+}
+
+bool IGF_Gamepad::read_battery_status()
+{
+ bool result;
+ result=false;
+ if(XInputGetBatteryInformation(active,BATTERY_DEVTYPE_GAMEPAD,&battery)==ERROR_SUCCESS) return result;
+ return result;
 }
 
 void IGF_Gamepad::clear_state()
@@ -615,12 +624,82 @@ bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const unsigned char trigger
 
 void IGF_Gamepad::set_active(const unsigned long int gamepad)
 {
- active=gamepad;
+ if(active<4) active=gamepad;
+}
+
+unsigned long int IGF_Gamepad::get_active()
+{
+ return active;
+}
+
+unsigned long int IGF_Gamepad::get_amount()
+{
+ unsigned long int old,result;
+ result=0;
+ old=active;
+ for(active=0;active<4;active++)
+ {
+  if(this->read_state()==true) result++;
+ }
+ active=old;
+ return result;
 }
 
 bool IGF_Gamepad::check_connection()
 {
  return this->read_state();
+}
+
+unsigned char IGF_Gamepad::get_battery_type()
+{
+ unsigned char result;
+ result=IGF_GAMEPAD_BATTERY_ERROR;
+ if(this->read_battery_status()==true)
+ {
+  switch (battery.BatteryType)
+  {
+   case BATTERY_TYPE_WIRED:
+   result=IGF_GAMEPAD_BATTERY_WIRED;
+   break;
+   case BATTERY_TYPE_ALKALINE:
+   result=IGF_GAMEPAD_BATTERY_ALKAINE;
+   break;
+   case BATTERY_TYPE_NIMH:
+   result=IGF_GAMEPAD_BATTERY_NIMH;
+   break;
+   case BATTERY_TYPE_UNKNOWN:
+   result=IGF_GAMEPAD_BATTERY_UNKNOW;
+   break;
+  }
+
+ }
+ return result;
+}
+
+unsigned char IGF_Gamepad::get_battery_level()
+{
+ unsigned char result;
+ result=IGF_GAMEPAD_BATTERY_ERROR;
+ if(this->read_battery_status()==true)
+ {
+  switch (battery.BatteryType)
+  {
+   case BATTERY_LEVEL_EMPTY:
+   result=IGF_GAMEPAD_BATTERY_EMPTY;
+   break;
+   case BATTERY_LEVEL_LOW:
+   result=IGF_GAMEPAD_BATTERY_LOW;
+   break;
+   case BATTERY_LEVEL_MEDIUM:
+   result=IGF_GAMEPAD_BATTERY_MEDIUM;
+   break;
+   case BATTERY_LEVEL_FULL:
+   result=IGF_GAMEPAD_BATTERY_FULL;
+   break;
+  }
+  if((battery.BatteryType==BATTERY_TYPE_WIRED)||(battery.BatteryType==BATTERY_TYPE_DISCONNECTED)) result=IGF_GAMEPAD_BATTERY_ERROR;
+ }
+ return result;
 }
 
 void IGF_Gamepad::update()

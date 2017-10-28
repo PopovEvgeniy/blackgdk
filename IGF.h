@@ -37,6 +37,15 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 #define IGF_MOUSE_RIGHT 1
 #define IGF_MOUSE_MIDDLE 2
 
+#define IGF_GAMEPAD_BATTERY_ERROR 0
+#define IGF_GAMEPAD_BATTERY_WIRED 1
+#define IGF_GAMEPAD_BATTERY_ALKAINE 2
+#define IGF_GAMEPAD_BATTERY_NIMH 3
+#define IGF_GAMEPAD_BATTERY_UNKNOW 4
+#define IGF_GAMEPAD_BATTERY_EMPTY 5
+#define IGF_GAMEPAD_BATTERY_LOW 6
+#define IGF_GAMEPAD_BATTERY_MEDIUM 7
+#define IGF_GAMEPAD_BATTERY_FULL 8
 #define IGF_GAMEPAD_UP XINPUT_GAMEPAD_DPAD_UP
 #define IGF_GAMEPAD_DOWN XINPUT_GAMEPAD_DPAD_DOWN
 #define IGF_GAMEPAD_LEFT XINPUT_GAMEPAD_DPAD_LEFT
@@ -238,11 +247,13 @@ class IGF_Mouse
 class IGF_Gamepad
 {
  private:
+ XINPUT_BATTERY_INFORMATION battery;
  XINPUT_STATE current;
  XINPUT_STATE preversion;
  XINPUT_VIBRATION vibration;
  unsigned long int length;
  unsigned long int active;
+ bool read_battery_status();
  void clear_state();
  bool read_state();
  bool write_state();
@@ -253,7 +264,11 @@ class IGF_Gamepad
  IGF_Gamepad();
  ~IGF_Gamepad();
  void set_active(const unsigned long int gamepad);
+ unsigned long int get_active();
+ unsigned long int get_amount();
  bool check_connection();
+ unsigned char get_battery_type();
+ unsigned char get_battery_level();
  void update();
  bool check_button_hold(const unsigned short int button);
  bool check_button_press(const unsigned short int button);
