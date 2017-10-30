@@ -225,19 +225,14 @@ IGF_Frame::~IGF_Frame()
 {
  if(buffer!=NULL)
  {
-  buffer=NULL;
   free(buffer);
+  buffer=NULL;
  }
 
 }
 
 void IGF_Frame::create_render_buffer()
 {
- if(buffer!=NULL)
- {
-  buffer=NULL;
-  free(buffer);
- }
  frame_line=frame_width*sizeof(IGF_Pixel);
  length=frame_height*frame_line;
  buffer=(IGF_Pixel*)calloc(length,1);
