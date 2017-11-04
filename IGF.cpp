@@ -1,4 +1,9 @@
 /*
+Indie framework was create by Popov Evgeniy Alekseyevich
+Some code bases on code from SVGALib(http://www.svgalib.org/).
+
+Indie game framework license
+
 Copyright © 2017, Popov Evgeniy Alekseyevich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -13,6 +18,10 @@ copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Third–party code license
+
+SVGALib is public domain. SVGALib homepage: http://www.svgalib.org/
 */
 
 #include "IGF.h"
@@ -233,9 +242,9 @@ IGF_Frame::~IGF_Frame()
 
 void IGF_Frame::create_render_buffer()
 {
- frame_line=frame_width*sizeof(IGF_Pixel);
+ frame_line=frame_width*sizeof(unsigned long int);
  length=frame_height*frame_line;
- buffer=(IGF_Pixel*)calloc(length,1);
+ buffer=(unsigned long int*)calloc(length,1);
  if(buffer==NULL)
  {
   puts("Can't allocate memory for render buffer");
@@ -244,15 +253,11 @@ void IGF_Frame::create_render_buffer()
 
 }
 
-void IGF_Frame::draw_pixel(unsigned long int x,unsigned long int y,unsigned char red,unsigned char green,unsigned char blue)
+void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned long int red,const unsigned long int green,const unsigned long int blue)
 {
- unsigned long int offset;
  if((x<frame_width)&&(y<frame_height))
  {
-  offset=x+y*frame_width;
-  buffer[offset].red=red;
-  buffer[offset].green=green;
-  buffer[offset].blue=blue;
+  buffer[x+y*frame_width]=blue+256*green+65536*red; //This code bases on code from SVGALib
  }
 
 }
