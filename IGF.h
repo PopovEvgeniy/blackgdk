@@ -126,6 +126,14 @@ struct PCX_head
  unsigned char filled[54];
 };
 
+struct IGF_Box
+{
+ unsigned long int x:32;
+ unsigned long int y:32;
+ unsigned long int width:32;
+ unsigned long int height:32;
+};
+
 LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
 
 class IGF_Base
@@ -411,6 +419,7 @@ class IGF_Sprite:public IGF_Canvas
  unsigned long int get_sprite_width();
  unsigned long int get_sprite_height();
  IGF_Sprite* get_handle();
+ IGF_Box get_box();
 };
 
 class IGF_Text
@@ -430,7 +439,7 @@ class IGF_Text
 class IGF_Collision
 {
  public:
- bool check_horizontal_collision(IGF_Sprite &first,IGF_Sprite &second);
- bool check_vertical_collision(IGF_Sprite &first,IGF_Sprite &second);
- bool check_collision(IGF_Sprite &first,IGF_Sprite &second);
+ bool check_horizontal_collision(IGF_Box first,IGF_Box second);
+ bool check_vertical_collision(IGF_Box first,IGF_Box second);
+ bool check_collision(IGF_Box first,IGF_Box second);
 };
