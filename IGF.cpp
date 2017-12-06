@@ -412,6 +412,16 @@ IGF_Screen* IGF_Screen::get_handle()
 
 IGF_Keyboard::IGF_Keyboard()
 {
+ preversion=NULL;
+}
+
+IGF_Keyboard::~IGF_Keyboard()
+{
+ if(preversion!=NULL) free(preversion);
+}
+
+void IGF_Keyboard::initialize()
+{
  preversion=(unsigned char*)calloc(IGF_KEYBOARD,1);
  if(preversion==NULL)
  {
@@ -419,11 +429,6 @@ IGF_Keyboard::IGF_Keyboard()
   exit(EXIT_FAILURE);
  }
 
-}
-
-IGF_Keyboard::~IGF_Keyboard()
-{
- if(preversion!=NULL) free(preversion);
 }
 
 bool IGF_Keyboard::check_hold(const unsigned char code)
