@@ -94,6 +94,21 @@ IGF_Base::~IGF_Base()
 
 IGF_Synchronization::IGF_Synchronization()
 {
+ timer=NULL;
+}
+
+IGF_Synchronization::~IGF_Synchronization()
+{
+ if(timer==NULL)
+ {
+  CancelWaitableTimer(timer);
+  CloseHandle(timer);
+ }
+
+}
+
+void IGF_Synchronization::create_timer()
+{
  timer=CreateWaitableTimer(NULL,FALSE,NULL);
  if (timer==NULL)
  {
@@ -101,12 +116,6 @@ IGF_Synchronization::IGF_Synchronization()
   exit(EXIT_FAILURE);
  }
 
-}
-
-IGF_Synchronization::~IGF_Synchronization()
-{
- CancelWaitableTimer(timer);
- CloseHandle(timer);
 }
 
 void IGF_Synchronization::set_timer(unsigned long int interval)
@@ -389,6 +398,7 @@ void IGF_Render::refresh()
 void IGF_Screen::initialize()
 {
  this->create_render_buffer();
+ this->create_timer();
  this->create_window();
  this->capture_mouse();
  this->set_render();
