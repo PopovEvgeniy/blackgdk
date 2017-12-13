@@ -118,7 +118,7 @@ void IGF_Synchronization::create_timer()
 
 }
 
-void IGF_Synchronization::set_timer(unsigned long int interval)
+void IGF_Synchronization::set_timer(const unsigned long int interval)
 {
  LARGE_INTEGER start;
  start.QuadPart=0;
@@ -1345,6 +1345,11 @@ IGF_Canvas::~IGF_Canvas()
  if(image!=NULL) free(image);
 }
 
+IGF_Color *IGF_Canvas::get_image()
+{
+ return image;
+}
+
 unsigned long int IGF_Canvas::get_width()
 {
  return width;
@@ -1516,6 +1521,22 @@ IGF_Sprite::IGF_Sprite()
 IGF_Sprite::~IGF_Sprite()
 {
 
+}
+
+void IGF_Sprite::clone(IGF_Sprite &target)
+{
+ unsigned long int length;
+ frames=target.get_frames();
+ width=target.get_sprite_width();
+ height=target.get_sprite_height();
+ length=width*height*3;
+ image=(IGF_Color*)calloc(length,1);
+ if(image==NULL)
+ {
+  puts("Can't allocate memory for image buffer");
+  exit(EXIT_FAILURE);
+ }
+ memmove(image,target.get_image(),length);
 }
 
 void IGF_Sprite::draw_sprite_frame(const unsigned long int x,const unsigned long int y,const unsigned long int frame)

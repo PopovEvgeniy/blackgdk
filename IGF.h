@@ -149,7 +149,7 @@ class IGF_Synchronization
  HANDLE timer;
  protected:
  void create_timer();
- void set_timer(unsigned long int interval);
+ void set_timer(const unsigned long int interval);
  void wait_timer();
  public:
  IGF_Synchronization();
@@ -388,6 +388,7 @@ class IGF_Canvas
  public:
  IGF_Canvas();
  ~IGF_Canvas();
+ IGF_Color *get_image();
  unsigned long int get_width();
  unsigned long int get_height();
  void set_frames(const unsigned long int amount);
@@ -414,6 +415,7 @@ class IGF_Sprite:public IGF_Canvas
  public:
  IGF_Sprite();
  ~IGF_Sprite();
+ void clone(IGF_Sprite &target);
  void draw_sprite_frame(const unsigned long int x,const unsigned long int y,const unsigned long int frame);
  void draw_sprite(const unsigned long int x,const unsigned long int y);
  unsigned long int get_x();
