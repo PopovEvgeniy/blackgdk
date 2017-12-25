@@ -24,14 +24,12 @@ Third–party code license
 SVGALib is public domain. SVGALib homepage: http://www.svgalib.org/
 */
 
-#ifndef MINGW_GCC
 #pragma comment(lib,"kernel32.lib")
 #pragma comment(lib,"user32.lib")
 #pragma comment(lib,"ole32.lib")
 #pragma comment(lib,"strmiids.lib")
 #pragma comment(lib,"d2d1.lib")
 #pragma comment(lib,"xinput.lib")
-#endif
 
 #include <stdio.h>
 #include <stdlib.h>

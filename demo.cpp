@@ -1,4 +1,3 @@
-#define MINGW_GCC
 #include "IGF.h"
 
 int main(void)
