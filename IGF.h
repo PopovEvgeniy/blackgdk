@@ -24,6 +24,15 @@ Third–party code license
 SVGALib is public domain. SVGALib homepage: http://www.svgalib.org/
 */
 
+#ifndef MINGW_GCC
+#pragma comment(lib,"kernel32.lib")
+#pragma comment(lib,"user32.lib")
+#pragma comment(lib,"ole32.lib")
+#pragma comment(lib,"strmiids.lib")
+#pragma comment(lib,"d2d1.lib")
+#pragma comment(lib,"xinput.lib")
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,14 +56,13 @@ SVGALib is public domain. SVGALib homepage: http://www.svgalib.org/
 #define IGF_MOUSE_MIDDLE 2
 
 #define IGF_GAMEPAD_BATTERY_ERROR 0
-#define IGF_GAMEPAD_BATTERY_WIRED 1
-#define IGF_GAMEPAD_BATTERY_ALKAINE 2
-#define IGF_GAMEPAD_BATTERY_NIMH 3
-#define IGF_GAMEPAD_BATTERY_UNKNOW 4
-#define IGF_GAMEPAD_BATTERY_EMPTY 5
-#define IGF_GAMEPAD_BATTERY_LOW 6
-#define IGF_GAMEPAD_BATTERY_MEDIUM 7
-#define IGF_GAMEPAD_BATTERY_FULL 8
+#define IGF_GAMEPAD_BATTERY_ALKAINE 1
+#define IGF_GAMEPAD_BATTERY_NIMH 2
+#define IGF_GAMEPAD_BATTERY_UNKNOW 3
+#define IGF_GAMEPAD_BATTERY_EMPTY 4
+#define IGF_GAMEPAD_BATTERY_LOW 5
+#define IGF_GAMEPAD_BATTERY_MEDIUM 6
+#define IGF_GAMEPAD_BATTERY_FULL 7
 #define IGF_GAMEPAD_UP XINPUT_GAMEPAD_DPAD_UP
 #define IGF_GAMEPAD_DOWN XINPUT_GAMEPAD_DPAD_DOWN
 #define IGF_GAMEPAD_LEFT XINPUT_GAMEPAD_DPAD_LEFT
@@ -278,6 +286,7 @@ class IGF_Gamepad
  unsigned long int get_active();
  unsigned long int get_amount();
  bool check_connection();
+ bool is_wireless();
  unsigned char get_battery_type();
  unsigned char get_battery_level();
  void update();

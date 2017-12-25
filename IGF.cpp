@@ -322,7 +322,7 @@ void IGF_Render::create_target()
 
 void IGF_Render::create_surface()
 {
- if(target->CreateBitmap(D2D1::SizeU(frame_width,frame_height),D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
+ if(target->CreateBitmap(D2D1::SizeU(frame_width,frame_height),buffer,frame_line,D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
  {
   puts("Can't create render surface");
   exit(EXIT_FAILURE);
@@ -389,10 +389,10 @@ void IGF_Render::create_render()
 
 void IGF_Render::refresh()
 {
- surface->CopyFromMemory(&source,buffer,frame_line);
  target->BeginDraw();
  target->DrawBitmap(surface,destanation,1.0,D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,texture);
  if(target->EndDraw()==(HRESULT)D2DERR_RECREATE_TARGET) this->recreate_render();
+ surface->CopyFromMemory(&source,buffer,frame_line);
 }
 
 void IGF_Screen::initialize()
@@ -639,7 +639,12 @@ bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const unsigned char trigger
 
 void IGF_Gamepad::set_active(const unsigned long int gamepad)
 {
- if(active<4) active=gamepad;
+ if(active<4)
+ {
+  this->clear_state();
+  active=gamepad;
+ }
+
 }
 
 unsigned long int IGF_Gamepad::get_active()
@@ -654,7 +659,12 @@ unsigned long int IGF_Gamepad::get_amount()
  old=active;
  for(active=0;active<4;active++)
  {
-  if(this->read_state()==true) result++;
+  if(this->read_state()==true)
+  {
+   this->clear_state();
+   result++;
+  }
+
  }
  active=old;
  return result;
@@ -665,6 +675,21 @@ bool IGF_Gamepad::check_connection()
  return this->read_state();
 }
 
+bool IGF_Gamepad::is_wireless()
+{
+ bool result;
+ result=false;
+ if(this->read_battery_status()==true)
+ {
+  if(battery.BatteryType!=BATTERY_TYPE_DISCONNECTED)
+  {
+   if(battery.BatteryType!=BATTERY_TYPE_WIRED) result=true;
+  }
+
+ }
+ return result;
+}
+
 unsigned char IGF_Gamepad::get_battery_type()
 {
  unsigned char result;
@@ -673,9 +698,6 @@ unsigned char IGF_Gamepad::get_battery_type()
  {
   switch (battery.BatteryType)
   {
-   case BATTERY_TYPE_WIRED:
-   result=IGF_GAMEPAD_BATTERY_WIRED;
-   break;
    case BATTERY_TYPE_ALKALINE:
    result=IGF_GAMEPAD_BATTERY_ALKAINE;
    break;
