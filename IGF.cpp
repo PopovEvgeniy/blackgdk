@@ -4,7 +4,7 @@ Some code bases on code from SVGALib(http://www.svgalib.org/).
 
 Indie game framework license
 
-Copyright © 2017, Popov Evgeniy Alekseyevich
+Copyright © 2017-2018, Popov Evgeniy Alekseyevich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -855,7 +855,7 @@ IGF_Multimedia::IGF_Multimedia()
 
 IGF_Multimedia::~IGF_Multimedia()
 {
- if(player!=NULL) player->Stop();
+ if(player!=NULL) player->StopWhenReady();
  if(video!=NULL) video->Release();
  if(controler!=NULL) controler->Release();
  if(player!=NULL) player->Release();
@@ -879,18 +879,25 @@ wchar_t *IGF_Multimedia::convert_file_name(const char *target)
 
 void IGF_Multimedia::open(const wchar_t *target)
 {
- player->Stop();
+ player->StopWhenReady();
  if(loader->RenderFile(target,NULL)!=S_OK)
  {
   puts("Can't load a multimedia file");
   exit(EXIT_FAILURE);
  }
- if(controler->SetRate(1)!=S_OK)
+ video->put_FullScreenMode(OATRUE);
+}
+
+void IGF_Multimedia::rewind()
+{
+ long long position;
+ position=0;
+ if(controler->SetPositions(&position,AM_SEEKING_AbsolutePositioning,NULL,AM_SEEKING_NoPositioning)!=S_OK)
  {
-  puts("Can't set playing rate");
+  puts("Can't set start position");
   exit(EXIT_FAILURE);
  }
- video->put_FullScreenMode(OATRUE);
+
 }
 
 void IGF_Multimedia::initialize()
@@ -926,34 +933,33 @@ void IGF_Multimedia::load(const char *target)
  free(name);
 }
 
-void IGF_Multimedia::play()
-{
- long long position;
- position=0;
- player->Stop();
- if(controler->SetPositions(&position,AM_SEEKING_AbsolutePositioning,NULL,AM_SEEKING_NoPositioning)!=S_OK)
- {
-  puts("Can't set start position");
-  exit(EXIT_FAILURE);
- }
- player->Run();
-}
-
-void IGF_Multimedia::stop()
-{
- player->Stop();
-}
-
-bool IGF_Multimedia::check_playing()
+bool IGF_Multimedia::is_end()
 {
  bool result;
  long long current,stop;
  result=false;
  if(controler->GetPositions(&current,&stop)==S_OK)
  {
-  if(current<stop) result=true;
+  if(current>=stop) result=true;
+ }
+ else
+ {
+  puts("Can't get the current and the end position");
+  exit(EXIT_FAILURE);
  }
  return result;
+}
+
+void IGF_Multimedia::stop()
+{
+ player->StopWhenReady();
+}
+
+void IGF_Multimedia::play()
+{
+ this->stop();
+ this->rewind();
+ player->Run();
 }
 
 IGF_Memory::IGF_Memory()
