@@ -169,6 +169,7 @@ class IGF_Engine
  WNDCLASS window_class;
  unsigned long int width;
  unsigned long int height;
+ void prepare_engine();
  void create_window();
  void capture_mouse();
  bool process_message();

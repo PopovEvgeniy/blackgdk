@@ -138,22 +138,42 @@ void IGF_Synchronization::wait_timer()
 IGF_Engine::IGF_Engine()
 {
  window_class.lpszClassName=TEXT("IGF");
- window_class.hInstance=GetModuleHandle(NULL);
  window_class.style=CS_HREDRAW|CS_VREDRAW;
  window_class.lpfnWndProc=(WNDPROC)IGF_Process_Message;
+ window_class.hInstance=NULL;
  window_class.hbrBackground=NULL;
- window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
- window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
+ window_class.hIcon=NULL;
+ window_class.hCursor=NULL;
  window_class.cbClsExtra=0;
  window_class.cbWndExtra=0;
- if (window_class.hCursor==NULL)
+ width=0;
+ height=0;
+}
+
+IGF_Engine::~IGF_Engine()
+{
+ if(window!=NULL) CloseWindow(window);
+ UnregisterClass(window_class.lpszClassName,window_class.hInstance);
+}
+
+void IGF_Engine::prepare_engine()
+{
+ window_class.hInstance=GetModuleHandle(NULL);
+ if(window_class.hInstance==NULL)
  {
-  puts("Can't load the standart cursor");
+  puts("Can't get the application instance");
   exit(EXIT_FAILURE);
  }
+ window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
  if (window_class.hIcon==NULL)
  {
   puts("Can't load the standart program icon");
+  exit(EXIT_FAILURE);
+ }
+ window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
+ if (window_class.hCursor==NULL)
+ {
+  puts("Can't load the standart cursor");
   exit(EXIT_FAILURE);
  }
  if (RegisterClass(&window_class)==0)
@@ -163,12 +183,6 @@ IGF_Engine::IGF_Engine()
  }
  width=GetSystemMetrics(SM_CXSCREEN);
  height=GetSystemMetrics(SM_CYSCREEN);
-}
-
-IGF_Engine::~IGF_Engine()
-{
- if(window!=NULL) CloseWindow(window);
- UnregisterClass(window_class.lpszClassName,window_class.hInstance);
 }
 
 void IGF_Engine::create_window()
@@ -397,6 +411,7 @@ void IGF_Render::refresh()
 
 void IGF_Screen::initialize()
 {
+ this->prepare_engine();
  this->create_render_buffer();
  this->create_timer();
  this->create_window();
