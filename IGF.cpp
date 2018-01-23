@@ -1000,6 +1000,7 @@ void IGF_Multimedia::play()
 
 IGF_Memory::IGF_Memory()
 {
+ memset(&memory,0,sizeof(MEMORYSTATUSEX));
  memory.dwLength=sizeof(MEMORYSTATUSEX);
 }
 
@@ -1008,15 +1009,25 @@ IGF_Memory::~IGF_Memory()
 
 }
 
+void IGF_Memory::get_status()
+{
+ if(GlobalMemoryStatusEx(&memory)==FALSE)
+ {
+  puts("Can't get the memory status");
+  exit(EXIT_FAILURE);
+ }
+
+}
+
 unsigned long long int IGF_Memory::get_total_memory()
 {
- GlobalMemoryStatusEx(&memory);
+ this->get_status();
  return memory.ullTotalPhys;
 }
 
 unsigned long long int IGF_Memory::get_free_memory()
 {
- GlobalMemoryStatusEx(&memory);
+ this->get_status();
  return memory.ullAvailPhys;
 }
 

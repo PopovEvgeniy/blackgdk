@@ -325,6 +325,7 @@ class IGF_Memory
 {
  private:
  MEMORYSTATUSEX memory;
+ void get_status();
  public:
  IGF_Memory();
  ~IGF_Memory();
