@@ -403,10 +403,10 @@ void IGF_Render::create_render()
 
 void IGF_Render::refresh()
 {
+ surface->CopyFromMemory(&source,buffer,frame_line);
  target->BeginDraw();
  target->DrawBitmap(surface,destanation,1.0,D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,texture);
  if(target->EndDraw()==(HRESULT)D2DERR_RECREATE_TARGET) this->recreate_render();
- surface->CopyFromMemory(&source,buffer,frame_line);
 }
 
 void IGF_Screen::initialize()
