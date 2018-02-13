@@ -1,9 +1,4 @@
 /*
-Indie framework was create by Popov Evgeniy Alekseyevich
-Some code bases on code from SVGALib(http://www.svgalib.org/).
-
-Indie game framework license
-
 Copyright © 2017-2018, Popov Evgeniy Alekseyevich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,10 +13,6 @@ copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Third–party code license
-
-SVGALib is public domain. SVGALib homepage: http://www.svgalib.org/
 */
 
 #pragma comment(lib,"kernel32.lib")
@@ -189,6 +180,7 @@ class IGF_Frame
  unsigned long int length;
  unsigned long int *buffer;
  void create_render_buffer();
+ unsigned long int get_rgb(const unsigned long int red,const unsigned long int green,const unsigned long int blue);
  public:
  IGF_Frame();
  ~IGF_Frame();
