@@ -1534,21 +1534,6 @@ void IGF_Canvas::resize_image(const unsigned long int new_width,const unsigned l
  height=new_height;
 }
 
-void IGF_Background::draw_background()
-{
- unsigned long int x,y,offset;
- for (x=0;x<width;++x)
- {
-  for (y=0;y<height;++y)
-  {
-   offset=x+(width*y);
-   surface->draw_pixel(x,y,image[offset].red,image[offset].green,image[offset].blue);
-  }
-
- }
-
-}
-
 void IGF_Background::draw_horizontal_background(const unsigned long int frame)
 {
  unsigned long int x,y,offset,start,frame_width;
@@ -1583,6 +1568,11 @@ void IGF_Background::draw_vertical_background(const unsigned long int frame)
 
 }
 
+void IGF_Background::draw_background()
+{
+ this->draw_horizontal_background(1);
+}
+
 IGF_Sprite::IGF_Sprite()
 {
  current_x=0;
@@ -1592,6 +1582,21 @@ IGF_Sprite::IGF_Sprite()
 IGF_Sprite::~IGF_Sprite()
 {
 
+}
+
+bool IGF_Sprite::compare_pixels(const IGF_Color &first,const IGF_Color &second)
+{
+ bool result;
+ result=false;
+ if ((first.red!=second.red)||(first.green!=second.green))
+ {
+  result=true;
+ }
+ else
+ {
+  if(first.blue!=second.blue) result=true;
+ }
+ return result;
 }
 
 void IGF_Sprite::clone(IGF_Sprite &target)
@@ -1622,7 +1627,7 @@ void IGF_Sprite::draw_sprite_frame(const unsigned long int x,const unsigned long
   for(sprite_y=0;sprite_y<height;++sprite_y)
   {
    offset=start+sprite_x+(sprite_y*width);
-   if(memcmp(&image[0],&image[offset],3)!=0) surface->draw_pixel(x+sprite_x,y+sprite_y,image[offset].red,image[offset].green,image[offset].blue);
+   if(this->compare_pixels(image[0],image[offset])==true) surface->draw_pixel(x+sprite_x,y+sprite_y,image[offset].red,image[offset].green,image[offset].blue);
   }
 
  }

@@ -405,9 +405,9 @@ class IGF_Canvas
 class IGF_Background:public IGF_Canvas
 {
  public:
- void draw_background();
  void draw_horizontal_background(const unsigned long int frame);
  void draw_vertical_background(const unsigned long int frame);
+ void draw_background();
 };
 
 class IGF_Sprite:public IGF_Canvas
@@ -415,6 +415,7 @@ class IGF_Sprite:public IGF_Canvas
  private:
  unsigned long int current_x;
  unsigned long int current_y;
+ bool compare_pixels(const IGF_Color &first,const IGF_Color &second);
  public:
  IGF_Sprite();
  ~IGF_Sprite();
