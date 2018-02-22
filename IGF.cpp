@@ -276,7 +276,7 @@ void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,c
 {
  if((x<frame_width)&&(y<frame_height))
  {
-  buffer[x+(y<<9)]=this->get_rgb(blue,green,red);
+  buffer[x+y*frame_width]=this->get_rgb(blue,green,red);
  }
 
 }
