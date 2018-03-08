@@ -1555,7 +1555,7 @@ void IGF_Background::draw_vertical_background(const unsigned long int frame)
 {
  unsigned long int x,y,offset,start,frame_height;
  frame_height=height/frames;
- start=(frame-1)*frame_height;
+ start=(frame-1)*frame_height*width;
  for (x=0;x<width;++x)
  {
   for (y=0;y<frame_height;++y)
