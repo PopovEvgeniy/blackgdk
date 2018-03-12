@@ -375,6 +375,7 @@ class IGF_Image
  unsigned long int width;
  unsigned long int height;
  unsigned char *data;
+ unsigned char *create_buffer(const unsigned long int length);
  public:
  IGF_Image();
  ~IGF_Image();
@@ -395,6 +396,7 @@ class IGF_Canvas
  unsigned long int frames;
  IGF_Screen *surface;
  IGF_Color *image;
+ IGF_Color *create_buffer(const unsigned long int length);
  public:
  IGF_Canvas();
  ~IGF_Canvas();
@@ -454,7 +456,7 @@ class IGF_Text
 class IGF_Collision
 {
  public:
- bool check_horizontal_collision(IGF_Box first,IGF_Box second);
- bool check_vertical_collision(IGF_Box first,IGF_Box second);
- bool check_collision(IGF_Box first,IGF_Box second);
+ bool check_horizontal_collision(const IGF_Box &first,const IGF_Box &second);
+ bool check_vertical_collision(const IGF_Box &first,const IGF_Box &second);
+ bool check_collision(const IGF_Box &first,const IGF_Box &second);
 };
