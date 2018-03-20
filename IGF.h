@@ -29,6 +29,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 #define _CRT_NONSTDC_NO_WARNINGS
 */
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -184,14 +185,14 @@ class IGF_Frame
  unsigned long int frame_width;
  unsigned long int frame_height;
  unsigned long int frame_line;
- unsigned long int length;
+ size_t buffer_length;
  unsigned long int *buffer;
  void create_render_buffer();
  unsigned long int get_rgb(const unsigned long int red,const unsigned long int green,const unsigned long int blue);
  public:
  IGF_Frame();
  ~IGF_Frame();
- void draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned long int red,const unsigned long int green,const unsigned long int blue);
+ void draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue);
  void clear_screen();
  unsigned long int get_frame_width();
  unsigned long int get_frame_height();
@@ -376,6 +377,9 @@ class IGF_Image
  unsigned long int height;
  unsigned char *data;
  unsigned char *create_buffer(const unsigned long int length);
+ void clear_buffer();
+ FILE *open_image(const char *name);
+ unsigned long int get_file_size(FILE *target);
  public:
  IGF_Image();
  ~IGF_Image();
@@ -396,7 +400,7 @@ class IGF_Canvas
  unsigned long int frames;
  IGF_Screen *surface;
  IGF_Color *image;
- IGF_Color *create_buffer(const unsigned long int length);
+ IGF_Color *create_buffer(const unsigned long int image_width,const unsigned long int image_height);
  public:
  IGF_Canvas();
  ~IGF_Canvas();
