@@ -52,6 +52,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 #define IGF_MOUSE_RIGHT 1
 #define IGF_MOUSE_MIDDLE 2
 
+#define IGF_GAMEPAD_AMOUNT 4
 #define IGF_GAMEPAD_BATTERY_ERROR 0
 #define IGF_GAMEPAD_BATTERY_ALKAINE 1
 #define IGF_GAMEPAD_BATTERY_NIMH 2
@@ -269,8 +270,8 @@ class IGF_Gamepad
  XINPUT_STATE current;
  XINPUT_STATE preversion;
  XINPUT_VIBRATION vibration;
- unsigned long int length;
  unsigned long int active;
+ size_t length;
  bool read_battery_status();
  void clear_state();
  bool read_state();

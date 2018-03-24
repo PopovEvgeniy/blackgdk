@@ -246,6 +246,7 @@ IGF_Frame::IGF_Frame()
  frame_width=512;
  frame_height=512;
  frame_line=frame_width*4;
+ buffer_length=0;
  buffer=NULL;
 }
 
@@ -309,6 +310,18 @@ IGF_Render::IGF_Render()
  render=NULL;
  target=NULL;
  surface=NULL;
+ source=D2D1::RectU(0,0,0,0);
+ destanation=D2D1::RectF(0,0,0,0);
+ texture=D2D1::RectF(0,0,0,0);
+ setting.dpiX=0;
+ setting.dpiY=0;
+ setting.type=D2D1_RENDER_TARGET_TYPE_HARDWARE;
+ setting.pixelFormat=D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_IGNORE);
+ setting.usage=D2D1_RENDER_TARGET_USAGE_NONE;
+ setting.minLevel=D2D1_FEATURE_LEVEL_9;
+ configuration.hwnd=NULL;
+ configuration.pixelSize=D2D1::SizeU(0,0);
+ configuration.presentOptions=D2D1_PRESENT_OPTIONS_IMMEDIATELY;
 }
 
 IGF_Render::~IGF_Render()
@@ -350,14 +363,8 @@ void IGF_Render::create_surface()
 
 void IGF_Render::set_render_setting()
 {
- setting=D2D1::RenderTargetProperties();
- setting.type=D2D1_RENDER_TARGET_TYPE_HARDWARE;
- setting.pixelFormat=D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_IGNORE);
- setting.usage=D2D1_RENDER_TARGET_USAGE_NONE;
- setting.minLevel=D2D1_FEATURE_LEVEL_9;
  configuration.hwnd=window;
  configuration.pixelSize=D2D1::SizeU(width,height);
- configuration.presentOptions=D2D1_PRESENT_OPTIONS_IMMEDIATELY;
 }
 
 void IGF_Render::set_render()
@@ -658,7 +665,7 @@ bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const unsigned char trigger
 
 void IGF_Gamepad::set_active(const unsigned long int gamepad)
 {
- if(active<4)
+ if(active<IGF_GAMEPAD_AMOUNT)
  {
   this->clear_state();
   active=gamepad;
@@ -676,12 +683,12 @@ unsigned long int IGF_Gamepad::get_amount()
  unsigned long int old,result;
  result=0;
  old=active;
- for(active=0;active<4;++active)
+ for(active=0;active<IGF_GAMEPAD_AMOUNT;++active)
  {
   if(this->read_state()==true)
   {
    this->clear_state();
-   result++;
+   result=active+1;
   }
 
  }
