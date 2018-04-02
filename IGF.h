@@ -377,7 +377,7 @@ class IGF_Image
  unsigned long int width;
  unsigned long int height;
  unsigned char *data;
- unsigned char *create_buffer(const unsigned long int length);
+ unsigned char *create_buffer(const size_t length);
  void clear_buffer();
  FILE *open_image(const char *name);
  unsigned long int get_file_size(FILE *target);
@@ -388,7 +388,7 @@ class IGF_Image
  void load_pcx(const char *name);
  unsigned long int get_width();
  unsigned long int get_height();
- unsigned long int get_data_length();
+ size_t get_data_length();
  unsigned char *get_data();
  void destroy_image();
 };
@@ -402,6 +402,11 @@ class IGF_Canvas
  IGF_Screen *surface;
  IGF_Color *image;
  IGF_Color *create_buffer(const unsigned long int image_width,const unsigned long int image_height);
+ void draw_image_pixel(size_t offset,const unsigned long int x,const unsigned long int y);
+ size_t get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y);
+ private:
+ void clear_buffer();
+ void check_size();
  public:
  IGF_Canvas();
  ~IGF_Canvas();
@@ -430,6 +435,7 @@ class IGF_Sprite:public IGF_Canvas
  unsigned long int current_x;
  unsigned long int current_y;
  bool compare_pixels(const IGF_Color &first,const IGF_Color &second);
+ void draw_sprite_pixel(size_t offset,const unsigned long int x,const unsigned long int y);
  public:
  IGF_Sprite();
  ~IGF_Sprite();
