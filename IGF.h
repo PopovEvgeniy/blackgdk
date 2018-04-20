@@ -230,6 +230,7 @@ class IGF_Screen:public IGF_Synchronization, public IGF_Render
  public:
  void initialize();
  bool sync();
+ void set_fps_limit(const unsigned long int fps);
  IGF_Screen* get_handle();
 };
 

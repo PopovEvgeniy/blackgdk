@@ -441,6 +441,11 @@ bool IGF_Screen::sync()
  return quit;
 }
 
+void IGF_Screen::set_fps_limit(const unsigned long int fps)
+{
+ if(fps>0) this->set_timer(1000/fps);
+}
+
 IGF_Screen* IGF_Screen::get_handle()
 {
  return this;
