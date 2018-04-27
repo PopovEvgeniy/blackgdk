@@ -230,7 +230,6 @@ class IGF_Screen:public IGF_Synchronization, public IGF_Render
  public:
  void initialize();
  bool sync();
- void set_fps_limit(const unsigned long int fps);
  IGF_Screen* get_handle();
 };
 
@@ -297,6 +296,7 @@ class IGF_Gamepad
  bool check_trigger_hold(const unsigned char trigger);
  bool check_trigger_press(const unsigned char trigger);
  bool check_trigger_release(const unsigned char trigger);
+ unsigned char get_trigger(const unsigned char trigger);
  bool set_vibration(const unsigned short int left,const unsigned short int right);
  char get_stick_x(const unsigned char stick);
  char get_stick_y(const unsigned char stick);

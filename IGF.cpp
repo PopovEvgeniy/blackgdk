@@ -441,11 +441,6 @@ bool IGF_Screen::sync()
  return quit;
 }
 
-void IGF_Screen::set_fps_limit(const unsigned long int fps)
-{
- if(fps>0) this->set_timer(1000/fps);
-}
-
 IGF_Screen* IGF_Screen::get_handle()
 {
  return this;
@@ -827,6 +822,15 @@ bool IGF_Gamepad::check_trigger_release(const unsigned char trigger)
  {
   if(this->check_trigger(preversion,trigger)==true) result=true;
  }
+ return result;
+}
+
+unsigned char IGF_Gamepad::get_trigger(const unsigned char trigger)
+{
+ unsigned char result;
+ result=0;
+ if(trigger==IGF_GAMEPAD_LEFT_TRIGGER) result=current.Gamepad.bLeftTrigger;
+ if(trigger==IGF_GAMEPAD_RIGHT_TRIGGER) result=current.Gamepad.bRightTrigger;
  return result;
 }
 
