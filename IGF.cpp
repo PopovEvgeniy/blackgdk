@@ -908,7 +908,7 @@ wchar_t *IGF_Multimedia::convert_file_name(const char *target)
   puts("Can't allocate memory");
   exit(EXIT_FAILURE);
  }
- for(index=0;index<length;index++) name[index]=btowc(target[index]);
+ for(index=0;index<length;++index) name[index]=btowc(target[index]);
  return name;
 }
 
@@ -1124,6 +1124,9 @@ bool IGF_Timer::check_timer()
 
 IGF_Primitive::IGF_Primitive()
 {
+ color.red=0;
+ color.green=0;
+ color.blue=0;
  surface=NULL;
 }
 
