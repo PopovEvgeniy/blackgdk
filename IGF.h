@@ -43,6 +43,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 #define IGF_KEYBOARD 256
 #define IGF_MOUSE 3
+#define IGF_GAMEPAD_AMOUNT 4
 
 #define IGFKEY_NONE 0
 #define IGFKEY_PRESS 1
@@ -52,31 +53,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 #define IGF_MOUSE_RIGHT 1
 #define IGF_MOUSE_MIDDLE 2
 
-#define IGF_GAMEPAD_AMOUNT 4
-#define IGF_GAMEPAD_BATTERY_ERROR 0
-#define IGF_GAMEPAD_BATTERY_ALKAINE 1
-#define IGF_GAMEPAD_BATTERY_NIMH 2
-#define IGF_GAMEPAD_BATTERY_UNKNOW 3
-#define IGF_GAMEPAD_BATTERY_EMPTY 4
-#define IGF_GAMEPAD_BATTERY_LOW 5
-#define IGF_GAMEPAD_BATTERY_MEDIUM 6
-#define IGF_GAMEPAD_BATTERY_FULL 7
-#define IGF_GAMEPAD_UP XINPUT_GAMEPAD_DPAD_UP
-#define IGF_GAMEPAD_DOWN XINPUT_GAMEPAD_DPAD_DOWN
-#define IGF_GAMEPAD_LEFT XINPUT_GAMEPAD_DPAD_LEFT
-#define IGF_GAMEPAD_RIGHT XINPUT_GAMEPAD_DPAD_RIGHT
-#define IGF_GAMEPAD_A XINPUT_GAMEPAD_A
-#define IGF_GAMEPAD_B XINPUT_GAMEPAD_B
-#define IGF_GAMEPAD_X XINPUT_GAMEPAD_X
-#define IGF_GAMEPAD_Y XINPUT_GAMEPAD_Y
-#define IGF_GAMEPAD_LEFT_BUMPER XINPUT_GAMEPAD_LEFT_SHOULDER
-#define IGF_GAMEPAD_RIGHT_BUMPER XINPUT_GAMEPAD_RIGHT_SHOULDER
-#define IGF_GAMEPAD_START XINPUT_GAMEPAD_START
-#define IGF_GAMEPAD_BACK XINPUT_GAMEPAD_BACK
-#define IGF_GAMEPAD_LEFT_TRIGGER 0
-#define IGF_GAMEPAD_RIGHT_TRIGGER 1
-#define IGF_GAMEPAD_LEFT_STICK 2
-#define IGF_GAMEPAD_RIGHT_STICK 3
+enum IGF_GAMEPAD_BATTERY_TYPE {IGF_GAMEPAD_BATTERY_TYPE_ERROR=0,IGF_GAMEPAD_BATTERY_ALKAINE=1,IGF_GAMEPAD_BATTERY_NIMH=2,IGF_GAMEPAD_BATTERY_UNKNOW=3};
+enum IGF_GAMEPAD_BATTERY_LEVEL {IGF_GAMEPAD_BATTERY_LEVEL_ERROR=0,IGF_GAMEPAD_BATTERY_EMPTY=1,IGF_GAMEPAD_BATTERY_LOW=2,IGF_GAMEPAD_BATTERY_MEDIUM=3,IGF_GAMEPAD_BATTERY_FULL=4};
+enum IGF_GAMEPAD_BUTTONS {IGF_GAMEPAD_UP=XINPUT_GAMEPAD_DPAD_UP,IGF_GAMEPAD_DOWN=XINPUT_GAMEPAD_DPAD_DOWN,IGF_GAMEPAD_LEFT=XINPUT_GAMEPAD_DPAD_LEFT,IGF_GAMEPAD_RIGHT=XINPUT_GAMEPAD_DPAD_RIGHT,IGF_GAMEPAD_A=XINPUT_GAMEPAD_A,IGF_GAMEPAD_B=XINPUT_GAMEPAD_B,IGF_GAMEPAD_X=XINPUT_GAMEPAD_X,IGF_GAMEPAD_Y=XINPUT_GAMEPAD_Y,IGF_GAMEPAD_LEFT_BUMPER=XINPUT_GAMEPAD_LEFT_SHOULDER,IGF_GAMEPAD_RIGHT_BUMPER=XINPUT_GAMEPAD_RIGHT_SHOULDER,IGF_GAMEPAD_START=XINPUT_GAMEPAD_START,IGF_GAMEPAD_BACK=XINPUT_GAMEPAD_BACK};
+enum IGF_GAMEPAD_TRIGGERS {IGF_GAMEPAD_LEFT_TRIGGER=0,IGF_GAMEPAD_RIGHT_TRIGGER=1};
+enum IGF_GAMEPAD_STICKS {IGF_GAMEPAD_LEFT_STICK=0,IGF_GAMEPAD_RIGHT_STICK=1};
 
 struct IGF_Color
 {
@@ -277,8 +258,8 @@ class IGF_Gamepad
  bool read_state();
  bool write_state();
  void set_motor(const unsigned short int left,const unsigned short int right);
- bool check_button(XINPUT_STATE &target,const unsigned short int button);
- bool check_trigger(XINPUT_STATE &target,const unsigned char trigger);
+ bool check_button(XINPUT_STATE &target,const IGF_GAMEPAD_BUTTONS button);
+ bool check_trigger(XINPUT_STATE &target,const IGF_GAMEPAD_TRIGGERS trigger);
  public:
  IGF_Gamepad();
  ~IGF_Gamepad();
@@ -287,19 +268,19 @@ class IGF_Gamepad
  unsigned long int get_amount();
  bool check_connection();
  bool is_wireless();
- unsigned char get_battery_type();
- unsigned char get_battery_level();
+ IGF_GAMEPAD_BATTERY_TYPE get_battery_type();
+ IGF_GAMEPAD_BATTERY_LEVEL get_battery_level();
  void update();
- bool check_button_hold(const unsigned short int button);
- bool check_button_press(const unsigned short int button);
- bool check_button_release(const unsigned short int button);
- bool check_trigger_hold(const unsigned char trigger);
- bool check_trigger_press(const unsigned char trigger);
- bool check_trigger_release(const unsigned char trigger);
- unsigned char get_trigger(const unsigned char trigger);
+ bool check_button_hold(const IGF_GAMEPAD_BUTTONS button);
+ bool check_button_press(const IGF_GAMEPAD_BUTTONS button);
+ bool check_button_release(const IGF_GAMEPAD_BUTTONS button);
+ bool check_trigger_hold(const IGF_GAMEPAD_TRIGGERS trigger);
+ bool check_trigger_press(const IGF_GAMEPAD_TRIGGERS trigger);
+ bool check_trigger_release(const IGF_GAMEPAD_TRIGGERS trigger);
+ unsigned char get_trigger(const IGF_GAMEPAD_TRIGGERS trigger);
  bool set_vibration(const unsigned short int left,const unsigned short int right);
- char get_stick_x(const unsigned char stick);
- char get_stick_y(const unsigned char stick);
+ char get_stick_x(const IGF_GAMEPAD_STICKS stick);
+ char get_stick_y(const IGF_GAMEPAD_STICKS stick);
 };
 
 class IGF_Multimedia: public IGF_Base

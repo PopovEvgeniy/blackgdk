@@ -646,7 +646,7 @@ void IGF_Gamepad::set_motor(const unsigned short int left,const unsigned short i
  vibration.wRightMotorSpeed=right;
 }
 
-bool IGF_Gamepad::check_button(XINPUT_STATE &target,const unsigned short int button)
+bool IGF_Gamepad::check_button(XINPUT_STATE &target,const IGF_GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -654,7 +654,7 @@ bool IGF_Gamepad::check_button(XINPUT_STATE &target,const unsigned short int but
  return result;
 }
 
-bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const unsigned char trigger)
+bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const IGF_GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
@@ -716,10 +716,10 @@ bool IGF_Gamepad::is_wireless()
  return result;
 }
 
-unsigned char IGF_Gamepad::get_battery_type()
+IGF_GAMEPAD_BATTERY_TYPE IGF_Gamepad::get_battery_type()
 {
- unsigned char result;
- result=IGF_GAMEPAD_BATTERY_ERROR;
+ IGF_GAMEPAD_BATTERY_TYPE result;
+ result=IGF_GAMEPAD_BATTERY_TYPE_ERROR;
  if(this->read_battery_status()==true)
  {
   switch (battery.BatteryType)
@@ -739,10 +739,10 @@ unsigned char IGF_Gamepad::get_battery_type()
  return result;
 }
 
-unsigned char IGF_Gamepad::get_battery_level()
+IGF_GAMEPAD_BATTERY_LEVEL IGF_Gamepad::get_battery_level()
 {
- unsigned char result;
- result=IGF_GAMEPAD_BATTERY_ERROR;
+ IGF_GAMEPAD_BATTERY_LEVEL result;
+ result=IGF_GAMEPAD_BATTERY_LEVEL_ERROR;
  if(this->read_battery_status()==true)
  {
   switch (battery.BatteryType)
@@ -760,7 +760,7 @@ unsigned char IGF_Gamepad::get_battery_level()
    result=IGF_GAMEPAD_BATTERY_FULL;
    break;
   }
-  if((battery.BatteryType==BATTERY_TYPE_WIRED)||(battery.BatteryType==BATTERY_TYPE_DISCONNECTED)) result=IGF_GAMEPAD_BATTERY_ERROR;
+  if((battery.BatteryType==BATTERY_TYPE_WIRED)||(battery.BatteryType==BATTERY_TYPE_DISCONNECTED)) result=IGF_GAMEPAD_BATTERY_LEVEL_ERROR;
  }
  return result;
 }
@@ -771,12 +771,12 @@ void IGF_Gamepad::update()
  if(this->read_state()==false) this->clear_state();
 }
 
-bool IGF_Gamepad::check_button_hold(const unsigned short int button)
+bool IGF_Gamepad::check_button_hold(const IGF_GAMEPAD_BUTTONS button)
 {
  return this->check_button(current,button);
 }
 
-bool IGF_Gamepad::check_button_press(const unsigned short int button)
+bool IGF_Gamepad::check_button_press(const IGF_GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -787,7 +787,7 @@ bool IGF_Gamepad::check_button_press(const unsigned short int button)
  return result;
 }
 
-bool IGF_Gamepad::check_button_release(const unsigned short int button)
+bool IGF_Gamepad::check_button_release(const IGF_GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -798,12 +798,12 @@ bool IGF_Gamepad::check_button_release(const unsigned short int button)
  return result;
 }
 
-bool IGF_Gamepad::check_trigger_hold(const unsigned char trigger)
+bool IGF_Gamepad::check_trigger_hold(const IGF_GAMEPAD_TRIGGERS trigger)
 {
  return this->check_trigger(current,trigger);
 }
 
-bool IGF_Gamepad::check_trigger_press(const unsigned char trigger)
+bool IGF_Gamepad::check_trigger_press(const IGF_GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
@@ -814,7 +814,7 @@ bool IGF_Gamepad::check_trigger_press(const unsigned char trigger)
  return result;
 }
 
-bool IGF_Gamepad::check_trigger_release(const unsigned char trigger)
+bool IGF_Gamepad::check_trigger_release(const IGF_GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
@@ -825,7 +825,7 @@ bool IGF_Gamepad::check_trigger_release(const unsigned char trigger)
  return result;
 }
 
-unsigned char IGF_Gamepad::get_trigger(const unsigned char trigger)
+unsigned char IGF_Gamepad::get_trigger(const IGF_GAMEPAD_TRIGGERS trigger)
 {
  unsigned char result;
  result=0;
@@ -840,7 +840,7 @@ bool IGF_Gamepad::set_vibration(const unsigned short int left,const unsigned sho
  return this->write_state();
 }
 
-char IGF_Gamepad::get_stick_x(const unsigned char stick)
+char IGF_Gamepad::get_stick_x(const IGF_GAMEPAD_STICKS stick)
 {
  char result;
  short int control;
@@ -860,7 +860,7 @@ char IGF_Gamepad::get_stick_x(const unsigned char stick)
  return result;
 }
 
-char IGF_Gamepad::get_stick_y(const unsigned char stick)
+char IGF_Gamepad::get_stick_y(const IGF_GAMEPAD_STICKS stick)
 {
  char result;
  short int control;
