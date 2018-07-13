@@ -427,16 +427,20 @@ void IGF_Screen::initialize()
  this->create_timer();
  this->create_window();
  this->capture_mouse();
- this->set_render();
  this->create_render();
  this->set_timer(17);
+}
+
+bool IGF_Screen::update()
+{
+ this->refresh();
+ return this->process_message();
 }
 
 bool IGF_Screen::sync()
 {
  bool quit;
- this->refresh();
- quit=this->process_message();
+ quit=this->update();
  this->wait_timer();
  return quit;
 }

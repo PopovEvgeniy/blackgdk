@@ -182,7 +182,7 @@ class IGF_Frame
 
 class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
 {
- protected:
+ private:
  ID2D1Factory *render;
  ID2D1HwndRenderTarget *target;
  ID2D1Bitmap *surface;
@@ -199,6 +199,7 @@ class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
  void destroy_resource();
  void recreate_render();
  void prepare_surface();
+ protected:
  void create_render();
  void refresh();
  public:
@@ -210,6 +211,7 @@ class IGF_Screen:public IGF_Synchronization, public IGF_Render
 {
  public:
  void initialize();
+ bool update();
  bool sync();
  IGF_Screen* get_handle();
 };
