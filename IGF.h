@@ -53,6 +53,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 #define IGF_MOUSE_RIGHT 1
 #define IGF_MOUSE_MIDDLE 2
 
+enum IGF_MIRROR_TYPE {IGF_MIRROR_HORIZONTAL=0,IGF_MIRROR_VERTICAL=1};
 enum IGF_GAMEPAD_BATTERY_TYPE {IGF_GAMEPAD_BATTERY_TYPE_ERROR=0,IGF_GAMEPAD_BATTERY_ALKAINE=1,IGF_GAMEPAD_BATTERY_NIMH=2,IGF_GAMEPAD_BATTERY_UNKNOW=3};
 enum IGF_GAMEPAD_BATTERY_LEVEL {IGF_GAMEPAD_BATTERY_LEVEL_ERROR=0,IGF_GAMEPAD_BATTERY_EMPTY=1,IGF_GAMEPAD_BATTERY_LOW=2,IGF_GAMEPAD_BATTERY_MEDIUM=3,IGF_GAMEPAD_BATTERY_FULL=4};
 enum IGF_GAMEPAD_BUTTONS {IGF_GAMEPAD_UP=XINPUT_GAMEPAD_DPAD_UP,IGF_GAMEPAD_DOWN=XINPUT_GAMEPAD_DPAD_DOWN,IGF_GAMEPAD_LEFT=XINPUT_GAMEPAD_DPAD_LEFT,IGF_GAMEPAD_RIGHT=XINPUT_GAMEPAD_DPAD_RIGHT,IGF_GAMEPAD_A=XINPUT_GAMEPAD_A,IGF_GAMEPAD_B=XINPUT_GAMEPAD_B,IGF_GAMEPAD_X=XINPUT_GAMEPAD_X,IGF_GAMEPAD_Y=XINPUT_GAMEPAD_Y,IGF_GAMEPAD_LEFT_BUMPER=XINPUT_GAMEPAD_LEFT_SHOULDER,IGF_GAMEPAD_RIGHT_BUMPER=XINPUT_GAMEPAD_RIGHT_SHOULDER,IGF_GAMEPAD_START=XINPUT_GAMEPAD_START,IGF_GAMEPAD_BACK=XINPUT_GAMEPAD_BACK};
@@ -163,11 +164,12 @@ class IGF_Engine
 
 class IGF_Frame
 {
+ private:
+ size_t buffer_length;
  protected:
  unsigned long int frame_width;
  unsigned long int frame_height;
  unsigned long int frame_line;
- size_t buffer_length;
  unsigned long int *buffer;
  void create_render_buffer();
  unsigned long int get_rgb(const unsigned long int red,const unsigned long int green,const unsigned long int blue);
@@ -402,7 +404,7 @@ class IGF_Canvas
  unsigned long int get_frames();
  void initialize(IGF_Screen *Screen);
  void load_image(IGF_Image &buffer);
- void mirror_image(const unsigned char kind);
+ void mirror_image(const IGF_MIRROR_TYPE kind);
  void resize_image(const unsigned long int new_width,const unsigned long int new_height);
 };
 

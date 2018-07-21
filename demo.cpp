@@ -56,8 +56,8 @@ int main(void)
   if(keyboard.check_hold(80)==true) y+=2;
   if(keyboard.check_hold(75)==true) x-=2;
   if(keyboard.check_hold(77)==true) x+=2;
-  if(keyboard.check_press(71)==true) ship.mirror_image(0);
-  if(keyboard.check_press(79)==true) ship.mirror_image(1);
+  if(keyboard.check_press(71)==true) ship.mirror_image(IGF_MIRROR_HORIZONTAL);
+  if(keyboard.check_press(79)==true) ship.mirror_image(IGF_MIRROR_VERTICAL);
   if(gamepad.check_button_press(IGF_GAMEPAD_X)==true) break;
   if(gamepad.check_button_hold(IGF_GAMEPAD_UP)==true) y-=2;
   if(gamepad.check_button_hold(IGF_GAMEPAD_DOWN)==true) y+=2;
@@ -69,8 +69,8 @@ int main(void)
   if(gamepad.get_stick_y(IGF_GAMEPAD_LEFT_STICK)==-1) y+=2;
   if(gamepad.check_trigger_hold(IGF_GAMEPAD_LEFT_TRIGGER)==true) gamepad.set_vibration(65535,65535);
   if(gamepad.check_trigger_hold(IGF_GAMEPAD_RIGHT_TRIGGER)==true) gamepad.set_vibration(0,0);
-  if(gamepad.check_button_press(IGF_GAMEPAD_A)==true) ship.mirror_image(0);
-  if(gamepad.check_button_press(IGF_GAMEPAD_B)==true) ship.mirror_image(1);
+  if(gamepad.check_button_press(IGF_GAMEPAD_A)==true) ship.mirror_image(IGF_MIRROR_HORIZONTAL);
+  if(gamepad.check_button_press(IGF_GAMEPAD_B)==true) ship.mirror_image(IGF_MIRROR_VERTICAL);
   if((x<=0)||(x>=screen_width)) x=screen_width/2;
   if((y<=0)||(y>=screen_height)) y=screen_height/2;
   space.draw_background();

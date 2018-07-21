@@ -1518,13 +1518,13 @@ void IGF_Canvas::load_image(IGF_Image &buffer)
  buffer.destroy_image();
 }
 
-void IGF_Canvas::mirror_image(const unsigned char kind)
+void IGF_Canvas::mirror_image(const IGF_MIRROR_TYPE kind)
 {
  unsigned long int x,y;
  size_t index,index2;
  IGF_Color *mirrored_image;
  mirrored_image=this->create_buffer(width,height);
- if (kind==0)
+ if (kind==IGF_MIRROR_HORIZONTAL)
  {
   for (x=0;x<width;++x)
   {
@@ -1538,7 +1538,7 @@ void IGF_Canvas::mirror_image(const unsigned char kind)
   }
 
  }
- else
+ if (kind==IGF_MIRROR_VERTICAL)
  {
    for (x=0;x<width;++x)
   {
