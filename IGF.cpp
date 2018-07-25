@@ -245,7 +245,7 @@ IGF_Frame::IGF_Frame()
 {
  frame_width=512;
  frame_height=512;
- frame_line=frame_width*4;
+ frame_line=0;
  buffer_length=0;
  buffer=NULL;
 }
@@ -260,8 +260,24 @@ IGF_Frame::~IGF_Frame()
 
 }
 
+void IGF_Frame::set_size(const IGF_SURFACE surface)
+{
+ if(surface==IGF_SURFACE_SMALL)
+ {
+  frame_width=256;
+  frame_height=256;
+ }
+ if(surface==IGF_SURFACE_LARGE)
+ {
+  frame_width=512;
+  frame_height=512;
+ }
+
+}
+
 void IGF_Frame::create_render_buffer()
 {
+ frame_line=frame_width*4;
  buffer_length=(size_t)frame_width*(size_t)frame_height;
  buffer=(unsigned long int*)calloc(buffer_length,sizeof(unsigned long int));
  if(buffer==NULL)
@@ -429,6 +445,12 @@ void IGF_Screen::initialize()
  this->capture_mouse();
  this->create_render();
  this->set_timer(17);
+}
+
+void IGF_Screen::initialize(const IGF_SURFACE surface)
+{
+ this->set_size(surface);
+ this->initialize();
 }
 
 bool IGF_Screen::update()
