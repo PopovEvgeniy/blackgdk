@@ -277,7 +277,7 @@ void IGF_Frame::set_size(const IGF_SURFACE surface)
 
 void IGF_Frame::create_render_buffer()
 {
- frame_line=frame_width*4;
+ frame_line=(unsigned long int)sizeof(unsigned long int)*frame_width;
  buffer_length=(size_t)frame_width*(size_t)frame_height;
  buffer=(unsigned long int*)calloc(buffer_length,sizeof(unsigned long int));
  if(buffer==NULL)
@@ -691,7 +691,7 @@ bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const IGF_GAMEPAD_TRIGGERS 
 
 void IGF_Gamepad::set_active(const unsigned long int gamepad)
 {
- if(active<IGF_GAMEPAD_AMOUNT)
+ if(active<XUSER_MAX_COUNT)
  {
   this->clear_state();
   active=gamepad;
@@ -709,7 +709,7 @@ unsigned long int IGF_Gamepad::get_amount()
  unsigned long int old,result;
  result=0;
  old=active;
- for(active=0;active<IGF_GAMEPAD_AMOUNT;++active)
+ for(active=0;active<XUSER_MAX_COUNT;++active)
  {
   if(this->read_state()==true)
   {
@@ -733,11 +733,7 @@ bool IGF_Gamepad::is_wireless()
  result=false;
  if(this->read_battery_status()==true)
  {
-  if(battery.BatteryType!=BATTERY_TYPE_DISCONNECTED)
-  {
-   if(battery.BatteryType!=BATTERY_TYPE_WIRED) result=true;
-  }
-
+  if(battery.BatteryType!=BATTERY_TYPE_WIRED) result=true;
  }
  return result;
 }
@@ -771,7 +767,7 @@ IGF_GAMEPAD_BATTERY_LEVEL IGF_Gamepad::get_battery_level()
  result=IGF_GAMEPAD_BATTERY_LEVEL_ERROR;
  if(this->read_battery_status()==true)
  {
-  switch (battery.BatteryType)
+  switch (battery.BatteryLevel)
   {
    case BATTERY_LEVEL_EMPTY:
    result=IGF_GAMEPAD_BATTERY_EMPTY;
