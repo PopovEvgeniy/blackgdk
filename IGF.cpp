@@ -172,7 +172,7 @@ void IGF_Engine::prepare_engine()
   puts("Can't load the standart cursor");
   exit(EXIT_FAILURE);
  }
- if (RegisterClass(&window_class)==0)
+ if (!RegisterClass(&window_class))
  {
   puts("Can't register window class");
   exit(EXIT_FAILURE);
@@ -1599,7 +1599,19 @@ void IGF_Canvas::resize_image(const unsigned long int new_width,const unsigned l
  height=new_height;
 }
 
-void IGF_Background::draw_background_image(const unsigned long int start,const unsigned long int frame_width,const unsigned long int frame_height)
+IGF_Background::IGF_Background()
+{
+ start=0;
+ frame_width=0;
+ frame_height=0;
+}
+
+IGF_Background::~IGF_Background()
+{
+
+}
+
+void IGF_Background::draw_background_image()
 {
  unsigned long int x,y;
  size_t offset;
@@ -1617,18 +1629,18 @@ void IGF_Background::draw_background_image(const unsigned long int start,const u
 
 void IGF_Background::draw_horizontal_background(const unsigned long int frame)
 {
- unsigned long int start,frame_width;
  frame_width=width/frames;
+ frame_height=height;
  start=(frame-1)*frame_width;
- this->draw_background_image(start,frame_width,height);
+ this->draw_background_image();
 }
 
 void IGF_Background::draw_vertical_background(const unsigned long int frame)
 {
- unsigned long int start,frame_height;
+ frame_width=width;
  frame_height=height/frames;
  start=(frame-1)*frame_height*width;
- this->draw_background_image(start,width,frame_height);
+ this->draw_background_image();
 }
 
 void IGF_Background::draw_background()
