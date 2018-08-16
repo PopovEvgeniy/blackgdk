@@ -170,10 +170,10 @@ class IGF_Frame
  unsigned long int frame_width;
  unsigned long int frame_height;
  unsigned long int frame_line;
- unsigned long int *buffer;
+ unsigned int *buffer;
  void set_size(const IGF_SURFACE surface);
  void create_render_buffer();
- unsigned long int get_rgb(const unsigned long int red,const unsigned long int green,const unsigned long int blue);
+ unsigned int get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue);
  public:
  IGF_Frame();
  ~IGF_Frame();
@@ -400,8 +400,6 @@ class IGF_Canvas
  IGF_Canvas();
  ~IGF_Canvas();
  IGF_Color *get_image();
- unsigned long int get_width();
- unsigned long int get_height();
  void set_frames(const unsigned long int amount);
  unsigned long int get_frames();
  void initialize(IGF_Screen *Screen);
@@ -430,18 +428,22 @@ class IGF_Sprite:public IGF_Canvas
  private:
  unsigned long int current_x;
  unsigned long int current_y;
+ unsigned long int sprite_width;
+ unsigned long int sprite_height;
+ unsigned long int start;
  bool compare_pixels(const IGF_Color &first,const IGF_Color &second);
  void draw_sprite_pixel(const size_t offset,const unsigned long int x,const unsigned long int y);
+ void draw_sprite_image(const unsigned long int x,const unsigned long int y);
  public:
  IGF_Sprite();
  ~IGF_Sprite();
+ unsigned long int get_x();
+ unsigned long int get_y();
+ unsigned long int get_width();
+ unsigned long int get_height();
  void clone(IGF_Sprite &target);
  void draw_sprite_frame(const unsigned long int x,const unsigned long int y,const unsigned long int frame);
  void draw_sprite(const unsigned long int x,const unsigned long int y);
- unsigned long int get_x();
- unsigned long int get_y();
- unsigned long int get_sprite_width();
- unsigned long int get_sprite_height();
  IGF_Sprite* get_handle();
  IGF_Box get_box();
 };

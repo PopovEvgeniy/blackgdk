@@ -277,9 +277,9 @@ void IGF_Frame::set_size(const IGF_SURFACE surface)
 
 void IGF_Frame::create_render_buffer()
 {
- frame_line=(unsigned long int)sizeof(unsigned long int)*frame_width;
+ frame_line=(unsigned long int)sizeof(unsigned int)*frame_width;
  buffer_length=(size_t)frame_width*(size_t)frame_height;
- buffer=(unsigned long int*)calloc(buffer_length,sizeof(unsigned long int));
+ buffer=(unsigned int*)calloc(buffer_length,sizeof(unsigned int));
  if(buffer==NULL)
  {
   puts("Can't allocate memory for render buffer");
@@ -287,12 +287,12 @@ void IGF_Frame::create_render_buffer()
  }
  else
  {
-  buffer_length*=sizeof(unsigned long int);
+  buffer_length*=sizeof(unsigned int);
  }
 
 }
 
-unsigned long int IGF_Frame::get_rgb(const unsigned long int red,const unsigned long int green,const unsigned long int blue)
+unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
 {
  return red+(green<<8)+(blue<<16);
 }
@@ -1501,16 +1501,6 @@ IGF_Color *IGF_Canvas::get_image()
  return image;
 }
 
-unsigned long int IGF_Canvas::get_width()
-{
- return width;
-}
-
-unsigned long int IGF_Canvas::get_height()
-{
- return height;
-}
-
 void IGF_Canvas::set_frames(const unsigned long int amount)
 {
  if(amount>1) frames=amount;
@@ -1652,6 +1642,9 @@ IGF_Sprite::IGF_Sprite()
 {
  current_x=0;
  current_y=0;
+ sprite_width=0;
+ sprite_height=0;
+ start=0;
 }
 
 IGF_Sprite::~IGF_Sprite()
@@ -1679,28 +1672,15 @@ void IGF_Sprite::draw_sprite_pixel(const size_t offset,const unsigned long int x
  if(this->compare_pixels(image[0],image[offset])==true) this->draw_image_pixel(offset,x,y);
 }
 
-void IGF_Sprite::clone(IGF_Sprite &target)
+void IGF_Sprite::draw_sprite_image(const unsigned long int x,const unsigned long int y)
 {
- size_t length;
- frames=target.get_frames();
- width=target.get_sprite_width();
- height=target.get_sprite_height();
- length=(size_t)width*(size_t)height*3;
- image=this->create_buffer(width,height);
- memmove(image,target.get_image(),length);
-}
-
-void IGF_Sprite::draw_sprite_frame(const unsigned long int x,const unsigned long int y,const unsigned long int frame)
-{
- unsigned long int sprite_x,sprite_y,start,frame_width;
  size_t offset;
+ unsigned long int sprite_x,sprite_y;
  current_x=x;
  current_y=y;
- frame_width=width/frames;
- start=(frame-1)*frame_width;
- for(sprite_x=0;sprite_x<frame_width;++sprite_x)
+ for(sprite_x=0;sprite_x<sprite_width;++sprite_x)
  {
-  for(sprite_y=0;sprite_y<height;++sprite_y)
+  for(sprite_y=0;sprite_y<sprite_height;++sprite_y)
   {
    offset=this->get_offset(start,sprite_x,sprite_y);
    this->draw_sprite_pixel(offset,x+sprite_x,y+sprite_y);
@@ -1708,13 +1688,6 @@ void IGF_Sprite::draw_sprite_frame(const unsigned long int x,const unsigned long
 
  }
 
-}
-
-void IGF_Sprite::draw_sprite(const unsigned long int x,const unsigned long int y)
-{
- current_x=x;
- current_y=y;
- this->draw_sprite_frame(x,y,1);
 }
 
 unsigned long int IGF_Sprite::get_x()
@@ -1727,14 +1700,38 @@ unsigned long int IGF_Sprite::get_y()
  return current_y;
 }
 
-unsigned long int IGF_Sprite::get_sprite_width()
+unsigned long int IGF_Sprite::get_width()
 {
  return width/frames;
 }
 
-unsigned long int IGF_Sprite::get_sprite_height()
+unsigned long int IGF_Sprite::get_height()
 {
  return height;
+}
+
+void IGF_Sprite::clone(IGF_Sprite &target)
+{
+ size_t length;
+ frames=target.get_frames();
+ width=target.get_width();
+ height=target.get_height();
+ length=(size_t)width*(size_t)height*3;
+ image=this->create_buffer(width,height);
+ memmove(image,target.get_image(),length);
+}
+
+void IGF_Sprite::draw_sprite_frame(const unsigned long int x,const unsigned long int y,const unsigned long int frame)
+{
+ sprite_width=width/frames;
+ sprite_height=height;
+ start=(frame-1)*sprite_width;
+ this->draw_sprite_image(x,y);
+}
+
+void IGF_Sprite::draw_sprite(const unsigned long int x,const unsigned long int y)
+{
+ this->draw_sprite_frame(x,y,1);
 }
 
 IGF_Sprite* IGF_Sprite::get_handle()
@@ -1770,7 +1767,7 @@ void IGF_Text::draw_character(const char target)
  if((target>31)||(target<0))
  {
   sprite->draw_sprite_frame(step_x,current_y,(unsigned long int)target+1);
-  step_x+=sprite->get_sprite_width();
+  step_x+=sprite->get_width();
  }
 
 }
