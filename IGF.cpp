@@ -155,6 +155,11 @@ IGF_Engine::~IGF_Engine()
  UnregisterClass(window_class.lpszClassName,window_class.hInstance);
 }
 
+HWND IGF_Engine::get_window()
+{
+ return window;
+}
+
 void IGF_Engine::prepare_engine()
 {
  window_class.hInstance=GetModuleHandle(NULL);
@@ -180,12 +185,13 @@ void IGF_Engine::prepare_engine()
   puts("Can't register window class");
   exit(EXIT_FAILURE);
  }
- width=GetSystemMetrics(SM_CXSCREEN);
- height=GetSystemMetrics(SM_CYSCREEN);
+
 }
 
 void IGF_Engine::create_window()
 {
+ width=GetSystemMetrics(SM_CXSCREEN);
+ height=GetSystemMetrics(SM_CYSCREEN);
  window=CreateWindow(window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,width,height,NULL,NULL,window_class.hInstance,NULL);
  if (window==NULL)
  {
@@ -300,6 +306,16 @@ unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,
  return red+(green<<8)+(blue<<16);
 }
 
+unsigned long int IGF_Frame::get_frame_line()
+{
+ return frame_line;
+}
+
+unsigned int *IGF_Frame::get_buffer()
+{
+ return buffer;
+}
+
 void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue)
 {
  if((x<frame_width)&&(y<frame_height))
@@ -372,7 +388,7 @@ void IGF_Render::create_target()
 
 void IGF_Render::create_surface()
 {
- if(target->CreateBitmap(D2D1::SizeU(frame_width,frame_height),buffer,frame_line,D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
+ if(target->CreateBitmap(D2D1::SizeU(this->get_frame_width(),this->get_frame_height()),this->get_buffer(),this->get_frame_line(),D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
  {
   puts("Can't create render surface");
   exit(EXIT_FAILURE);
@@ -382,8 +398,8 @@ void IGF_Render::create_surface()
 
 void IGF_Render::set_render_setting()
 {
- configuration.hwnd=window;
- configuration.pixelSize=D2D1::SizeU(width,height);
+ configuration.hwnd=this->get_window();
+ configuration.pixelSize=D2D1::SizeU(this->get_width(),this->get_height());
 }
 
 void IGF_Render::set_render()
@@ -418,9 +434,9 @@ void IGF_Render::recreate_render()
 
 void IGF_Render::prepare_surface()
 {
- source=D2D1::RectU(0,0,frame_width,frame_height);
- destanation=D2D1::RectF(0,0,width,height);
- texture=D2D1::RectF(0,0,frame_width,frame_height);
+ source=D2D1::RectU(0,0,this->get_frame_width(),this->get_frame_height());
+ destanation=D2D1::RectF(0,0,this->get_width(),this->get_height());
+ texture=D2D1::RectF(0,0,this->get_frame_width(),this->get_frame_height());
 }
 
 void IGF_Render::create_render()
@@ -433,7 +449,7 @@ void IGF_Render::create_render()
 
 void IGF_Render::refresh()
 {
- surface->CopyFromMemory(&source,buffer,frame_line);
+ surface->CopyFromMemory(&source,this->get_buffer(),this->get_frame_line());
  target->BeginDraw();
  target->DrawBitmap(surface,destanation,1.0,D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,texture);
  if(target->EndDraw()==(HRESULT)D2DERR_RECREATE_TARGET) this->recreate_render();

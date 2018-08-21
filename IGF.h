@@ -151,13 +151,16 @@ class IGF_Synchronization
 
 class IGF_Engine
 {
- protected:
- HWND window;
+ private:
  WNDCLASS window_class;
+ HWND window;
  unsigned long int width;
  unsigned long int height;
+ protected:
+ HWND get_window();
  void prepare_engine();
  void create_window();
+ void destroy_window();
  void capture_mouse();
  bool process_message();
  public:
@@ -171,14 +174,16 @@ class IGF_Frame
 {
  private:
  size_t buffer_length;
- protected:
  unsigned long int frame_width;
  unsigned long int frame_height;
  unsigned long int frame_line;
  unsigned int *buffer;
+ protected:
  void set_size(const IGF_SURFACE surface);
  void create_render_buffer();
  unsigned int get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue);
+ unsigned long int get_frame_line();
+ unsigned int *get_buffer();
  public:
  IGF_Frame();
  ~IGF_Frame();
