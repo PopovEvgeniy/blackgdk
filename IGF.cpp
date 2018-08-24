@@ -1776,10 +1776,15 @@ void IGF_Sprite::set_kind(const IGF_SPRITE_TYPE kind)
   sprite_height=this->get_image_height();
   start=0;
   break;
-  case IGF_ANIMATED_SPRITE:
+  case IGF_HORIZONTAL_STRIP:
   sprite_width=this->get_image_width()/this->get_frames();
   sprite_height=this->get_image_height();
   start=(frame-1)*sprite_width;
+  break;
+  case IGF_VERTICAL_STRIP:
+  sprite_width=this->get_image_width();
+  sprite_height=this->get_image_height()/this->get_frames();
+  start=(frame-1)*sprite_width*sprite_height;
   break;
  }
  current_kind=kind;
@@ -1862,7 +1867,7 @@ void IGF_Text::load_font(IGF_Sprite *font)
 {
  sprite=font;
  sprite->set_frames(256);
- sprite->set_kind(IGF_ANIMATED_SPRITE);
+ sprite->set_kind(IGF_HORIZONTAL_STRIP);
 }
 
 void IGF_Text::draw_text(const char *text)
