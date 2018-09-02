@@ -128,6 +128,7 @@ struct IGF_Box
 };
 
 LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
+void IGF_Show_Error(const char *message);
 
 class IGF_Base
 {

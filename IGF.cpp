@@ -69,6 +69,12 @@ LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPAR
  return DefWindowProc(window,Message,wParam,lParam);
 }
 
+void IGF_Show_Error(const char *message)
+{
+ puts(message);
+ exit(EXIT_FAILURE);
+}
+
 IGF_Base::IGF_Base()
 {
  HRESULT status;
@@ -77,8 +83,7 @@ IGF_Base::IGF_Base()
  {
   if(status!=S_FALSE)
   {
-   puts("Can't initialize COM");
-   exit(EXIT_FAILURE);
+   IGF_Show_Error("Can't initialize COM");
   }
 
  }
@@ -110,8 +115,7 @@ void IGF_Synchronization::create_timer()
  timer=CreateWaitableTimer(NULL,FALSE,NULL);
  if (timer==NULL)
  {
-  puts("Can't create synchronization timer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create synchronization timer");
  }
 
 }
@@ -122,8 +126,7 @@ void IGF_Synchronization::set_timer(const unsigned long int interval)
  start.QuadPart=0;
  if(SetWaitableTimer(timer,&start,interval,NULL,NULL,FALSE)==FALSE)
  {
-  puts("Can't set timer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't set timer");
  }
 
 }
@@ -165,25 +168,21 @@ void IGF_Engine::prepare_engine()
  window_class.hInstance=GetModuleHandle(NULL);
  if(window_class.hInstance==NULL)
  {
-  puts("Can't get the application instance");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the application instance");
  }
  window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
  if (window_class.hIcon==NULL)
  {
-  puts("Can't load the standart program icon");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't load the standart program icon");
  }
  window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
  if (window_class.hCursor==NULL)
  {
-  puts("Can't load the standart cursor");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't load the standart cursor");
  }
  if (!RegisterClass(&window_class))
  {
-  puts("Can't register window class");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't register window class");
  }
 
 }
@@ -195,8 +194,7 @@ void IGF_Engine::create_window()
  window=CreateWindow(window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,width,height,NULL,NULL,window_class.hInstance,NULL);
  if (window==NULL)
  {
-  puts("Can't create window");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create window");
  }
  EnableWindow(window,TRUE);
  SetFocus(window);
@@ -207,13 +205,11 @@ void IGF_Engine::capture_mouse()
  RECT border;
  if(GetClientRect(window,&border)==FALSE)
  {
-  puts("Can't capture window");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't capture window");
  }
  if(ClipCursor(&border)==FALSE)
  {
-  puts("Can't capture cursor");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't capture cursor");
  }
 
 }
@@ -288,11 +284,10 @@ void IGF_Frame::create_render_buffer()
 {
  frame_line=(unsigned long int)sizeof(unsigned int)*frame_width;
  buffer_length=(size_t)frame_width*(size_t)frame_height;
- buffer=static_cast<unsigned int*>(calloc(buffer_length,sizeof(unsigned int)));
+ buffer=(unsigned int*)calloc(buffer_length,sizeof(unsigned int));
  if(buffer==NULL)
  {
-  puts("Can't allocate memory for render buffer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't allocate memory for render buffer");
  }
  else
  {
@@ -370,8 +365,7 @@ void IGF_Render::create_factory()
 {
  if(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,&render)!=S_OK)
  {
-  puts("Can't create render");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create render");
  }
 
 }
@@ -380,8 +374,7 @@ void IGF_Render::create_target()
 {
  if(render->CreateHwndRenderTarget(setting,configuration,&target)!=S_OK)
  {
-  puts("Can't create render target");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create render target");
  }
  target->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
 }
@@ -390,8 +383,7 @@ void IGF_Render::create_surface()
 {
  if(target->CreateBitmap(D2D1::SizeU(this->get_frame_width(),this->get_frame_height()),this->get_buffer(),this->get_frame_line(),D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
  {
-  puts("Can't create render surface");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create render surface");
  }
 
 }
@@ -506,8 +498,7 @@ void IGF_Keyboard::initialize()
  preversion=(unsigned char*)calloc(IGF_KEYBOARD,1);
  if(preversion==NULL)
  {
-  puts("Can't allocate memory for keyboard state buffer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't allocate memory for keyboard state buffer");
  }
 
 }
@@ -568,8 +559,7 @@ void IGF_Mouse::set_position(const unsigned long int x,const unsigned long int y
 {
  if(SetCursorPos(x,y)==FALSE)
  {
-  puts("Can't set the mouse cursor position");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't set the mouse cursor position");
  }
 
 }
@@ -579,8 +569,7 @@ unsigned long int IGF_Mouse::get_x()
  POINT position;
  if(GetCursorPos(&position)==FALSE)
  {
-  puts("Can't get the mouse cursor position");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the mouse cursor position");
  }
  return position.x;
 }
@@ -590,8 +579,7 @@ unsigned long int IGF_Mouse::get_y()
  POINT position;
  if(GetCursorPos(&position)==FALSE)
  {
-  puts("Can't get the mouse cursor position");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the mouse cursor position");
  }
  return position.y;
 }
@@ -946,8 +934,7 @@ wchar_t *IGF_Multimedia::convert_file_name(const char *target)
  name=(wchar_t*)calloc(length+1,sizeof(wchar_t));
  if(name==NULL)
  {
-  puts("Can't allocate memory");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't allocate memory");
  }
  for(index=0;index<length;++index) name[index]=btowc(target[index]);
  return name;
@@ -958,8 +945,7 @@ void IGF_Multimedia::open(const wchar_t *target)
  player->StopWhenReady();
  if(loader->RenderFile(target,NULL)!=S_OK)
  {
-  puts("Can't load a multimedia file");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't load a multimedia file");
  }
  video->put_FullScreenMode(OATRUE);
 }
@@ -975,8 +961,7 @@ bool IGF_Multimedia::is_end()
  }
  else
  {
-  puts("Can't get the current and the end position");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the current and the end position");
  }
  return result;
 }
@@ -987,8 +972,7 @@ void IGF_Multimedia::rewind()
  position=0;
  if(controler->SetPositions(&position,AM_SEEKING_AbsolutePositioning,NULL,AM_SEEKING_NoPositioning)!=S_OK)
  {
-  puts("Can't set start position");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't set start position");
  }
 
 }
@@ -997,23 +981,19 @@ void IGF_Multimedia::initialize()
 {
  if(CoCreateInstance(CLSID_FilterGraph,NULL,CLSCTX_INPROC_SERVER,IID_IGraphBuilder,(void**)&loader)!=S_OK)
  {
-  puts("Can't create a multimedia loader");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create a multimedia loader");
  }
  if(loader->QueryInterface(IID_IMediaControl,(void**)&player)!=S_OK)
  {
-  puts("Can't create a multimedia player");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create a multimedia player");
  }
  if(loader->QueryInterface(IID_IMediaSeeking,(void**)&controler)!=S_OK)
  {
-  puts("Can't create a player controler");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create a player controler");
  }
  if(loader->QueryInterface(IID_IVideoWindow,(void**)&video)!=S_OK)
  {
-  puts("Can't create a video player");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create a video player");
  }
 
 }
@@ -1033,8 +1013,7 @@ bool IGF_Multimedia::check_playing()
  result=false;
  if(player->GetState(INFINITE,&state)==E_FAIL)
  {
-  puts("Can't get the multimedia state");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the multimedia state");
  }
  else
  {
@@ -1074,8 +1053,7 @@ void IGF_Memory::get_status()
 {
  if(GlobalMemoryStatusEx(&memory)==FALSE)
  {
-  puts("Can't get the memory status");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't get the memory status");
  }
 
 }
@@ -1126,8 +1104,7 @@ void IGF_System::enable_logging(const char *name)
 {
  if(freopen(name,"wt",stdout)==NULL)
  {
-  puts("Can't create log file");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't create log file");
  }
 
 }
@@ -1268,11 +1245,10 @@ IGF_Image::~IGF_Image()
 unsigned char *IGF_Image::create_buffer(const size_t length)
 {
  unsigned char *result;
- result=static_cast<unsigned char*>(calloc(length,sizeof(unsigned char)));
+ result=(unsigned char*)calloc(length,sizeof(unsigned char));
  if(result==NULL)
  {
-  puts("Can't allocate memory for image buffer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't allocate memory for image buffer");
  }
  return result;
 }
@@ -1293,8 +1269,7 @@ FILE *IGF_Image::open_image(const char *name)
  target=fopen(name,"rb");
  if(target==NULL)
  {
-  puts("Can't open a image file");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't open a image file");
  }
  return target;
 }
@@ -1325,15 +1300,13 @@ void IGF_Image::load_tga(const char *name)
  fread(&image,10,1,target);
  if((head.color_map!=0)||(image.color!=24))
  {
-  puts("Invalid image format");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Invalid image format");
  }
  if(head.type!=2)
  {
   if(head.type!=10)
   {
-   puts("Invalid image format");
-   exit(EXIT_FAILURE);
+   IGF_Show_Error("Invalid image format");
   }
 
  }
@@ -1393,8 +1366,7 @@ void IGF_Image::load_pcx(const char *name)
  fread(&head,128,1,target);
  if((head.color*head.planes!=24)&&(head.compress!=1))
  {
-  puts("Incorrect image format");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Incorrect image format");
  }
  width=head.max_x-head.min_x+1;
  height=head.max_y-head.min_y+1;
@@ -1509,8 +1481,7 @@ IGF_Color *IGF_Canvas::create_buffer(const unsigned long int image_width,const u
  result=(IGF_Color*)calloc(length,3);
  if(result==NULL)
  {
-  puts("Can't allocate memory for image buffer");
-  exit(EXIT_FAILURE);
+  IGF_Show_Error("Can't allocate memory for image buffer");
  }
  return result;
 }
