@@ -60,10 +60,10 @@ LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPAR
   IGF_Buttons[IGF_MOUSE_MIDDLE]=IGFKEY_RELEASE;
   break;
   case WM_KEYDOWN:
-  IGF_Keys[(lParam >> 16)&0x7f]=IGFKEY_PRESS;
+  IGF_Keys[IGF_GETSCANCODE(lParam)]=IGFKEY_PRESS;
   break;
   case WM_KEYUP:
-  IGF_Keys[(lParam >> 16)&0x7f]=IGFKEY_RELEASE;
+  IGF_Keys[IGF_GETSCANCODE(lParam)]=IGFKEY_RELEASE;
   break;
  }
  return DefWindowProc(window,Message,wParam,lParam);

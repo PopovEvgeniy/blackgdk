@@ -44,6 +44,8 @@ freely, subject to the following restrictions:
 #include <dshow.h>
 #include <xinput.h>
 
+#define IGF_GETSCANCODE(argument) ((argument >> 16)&0x7f)
+
 #define IGF_KEYBOARD 256
 #define IGF_MOUSE 3
 
