@@ -49,9 +49,8 @@ freely, subject to the following restrictions:
 #define IGF_KEYBOARD 256
 #define IGF_MOUSE 3
 
-#define IGFKEY_NONE 0
+#define IGFKEY_RELEASE 0
 #define IGFKEY_PRESS 1
-#define IGFKEY_RELEASE 2
 
 #define IGF_MOUSE_LEFT 0
 #define IGF_MOUSE_RIGHT 1

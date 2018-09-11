@@ -38,8 +38,8 @@ LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPAR
   PostQuitMessage(0);
   break;
   case WM_CREATE:
-  memset(IGF_Keys,IGFKEY_NONE,IGF_KEYBOARD);
-  memset(IGF_Buttons,IGFKEY_NONE,IGF_MOUSE);
+  memset(IGF_Keys,IGFKEY_RELEASE,IGF_KEYBOARD);
+  memset(IGF_Buttons,IGFKEY_RELEASE,IGF_MOUSE);
   break;
   case WM_LBUTTONDOWN:
   IGF_Buttons[IGF_MOUSE_LEFT]=IGFKEY_PRESS;
@@ -495,7 +495,7 @@ IGF_Keyboard::~IGF_Keyboard()
 
 void IGF_Keyboard::initialize()
 {
- preversion=(unsigned char*)calloc(IGF_KEYBOARD,1);
+ preversion=(unsigned char*)calloc(IGF_KEYBOARD,sizeof(unsigned char));
  if(preversion==NULL)
  {
   IGF_Show_Error("Can't allocate memory for keyboard state buffer");
@@ -508,6 +508,7 @@ bool IGF_Keyboard::check_hold(const unsigned char code)
  bool result;
  result=false;
  if(IGF_Keys[code]==IGFKEY_PRESS) result=true;
+ preversion[code]=IGF_Keys[code];
  return result;
 }
 
@@ -517,7 +518,7 @@ bool IGF_Keyboard::check_press(const unsigned char code)
  result=false;
  if(IGF_Keys[code]==IGFKEY_PRESS)
  {
-  if(preversion[code]!=IGFKEY_PRESS) result=true;
+  if(preversion[code]==IGFKEY_RELEASE) result=true;
  }
  preversion[code]=IGF_Keys[code];
  return result;
@@ -529,15 +530,15 @@ bool IGF_Keyboard::check_release(const unsigned char code)
  result=false;
  if(IGF_Keys[code]==IGFKEY_RELEASE)
  {
-  result=true;
-  IGF_Keys[code]=IGFKEY_NONE;
+  if(preversion[code]==IGFKEY_PRESS) result=true;
  }
+ preversion[code]=IGF_Keys[code];
  return result;
 }
 
 IGF_Mouse::IGF_Mouse()
 {
- memset(preversion,IGFKEY_NONE,IGF_MOUSE);
+ memset(preversion,IGFKEY_RELEASE,IGF_MOUSE);
 }
 
 IGF_Mouse::~IGF_Mouse()
@@ -591,6 +592,7 @@ bool IGF_Mouse::check_hold(const unsigned char button)
  if(button<=IGF_MOUSE_MIDDLE)
  {
   if(IGF_Buttons[button]==IGFKEY_PRESS) result=true;
+   preversion[button]=IGF_Buttons[button];
  }
  return result;
 }
@@ -603,7 +605,7 @@ bool IGF_Mouse::check_press(const unsigned char button)
  {
   if(IGF_Buttons[button]==IGFKEY_PRESS)
   {
-   if(preversion[button]!=IGFKEY_PRESS) result=true;
+   if(preversion[button]==IGFKEY_RELEASE) result=true;
   }
 
  }
@@ -619,11 +621,11 @@ bool IGF_Mouse::check_release(const unsigned char button)
  {
   if(IGF_Buttons[button]==IGFKEY_RELEASE)
   {
-   result=true;
-   IGF_Buttons[button]=IGFKEY_NONE;
+   if(preversion[button]==IGFKEY_PRESS) result=true;
   }
 
  }
+ preversion[button]=IGF_Buttons[button];
  return result;
 }
 
