@@ -65,10 +65,10 @@ int main(void)
   if(gamepad.check_button_hold(IGF_GAMEPAD_DOWN)==true) y+=2;
   if(gamepad.check_button_hold(IGF_GAMEPAD_LEFT)==true) x-=2;
   if(gamepad.check_button_hold(IGF_GAMEPAD_RIGHT)==true) x+=2;
-  if(gamepad.get_stick_x(IGF_GAMEPAD_LEFT_STICK)==1) x+=2;
-  if(gamepad.get_stick_x(IGF_GAMEPAD_LEFT_STICK)==-1) x-=2;
-  if(gamepad.get_stick_y(IGF_GAMEPAD_LEFT_STICK)==1) y-=2;
-  if(gamepad.get_stick_y(IGF_GAMEPAD_LEFT_STICK)==-1) y+=2;
+  if(gamepad.get_stick_x(IGF_GAMEPAD_LEFT_STICK)==IGF_POSITIVE_DIRECTION) x+=2;
+  if(gamepad.get_stick_x(IGF_GAMEPAD_LEFT_STICK)==IGF_NEGATIVE_DIRECTION) x-=2;
+  if(gamepad.get_stick_y(IGF_GAMEPAD_LEFT_STICK)==IGF_POSITIVE_DIRECTION) y-=2;
+  if(gamepad.get_stick_y(IGF_GAMEPAD_LEFT_STICK)==IGF_NEGATIVE_DIRECTION) y+=2;
   if(gamepad.check_trigger_hold(IGF_GAMEPAD_LEFT_TRIGGER)==true) gamepad.set_vibration(65535,65535);
   if(gamepad.check_trigger_hold(IGF_GAMEPAD_RIGHT_TRIGGER)==true) gamepad.set_vibration(0,0);
   if(gamepad.check_button_press(IGF_GAMEPAD_A)==true) ship.mirror_image(IGF_MIRROR_HORIZONTAL);

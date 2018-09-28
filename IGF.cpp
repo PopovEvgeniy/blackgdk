@@ -871,42 +871,42 @@ bool IGF_Gamepad::set_vibration(const unsigned short int left,const unsigned sho
  return this->write_state();
 }
 
-char IGF_Gamepad::get_stick_x(const IGF_GAMEPAD_STICKS stick)
+IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_x(const IGF_GAMEPAD_STICKS stick)
 {
- char result;
+ IGF_GAMEPAD_DIRECTION result;
  short int control;
- result=0;
+ result=IGF_NEUTRAL_DIRECTION;
  if(stick==IGF_GAMEPAD_LEFT_STICK)
  {
   control=32767-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbLX>=control) result=1;
-  if(current.Gamepad.sThumbLX<=-1*control) result=-1;
+  if(current.Gamepad.sThumbLX>=control) result=IGF_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbLX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  if(stick==IGF_GAMEPAD_RIGHT_STICK)
  {
   control=32767-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbRX>=control) result=1;
-  if(current.Gamepad.sThumbRX<=-1*control) result=-1;
+  if(current.Gamepad.sThumbRX>=control) result=IGF_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbRX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  return result;
 }
 
-char IGF_Gamepad::get_stick_y(const IGF_GAMEPAD_STICKS stick)
+IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_y(const IGF_GAMEPAD_STICKS stick)
 {
- char result;
+ IGF_GAMEPAD_DIRECTION result;
  short int control;
- result=0;
+ result=IGF_NEUTRAL_DIRECTION;
  if(stick==IGF_GAMEPAD_LEFT_STICK)
  {
   control=32767-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbLY>=control) result=1;
-  if(current.Gamepad.sThumbLY<=-1*control) result=-1;
+  if(current.Gamepad.sThumbLY>=control) result=IGF_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbLY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  if(stick==IGF_GAMEPAD_RIGHT_STICK)
  {
   control=32767-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbRY>=control) result=1;
-  if(current.Gamepad.sThumbRY<=-1*control) result=-1;
+  if(current.Gamepad.sThumbRY>=control) result=IGF_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbRY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  return result;
 }
