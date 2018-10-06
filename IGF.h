@@ -347,6 +347,23 @@ class IGF_System
  void enable_logging(const char *name);
 };
 
+class IGF_File
+{
+ private:
+ FILE *target;
+ public:
+ IGF_File();
+ ~IGF_File();
+ void open(const char *name);
+ void close();
+ void set_position(const off_t offset);
+ long int get_position();
+ long int get_length();
+ void read(void *buffer,const size_t length);
+ void write(void *buffer,const size_t length);
+ bool check_error();
+};
+
 class IGF_Timer
 {
  private:

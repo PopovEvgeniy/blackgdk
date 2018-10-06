@@ -1111,6 +1111,68 @@ void IGF_System::enable_logging(const char *name)
 
 }
 
+IGF_File::IGF_File()
+{
+ target=NULL;
+}
+
+IGF_File::~IGF_File()
+{
+ if(target!=NULL) fclose(target);
+}
+
+void IGF_File::open(const char *name)
+{
+ target=fopen(name,"w+b");
+ if(target==NULL)
+ {
+  IGF_Show_Error("Can't open the binary file");
+ }
+
+}
+
+void IGF_File::close()
+{
+ if(target!=NULL) fclose(target);
+}
+
+void IGF_File::set_position(const off_t offset)
+{
+ fseek(target,offset,SEEK_SET);
+}
+
+long int IGF_File::get_position()
+{
+ return ftell(target);
+}
+
+long int IGF_File::get_length()
+{
+ long int result;
+ fseek(target,0,SEEK_END);
+ result=ftell(target);
+ rewind(target);
+ return result;
+}
+
+void IGF_File::read(void *buffer,const size_t length)
+{
+ fread(buffer,length,1,target);
+}
+
+void IGF_File::write(void *buffer,const size_t length)
+{
+ fwrite(buffer,length,1,target);
+}
+
+bool IGF_File::check_error()
+{
+ bool result;
+ result=false;
+ if(ferror(target)!=0) result=true;
+ return result;
+}
+
 IGF_Timer::IGF_Timer()
 {
  interval=0;
