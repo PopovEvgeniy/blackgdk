@@ -33,6 +33,7 @@ freely, subject to the following restrictions:
 */
 
 #include <stddef.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -284,6 +285,7 @@ class IGF_Gamepad
  ~IGF_Gamepad();
  void set_active(const unsigned long int gamepad);
  unsigned long int get_active();
+ unsigned long int get_maximum_amount();
  unsigned long int get_amount();
  bool check_connection();
  bool is_wireless();

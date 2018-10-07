@@ -713,6 +713,11 @@ unsigned long int IGF_Gamepad::get_active()
  return active;
 }
 
+unsigned long int IGF_Gamepad::get_maximum_amount()
+{
+ return XUSER_MAX_COUNT;
+}
+
 unsigned long int IGF_Gamepad::get_amount()
 {
  unsigned long int old,result;
@@ -878,13 +883,13 @@ IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_x(const IGF_GAMEPAD_STICKS stick)
  result=IGF_NEUTRAL_DIRECTION;
  if(stick==IGF_GAMEPAD_LEFT_STICK)
  {
-  control=32767-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+  control=SHRT_MAX-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
   if(current.Gamepad.sThumbLX>=control) result=IGF_POSITIVE_DIRECTION;
   if(current.Gamepad.sThumbLX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  if(stick==IGF_GAMEPAD_RIGHT_STICK)
  {
-  control=32767-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
+  control=SHRT_MAX-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
   if(current.Gamepad.sThumbRX>=control) result=IGF_POSITIVE_DIRECTION;
   if(current.Gamepad.sThumbRX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
@@ -898,13 +903,13 @@ IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_y(const IGF_GAMEPAD_STICKS stick)
  result=IGF_NEUTRAL_DIRECTION;
  if(stick==IGF_GAMEPAD_LEFT_STICK)
  {
-  control=32767-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+  control=SHRT_MAX-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
   if(current.Gamepad.sThumbLY>=control) result=IGF_POSITIVE_DIRECTION;
   if(current.Gamepad.sThumbLY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
  if(stick==IGF_GAMEPAD_RIGHT_STICK)
  {
-  control=32767-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
+  control=SHRT_MAX-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
   if(current.Gamepad.sThumbRY>=control) result=IGF_POSITIVE_DIRECTION;
   if(current.Gamepad.sThumbRY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
  }
