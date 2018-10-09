@@ -713,6 +713,11 @@ unsigned long int IGF_Gamepad::get_active()
  return active;
 }
 
+unsigned long int IGF_Gamepad::get_last_index()
+{
+ return XUSER_MAX_COUNT-1;
+}
+
 unsigned long int IGF_Gamepad::get_maximum_amount()
 {
  return XUSER_MAX_COUNT;

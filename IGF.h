@@ -285,6 +285,7 @@ class IGF_Gamepad
  ~IGF_Gamepad();
  void set_active(const unsigned long int gamepad);
  unsigned long int get_active();
+ unsigned long int get_last_index();
  unsigned long int get_maximum_amount();
  unsigned long int get_amount();
  bool check_connection();
