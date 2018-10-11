@@ -486,8 +486,9 @@ class IGF_Sprite:public IGF_Canvas
  void set_kind(const IGF_SPRITE_TYPE kind);
  IGF_SPRITE_TYPE get_kind();
  void set_target(const unsigned long int target);
+ void set_position(const unsigned long int x,const unsigned long int y);
  void clone(IGF_Sprite &target);
- void draw_sprite(const unsigned long int x,const unsigned long int y);
+ void draw_sprite();
 };
 
 class IGF_Text
