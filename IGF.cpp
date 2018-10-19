@@ -301,6 +301,11 @@ unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,
  return red+(green<<8)+(blue<<16);
 }
 
+size_t IGF_Frame::get_offset(const unsigned long int x,const unsigned long int y)
+{
+ return (size_t)x+(size_t)y*(size_t)frame_width;
+}
+
 unsigned long int IGF_Frame::get_frame_line()
 {
  return frame_line;
@@ -315,7 +320,7 @@ void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,c
 {
  if((x<frame_width)&&(y<frame_height))
  {
-  buffer[(size_t)x+(size_t)y*(size_t)frame_width]=this->get_rgb(blue,green,red);
+  buffer[this->get_offset(x,y)]=this->get_rgb(blue,green,red);
  }
 
 }

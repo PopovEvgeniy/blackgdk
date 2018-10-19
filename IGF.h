@@ -186,6 +186,7 @@ class IGF_Frame
  void set_size(const IGF_SURFACE surface);
  void create_render_buffer();
  unsigned int get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue);
+ size_t get_offset(const unsigned long int x,const unsigned long int y);
  unsigned long int get_frame_line();
  unsigned int *get_buffer();
  public:
