@@ -340,6 +340,40 @@ unsigned long int IGF_Frame::get_frame_height()
  return frame_height;
 }
 
+IGF_FPS::IGF_FPS()
+{
+ start=time(NULL);
+ current=0;
+ fps=0;
+}
+
+IGF_FPS::~IGF_FPS()
+{
+
+}
+
+void IGF_FPS::update_counter()
+{
+ time_t stop;
+ if(current==0) start=time(NULL);
+ stop=time(NULL);
+ if(difftime(stop,start)<1)
+ {
+  ++current;
+ }
+ else
+ {
+  fps=current;
+  current=0;
+ }
+
+}
+
+unsigned long int IGF_FPS::get_fps()
+{
+ return fps;
+}
+
 IGF_Render::IGF_Render()
 {
  render=NULL;
@@ -472,6 +506,7 @@ void IGF_Screen::initialize(const IGF_SURFACE surface)
 bool IGF_Screen::update()
 {
  this->refresh();
+ this->update_counter();
  return this->process_message();
 }
 

@@ -198,6 +198,20 @@ class IGF_Frame
  unsigned long int get_frame_height();
 };
 
+class IGF_FPS
+{
+ private:
+ time_t start;
+ unsigned long int current;
+ unsigned long int fps;
+ protected:
+ void update_counter();
+ public:
+ IGF_FPS();
+ ~IGF_FPS();
+ unsigned long int get_fps();
+};
+
 class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
 {
  private:
@@ -225,7 +239,7 @@ class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
  ~IGF_Render();
 };
 
-class IGF_Screen:public IGF_Synchronization, public IGF_Render
+class IGF_Screen:public IGF_FPS, public IGF_Synchronization, public IGF_Render
 {
  public:
  void initialize();

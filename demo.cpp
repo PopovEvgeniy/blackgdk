@@ -4,14 +4,13 @@ int main(void)
 {
  long int x,y,screen_width,screen_height;
  unsigned char frame;
- unsigned long int fps;
  char perfomance[8];
  IGF_Timer timer;
  IGF_Screen screen;
  IGF_System System;
  IGF_Keyboard keyboard;
- IGF_Mouse mouse;
  IGF_Gamepad gamepad;
+ IGF_Mouse mouse;
  IGF_Multimedia media;
  IGF_Image image;
  IGF_Background space;
@@ -44,12 +43,10 @@ int main(void)
  timer.set_timer(1);
  media.initialize();
  media.load("space.mp3");
- fps=0;
  memset(perfomance,0,8);
  screen.initialize();
  while(screen.sync()==false)
  {
-  fps++;
   gamepad.update();
   if(media.check_playing()==false) media.play();
   if(mouse.check_press(IGF_MOUSE_LEFT)==true) break;
@@ -59,7 +56,6 @@ int main(void)
   if(keyboard.check_hold(75)==true) x-=2;
   if(keyboard.check_hold(77)==true) x+=2;
   if(keyboard.check_press(71)==true) ship.mirror_image(IGF_MIRROR_HORIZONTAL);
-  if(keyboard.check_press(79)==true) ship.mirror_image(IGF_MIRROR_VERTICAL);
   if(gamepad.check_button_press(IGF_GAMEPAD_X)==true) break;
   if(gamepad.check_button_hold(IGF_GAMEPAD_UP)==true) y-=2;
   if(gamepad.check_button_hold(IGF_GAMEPAD_DOWN)==true) y+=2;
@@ -75,6 +71,7 @@ int main(void)
   if(gamepad.check_button_press(IGF_GAMEPAD_B)==true) ship.mirror_image(IGF_MIRROR_VERTICAL);
   if((x<=0)||(x>=screen_width)) x=screen_width/2;
   if((y<=0)||(y>=screen_height)) y=screen_height/2;
+  itoa(screen.get_fps(),perfomance,10);
   space.draw_background();
   text.draw_text(perfomance);
   ship.set_target(frame);
@@ -82,8 +79,6 @@ int main(void)
   ship.draw_sprite();
   if (timer.check_timer()==true)
   {
-   itoa(fps,perfomance,10);
-   fps=0;
    frame++;
    if (frame>ship.get_frames()) frame=1;
   }
