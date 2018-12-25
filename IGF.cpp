@@ -251,7 +251,7 @@ IGF_Frame::IGF_Frame()
  frame_width=512;
  frame_height=512;
  frame_line=0;
- buffer_length=0;
+ pixels=0;
  buffer=NULL;
 }
 
@@ -282,18 +282,13 @@ void IGF_Frame::set_size(const IGF_SURFACE surface)
 
 void IGF_Frame::create_render_buffer()
 {
- frame_line=(unsigned long int)sizeof(unsigned int)*frame_width;
- buffer_length=(size_t)frame_width*(size_t)frame_height;
- buffer=(unsigned int*)calloc(buffer_length,sizeof(unsigned int));
+ pixels=(size_t)frame_width*(size_t)frame_height;
+ buffer=(unsigned int*)calloc(pixels,sizeof(unsigned int));
  if(buffer==NULL)
  {
   IGF_Show_Error("Can't allocate memory for render buffer");
  }
- else
- {
-  buffer_length*=sizeof(unsigned int);
- }
-
+ frame_line=frame_width*(unsigned long int)sizeof(unsigned int);
 }
 
 unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
@@ -327,7 +322,12 @@ void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,c
 
 void IGF_Frame::clear_screen()
 {
- memset(buffer,0,buffer_length);
+ size_t index;
+ for (index=0;index<pixels;++index)
+ {
+  buffer[index]=0;
+ }
+
 }
 
 unsigned long int IGF_Frame::get_frame_width()
