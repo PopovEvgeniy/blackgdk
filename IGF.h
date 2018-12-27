@@ -182,9 +182,11 @@ class IGF_Frame
  unsigned long int frame_height;
  unsigned long int frame_line;
  unsigned int *buffer;
+ unsigned int *shadow;
  protected:
  void set_size(const IGF_SURFACE surface);
- void create_render_buffer();
+ unsigned int *create_buffer(const char *error);
+ void create_buffers();
  unsigned int get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue);
  size_t get_offset(const unsigned long int x,const unsigned long int y);
  unsigned long int get_frame_line();
@@ -194,6 +196,8 @@ class IGF_Frame
  ~IGF_Frame();
  void draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue);
  void clear_screen();
+ void save();
+ void restore();
  unsigned long int get_frame_width();
  unsigned long int get_frame_height();
 };
@@ -441,6 +445,8 @@ class IGF_Canvas
  void clear_buffer();
  protected:
  IGF_Color *image;
+ void save();
+ void restore();
  void set_width(const unsigned long int image_width);
  void set_height(const unsigned long int image_height);
  IGF_Color *create_buffer(const unsigned long int image_width,const unsigned long int image_height);
@@ -468,7 +474,9 @@ class IGF_Background:public IGF_Canvas
  unsigned long int background_width;
  unsigned long int background_height;
  unsigned long int frame;
+ unsigned long int current;
  IGF_BACKGROUND_TYPE current_kind;
+ void slow_draw_background();
  public:
  IGF_Background();
  ~IGF_Background();

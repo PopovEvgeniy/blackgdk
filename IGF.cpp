@@ -253,6 +253,7 @@ IGF_Frame::IGF_Frame()
  frame_line=0;
  pixels=0;
  buffer=NULL;
+ shadow=NULL;
 }
 
 IGF_Frame::~IGF_Frame()
@@ -261,6 +262,11 @@ IGF_Frame::~IGF_Frame()
  {
   free(buffer);
   buffer=NULL;
+ }
+ if(shadow!=NULL)
+ {
+  free(shadow);
+  shadow=NULL;
  }
 
 }
@@ -280,15 +286,23 @@ void IGF_Frame::set_size(const IGF_SURFACE surface)
 
 }
 
-void IGF_Frame::create_render_buffer()
+unsigned int *IGF_Frame::create_buffer(const char *error)
 {
+ unsigned int *target;
  pixels=(size_t)frame_width*(size_t)frame_height;
- buffer=(unsigned int*)calloc(pixels,sizeof(unsigned int));
- if(buffer==NULL)
+ target=(unsigned int*)calloc(pixels,sizeof(unsigned int));
+ if(target==NULL)
  {
-  IGF_Show_Error("Can't allocate memory for render buffer");
+  IGF_Show_Error(error);
  }
  frame_line=frame_width*(unsigned long int)sizeof(unsigned int);
+ return target;
+}
+
+void IGF_Frame::create_buffers()
+{
+ buffer=this->create_buffer("Can't allocate memory for render buffer");
+ shadow=this->create_buffer("Can't allocate memory for shadow buffer");
 }
 
 unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
@@ -326,6 +340,26 @@ void IGF_Frame::clear_screen()
  for (index=0;index<pixels;++index)
  {
   buffer[index]=0;
+ }
+
+}
+
+void IGF_Frame::save()
+{
+ size_t index;
+ for (index=0;index<pixels;++index)
+ {
+  shadow[index]=buffer[index];
+ }
+
+}
+
+void IGF_Frame::restore()
+{
+ size_t index;
+ for (index=0;index<pixels;++index)
+ {
+  buffer[index]=shadow[index];
  }
 
 }
@@ -472,7 +506,7 @@ void IGF_Render::create_render()
  this->set_render_setting();
  this->set_render();
  this->prepare_surface();
- this->create_render_buffer();
+ this->create_buffers();
 }
 
 void IGF_Render::refresh()
@@ -486,7 +520,7 @@ void IGF_Render::refresh()
 void IGF_Screen::initialize()
 {
  this->prepare_engine();
- this->create_render_buffer();
+ this->create_buffers();
  this->create_timer();
  this->create_window();
  this->capture_mouse();
@@ -1574,6 +1608,16 @@ void IGF_Canvas::clear_buffer()
  if(image!=NULL) free(image);
 }
 
+void IGF_Canvas::save()
+{
+ surface->save();
+}
+
+void IGF_Canvas::restore()
+{
+ surface->restore();
+}
+
 void IGF_Canvas::set_width(const unsigned long int image_width)
 {
  width=image_width;
@@ -1720,12 +1764,29 @@ IGF_Background::IGF_Background()
  start=0;
  background_width=0;
  background_height=0;
+ current=0;
  frame=1;
  current_kind=IGF_NORMAL_BACKGROUND;
 }
 
 IGF_Background::~IGF_Background()
 {
+
+}
+
+void IGF_Background::slow_draw_background()
+{
+ unsigned long int x,y;
+ size_t offset;
+ for(x=0;x<background_width;++x)
+ {
+  for(y=0;y<background_height;++y)
+  {
+   offset=this->get_offset(start,x,y);
+   this->draw_image_pixel(offset,x,y);
+  }
+
+ }
 
 }
 
@@ -1764,16 +1825,15 @@ void IGF_Background::set_target(const unsigned long int target)
 
 void IGF_Background::draw_background()
 {
- unsigned long int x,y;
- size_t offset;
- for(x=0;x<background_width;++x)
+ if (current!=frame)
  {
-  for(y=0;y<background_height;++y)
-  {
-   offset=this->get_offset(start,x,y);
-   this->draw_image_pixel(offset,x,y);
-  }
-
+  this->slow_draw_background();
+  this->save();
+  current=frame;
+ }
+ else
+ {
+  this->restore();
  }
 
 }
