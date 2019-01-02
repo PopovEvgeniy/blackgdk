@@ -476,6 +476,7 @@ class IGF_Background:public IGF_Canvas
  unsigned long int frame;
  unsigned long int current;
  IGF_BACKGROUND_TYPE current_kind;
+ void draw_background_pixel(const unsigned long int x,const unsigned long int y);
  void slow_draw_background();
  public:
  IGF_Background();
