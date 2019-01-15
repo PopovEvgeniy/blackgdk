@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2017-2018 Popov Evgeniy Alekseyevich
+Copyright (C) 2017-2019 Popov Evgeniy Alekseyevich
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -501,6 +501,8 @@ class IGF_Sprite:public IGF_Canvas
  public:
  IGF_Sprite();
  ~IGF_Sprite();
+ void set_x(const unsigned long int x);
+ void set_y(const unsigned long int y);
  unsigned long int get_x();
  unsigned long int get_y();
  unsigned long int get_width();
