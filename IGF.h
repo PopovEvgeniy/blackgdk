@@ -523,13 +523,13 @@ class IGF_Text
  unsigned long int current_x;
  unsigned long int current_y;
  unsigned long int step_x;
- IGF_Sprite *sprite;
+ IGF_Sprite *font;
  void draw_character(const char target);
  public:
  IGF_Text();
  ~IGF_Text();
  void set_position(const unsigned long int x,const unsigned long int y);
- void load_font(IGF_Sprite *font);
+ void load_font(IGF_Sprite *target);
  void draw_text(const char *text);
 };
 
