@@ -56,6 +56,7 @@ int main(void)
   if(keyboard.check_hold(75)==true) x-=2;
   if(keyboard.check_hold(77)==true) x+=2;
   if(keyboard.check_press(71)==true) ship.mirror_image(IGF_MIRROR_HORIZONTAL);
+  if(keyboard.check_press(79)==true) ship.mirror_image(IGF_MIRROR_VERTICAL);
   if(gamepad.check_button_press(IGF_GAMEPAD_X)==true) break;
   if(gamepad.check_button_hold(IGF_GAMEPAD_UP)==true) y-=2;
   if(gamepad.check_button_hold(IGF_GAMEPAD_DOWN)==true) y+=2;
