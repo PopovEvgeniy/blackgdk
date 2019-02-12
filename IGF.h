@@ -353,8 +353,10 @@ class IGF_Memory
  public:
  IGF_Memory();
  ~IGF_Memory();
- unsigned long long int get_total_memory();
- unsigned long long int get_free_memory();
+ unsigned long long int get_total_physical();
+ unsigned long long int get_free_physical();
+ unsigned long long int get_total_virtual();
+ unsigned long long int get_free_virtual();
 };
 
 class IGF_System
