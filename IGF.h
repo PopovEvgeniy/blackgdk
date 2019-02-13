@@ -357,6 +357,7 @@ class IGF_Memory
  unsigned long long int get_free_physical();
  unsigned long long int get_total_virtual();
  unsigned long long int get_free_virtual();
+ unsigned long int get_usage();
 };
 
 class IGF_System

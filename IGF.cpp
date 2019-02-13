@@ -1165,6 +1165,12 @@ unsigned long long int IGF_Memory::get_free_virtual()
  return memory.ullAvailVirtual;
 }
 
+unsigned long int IGF_Memory::get_usage()
+{
+ this->get_status();
+ return memory.dwMemoryLoad;
+}
+
 IGF_System::IGF_System()
 {
  srand(time(NULL));
