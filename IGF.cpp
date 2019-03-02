@@ -564,14 +564,20 @@ IGF_Keyboard::~IGF_Keyboard()
  if(preversion!=NULL) free(preversion);
 }
 
+unsigned char *IGF_Keyboard::create_buffer(const char *error)
+{
+ unsigned char *buffer;
+ buffer=(unsigned char*)calloc(IGF_KEYBOARD,sizeof(unsigned char));
+ if(buffer==NULL)
+ {
+  IGF_Show_Error(error);
+ }
+ return buffer;
+}
+
 void IGF_Keyboard::initialize()
 {
- preversion=(unsigned char*)calloc(IGF_KEYBOARD,sizeof(unsigned char));
- if(preversion==NULL)
- {
-  IGF_Show_Error("Can't allocate memory for keyboard state buffer");
- }
-
+ preversion=this->create_buffer("Can't allocate memory for keyboard state buffer");
 }
 
 bool IGF_Keyboard::check_hold(const unsigned char code)

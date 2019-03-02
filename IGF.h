@@ -257,6 +257,7 @@ class IGF_Keyboard
 {
  private:
  unsigned char *preversion;
+ unsigned char *create_buffer(const char *error);
  public:
  IGF_Keyboard();
  ~IGF_Keyboard();
