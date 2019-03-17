@@ -45,30 +45,30 @@ freely, subject to the following restrictions:
 #include <dshow.h>
 #include <xinput.h>
 
-#define IGF_GETSCANCODE(argument) ((argument >> 16)&0x7f)
+#define GETSCANCODE(argument) ((argument >> 16)&0x7f)
 
-#define IGF_KEYBOARD 256
-#define IGF_MOUSE 3
+#define KEYBOARD 256
+#define MOUSE 3
 
-#define IGFKEY_RELEASE 0
-#define IGFKEY_PRESS 1
+#define KEY_RELEASE 0
+#define KEY_PRESS 1
 
-#define IGF_MOUSE_LEFT 0
-#define IGF_MOUSE_RIGHT 1
-#define IGF_MOUSE_MIDDLE 2
+#define MOUSE_LEFT 0
+#define MOUSE_RIGHT 1
+#define MOUSE_MIDDLE 2
 
-enum IGF_MIRROR_TYPE {IGF_MIRROR_HORIZONTAL=0,IGF_MIRROR_VERTICAL=1};
-enum IGF_BACKGROUND_TYPE {IGF_NORMAL_BACKGROUND=0,IGF_HORIZONTAL_BACKGROUND=1,IGF_VERTICAL_BACKGROUND=2};
-enum IGF_SPRITE_TYPE {IGF_SINGE_SPRITE=0,IGF_HORIZONTAL_STRIP=1,IGF_VERTICAL_STRIP=2};
-enum IGF_SURFACE {IGF_SURFACE_SMALL=0,IGF_SURFACE_LARGE=1};
-enum IGF_GAMEPAD_DIRECTION {IGF_NEUTRAL_DIRECTION=0,IGF_NEGATIVE_DIRECTION=-1,IGF_POSITIVE_DIRECTION=1};
-enum IGF_GAMEPAD_BATTERY_TYPE {IGF_GAMEPAD_BATTERY_TYPE_ERROR=0,IGF_GAMEPAD_BATTERY_ALKAINE=1,IGF_GAMEPAD_BATTERY_NIMH=2,IGF_GAMEPAD_BATTERY_UNKNOW=3};
-enum IGF_GAMEPAD_BATTERY_LEVEL {IGF_GAMEPAD_BATTERY_LEVEL_ERROR=0,IGF_GAMEPAD_BATTERY_EMPTY=1,IGF_GAMEPAD_BATTERY_LOW=2,IGF_GAMEPAD_BATTERY_MEDIUM=3,IGF_GAMEPAD_BATTERY_FULL=4};
-enum IGF_GAMEPAD_BUTTONS {IGF_GAMEPAD_UP=XINPUT_GAMEPAD_DPAD_UP,IGF_GAMEPAD_DOWN=XINPUT_GAMEPAD_DPAD_DOWN,IGF_GAMEPAD_LEFT=XINPUT_GAMEPAD_DPAD_LEFT,IGF_GAMEPAD_RIGHT=XINPUT_GAMEPAD_DPAD_RIGHT,IGF_GAMEPAD_A=XINPUT_GAMEPAD_A,IGF_GAMEPAD_B=XINPUT_GAMEPAD_B,IGF_GAMEPAD_X=XINPUT_GAMEPAD_X,IGF_GAMEPAD_Y=XINPUT_GAMEPAD_Y,IGF_GAMEPAD_LEFT_BUMPER=XINPUT_GAMEPAD_LEFT_SHOULDER,IGF_GAMEPAD_RIGHT_BUMPER=XINPUT_GAMEPAD_RIGHT_SHOULDER,IGF_GAMEPAD_START=XINPUT_GAMEPAD_START,IGF_GAMEPAD_BACK=XINPUT_GAMEPAD_BACK};
-enum IGF_GAMEPAD_TRIGGERS {IGF_GAMEPAD_LEFT_TRIGGER=0,IGF_GAMEPAD_RIGHT_TRIGGER=1};
-enum IGF_GAMEPAD_STICKS {IGF_GAMEPAD_LEFT_STICK=0,IGF_GAMEPAD_RIGHT_STICK=1};
+enum MIRROR_TYPE {MIRROR_HORIZONTAL=0,MIRROR_VERTICAL=1};
+enum BACKGROUND_TYPE {NORMAL_BACKGROUND=0,HORIZONTAL_BACKGROUND=1,VERTICAL_BACKGROUND=2};
+enum SPRITE_TYPE {SINGLE_SPRITE=0,HORIZONTAL_STRIP=1,VERTICAL_STRIP=2};
+enum SURFACE {SURFACE_SMALL=0,SURFACE_LARGE=1};
+enum GAMEPAD_DIRECTION {GAMEPAD_NEUTRAL_DIRECTION=0,GAMEPAD_NEGATIVE_DIRECTION=-1,GAMEPAD_POSITIVE_DIRECTION=1};
+enum GAMEPAD_BATTERY_TYPE {GAMEPAD_BATTERY_TYPE_ERROR=0,GAMEPAD_BATTERY_ALKAINE=1,GAMEPAD_BATTERY_NIMH=2,GAMEPAD_BATTERY_UNKNOW=3};
+enum GAMEPAD_BATTERY_LEVEL {GAMEPAD_BATTERY_LEVEL_ERROR=0,GAMEPAD_BATTERY_EMPTY=1,GAMEPAD_BATTERY_LOW=2,GAMEPAD_BATTERY_MEDIUM=3,GAMEPAD_BATTERY_FULL=4};
+enum GAMEPAD_BUTTONS {GAMEPAD_UP=XINPUT_GAMEPAD_DPAD_UP,GAMEPAD_DOWN=XINPUT_GAMEPAD_DPAD_DOWN,GAMEPAD_LEFT=XINPUT_GAMEPAD_DPAD_LEFT,GAMEPAD_RIGHT=XINPUT_GAMEPAD_DPAD_RIGHT,GAMEPAD_A=XINPUT_GAMEPAD_A,GAMEPAD_B=XINPUT_GAMEPAD_B,GAMEPAD_X=XINPUT_GAMEPAD_X,GAMEPAD_Y=XINPUT_GAMEPAD_Y,GAMEPAD_LEFT_BUMPER=XINPUT_GAMEPAD_LEFT_SHOULDER,GAMEPAD_RIGHT_BUMPER=XINPUT_GAMEPAD_RIGHT_SHOULDER,GAMEPAD_START=XINPUT_GAMEPAD_START,GAMEPAD_BACK=XINPUT_GAMEPAD_BACK};
+enum GAMEPAD_TRIGGERS {GAMEPAD_LEFT_TRIGGER=0,GAMEPAD_RIGHT_TRIGGER=1};
+enum GAMEPAD_STICKS {GAMEPAD_LEFT_STICK=0,GAMEPAD_RIGHT_STICK=1};
 
-struct IGF_Color
+struct IMG_Pixel
 {
  unsigned char blue:8;
  unsigned char green:8;
@@ -122,7 +122,7 @@ struct PCX_head
  unsigned char filled[54];
 };
 
-struct IGF_Box
+struct Collision_Box
 {
  unsigned long int x:32;
  unsigned long int y:32;
@@ -130,17 +130,20 @@ struct IGF_Box
  unsigned long int height:32;
 };
 
-LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
-void IGF_Show_Error(const char *message);
+LRESULT CALLBACK Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
+void Show_Error(const char *message);
 
-class IGF_Base
+namespace IGF
+{
+
+class COM_Base
 {
  public:
- IGF_Base();
- ~IGF_Base();
+ COM_Base();
+ ~COM_Base();
 };
 
-class IGF_Synchronization
+class Synchronization
 {
  private:
  HANDLE timer;
@@ -149,11 +152,11 @@ class IGF_Synchronization
  void set_timer(const unsigned long int interval);
  void wait_timer();
  public:
- IGF_Synchronization();
- ~IGF_Synchronization();
+ Synchronization();
+ ~Synchronization();
 };
 
-class IGF_Engine
+class Engine
 {
  private:
  WNDCLASS window_class;
@@ -168,13 +171,13 @@ class IGF_Engine
  void capture_mouse();
  bool process_message();
  public:
- IGF_Engine();
- ~IGF_Engine();
+ Engine();
+ ~Engine();
  unsigned long int get_width();
  unsigned long int get_height();
 };
 
-class IGF_Frame
+class Frame
 {
  private:
  size_t pixels;
@@ -184,7 +187,7 @@ class IGF_Frame
  unsigned int *buffer;
  unsigned int *shadow;
  protected:
- void set_size(const IGF_SURFACE surface);
+ void set_size(const SURFACE surface);
  unsigned int *create_buffer(const char *error);
  void create_buffers();
  unsigned int get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue);
@@ -192,8 +195,8 @@ class IGF_Frame
  unsigned long int get_frame_line();
  unsigned int *get_buffer();
  public:
- IGF_Frame();
- ~IGF_Frame();
+ Frame();
+ ~Frame();
  void draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue);
  void clear_screen();
  void save();
@@ -202,7 +205,7 @@ class IGF_Frame
  unsigned long int get_frame_height();
 };
 
-class IGF_FPS
+class FPS
 {
  private:
  time_t start;
@@ -211,12 +214,12 @@ class IGF_FPS
  protected:
  void update_counter();
  public:
- IGF_FPS();
- ~IGF_FPS();
+ FPS();
+ ~FPS();
  unsigned long int get_fps();
 };
 
-class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
+class Render:public COM_Base, public Engine, public Frame
 {
  private:
  ID2D1Factory *render;
@@ -239,41 +242,41 @@ class IGF_Render:public IGF_Base, public IGF_Engine, public IGF_Frame
  void create_render();
  void refresh();
  public:
- IGF_Render();
- ~IGF_Render();
+ Render();
+ ~Render();
 };
 
-class IGF_Screen:public IGF_FPS, public IGF_Synchronization, public IGF_Render
+class Screen:public FPS, public Synchronization, public Render
 {
  public:
  void initialize();
- void initialize(const IGF_SURFACE surface);
+ void initialize(const SURFACE surface);
  bool update();
  bool sync();
- IGF_Screen* get_handle();
+ Screen* get_handle();
 };
 
-class IGF_Keyboard
+class Keyboard
 {
  private:
  unsigned char *preversion;
  unsigned char *create_buffer(const char *error);
  public:
- IGF_Keyboard();
- ~IGF_Keyboard();
+ Keyboard();
+ ~Keyboard();
  void initialize();
  bool check_hold(const unsigned char code);
  bool check_press(const unsigned char code);
  bool check_release(const unsigned char code);
 };
 
-class IGF_Mouse
+class Mouse
 {
  private:
- unsigned char preversion[IGF_MOUSE];
+ unsigned char preversion[MOUSE];
  public:
- IGF_Mouse();
- ~IGF_Mouse();
+ Mouse();
+ ~Mouse();
  void show();
  void hide();
  void set_position(const unsigned long int x,const unsigned long int y);
@@ -284,7 +287,7 @@ class IGF_Mouse
  bool check_release(const unsigned char button);
 };
 
-class IGF_Gamepad
+class Gamepad
 {
  private:
  XINPUT_BATTERY_INFORMATION battery;
@@ -298,11 +301,11 @@ class IGF_Gamepad
  bool read_state();
  bool write_state();
  void set_motor(const unsigned short int left,const unsigned short int right);
- bool check_button(XINPUT_STATE &target,const IGF_GAMEPAD_BUTTONS button);
- bool check_trigger(XINPUT_STATE &target,const IGF_GAMEPAD_TRIGGERS trigger);
+ bool check_button(XINPUT_STATE &target,const GAMEPAD_BUTTONS button);
+ bool check_trigger(XINPUT_STATE &target,const GAMEPAD_TRIGGERS trigger);
  public:
- IGF_Gamepad();
- ~IGF_Gamepad();
+ Gamepad();
+ ~Gamepad();
  void set_active(const unsigned long int gamepad);
  unsigned long int get_active();
  unsigned long int get_last_index();
@@ -310,22 +313,22 @@ class IGF_Gamepad
  unsigned long int get_amount();
  bool check_connection();
  bool is_wireless();
- IGF_GAMEPAD_BATTERY_TYPE get_battery_type();
- IGF_GAMEPAD_BATTERY_LEVEL get_battery_level();
+ GAMEPAD_BATTERY_TYPE get_battery_type();
+ GAMEPAD_BATTERY_LEVEL get_battery_level();
  void update();
- bool check_button_hold(const IGF_GAMEPAD_BUTTONS button);
- bool check_button_press(const IGF_GAMEPAD_BUTTONS button);
- bool check_button_release(const IGF_GAMEPAD_BUTTONS button);
- bool check_trigger_hold(const IGF_GAMEPAD_TRIGGERS trigger);
- bool check_trigger_press(const IGF_GAMEPAD_TRIGGERS trigger);
- bool check_trigger_release(const IGF_GAMEPAD_TRIGGERS trigger);
- unsigned char get_trigger(const IGF_GAMEPAD_TRIGGERS trigger);
+ bool check_button_hold(const GAMEPAD_BUTTONS button);
+ bool check_button_press(const GAMEPAD_BUTTONS button);
+ bool check_button_release(const GAMEPAD_BUTTONS button);
+ bool check_trigger_hold(const GAMEPAD_TRIGGERS trigger);
+ bool check_trigger_press(const GAMEPAD_TRIGGERS trigger);
+ bool check_trigger_release(const GAMEPAD_TRIGGERS trigger);
+ unsigned char get_trigger(const GAMEPAD_TRIGGERS trigger);
  bool set_vibration(const unsigned short int left,const unsigned short int right);
- IGF_GAMEPAD_DIRECTION get_stick_x(const IGF_GAMEPAD_STICKS stick);
- IGF_GAMEPAD_DIRECTION get_stick_y(const IGF_GAMEPAD_STICKS stick);
+ GAMEPAD_DIRECTION get_stick_x(const GAMEPAD_STICKS stick);
+ GAMEPAD_DIRECTION get_stick_y(const GAMEPAD_STICKS stick);
 };
 
-class IGF_Multimedia: public IGF_Base
+class Multimedia: public COM_Base
 {
  private:
  IGraphBuilder *loader;
@@ -337,8 +340,8 @@ class IGF_Multimedia: public IGF_Base
  bool is_end();
  void rewind();
  public:
- IGF_Multimedia();
- ~IGF_Multimedia();
+ Multimedia();
+ ~Multimedia();
  void initialize();
  void load(const char *target);
  bool check_playing();
@@ -346,14 +349,14 @@ class IGF_Multimedia: public IGF_Base
  void play();
 };
 
-class IGF_Memory
+class Memory
 {
  private:
  MEMORYSTATUSEX memory;
  void get_status();
  public:
- IGF_Memory();
- ~IGF_Memory();
+ Memory();
+ ~Memory();
  unsigned long long int get_total_physical();
  unsigned long long int get_free_physical();
  unsigned long long int get_total_virtual();
@@ -361,11 +364,11 @@ class IGF_Memory
  unsigned long int get_usage();
 };
 
-class IGF_System
+class System
 {
  public:
- IGF_System();
- ~IGF_System();
+ System();
+ ~System();
  unsigned long int get_random(const unsigned long int number);
  void quit();
  void run(const char *command);
@@ -373,13 +376,13 @@ class IGF_System
  void enable_logging(const char *name);
 };
 
-class IGF_File
+class Binary_File
 {
  private:
  FILE *target;
  public:
- IGF_File();
- ~IGF_File();
+ Binary_File();
+ ~Binary_File();
  void open(const char *name);
  void close();
  void set_position(const off_t offset);
@@ -390,34 +393,34 @@ class IGF_File
  bool check_error();
 };
 
-class IGF_Timer
+class Timer
 {
  private:
  unsigned long int interval;
  time_t start;
  public:
- IGF_Timer();
- ~IGF_Timer();
+ Timer();
+ ~Timer();
  void set_timer(const unsigned long int seconds);
  bool check_timer();
 };
 
-class IGF_Primitive
+class Primitive
 {
  private:
- IGF_Color color;
- IGF_Screen *surface;
+ IMG_Pixel color;
+ Screen *surface;
  public:
- IGF_Primitive();
- ~IGF_Primitive();
- void initialize(IGF_Screen *Screen);
+ Primitive();
+ ~Primitive();
+ void initialize(Screen *Screen);
  void set_color(const unsigned char red,const unsigned char green,const unsigned char blue);
  void draw_line(const unsigned long int x1,const unsigned long int y1,const unsigned long int x2,const unsigned long int y2);
  void draw_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height);
  void draw_filled_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height);
 };
 
-class IGF_Image
+class Image
 {
  private:
  unsigned long int width;
@@ -428,8 +431,8 @@ class IGF_Image
  FILE *open_image(const char *name);
  unsigned long int get_file_size(FILE *target);
  public:
- IGF_Image();
- ~IGF_Image();
+ Image();
+ ~Image();
  void load_tga(const char *name);
  void load_pcx(const char *name);
  unsigned long int get_width();
@@ -439,39 +442,39 @@ class IGF_Image
  void destroy_image();
 };
 
-class IGF_Canvas
+class Canvas
 {
  private:
  unsigned long int width;
  unsigned long int height;
  unsigned long int frames;
- IGF_Screen *surface;
+ Screen *surface;
  void clear_buffer();
  protected:
- IGF_Color *image;
+ IMG_Pixel *image;
  void save();
  void restore();
  void set_width(const unsigned long int image_width);
  void set_height(const unsigned long int image_height);
- IGF_Color *create_buffer(const unsigned long int image_width,const unsigned long int image_height);
+ IMG_Pixel *create_buffer(const unsigned long int image_width,const unsigned long int image_height);
  void draw_image_pixel(const size_t offset,const unsigned long int x,const unsigned long int y);
  size_t get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y);
  public:
- IGF_Canvas();
- ~IGF_Canvas();
- IGF_Color *get_image();
+ Canvas();
+ ~Canvas();
+ IMG_Pixel *get_image();
  size_t get_length();
  unsigned long int get_image_width();
  unsigned long int get_image_height();
  void set_frames(const unsigned long int amount);
  unsigned long int get_frames();
- void initialize(IGF_Screen *Screen);
- void load_image(IGF_Image &buffer);
- void mirror_image(const IGF_MIRROR_TYPE kind);
+ void initialize(Screen *Screen);
+ void load_image(Image &buffer);
+ void mirror_image(const MIRROR_TYPE kind);
  void resize_image(const unsigned long int new_width,const unsigned long int new_height);
 };
 
-class IGF_Background:public IGF_Canvas
+class Background:public Canvas
 {
  private:
  unsigned long int start;
@@ -479,18 +482,18 @@ class IGF_Background:public IGF_Canvas
  unsigned long int background_height;
  unsigned long int frame;
  unsigned long int current;
- IGF_BACKGROUND_TYPE current_kind;
+ BACKGROUND_TYPE current_kind;
  void draw_background_pixel(const unsigned long int x,const unsigned long int y);
  void slow_draw_background();
  public:
- IGF_Background();
- ~IGF_Background();
- void set_kind(IGF_BACKGROUND_TYPE kind);
+ Background();
+ ~Background();
+ void set_kind(BACKGROUND_TYPE kind);
  void set_target(const unsigned long int target);
  void draw_background();
 };
 
-class IGF_Sprite:public IGF_Canvas
+class Sprite:public Canvas
 {
  private:
  bool transparent;
@@ -500,12 +503,12 @@ class IGF_Sprite:public IGF_Canvas
  unsigned long int sprite_height;
  unsigned long int frame;
  unsigned long int start;
- IGF_SPRITE_TYPE current_kind;
- bool compare_pixels(const IGF_Color &first,const IGF_Color &second);
+ SPRITE_TYPE current_kind;
+ bool compare_pixels(const IMG_Pixel &first,const IMG_Pixel &second);
  void draw_sprite_pixel(const size_t offset,const unsigned long int x,const unsigned long int y);
  public:
- IGF_Sprite();
- ~IGF_Sprite();
+ Sprite();
+ ~Sprite();
  void set_transparent(const bool enabled);
  bool get_transparent();
  void set_x(const unsigned long int x);
@@ -514,36 +517,38 @@ class IGF_Sprite:public IGF_Canvas
  unsigned long int get_y();
  unsigned long int get_width();
  unsigned long int get_height();
- IGF_Sprite* get_handle();
- IGF_Box get_box();
- void set_kind(const IGF_SPRITE_TYPE kind);
- IGF_SPRITE_TYPE get_kind();
+ Sprite* get_handle();
+ Collision_Box get_box();
+ void set_kind(const SPRITE_TYPE kind);
+ SPRITE_TYPE get_kind();
  void set_target(const unsigned long int target);
  void set_position(const unsigned long int x,const unsigned long int y);
- void clone(IGF_Sprite &target);
+ void clone(Sprite &target);
  void draw_sprite();
 };
 
-class IGF_Text
+class Text
 {
  private:
  unsigned long int current_x;
  unsigned long int current_y;
  unsigned long int step_x;
- IGF_Sprite *font;
+ Sprite *font;
  void draw_character(const char target);
  public:
- IGF_Text();
- ~IGF_Text();
+ Text();
+ ~Text();
  void set_position(const unsigned long int x,const unsigned long int y);
- void load_font(IGF_Sprite *target);
+ void load_font(Sprite *target);
  void draw_text(const char *text);
 };
 
-class IGF_Collision
+class Collision
 {
  public:
- bool check_horizontal_collision(const IGF_Box &first,const IGF_Box &second);
- bool check_vertical_collision(const IGF_Box &first,const IGF_Box &second);
- bool check_collision(const IGF_Box &first,const IGF_Box &second);
+ bool check_horizontal_collision(const Collision_Box &first,const Collision_Box &second);
+ bool check_vertical_collision(const Collision_Box &first,const Collision_Box &second);
+ bool check_collision(const Collision_Box &first,const Collision_Box &second);
 };
+
+}

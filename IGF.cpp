@@ -24,10 +24,10 @@ freely, subject to the following restrictions:
 
 #include "IGF.h"
 
-unsigned char IGF_Keys[IGF_KEYBOARD];
-unsigned char IGF_Buttons[IGF_MOUSE];
+unsigned char Keys[KEYBOARD];
+unsigned char Buttons[MOUSE];
 
-LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam)
+LRESULT CALLBACK Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam)
 {
  switch (Message)
  {
@@ -38,44 +38,47 @@ LRESULT CALLBACK IGF_Process_Message(HWND window,UINT Message,WPARAM wParam,LPAR
   PostQuitMessage(0);
   break;
   case WM_CREATE:
-  memset(IGF_Keys,IGFKEY_RELEASE,IGF_KEYBOARD);
-  memset(IGF_Buttons,IGFKEY_RELEASE,IGF_MOUSE);
+  memset(Keys,KEY_RELEASE,KEYBOARD);
+  memset(Buttons,KEY_RELEASE,MOUSE);
   break;
   case WM_LBUTTONDOWN:
-  IGF_Buttons[IGF_MOUSE_LEFT]=IGFKEY_PRESS;
+  Buttons[MOUSE_LEFT]=KEY_PRESS;
   break;
   case WM_LBUTTONUP:
-  IGF_Buttons[IGF_MOUSE_LEFT]=IGFKEY_RELEASE;
+  Buttons[MOUSE_LEFT]=KEY_RELEASE;
   break;
   case WM_RBUTTONDOWN:
-  IGF_Buttons[IGF_MOUSE_RIGHT]=IGFKEY_PRESS;
+  Buttons[MOUSE_RIGHT]=KEY_PRESS;
   break;
   case WM_RBUTTONUP:
-  IGF_Buttons[IGF_MOUSE_RIGHT]=IGFKEY_RELEASE;
+  Buttons[MOUSE_RIGHT]=KEY_RELEASE;
   break;
   case WM_MBUTTONDOWN:
-  IGF_Buttons[IGF_MOUSE_MIDDLE]=IGFKEY_PRESS;
+  Buttons[MOUSE_MIDDLE]=KEY_PRESS;
   break;
   case WM_MBUTTONUP:
-  IGF_Buttons[IGF_MOUSE_MIDDLE]=IGFKEY_RELEASE;
+  Buttons[MOUSE_MIDDLE]=KEY_RELEASE;
   break;
   case WM_KEYDOWN:
-  IGF_Keys[IGF_GETSCANCODE(lParam)]=IGFKEY_PRESS;
+  Keys[GETSCANCODE(lParam)]=KEY_PRESS;
   break;
   case WM_KEYUP:
-  IGF_Keys[IGF_GETSCANCODE(lParam)]=IGFKEY_RELEASE;
+  Keys[GETSCANCODE(lParam)]=KEY_RELEASE;
   break;
  }
  return DefWindowProc(window,Message,wParam,lParam);
 }
 
-void IGF_Show_Error(const char *message)
+void Show_Error(const char *message)
 {
  puts(message);
  exit(EXIT_FAILURE);
 }
 
-IGF_Base::IGF_Base()
+namespace IGF
+{
+
+ COM_Base::COM_Base()
 {
  HRESULT status;
  status=CoInitialize(NULL);
@@ -83,24 +86,24 @@ IGF_Base::IGF_Base()
  {
   if(status!=S_FALSE)
   {
-   IGF_Show_Error("Can't initialize COM");
+   Show_Error("Can't initialize COM");
   }
 
  }
 
 }
 
-IGF_Base::~IGF_Base()
+COM_Base::~COM_Base()
 {
  CoUninitialize();
 }
 
-IGF_Synchronization::IGF_Synchronization()
+Synchronization::Synchronization()
 {
  timer=NULL;
 }
 
-IGF_Synchronization::~IGF_Synchronization()
+Synchronization::~Synchronization()
 {
  if(timer==NULL)
  {
@@ -110,37 +113,37 @@ IGF_Synchronization::~IGF_Synchronization()
 
 }
 
-void IGF_Synchronization::create_timer()
+void Synchronization::create_timer()
 {
  timer=CreateWaitableTimer(NULL,FALSE,NULL);
  if (timer==NULL)
  {
-  IGF_Show_Error("Can't create synchronization timer");
+  Show_Error("Can't create synchronization timer");
  }
 
 }
 
-void IGF_Synchronization::set_timer(const unsigned long int interval)
+void Synchronization::set_timer(const unsigned long int interval)
 {
  LARGE_INTEGER start;
  start.QuadPart=0;
  if(SetWaitableTimer(timer,&start,interval,NULL,NULL,FALSE)==FALSE)
  {
-  IGF_Show_Error("Can't set timer");
+  Show_Error("Can't set timer");
  }
 
 }
 
-void IGF_Synchronization::wait_timer()
+void Synchronization::wait_timer()
 {
  WaitForSingleObject(timer,INFINITE);
 }
 
-IGF_Engine::IGF_Engine()
+Engine::Engine()
 {
  window_class.lpszClassName=TEXT("IGF");
  window_class.style=CS_HREDRAW|CS_VREDRAW;
- window_class.lpfnWndProc=(WNDPROC)IGF_Process_Message;
+ window_class.lpfnWndProc=(WNDPROC)Process_Message;
  window_class.hInstance=NULL;
  window_class.hbrBackground=NULL;
  window_class.hIcon=NULL;
@@ -152,69 +155,69 @@ IGF_Engine::IGF_Engine()
  height=0;
 }
 
-IGF_Engine::~IGF_Engine()
+Engine::~Engine()
 {
  if(window!=NULL) CloseWindow(window);
  UnregisterClass(window_class.lpszClassName,window_class.hInstance);
 }
 
-HWND IGF_Engine::get_window()
+HWND Engine::get_window()
 {
  return window;
 }
 
-void IGF_Engine::prepare_engine()
+void Engine::prepare_engine()
 {
  window_class.hInstance=GetModuleHandle(NULL);
  if(window_class.hInstance==NULL)
  {
-  IGF_Show_Error("Can't get the application instance");
+  Show_Error("Can't get the application instance");
  }
  window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
  if (window_class.hIcon==NULL)
  {
-  IGF_Show_Error("Can't load the standart program icon");
+  Show_Error("Can't load the standart program icon");
  }
  window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
  if (window_class.hCursor==NULL)
  {
-  IGF_Show_Error("Can't load the standart cursor");
+  Show_Error("Can't load the standart cursor");
  }
  if (!RegisterClass(&window_class))
  {
-  IGF_Show_Error("Can't register window class");
+  Show_Error("Can't register window class");
  }
 
 }
 
-void IGF_Engine::create_window()
+void Engine::create_window()
 {
  width=GetSystemMetrics(SM_CXSCREEN);
  height=GetSystemMetrics(SM_CYSCREEN);
  window=CreateWindow(window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,width,height,NULL,NULL,window_class.hInstance,NULL);
  if (window==NULL)
  {
-  IGF_Show_Error("Can't create window");
+  Show_Error("Can't create window");
  }
  EnableWindow(window,TRUE);
  SetFocus(window);
 }
 
-void IGF_Engine::capture_mouse()
+void Engine::capture_mouse()
 {
  RECT border;
  if(GetClientRect(window,&border)==FALSE)
  {
-  IGF_Show_Error("Can't capture window");
+  Show_Error("Can't capture window");
  }
  if(ClipCursor(&border)==FALSE)
  {
-  IGF_Show_Error("Can't capture cursor");
+  Show_Error("Can't capture cursor");
  }
 
 }
 
-bool IGF_Engine::process_message()
+bool Engine::process_message()
 {
  bool quit;
  MSG Message;
@@ -236,17 +239,17 @@ bool IGF_Engine::process_message()
  return quit;
 }
 
-unsigned long int IGF_Engine::get_width()
+unsigned long int Engine::get_width()
 {
  return width;
 }
 
-unsigned long int IGF_Engine::get_height()
+unsigned long int Engine::get_height()
 {
  return height;
 }
 
-IGF_Frame::IGF_Frame()
+Frame::Frame()
 {
  frame_width=512;
  frame_height=512;
@@ -256,7 +259,7 @@ IGF_Frame::IGF_Frame()
  shadow=NULL;
 }
 
-IGF_Frame::~IGF_Frame()
+Frame::~Frame()
 {
  if(buffer!=NULL)
  {
@@ -271,14 +274,14 @@ IGF_Frame::~IGF_Frame()
 
 }
 
-void IGF_Frame::set_size(const IGF_SURFACE surface)
+void Frame::set_size(const SURFACE surface)
 {
- if(surface==IGF_SURFACE_SMALL)
+ if(surface==SURFACE_SMALL)
  {
   frame_width=256;
   frame_height=256;
  }
- if(surface==IGF_SURFACE_LARGE)
+ if(surface==SURFACE_LARGE)
  {
   frame_width=512;
   frame_height=512;
@@ -286,46 +289,46 @@ void IGF_Frame::set_size(const IGF_SURFACE surface)
 
 }
 
-unsigned int *IGF_Frame::create_buffer(const char *error)
+unsigned int *Frame::create_buffer(const char *error)
 {
  unsigned int *target;
  pixels=(size_t)frame_width*(size_t)frame_height;
  target=(unsigned int*)calloc(pixels,sizeof(unsigned int));
  if(target==NULL)
  {
-  IGF_Show_Error(error);
+  Show_Error(error);
  }
  frame_line=frame_width*(unsigned long int)sizeof(unsigned int);
  return target;
 }
 
-void IGF_Frame::create_buffers()
+void Frame::create_buffers()
 {
  buffer=this->create_buffer("Can't allocate memory for render buffer");
  shadow=this->create_buffer("Can't allocate memory for shadow buffer");
 }
 
-unsigned int IGF_Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
+unsigned int Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
 {
  return red+(green<<8)+(blue<<16);
 }
 
-size_t IGF_Frame::get_offset(const unsigned long int x,const unsigned long int y)
+size_t Frame::get_offset(const unsigned long int x,const unsigned long int y)
 {
  return (size_t)x+(size_t)y*(size_t)frame_width;
 }
 
-unsigned long int IGF_Frame::get_frame_line()
+unsigned long int Frame::get_frame_line()
 {
  return frame_line;
 }
 
-unsigned int *IGF_Frame::get_buffer()
+unsigned int *Frame::get_buffer()
 {
  return buffer;
 }
 
-void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue)
+void Frame::draw_pixel(const unsigned long int x,const unsigned long int y,const unsigned char red,const unsigned char green,const unsigned char blue)
 {
  if((x<frame_width)&&(y<frame_height))
  {
@@ -334,7 +337,7 @@ void IGF_Frame::draw_pixel(const unsigned long int x,const unsigned long int y,c
 
 }
 
-void IGF_Frame::clear_screen()
+void Frame::clear_screen()
 {
  size_t index;
  for (index=0;index<pixels;++index)
@@ -344,7 +347,7 @@ void IGF_Frame::clear_screen()
 
 }
 
-void IGF_Frame::save()
+void Frame::save()
 {
  size_t index;
  for (index=0;index<pixels;++index)
@@ -354,7 +357,7 @@ void IGF_Frame::save()
 
 }
 
-void IGF_Frame::restore()
+void Frame::restore()
 {
  size_t index;
  for (index=0;index<pixels;++index)
@@ -364,29 +367,29 @@ void IGF_Frame::restore()
 
 }
 
-unsigned long int IGF_Frame::get_frame_width()
+unsigned long int Frame::get_frame_width()
 {
  return frame_width;
 }
 
-unsigned long int IGF_Frame::get_frame_height()
+unsigned long int Frame::get_frame_height()
 {
  return frame_height;
 }
 
-IGF_FPS::IGF_FPS()
+FPS::FPS()
 {
  start=time(NULL);
  current=0;
  fps=0;
 }
 
-IGF_FPS::~IGF_FPS()
+FPS::~FPS()
 {
 
 }
 
-void IGF_FPS::update_counter()
+void FPS::update_counter()
 {
  time_t stop;
  if(current==0) start=time(NULL);
@@ -400,12 +403,12 @@ void IGF_FPS::update_counter()
 
 }
 
-unsigned long int IGF_FPS::get_fps()
+unsigned long int FPS::get_fps()
 {
  return fps;
 }
 
-IGF_Render::IGF_Render()
+Render::Render()
 {
  render=NULL;
  target=NULL;
@@ -424,47 +427,47 @@ IGF_Render::IGF_Render()
  configuration.presentOptions=D2D1_PRESENT_OPTIONS_IMMEDIATELY;
 }
 
-IGF_Render::~IGF_Render()
+Render::~Render()
 {
  if(surface!=NULL) surface->Release();
  if(target!=NULL) target->Release();
  if(render!=NULL) render->Release();
 }
 
-void IGF_Render::create_factory()
+void Render::create_factory()
 {
  if(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,&render)!=S_OK)
  {
-  IGF_Show_Error("Can't create render");
+  Show_Error("Can't create render");
  }
 
 }
 
-void IGF_Render::create_target()
+void Render::create_target()
 {
  if(render->CreateHwndRenderTarget(setting,configuration,&target)!=S_OK)
  {
-  IGF_Show_Error("Can't create render target");
+  Show_Error("Can't create render target");
  }
  target->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
 }
 
-void IGF_Render::create_surface()
+void Render::create_surface()
 {
  if(target->CreateBitmap(D2D1::SizeU(this->get_frame_width(),this->get_frame_height()),this->get_buffer(),this->get_frame_line(),D2D1::BitmapProperties(setting.pixelFormat,96.0,96.0),&surface)!=S_OK)
  {
-  IGF_Show_Error("Can't create render surface");
+  Show_Error("Can't create render surface");
  }
 
 }
 
-void IGF_Render::set_render_setting()
+void Render::set_render_setting()
 {
  configuration.hwnd=this->get_window();
  configuration.pixelSize=D2D1::SizeU(this->get_width(),this->get_height());
 }
 
-void IGF_Render::set_render()
+void Render::set_render()
 {
  this->set_render_setting();
  this->create_factory();
@@ -472,7 +475,7 @@ void IGF_Render::set_render()
  this->create_surface();
 }
 
-void IGF_Render::destroy_resource()
+void Render::destroy_resource()
 {
  if(surface!=NULL)
  {
@@ -487,21 +490,21 @@ void IGF_Render::destroy_resource()
 
 }
 
-void IGF_Render::recreate_render()
+void Render::recreate_render()
 {
  this->destroy_resource();
  this->create_target();
  this->create_surface();
 }
 
-void IGF_Render::prepare_surface()
+void Render::prepare_surface()
 {
  source=D2D1::RectU(0,0,this->get_frame_width(),this->get_frame_height());
  destanation=D2D1::RectF(0,0,this->get_width(),this->get_height());
  texture=D2D1::RectF(0,0,this->get_frame_width(),this->get_frame_height());
 }
 
-void IGF_Render::create_render()
+void Render::create_render()
 {
  this->set_render_setting();
  this->set_render();
@@ -509,7 +512,7 @@ void IGF_Render::create_render()
  this->create_buffers();
 }
 
-void IGF_Render::refresh()
+void Render::refresh()
 {
  surface->CopyFromMemory(&source,this->get_buffer(),this->get_frame_line());
  target->BeginDraw();
@@ -517,7 +520,7 @@ void IGF_Render::refresh()
  if(target->EndDraw()==(HRESULT)D2DERR_RECREATE_TARGET) this->recreate_render();
 }
 
-void IGF_Screen::initialize()
+void Screen::initialize()
 {
  this->prepare_engine();
  this->create_buffers();
@@ -528,20 +531,20 @@ void IGF_Screen::initialize()
  this->set_timer(17);
 }
 
-void IGF_Screen::initialize(const IGF_SURFACE surface)
+void Screen::initialize(const SURFACE surface)
 {
  this->set_size(surface);
  this->initialize();
 }
 
-bool IGF_Screen::update()
+bool Screen::update()
 {
  this->refresh();
  this->update_counter();
  return this->process_message();
 }
 
-bool IGF_Screen::sync()
+bool Screen::sync()
 {
  bool quit;
  quit=this->update();
@@ -549,164 +552,164 @@ bool IGF_Screen::sync()
  return quit;
 }
 
-IGF_Screen* IGF_Screen::get_handle()
+Screen* Screen::get_handle()
 {
  return this;
 }
 
-IGF_Keyboard::IGF_Keyboard()
+Keyboard::Keyboard()
 {
  preversion=NULL;
 }
 
-IGF_Keyboard::~IGF_Keyboard()
+Keyboard::~Keyboard()
 {
  if(preversion!=NULL) free(preversion);
 }
 
-unsigned char *IGF_Keyboard::create_buffer(const char *error)
+unsigned char *Keyboard::create_buffer(const char *error)
 {
  unsigned char *buffer;
- buffer=(unsigned char*)calloc(IGF_KEYBOARD,sizeof(unsigned char));
+ buffer=(unsigned char*)calloc(KEYBOARD,sizeof(unsigned char));
  if(buffer==NULL)
  {
-  IGF_Show_Error(error);
+  Show_Error(error);
  }
  return buffer;
 }
 
-void IGF_Keyboard::initialize()
+void Keyboard::initialize()
 {
  preversion=this->create_buffer("Can't allocate memory for keyboard state buffer");
 }
 
-bool IGF_Keyboard::check_hold(const unsigned char code)
+bool Keyboard::check_hold(const unsigned char code)
 {
  bool result;
  result=false;
- if(IGF_Keys[code]==IGFKEY_PRESS) result=true;
- preversion[code]=IGF_Keys[code];
+ if(Keys[code]==KEY_PRESS) result=true;
+ preversion[code]=Keys[code];
  return result;
 }
 
-bool IGF_Keyboard::check_press(const unsigned char code)
+bool Keyboard::check_press(const unsigned char code)
 {
  bool result;
  result=false;
- if(IGF_Keys[code]==IGFKEY_PRESS)
+ if(Keys[code]==KEY_PRESS)
  {
-  if(preversion[code]==IGFKEY_RELEASE) result=true;
+  if(preversion[code]==KEY_RELEASE) result=true;
  }
- preversion[code]=IGF_Keys[code];
+ preversion[code]=Keys[code];
  return result;
 }
 
-bool IGF_Keyboard::check_release(const unsigned char code)
+bool Keyboard::check_release(const unsigned char code)
 {
  bool result;
  result=false;
- if(IGF_Keys[code]==IGFKEY_RELEASE)
+ if(Keys[code]==KEY_RELEASE)
  {
-  if(preversion[code]==IGFKEY_PRESS) result=true;
+  if(preversion[code]==KEY_PRESS) result=true;
  }
- preversion[code]=IGF_Keys[code];
+ preversion[code]=Keys[code];
  return result;
 }
 
-IGF_Mouse::IGF_Mouse()
+Mouse::Mouse()
 {
- memset(preversion,IGFKEY_RELEASE,IGF_MOUSE);
+ memset(preversion,KEY_RELEASE,MOUSE);
 }
 
-IGF_Mouse::~IGF_Mouse()
+Mouse::~Mouse()
 {
  while(ShowCursor(TRUE)<1) ;
 }
 
-void IGF_Mouse::show()
+void Mouse::show()
 {
  while(ShowCursor(TRUE)<1) ;
 }
 
-void IGF_Mouse::hide()
+void Mouse::hide()
 {
  while(ShowCursor(FALSE)>-2) ;
 }
 
-void IGF_Mouse::set_position(const unsigned long int x,const unsigned long int y)
+void Mouse::set_position(const unsigned long int x,const unsigned long int y)
 {
  if(SetCursorPos(x,y)==FALSE)
  {
-  IGF_Show_Error("Can't set the mouse cursor position");
+  Show_Error("Can't set the mouse cursor position");
  }
 
 }
 
-unsigned long int IGF_Mouse::get_x()
+unsigned long int Mouse::get_x()
 {
  POINT position;
  if(GetCursorPos(&position)==FALSE)
  {
-  IGF_Show_Error("Can't get the mouse cursor position");
+  Show_Error("Can't get the mouse cursor position");
  }
  return position.x;
 }
 
-unsigned long int IGF_Mouse::get_y()
+unsigned long int Mouse::get_y()
 {
  POINT position;
  if(GetCursorPos(&position)==FALSE)
  {
-  IGF_Show_Error("Can't get the mouse cursor position");
+  Show_Error("Can't get the mouse cursor position");
  }
  return position.y;
 }
 
-bool IGF_Mouse::check_hold(const unsigned char button)
+bool Mouse::check_hold(const unsigned char button)
 {
  bool result;
  result=false;
- if(button<=IGF_MOUSE_MIDDLE)
+ if(button<=MOUSE_MIDDLE)
  {
-  if(IGF_Buttons[button]==IGFKEY_PRESS) result=true;
-   preversion[button]=IGF_Buttons[button];
+  if(Buttons[button]==KEY_PRESS) result=true;
+   preversion[button]=Buttons[button];
  }
  return result;
 }
 
-bool IGF_Mouse::check_press(const unsigned char button)
+bool Mouse::check_press(const unsigned char button)
 {
  bool result;
  result=false;
- if(button<=IGF_MOUSE_MIDDLE)
+ if(button<=MOUSE_MIDDLE)
  {
-  if(IGF_Buttons[button]==IGFKEY_PRESS)
+  if(Buttons[button]==KEY_PRESS)
   {
-   if(preversion[button]==IGFKEY_RELEASE) result=true;
+   if(preversion[button]==KEY_RELEASE) result=true;
   }
 
  }
- preversion[button]=IGF_Buttons[button];
+ preversion[button]=Buttons[button];
  return result;
 }
 
-bool IGF_Mouse::check_release(const unsigned char button)
+bool Mouse::check_release(const unsigned char button)
 {
  bool result;
  result=false;
- if(button<=IGF_MOUSE_MIDDLE)
+ if(button<=MOUSE_MIDDLE)
  {
-  if(IGF_Buttons[button]==IGFKEY_RELEASE)
+  if(Buttons[button]==KEY_RELEASE)
   {
-   if(preversion[button]==IGFKEY_PRESS) result=true;
+   if(preversion[button]==KEY_PRESS) result=true;
   }
 
  }
- preversion[button]=IGF_Buttons[button];
+ preversion[button]=Buttons[button];
  return result;
 }
 
-IGF_Gamepad::IGF_Gamepad()
+Gamepad::Gamepad()
 {
  length=sizeof(XINPUT_STATE);
  XInputEnable(TRUE);
@@ -717,12 +720,12 @@ IGF_Gamepad::IGF_Gamepad()
  active=0;
 }
 
-IGF_Gamepad::~IGF_Gamepad()
+Gamepad::~Gamepad()
 {
  XInputEnable(FALSE);
 }
 
-bool IGF_Gamepad::read_battery_status()
+bool Gamepad::read_battery_status()
 {
  bool result;
  result=false;
@@ -730,13 +733,13 @@ bool IGF_Gamepad::read_battery_status()
  return result;
 }
 
-void IGF_Gamepad::clear_state()
+void Gamepad::clear_state()
 {
  memset(&current,0,length);
  memset(&preversion,0,length);
 }
 
-bool IGF_Gamepad::read_state()
+bool Gamepad::read_state()
 {
  bool result;
  result=false;
@@ -744,7 +747,7 @@ bool IGF_Gamepad::read_state()
  return result;
 }
 
-bool IGF_Gamepad::write_state()
+bool Gamepad::write_state()
 {
  bool result;
  result=false;
@@ -752,13 +755,13 @@ bool IGF_Gamepad::write_state()
  return result;
 }
 
-void IGF_Gamepad::set_motor(const unsigned short int left,const unsigned short int right)
+void Gamepad::set_motor(const unsigned short int left,const unsigned short int right)
 {
  vibration.wLeftMotorSpeed=left;
  vibration.wRightMotorSpeed=right;
 }
 
-bool IGF_Gamepad::check_button(XINPUT_STATE &target,const IGF_GAMEPAD_BUTTONS button)
+bool Gamepad::check_button(XINPUT_STATE &target,const GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -766,16 +769,16 @@ bool IGF_Gamepad::check_button(XINPUT_STATE &target,const IGF_GAMEPAD_BUTTONS bu
  return result;
 }
 
-bool IGF_Gamepad::check_trigger(XINPUT_STATE &target,const IGF_GAMEPAD_TRIGGERS trigger)
+bool Gamepad::check_trigger(XINPUT_STATE &target,const GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
- if((trigger==IGF_GAMEPAD_LEFT_TRIGGER)&&(target.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
- if((trigger==IGF_GAMEPAD_RIGHT_TRIGGER)&&(target.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ if((trigger==GAMEPAD_LEFT_TRIGGER)&&(target.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ if((trigger==GAMEPAD_RIGHT_TRIGGER)&&(target.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
  return result;
 }
 
-void IGF_Gamepad::set_active(const unsigned long int gamepad)
+void Gamepad::set_active(const unsigned long int gamepad)
 {
  if(active<XUSER_MAX_COUNT)
  {
@@ -785,22 +788,22 @@ void IGF_Gamepad::set_active(const unsigned long int gamepad)
 
 }
 
-unsigned long int IGF_Gamepad::get_active()
+unsigned long int Gamepad::get_active()
 {
  return active;
 }
 
-unsigned long int IGF_Gamepad::get_last_index()
+unsigned long int Gamepad::get_last_index()
 {
  return XUSER_MAX_COUNT-1;
 }
 
-unsigned long int IGF_Gamepad::get_maximum_amount()
+unsigned long int Gamepad::get_maximum_amount()
 {
  return XUSER_MAX_COUNT;
 }
 
-unsigned long int IGF_Gamepad::get_amount()
+unsigned long int Gamepad::get_amount()
 {
  unsigned long int old,result;
  result=0;
@@ -818,12 +821,12 @@ unsigned long int IGF_Gamepad::get_amount()
  return result;
 }
 
-bool IGF_Gamepad::check_connection()
+bool Gamepad::check_connection()
 {
  return this->read_state();
 }
 
-bool IGF_Gamepad::is_wireless()
+bool Gamepad::is_wireless()
 {
  bool result;
  result=false;
@@ -834,22 +837,22 @@ bool IGF_Gamepad::is_wireless()
  return result;
 }
 
-IGF_GAMEPAD_BATTERY_TYPE IGF_Gamepad::get_battery_type()
+GAMEPAD_BATTERY_TYPE Gamepad::get_battery_type()
 {
- IGF_GAMEPAD_BATTERY_TYPE result;
- result=IGF_GAMEPAD_BATTERY_TYPE_ERROR;
+ GAMEPAD_BATTERY_TYPE result;
+ result=GAMEPAD_BATTERY_TYPE_ERROR;
  if(this->read_battery_status()==true)
  {
   switch (battery.BatteryType)
   {
    case BATTERY_TYPE_ALKALINE:
-   result=IGF_GAMEPAD_BATTERY_ALKAINE;
+   result=GAMEPAD_BATTERY_ALKAINE;
    break;
    case BATTERY_TYPE_NIMH:
-   result=IGF_GAMEPAD_BATTERY_NIMH;
+   result=GAMEPAD_BATTERY_NIMH;
    break;
    case BATTERY_TYPE_UNKNOWN:
-   result=IGF_GAMEPAD_BATTERY_UNKNOW;
+   result=GAMEPAD_BATTERY_UNKNOW;
    break;
   }
 
@@ -857,44 +860,44 @@ IGF_GAMEPAD_BATTERY_TYPE IGF_Gamepad::get_battery_type()
  return result;
 }
 
-IGF_GAMEPAD_BATTERY_LEVEL IGF_Gamepad::get_battery_level()
+GAMEPAD_BATTERY_LEVEL Gamepad::get_battery_level()
 {
- IGF_GAMEPAD_BATTERY_LEVEL result;
- result=IGF_GAMEPAD_BATTERY_LEVEL_ERROR;
+ GAMEPAD_BATTERY_LEVEL result;
+ result=GAMEPAD_BATTERY_LEVEL_ERROR;
  if(this->read_battery_status()==true)
  {
   switch (battery.BatteryLevel)
   {
    case BATTERY_LEVEL_EMPTY:
-   result=IGF_GAMEPAD_BATTERY_EMPTY;
+   result=GAMEPAD_BATTERY_EMPTY;
    break;
    case BATTERY_LEVEL_LOW:
-   result=IGF_GAMEPAD_BATTERY_LOW;
+   result=GAMEPAD_BATTERY_LOW;
    break;
    case BATTERY_LEVEL_MEDIUM:
-   result=IGF_GAMEPAD_BATTERY_MEDIUM;
+   result=GAMEPAD_BATTERY_MEDIUM;
    break;
    case BATTERY_LEVEL_FULL:
-   result=IGF_GAMEPAD_BATTERY_FULL;
+   result=GAMEPAD_BATTERY_FULL;
    break;
   }
-  if((battery.BatteryType==BATTERY_TYPE_WIRED)||(battery.BatteryType==BATTERY_TYPE_DISCONNECTED)) result=IGF_GAMEPAD_BATTERY_LEVEL_ERROR;
+  if((battery.BatteryType==BATTERY_TYPE_WIRED)||(battery.BatteryType==BATTERY_TYPE_DISCONNECTED)) result=GAMEPAD_BATTERY_LEVEL_ERROR;
  }
  return result;
 }
 
-void IGF_Gamepad::update()
+void Gamepad::update()
 {
  preversion=current;
  if(this->read_state()==false) this->clear_state();
 }
 
-bool IGF_Gamepad::check_button_hold(const IGF_GAMEPAD_BUTTONS button)
+bool Gamepad::check_button_hold(const GAMEPAD_BUTTONS button)
 {
  return this->check_button(current,button);
 }
 
-bool IGF_Gamepad::check_button_press(const IGF_GAMEPAD_BUTTONS button)
+bool Gamepad::check_button_press(const GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -905,7 +908,7 @@ bool IGF_Gamepad::check_button_press(const IGF_GAMEPAD_BUTTONS button)
  return result;
 }
 
-bool IGF_Gamepad::check_button_release(const IGF_GAMEPAD_BUTTONS button)
+bool Gamepad::check_button_release(const GAMEPAD_BUTTONS button)
 {
  bool result;
  result=false;
@@ -916,12 +919,12 @@ bool IGF_Gamepad::check_button_release(const IGF_GAMEPAD_BUTTONS button)
  return result;
 }
 
-bool IGF_Gamepad::check_trigger_hold(const IGF_GAMEPAD_TRIGGERS trigger)
+bool Gamepad::check_trigger_hold(const GAMEPAD_TRIGGERS trigger)
 {
  return this->check_trigger(current,trigger);
 }
 
-bool IGF_Gamepad::check_trigger_press(const IGF_GAMEPAD_TRIGGERS trigger)
+bool Gamepad::check_trigger_press(const GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
@@ -932,7 +935,7 @@ bool IGF_Gamepad::check_trigger_press(const IGF_GAMEPAD_TRIGGERS trigger)
  return result;
 }
 
-bool IGF_Gamepad::check_trigger_release(const IGF_GAMEPAD_TRIGGERS trigger)
+bool Gamepad::check_trigger_release(const GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
@@ -943,62 +946,62 @@ bool IGF_Gamepad::check_trigger_release(const IGF_GAMEPAD_TRIGGERS trigger)
  return result;
 }
 
-unsigned char IGF_Gamepad::get_trigger(const IGF_GAMEPAD_TRIGGERS trigger)
+unsigned char Gamepad::get_trigger(const GAMEPAD_TRIGGERS trigger)
 {
  unsigned char result;
  result=0;
- if(trigger==IGF_GAMEPAD_LEFT_TRIGGER) result=current.Gamepad.bLeftTrigger;
- if(trigger==IGF_GAMEPAD_RIGHT_TRIGGER) result=current.Gamepad.bRightTrigger;
+ if(trigger==GAMEPAD_LEFT_TRIGGER) result=current.Gamepad.bLeftTrigger;
+ if(trigger==GAMEPAD_RIGHT_TRIGGER) result=current.Gamepad.bRightTrigger;
  return result;
 }
 
-bool IGF_Gamepad::set_vibration(const unsigned short int left,const unsigned short int right)
+bool Gamepad::set_vibration(const unsigned short int left,const unsigned short int right)
 {
  this->set_motor(left,right);
  return this->write_state();
 }
 
-IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_x(const IGF_GAMEPAD_STICKS stick)
+GAMEPAD_DIRECTION Gamepad::get_stick_x(const GAMEPAD_STICKS stick)
 {
- IGF_GAMEPAD_DIRECTION result;
+ GAMEPAD_DIRECTION result;
  short int control;
- result=IGF_NEUTRAL_DIRECTION;
- if(stick==IGF_GAMEPAD_LEFT_STICK)
+ result=GAMEPAD_NEUTRAL_DIRECTION;
+ if(stick==GAMEPAD_LEFT_STICK)
  {
   control=SHRT_MAX-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbLX>=control) result=IGF_POSITIVE_DIRECTION;
-  if(current.Gamepad.sThumbLX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
+  if(current.Gamepad.sThumbLX>=control) result=GAMEPAD_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbLX<=-1*control) result=GAMEPAD_NEGATIVE_DIRECTION;
  }
- if(stick==IGF_GAMEPAD_RIGHT_STICK)
+ if(stick==GAMEPAD_RIGHT_STICK)
  {
   control=SHRT_MAX-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbRX>=control) result=IGF_POSITIVE_DIRECTION;
-  if(current.Gamepad.sThumbRX<=-1*control) result=IGF_NEGATIVE_DIRECTION;
+  if(current.Gamepad.sThumbRX>=control) result=GAMEPAD_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbRX<=-1*control) result=GAMEPAD_NEGATIVE_DIRECTION;
  }
  return result;
 }
 
-IGF_GAMEPAD_DIRECTION IGF_Gamepad::get_stick_y(const IGF_GAMEPAD_STICKS stick)
+GAMEPAD_DIRECTION Gamepad::get_stick_y(const GAMEPAD_STICKS stick)
 {
- IGF_GAMEPAD_DIRECTION result;
+ GAMEPAD_DIRECTION result;
  short int control;
- result=IGF_NEUTRAL_DIRECTION;
- if(stick==IGF_GAMEPAD_LEFT_STICK)
+ result=GAMEPAD_NEUTRAL_DIRECTION;
+ if(stick==GAMEPAD_LEFT_STICK)
  {
   control=SHRT_MAX-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbLY>=control) result=IGF_POSITIVE_DIRECTION;
-  if(current.Gamepad.sThumbLY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
+  if(current.Gamepad.sThumbLY>=control) result=GAMEPAD_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbLY<=-1*control) result=GAMEPAD_NEGATIVE_DIRECTION;
  }
- if(stick==IGF_GAMEPAD_RIGHT_STICK)
+ if(stick==GAMEPAD_RIGHT_STICK)
  {
   control=SHRT_MAX-XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
-  if(current.Gamepad.sThumbRY>=control) result=IGF_POSITIVE_DIRECTION;
-  if(current.Gamepad.sThumbRY<=-1*control) result=IGF_NEGATIVE_DIRECTION;
+  if(current.Gamepad.sThumbRY>=control) result=GAMEPAD_POSITIVE_DIRECTION;
+  if(current.Gamepad.sThumbRY<=-1*control) result=GAMEPAD_NEGATIVE_DIRECTION;
  }
  return result;
 }
 
-IGF_Multimedia::IGF_Multimedia()
+Multimedia::Multimedia()
 {
  loader=NULL;
  player=NULL;
@@ -1006,7 +1009,7 @@ IGF_Multimedia::IGF_Multimedia()
  video=NULL;
 }
 
-IGF_Multimedia::~IGF_Multimedia()
+Multimedia::~Multimedia()
 {
  if(player!=NULL) player->StopWhenReady();
  if(video!=NULL) video->Release();
@@ -1015,7 +1018,7 @@ IGF_Multimedia::~IGF_Multimedia()
  if(loader!=NULL) loader->Release();
 }
 
-wchar_t *IGF_Multimedia::convert_file_name(const char *target)
+wchar_t *Multimedia::convert_file_name(const char *target)
 {
  wchar_t *name;
  size_t index,length;
@@ -1023,23 +1026,23 @@ wchar_t *IGF_Multimedia::convert_file_name(const char *target)
  name=(wchar_t*)calloc(length+1,sizeof(wchar_t));
  if(name==NULL)
  {
-  IGF_Show_Error("Can't allocate memory");
+  Show_Error("Can't allocate memory");
  }
  for(index=0;index<length;++index) name[index]=btowc(target[index]);
  return name;
 }
 
-void IGF_Multimedia::open(const wchar_t *target)
+void Multimedia::open(const wchar_t *target)
 {
  player->StopWhenReady();
  if(loader->RenderFile(target,NULL)!=S_OK)
  {
-  IGF_Show_Error("Can't load a multimedia file");
+  Show_Error("Can't load a multimedia file");
  }
  video->put_FullScreenMode(OATRUE);
 }
 
-bool IGF_Multimedia::is_end()
+bool Multimedia::is_end()
 {
  bool result;
  long long current,stop;
@@ -1050,44 +1053,44 @@ bool IGF_Multimedia::is_end()
  }
  else
  {
-  IGF_Show_Error("Can't get the current and the end position");
+  Show_Error("Can't get the current and the end position");
  }
  return result;
 }
 
-void IGF_Multimedia::rewind()
+void Multimedia::rewind()
 {
  long long position;
  position=0;
  if(controler->SetPositions(&position,AM_SEEKING_AbsolutePositioning,NULL,AM_SEEKING_NoPositioning)!=S_OK)
  {
-  IGF_Show_Error("Can't set start position");
+  Show_Error("Can't set start position");
  }
 
 }
 
-void IGF_Multimedia::initialize()
+void Multimedia::initialize()
 {
  if(CoCreateInstance(CLSID_FilterGraph,NULL,CLSCTX_INPROC_SERVER,IID_IGraphBuilder,(void**)&loader)!=S_OK)
  {
-  IGF_Show_Error("Can't create a multimedia loader");
+  Show_Error("Can't create a multimedia loader");
  }
  if(loader->QueryInterface(IID_IMediaControl,(void**)&player)!=S_OK)
  {
-  IGF_Show_Error("Can't create a multimedia player");
+  Show_Error("Can't create a multimedia player");
  }
  if(loader->QueryInterface(IID_IMediaSeeking,(void**)&controler)!=S_OK)
  {
-  IGF_Show_Error("Can't create a player controler");
+  Show_Error("Can't create a player controler");
  }
  if(loader->QueryInterface(IID_IVideoWindow,(void**)&video)!=S_OK)
  {
-  IGF_Show_Error("Can't create a video player");
+  Show_Error("Can't create a video player");
  }
 
 }
 
-void IGF_Multimedia::load(const char *target)
+void Multimedia::load(const char *target)
 {
  wchar_t *name;
  name=this->convert_file_name(target);
@@ -1095,14 +1098,14 @@ void IGF_Multimedia::load(const char *target)
  free(name);
 }
 
-bool IGF_Multimedia::check_playing()
+bool Multimedia::check_playing()
 {
  OAFilterState state;
  bool result;
  result=false;
  if(player->GetState(INFINITE,&state)==E_FAIL)
  {
-  IGF_Show_Error("Can't get the multimedia state");
+  Show_Error("Can't get the multimedia state");
  }
  else
  {
@@ -1115,143 +1118,143 @@ bool IGF_Multimedia::check_playing()
  return result;
 }
 
-void IGF_Multimedia::stop()
+void Multimedia::stop()
 {
  player->StopWhenReady();
 }
 
-void IGF_Multimedia::play()
+void Multimedia::play()
 {
  this->stop();
  this->rewind();
  player->Run();
 }
 
-IGF_Memory::IGF_Memory()
+Memory::Memory()
 {
  memset(&memory,0,sizeof(MEMORYSTATUSEX));
  memory.dwLength=sizeof(MEMORYSTATUSEX);
 }
 
-IGF_Memory::~IGF_Memory()
+Memory::~Memory()
 {
 
 }
 
-void IGF_Memory::get_status()
+void Memory::get_status()
 {
  if(GlobalMemoryStatusEx(&memory)==FALSE)
  {
-  IGF_Show_Error("Can't get the memory status");
+  Show_Error("Can't get the memory status");
  }
 
 }
 
-unsigned long long int IGF_Memory::get_total_physical()
+unsigned long long int Memory::get_total_physical()
 {
  this->get_status();
  return memory.ullTotalPhys;
 }
 
-unsigned long long int IGF_Memory::get_free_physical()
+unsigned long long int Memory::get_free_physical()
 {
  this->get_status();
  return memory.ullAvailPhys;
 }
 
-unsigned long long int IGF_Memory::get_total_virtual()
+unsigned long long int Memory::get_total_virtual()
 {
  this->get_status();
  return memory.ullTotalVirtual;
 }
 
-unsigned long long int IGF_Memory::get_free_virtual()
+unsigned long long int Memory::get_free_virtual()
 {
  this->get_status();
  return memory.ullAvailVirtual;
 }
 
-unsigned long int IGF_Memory::get_usage()
+unsigned long int Memory::get_usage()
 {
  this->get_status();
  return memory.dwMemoryLoad;
 }
 
-IGF_System::IGF_System()
+System::System()
 {
  srand(time(NULL));
 }
 
-IGF_System::~IGF_System()
+System::~System()
 {
 
 }
 
-unsigned long int IGF_System::get_random(const unsigned long int number)
+unsigned long int System::get_random(const unsigned long int number)
 {
  return rand()%number;
 }
 
-void IGF_System::quit()
+void System::quit()
 {
  exit(EXIT_SUCCESS);
 }
 
-void IGF_System::run(const char *command)
+void System::run(const char *command)
 {
  system(command);
 }
 
-char* IGF_System::read_environment(const char *variable)
+char* System::read_environment(const char *variable)
 {
  return getenv(variable);
 }
 
-void IGF_System::enable_logging(const char *name)
+void System::enable_logging(const char *name)
 {
  if(freopen(name,"wt",stdout)==NULL)
  {
-  IGF_Show_Error("Can't create log file");
+  Show_Error("Can't create log file");
  }
 
 }
 
-IGF_File::IGF_File()
+Binary_File::Binary_File()
 {
  target=NULL;
 }
 
-IGF_File::~IGF_File()
+Binary_File::~Binary_File()
 {
  if(target!=NULL) fclose(target);
 }
 
-void IGF_File::open(const char *name)
+void Binary_File::open(const char *name)
 {
  target=fopen(name,"w+b");
  if(target==NULL)
  {
-  IGF_Show_Error("Can't open the binary file");
+  Show_Error("Can't open the binary file");
  }
 
 }
 
-void IGF_File::close()
+void Binary_File::close()
 {
  if(target!=NULL) fclose(target);
 }
 
-void IGF_File::set_position(const off_t offset)
+void Binary_File::set_position(const off_t offset)
 {
  fseek(target,offset,SEEK_SET);
 }
 
-long int IGF_File::get_position()
+long int Binary_File::get_position()
 {
  return ftell(target);
 }
 
-long int IGF_File::get_length()
+long int Binary_File::get_length()
 {
  long int result;
  fseek(target,0,SEEK_END);
@@ -1260,17 +1263,17 @@ long int IGF_File::get_length()
  return result;
 }
 
-void IGF_File::read(void *buffer,const size_t length)
+void Binary_File::read(void *buffer,const size_t length)
 {
  fread(buffer,length,1,target);
 }
 
-void IGF_File::write(void *buffer,const size_t length)
+void Binary_File::write(void *buffer,const size_t length)
 {
  fwrite(buffer,length,1,target);
 }
 
-bool IGF_File::check_error()
+bool Binary_File::check_error()
 {
  bool result;
  result=false;
@@ -1278,24 +1281,24 @@ bool IGF_File::check_error()
  return result;
 }
 
-IGF_Timer::IGF_Timer()
+Timer::Timer()
 {
  interval=0;
  start=time(NULL);
 }
 
-IGF_Timer::~IGF_Timer()
+Timer::~Timer()
 {
 
 }
 
-void IGF_Timer::set_timer(const unsigned long int seconds)
+void Timer::set_timer(const unsigned long int seconds)
 {
  interval=seconds;
  start=time(NULL);
 }
 
-bool IGF_Timer::check_timer()
+bool Timer::check_timer()
 {
  bool result;
  time_t stop;
@@ -1309,7 +1312,7 @@ bool IGF_Timer::check_timer()
  return result;
 }
 
-IGF_Primitive::IGF_Primitive()
+Primitive::Primitive()
 {
  color.red=0;
  color.green=0;
@@ -1317,7 +1320,7 @@ IGF_Primitive::IGF_Primitive()
  surface=NULL;
 }
 
-IGF_Primitive::~IGF_Primitive()
+Primitive::~Primitive()
 {
  color.red=0;
  color.green=0;
@@ -1325,19 +1328,19 @@ IGF_Primitive::~IGF_Primitive()
  surface=NULL;
 }
 
-void IGF_Primitive::initialize(IGF_Screen *Screen)
+void Primitive::initialize(Screen *Screen)
 {
  surface=Screen;
 }
 
-void IGF_Primitive::set_color(const unsigned char red,const unsigned char green,const unsigned char blue)
+void Primitive::set_color(const unsigned char red,const unsigned char green,const unsigned char blue)
 {
  color.red=red;
  color.green=green;
  color.blue=blue;
 }
 
-void IGF_Primitive::draw_line(const unsigned long int x1,const unsigned long int y1,const unsigned long int x2,const unsigned long int y2)
+void Primitive::draw_line(const unsigned long int x1,const unsigned long int y1,const unsigned long int x2,const unsigned long int y2)
 {
  unsigned long int delta_x,delta_y,index,steps;
  float x,y,shift_x,shift_y;
@@ -1372,7 +1375,7 @@ void IGF_Primitive::draw_line(const unsigned long int x1,const unsigned long int
 
 }
 
-void IGF_Primitive::draw_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height)
+void Primitive::draw_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height)
 {
  unsigned long int stop_x,stop_y;
  stop_x=x+width;
@@ -1383,7 +1386,7 @@ void IGF_Primitive::draw_rectangle(const unsigned long int x,const unsigned long
  this->draw_line(stop_x,y,stop_x,stop_y);
 }
 
-void IGF_Primitive::draw_filled_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height)
+void Primitive::draw_filled_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height)
 {
  unsigned long int step_x,step_y,stop_x,stop_y;
  stop_x=x+width;
@@ -1399,30 +1402,30 @@ void IGF_Primitive::draw_filled_rectangle(const unsigned long int x,const unsign
 
 }
 
-IGF_Image::IGF_Image()
+Image::Image()
 {
  width=0;
  height=0;
  data=NULL;
 }
 
-IGF_Image::~IGF_Image()
+Image::~Image()
 {
  if(data!=NULL) free(data);
 }
 
-unsigned char *IGF_Image::create_buffer(const size_t length)
+unsigned char *Image::create_buffer(const size_t length)
 {
  unsigned char *result;
  result=(unsigned char*)calloc(length,sizeof(unsigned char));
  if(result==NULL)
  {
-  IGF_Show_Error("Can't allocate memory for image buffer");
+  Show_Error("Can't allocate memory for image buffer");
  }
  return result;
 }
 
-void IGF_Image::clear_buffer()
+void Image::clear_buffer()
 {
  if(data!=NULL)
  {
@@ -1432,18 +1435,18 @@ void IGF_Image::clear_buffer()
 
 }
 
-FILE *IGF_Image::open_image(const char *name)
+FILE *Image::open_image(const char *name)
 {
  FILE *target;
  target=fopen(name,"rb");
  if(target==NULL)
  {
-  IGF_Show_Error("Can't open a image file");
+  Show_Error("Can't open a image file");
  }
  return target;
 }
 
-unsigned long int IGF_Image::get_file_size(FILE *target)
+unsigned long int Image::get_file_size(FILE *target)
 {
  unsigned long int length;
  fseek(target,0,SEEK_END);
@@ -1452,7 +1455,7 @@ unsigned long int IGF_Image::get_file_size(FILE *target)
  return length;
 }
 
-void IGF_Image::load_tga(const char *name)
+void Image::load_tga(const char *name)
 {
  FILE *target;
  size_t index,position,amount,compressed_length,uncompressed_length;
@@ -1469,13 +1472,13 @@ void IGF_Image::load_tga(const char *name)
  fread(&image,10,1,target);
  if((head.color_map!=0)||(image.color!=24))
  {
-  IGF_Show_Error("Invalid image format");
+  Show_Error("Invalid image format");
  }
  if(head.type!=2)
  {
   if(head.type!=10)
   {
-   IGF_Show_Error("Invalid image format");
+   Show_Error("Invalid image format");
   }
 
  }
@@ -1520,7 +1523,7 @@ void IGF_Image::load_tga(const char *name)
  data=uncompressed;
 }
 
-void IGF_Image::load_pcx(const char *name)
+void Image::load_pcx(const char *name)
 {
  FILE *target;
  unsigned long int x,y;
@@ -1535,7 +1538,7 @@ void IGF_Image::load_pcx(const char *name)
  fread(&head,128,1,target);
  if((head.color*head.planes!=24)&&(head.compress!=1))
  {
-  IGF_Show_Error("Incorrect image format");
+  Show_Error("Incorrect image format");
  }
  width=head.max_x-head.min_x+1;
  height=head.max_y-head.min_y+1;
@@ -1585,34 +1588,34 @@ void IGF_Image::load_pcx(const char *name)
  data=original;
 }
 
-unsigned long int IGF_Image::get_width()
+unsigned long int Image::get_width()
 {
  return width;
 }
 
-unsigned long int IGF_Image::get_height()
+unsigned long int Image::get_height()
 {
  return height;
 }
 
-size_t IGF_Image::get_data_length()
+size_t Image::get_data_length()
 {
  return (size_t)width*(size_t)height*3;
 }
 
-unsigned char *IGF_Image::get_data()
+unsigned char *Image::get_data()
 {
  return data;
 }
 
-void IGF_Image::destroy_image()
+void Image::destroy_image()
 {
  width=0;
  height=0;
  this->clear_buffer();
 }
 
-IGF_Canvas::IGF_Canvas()
+Canvas::Canvas()
 {
  image=NULL;
  surface=NULL;
@@ -1621,96 +1624,96 @@ IGF_Canvas::IGF_Canvas()
  frames=1;
 }
 
-IGF_Canvas::~IGF_Canvas()
+Canvas::~Canvas()
 {
  surface=NULL;
  if(image!=NULL) free(image);
 }
 
-void IGF_Canvas::clear_buffer()
+void Canvas::clear_buffer()
 {
  if(image!=NULL) free(image);
 }
 
-void IGF_Canvas::save()
+void Canvas::save()
 {
  surface->save();
 }
 
-void IGF_Canvas::restore()
+void Canvas::restore()
 {
  surface->restore();
 }
 
-void IGF_Canvas::set_width(const unsigned long int image_width)
+void Canvas::set_width(const unsigned long int image_width)
 {
  width=image_width;
 }
 
-void IGF_Canvas::set_height(const unsigned long int image_height)
+void Canvas::set_height(const unsigned long int image_height)
 {
  height=image_height;
 }
 
-IGF_Color *IGF_Canvas::create_buffer(const unsigned long int image_width,const unsigned long int image_height)
+IMG_Pixel *Canvas::create_buffer(const unsigned long int image_width,const unsigned long int image_height)
 {
- IGF_Color *result;
+ IMG_Pixel *result;
  size_t length;
  length=(size_t)image_width*(size_t)image_height;
- result=(IGF_Color*)calloc(length,3);
+ result=(IMG_Pixel*)calloc(length,3);
  if(result==NULL)
  {
-  IGF_Show_Error("Can't allocate memory for image buffer");
+  Show_Error("Can't allocate memory for image buffer");
  }
  return result;
 }
 
-void IGF_Canvas::draw_image_pixel(const size_t offset,const unsigned long int x,const unsigned long int y)
+void Canvas::draw_image_pixel(const size_t offset,const unsigned long int x,const unsigned long int y)
 {
  surface->draw_pixel(x,y,image[offset].red,image[offset].green,image[offset].blue);
 }
 
-size_t IGF_Canvas::get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y)
+size_t Canvas::get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y)
 {
  return (size_t)start+(size_t)x+(size_t)y*(size_t)width;
 }
 
-IGF_Color *IGF_Canvas::get_image()
+IMG_Pixel *Canvas::get_image()
 {
  return image;
 }
 
-size_t IGF_Canvas::get_length()
+size_t Canvas::get_length()
 {
  return (size_t)width*(size_t)height;
 }
 
-unsigned long int IGF_Canvas::get_image_width()
+unsigned long int Canvas::get_image_width()
 {
  return width;
 }
 
-unsigned long int IGF_Canvas::get_image_height()
+unsigned long int Canvas::get_image_height()
 {
  return height;
 }
 
-void IGF_Canvas::set_frames(const unsigned long int amount)
+void Canvas::set_frames(const unsigned long int amount)
 {
  if(amount>1) frames=amount;
 }
 
-unsigned long int IGF_Canvas::get_frames()
+unsigned long int Canvas::get_frames()
 {
  return frames;
 }
 
-void IGF_Canvas::initialize(IGF_Screen *Screen)
+void Canvas::initialize(Screen *Screen)
 {
  surface=Screen;
 }
 
-void IGF_Canvas::load_image(IGF_Image &buffer)
+void Canvas::load_image(Image &buffer)
 {
  width=buffer.get_width();
  height=buffer.get_height();
@@ -1720,13 +1723,13 @@ void IGF_Canvas::load_image(IGF_Image &buffer)
  buffer.destroy_image();
 }
 
-void IGF_Canvas::mirror_image(const IGF_MIRROR_TYPE kind)
+void Canvas::mirror_image(const MIRROR_TYPE kind)
 {
  unsigned long int x,y;
  size_t index,index2;
- IGF_Color *mirrored_image;
+ IMG_Pixel *mirrored_image;
  mirrored_image=this->create_buffer(width,height);
- if (kind==IGF_MIRROR_HORIZONTAL)
+ if (kind==MIRROR_HORIZONTAL)
  {
   for (x=0;x<width;++x)
   {
@@ -1740,7 +1743,7 @@ void IGF_Canvas::mirror_image(const IGF_MIRROR_TYPE kind)
   }
 
  }
- if(kind==IGF_MIRROR_VERTICAL)
+ if(kind==MIRROR_VERTICAL)
  {
    for (x=0;x<width;++x)
   {
@@ -1758,12 +1761,12 @@ void IGF_Canvas::mirror_image(const IGF_MIRROR_TYPE kind)
  image=mirrored_image;
 }
 
-void IGF_Canvas::resize_image(const unsigned long int new_width,const unsigned long int new_height)
+void Canvas::resize_image(const unsigned long int new_width,const unsigned long int new_height)
 {
  float x_ratio,y_ratio;
  unsigned long int x,y;
  size_t index,index2;
- IGF_Color *scaled_image;
+ IMG_Pixel *scaled_image;
  scaled_image=this->create_buffer(new_width,new_height);
  x_ratio=(float)width/(float)new_width;
  y_ratio=(float)height/(float)new_height;
@@ -1783,29 +1786,29 @@ void IGF_Canvas::resize_image(const unsigned long int new_width,const unsigned l
  height=new_height;
 }
 
-IGF_Background::IGF_Background()
+Background::Background()
 {
  start=0;
  background_width=0;
  background_height=0;
  current=0;
  frame=1;
- current_kind=IGF_NORMAL_BACKGROUND;
+ current_kind=NORMAL_BACKGROUND;
 }
 
-IGF_Background::~IGF_Background()
+Background::~Background()
 {
 
 }
 
-void IGF_Background::draw_background_pixel(const unsigned long int x,const unsigned long int y)
+void Background::draw_background_pixel(const unsigned long int x,const unsigned long int y)
 {
  size_t offset;
  offset=this->get_offset(start,x,y);
  this->draw_image_pixel(offset,x,y);
 }
 
-void IGF_Background::slow_draw_background()
+void Background::slow_draw_background()
 {
  unsigned long int x,y;
  for(x=0;x<background_width;++x)
@@ -1819,21 +1822,21 @@ void IGF_Background::slow_draw_background()
 
 }
 
-void IGF_Background::set_kind(IGF_BACKGROUND_TYPE kind)
+void Background::set_kind(BACKGROUND_TYPE kind)
 {
  switch(kind)
  {
-  case IGF_NORMAL_BACKGROUND:
+  case NORMAL_BACKGROUND:
   background_width=this->get_image_width();
   background_height=this->get_image_height();
   start=0;
   break;
-  case IGF_HORIZONTAL_BACKGROUND:
+  case HORIZONTAL_BACKGROUND:
   background_width=this->get_image_width()/this->get_frames();
   background_height=this->get_image_height();
   start=(frame-1)*background_width;
   break;
-  case IGF_VERTICAL_BACKGROUND:
+  case VERTICAL_BACKGROUND:
   background_width=this->get_image_width();
   background_height=this->get_image_height()/this->get_frames();
   start=(frame-1)*background_width*background_height;
@@ -1842,7 +1845,7 @@ void IGF_Background::set_kind(IGF_BACKGROUND_TYPE kind)
  current_kind=kind;
 }
 
-void IGF_Background::set_target(const unsigned long int target)
+void Background::set_target(const unsigned long int target)
 {
  if((target>0)&&(target<=this->get_frames()))
  {
@@ -1852,7 +1855,7 @@ void IGF_Background::set_target(const unsigned long int target)
 
 }
 
-void IGF_Background::draw_background()
+void Background::draw_background()
 {
  if (current!=frame)
  {
@@ -1867,7 +1870,7 @@ void IGF_Background::draw_background()
 
 }
 
-IGF_Sprite::IGF_Sprite()
+Sprite::Sprite()
 {
  transparent=true;
  current_x=0;
@@ -1876,15 +1879,15 @@ IGF_Sprite::IGF_Sprite()
  sprite_height=0;
  frame=0;
  start=0;
- current_kind=IGF_SINGE_SPRITE;
+ current_kind=SINGLE_SPRITE;
 }
 
-IGF_Sprite::~IGF_Sprite()
+Sprite::~Sprite()
 {
 
 }
 
-bool IGF_Sprite::compare_pixels(const IGF_Color &first,const IGF_Color &second)
+bool Sprite::compare_pixels(const IMG_Pixel &first,const IMG_Pixel &second)
 {
  bool result;
  result=false;
@@ -1899,7 +1902,7 @@ bool IGF_Sprite::compare_pixels(const IGF_Color &first,const IGF_Color &second)
  return result;
 }
 
-void IGF_Sprite::draw_sprite_pixel(const size_t offset,const unsigned long int x,const unsigned long int y)
+void Sprite::draw_sprite_pixel(const size_t offset,const unsigned long int x,const unsigned long int y)
 {
  if (transparent==true)
  {
@@ -1912,54 +1915,54 @@ void IGF_Sprite::draw_sprite_pixel(const size_t offset,const unsigned long int x
 
 }
 
-void IGF_Sprite::set_transparent(const bool enabled)
+void Sprite::set_transparent(const bool enabled)
 {
  transparent=enabled;
 }
 
-bool IGF_Sprite::get_transparent()
+bool Sprite::get_transparent()
 {
  return transparent;
 }
 
-void IGF_Sprite::set_x(const unsigned long int x)
+void Sprite::set_x(const unsigned long int x)
 {
  current_x=x;
 }
 
-void IGF_Sprite::set_y(const unsigned long int y)
+void Sprite::set_y(const unsigned long int y)
 {
  current_y=y;
 }
 
-unsigned long int IGF_Sprite::get_x()
+unsigned long int Sprite::get_x()
 {
  return current_x;
 }
 
-unsigned long int IGF_Sprite::get_y()
+unsigned long int Sprite::get_y()
 {
  return current_y;
 }
 
-unsigned long int IGF_Sprite::get_width()
+unsigned long int Sprite::get_width()
 {
  return sprite_width;
 }
 
-unsigned long int IGF_Sprite::get_height()
+unsigned long int Sprite::get_height()
 {
  return sprite_height;
 }
 
-IGF_Sprite* IGF_Sprite::get_handle()
+Sprite* Sprite::get_handle()
 {
  return this;
 }
 
-IGF_Box IGF_Sprite::get_box()
+Collision_Box Sprite::get_box()
 {
- IGF_Box target;
+ Collision_Box target;
  target.x=current_x;
  target.y=current_y;
  target.width=sprite_width;
@@ -1967,21 +1970,21 @@ IGF_Box IGF_Sprite::get_box()
  return target;
 }
 
-void IGF_Sprite::set_kind(const IGF_SPRITE_TYPE kind)
+void Sprite::set_kind(const SPRITE_TYPE kind)
 {
  switch(kind)
  {
-  case IGF_SINGE_SPRITE:
+  case SINGLE_SPRITE:
   sprite_width=this->get_image_width();
   sprite_height=this->get_image_height();
   start=0;
   break;
-  case IGF_HORIZONTAL_STRIP:
+  case HORIZONTAL_STRIP:
   sprite_width=this->get_image_width()/this->get_frames();
   sprite_height=this->get_image_height();
   start=(frame-1)*sprite_width;
   break;
-  case IGF_VERTICAL_STRIP:
+  case VERTICAL_STRIP:
   sprite_width=this->get_image_width();
   sprite_height=this->get_image_height()/this->get_frames();
   start=(frame-1)*sprite_width*sprite_height;
@@ -1990,12 +1993,12 @@ void IGF_Sprite::set_kind(const IGF_SPRITE_TYPE kind)
  current_kind=kind;
 }
 
-IGF_SPRITE_TYPE IGF_Sprite::get_kind()
+SPRITE_TYPE Sprite::get_kind()
 {
  return current_kind;
 }
 
-void IGF_Sprite::set_target(const unsigned long int target)
+void Sprite::set_target(const unsigned long int target)
 {
  if((target>0)&&(target<=this->get_frames()))
  {
@@ -2005,13 +2008,13 @@ void IGF_Sprite::set_target(const unsigned long int target)
 
 }
 
-void IGF_Sprite::set_position(const unsigned long int x,const unsigned long int y)
+void Sprite::set_position(const unsigned long int x,const unsigned long int y)
 {
  current_x=x;
  current_y=y;
 }
 
-void IGF_Sprite::clone(IGF_Sprite &target)
+void Sprite::clone(Sprite &target)
 {
  this->set_width(target.get_image_width());
  this->set_height(target.get_image_height());
@@ -2022,7 +2025,7 @@ void IGF_Sprite::clone(IGF_Sprite &target)
  memmove(image,target.get_image(),target.get_length());
 }
 
-void IGF_Sprite::draw_sprite()
+void Sprite::draw_sprite()
 {
  size_t offset;
  unsigned long int sprite_x,sprite_y;
@@ -2038,7 +2041,7 @@ void IGF_Sprite::draw_sprite()
 
 }
 
-IGF_Text::IGF_Text()
+Text::Text()
 {
  current_x=0;
  current_y=0;
@@ -2046,12 +2049,12 @@ IGF_Text::IGF_Text()
  font=NULL;
 }
 
-IGF_Text::~IGF_Text()
+Text::~Text()
 {
  font=NULL;
 }
 
-void IGF_Text::draw_character(const char target)
+void Text::draw_character(const char target)
 {
  if((target>31)||(target<0))
  {
@@ -2063,20 +2066,20 @@ void IGF_Text::draw_character(const char target)
 
 }
 
-void IGF_Text::set_position(const unsigned long int x,const unsigned long int y)
+void Text::set_position(const unsigned long int x,const unsigned long int y)
 {
  current_x=x;
  current_y=y;
 }
 
-void IGF_Text::load_font(IGF_Sprite *target)
+void Text::load_font(Sprite *target)
 {
  font=target;
  font->set_frames(256);
- font->set_kind(IGF_HORIZONTAL_STRIP);
+ font->set_kind(HORIZONTAL_STRIP);
 }
 
-void IGF_Text::draw_text(const char *text)
+void Text::draw_text(const char *text)
 {
  size_t index,length;
  length=strlen(text);
@@ -2088,7 +2091,7 @@ void IGF_Text::draw_text(const char *text)
 
 }
 
-bool IGF_Collision::check_horizontal_collision(const IGF_Box &first,const IGF_Box &second)
+bool Collision::check_horizontal_collision(const Collision_Box &first,const Collision_Box &second)
 {
  bool result;
  result=false;
@@ -2099,7 +2102,7 @@ bool IGF_Collision::check_horizontal_collision(const IGF_Box &first,const IGF_Bo
  return result;
 }
 
-bool IGF_Collision::check_vertical_collision(const IGF_Box &first,const IGF_Box &second)
+bool Collision::check_vertical_collision(const Collision_Box &first,const Collision_Box &second)
 {
  bool result;
  result=false;
@@ -2110,7 +2113,9 @@ bool IGF_Collision::check_vertical_collision(const IGF_Box &first,const IGF_Box 
  return result;
 }
 
-bool IGF_Collision::check_collision(const IGF_Box &first,const IGF_Box &second)
+bool Collision::check_collision(const Collision_Box &first,const Collision_Box &second)
 {
  return this->check_horizontal_collision(first,second) || this->check_vertical_collision(first,second);
+}
+
 }
