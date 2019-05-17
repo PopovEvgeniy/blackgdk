@@ -308,9 +308,9 @@ class Gamepad
  ~Gamepad();
  void set_active(const unsigned long int gamepad);
  unsigned long int get_active();
- unsigned long int get_last_index();
  unsigned long int get_maximum_amount();
  unsigned long int get_amount();
+ unsigned long int get_last_index();
  bool check_connection();
  bool is_wireless();
  GAMEPAD_BATTERY_TYPE get_battery_type();

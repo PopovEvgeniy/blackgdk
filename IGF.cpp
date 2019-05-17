@@ -793,11 +793,6 @@ unsigned long int Gamepad::get_active()
  return active;
 }
 
-unsigned long int Gamepad::get_last_index()
-{
- return XUSER_MAX_COUNT-1;
-}
-
 unsigned long int Gamepad::get_maximum_amount()
 {
  return XUSER_MAX_COUNT;
@@ -819,6 +814,14 @@ unsigned long int Gamepad::get_amount()
  }
  active=old;
  return result;
+}
+
+unsigned long int Gamepad::get_last_index()
+{
+ unsigned long int last_index;
+ last_index=this->get_amount();
+ if (last_index>0) --last_index;
+ return last_index;
 }
 
 bool Gamepad::check_connection()
