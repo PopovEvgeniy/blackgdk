@@ -473,6 +473,11 @@ class Canvas:public Surface
 {
  private:
  unsigned long int frames;
+ unsigned long int frame;
+ protected:
+ unsigned long int start;
+ void set_frame(const unsigned long int target);
+ unsigned long int get_frame();
  public:
  Canvas();
  ~Canvas();
@@ -488,10 +493,8 @@ class Canvas:public Surface
 class Background:public Canvas
 {
  private:
- unsigned long int start;
  unsigned long int background_width;
  unsigned long int background_height;
- unsigned long int frame;
  unsigned long int current;
  BACKGROUND_TYPE current_kind;
  void draw_background_pixel(const unsigned long int x,const unsigned long int y);
@@ -514,8 +517,6 @@ class Sprite:public Canvas
  unsigned long int current_y;
  unsigned long int sprite_width;
  unsigned long int sprite_height;
- unsigned long int frame;
- unsigned long int start;
  SPRITE_TYPE current_kind;
  void set_width(const unsigned long int image_width);
  void set_height(const unsigned long int image_height);
