@@ -161,6 +161,45 @@ Engine::~Engine()
  UnregisterClass(window_class.lpszClassName,window_class.hInstance);
 }
 
+void Engine::get_instance()
+{
+ window_class.hInstance=GetModuleHandle(NULL);
+ if(window_class.hInstance==NULL)
+ {
+  Halt("Can't get the application instance");
+ }
+
+}
+
+void Engine::load_icon()
+{
+ window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
+ if (window_class.hIcon==NULL)
+ {
+  Halt("Can't load the standart program icon");
+ }
+
+}
+
+void Engine::load_cursor()
+{
+  window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
+ if (window_class.hCursor==NULL)
+ {
+  Halt("Can't load the standart cursor");
+ }
+
+}
+
+void Engine::register_window_class()
+{
+ if (!RegisterClass(&window_class))
+ {
+  Halt("Can't register window class");
+ }
+
+}
+
 HWND Engine::get_window()
 {
  return window;
@@ -168,26 +207,10 @@ HWND Engine::get_window()
 
 void Engine::prepare_engine()
 {
- window_class.hInstance=GetModuleHandle(NULL);
- if(window_class.hInstance==NULL)
- {
-  Halt("Can't get the application instance");
- }
- window_class.hIcon=LoadIcon(NULL,IDI_APPLICATION);
- if (window_class.hIcon==NULL)
- {
-  Halt("Can't load the standart program icon");
- }
- window_class.hCursor=LoadCursor(NULL,IDC_ARROW);
- if (window_class.hCursor==NULL)
- {
-  Halt("Can't load the standart cursor");
- }
- if (!RegisterClass(&window_class))
- {
-  Halt("Can't register window class");
- }
-
+ this->get_instance();
+ this->load_icon();
+ this->load_cursor();
+ this->register_window_class();
 }
 
 void Engine::create_window()
