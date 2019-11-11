@@ -297,6 +297,29 @@ Frame::~Frame()
 
 }
 
+unsigned int *Frame::create_buffer(const char *error)
+{
+ unsigned int *target;
+ pixels=(size_t)frame_width*(size_t)frame_height;
+ target=(unsigned int*)calloc(pixels,sizeof(unsigned int));
+ if(target==NULL)
+ {
+  Halt(error);
+ }
+ frame_line=frame_width*(unsigned long int)sizeof(unsigned int);
+ return target;
+}
+
+unsigned int Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
+{
+ return red+(green<<8)+(blue<<16);
+}
+
+size_t Frame::get_offset(const unsigned long int x,const unsigned long int y)
+{
+ return (size_t)x+(size_t)y*(size_t)frame_width;
+}
+
 void Frame::set_size(const SURFACE surface)
 {
  if(surface==SURFACE_SMALL)
@@ -312,33 +335,10 @@ void Frame::set_size(const SURFACE surface)
 
 }
 
-unsigned int *Frame::create_buffer(const char *error)
-{
- unsigned int *target;
- pixels=(size_t)frame_width*(size_t)frame_height;
- target=(unsigned int*)calloc(pixels,sizeof(unsigned int));
- if(target==NULL)
- {
-  Halt(error);
- }
- frame_line=frame_width*(unsigned long int)sizeof(unsigned int);
- return target;
-}
-
 void Frame::create_buffers()
 {
  buffer=this->create_buffer("Can't allocate memory for render buffer");
  shadow=this->create_buffer("Can't allocate memory for shadow buffer");
-}
-
-unsigned int Frame::get_rgb(const unsigned int red,const unsigned int green,const unsigned int blue)
-{
- return red+(green<<8)+(blue<<16);
-}
-
-size_t Frame::get_offset(const unsigned long int x,const unsigned long int y)
-{
- return (size_t)x+(size_t)y*(size_t)frame_width;
 }
 
 unsigned long int Frame::get_frame_line()
