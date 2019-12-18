@@ -2,23 +2,23 @@
 
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 
-#include "IGF.h"
+#include "blackgdk.h"
 
 int main(void)
 {
  long int x,y,screen_width,screen_height;
  char perfomance[8];
- IGF::Timer timer;
- IGF::Screen screen;
- IGF::System System;
- IGF::Keyboard keyboard;
- IGF::Gamepad gamepad;
- IGF::Mouse mouse;
- IGF::Multimedia media;
- IGF::Image image;
- IGF::Background space;
- IGF::Sprite ship,font;
- IGF::Text text;
+ BLACKGDK::Timer timer;
+ BLACKGDK::Screen screen;
+ BLACKGDK::System System;
+ BLACKGDK::Keyboard keyboard;
+ BLACKGDK::Gamepad gamepad;
+ BLACKGDK::Mouse mouse;
+ BLACKGDK::Multimedia media;
+ BLACKGDK::Image image;
+ BLACKGDK::Background space;
+ BLACKGDK::Sprite ship,font;
+ BLACKGDK::Text text;
  System.enable_logging("log.txt");
  keyboard.initialize();
  space.initialize(screen.get_handle());

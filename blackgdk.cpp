@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "IGF.h"
+#include "blackgdk.h"
 
 unsigned char Keys[KEYBOARD];
 unsigned char Buttons[MOUSE];
@@ -69,7 +69,7 @@ LRESULT CALLBACK Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM l
  return DefWindowProc(window,Message,wParam,lParam);
 }
 
-namespace IGF
+namespace BLACKGDK
 {
 
 void Halt(const char *message)
@@ -985,6 +985,11 @@ bool Gamepad::set_vibration(const unsigned short int left,const unsigned short i
 {
  this->set_motor(left,right);
  return this->write_state();
+}
+
+bool Gamepad::disable_vibration()
+{
+ return this->set_vibration(0,0);
 }
 
 GAMEPAD_DIRECTION Gamepad::get_stick_x(const GAMEPAD_STICKS stick)

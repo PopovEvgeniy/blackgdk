@@ -132,7 +132,7 @@ struct Collision_Box
 
 LRESULT CALLBACK Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
 
-namespace IGF
+namespace BLACKGDK
 {
 
 void Halt(const char *message);
@@ -329,6 +329,7 @@ class Gamepad
  bool check_trigger_release(const GAMEPAD_TRIGGERS trigger);
  unsigned char get_trigger(const GAMEPAD_TRIGGERS trigger);
  bool set_vibration(const unsigned short int left,const unsigned short int right);
+ bool disable_vibration();
  GAMEPAD_DIRECTION get_stick_x(const GAMEPAD_STICKS stick);
  GAMEPAD_DIRECTION get_stick_y(const GAMEPAD_STICKS stick);
 };

@@ -2,7 +2,7 @@
 
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 
-#include "IGF.h"
+#include "blackgdk.h"
 
 #define MAP_WIDTH 16
 #define MAP_HEIGHT 16
@@ -10,7 +10,7 @@
 unsigned char MAP_ROWS[MAP_WIDTH]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 unsigned char MAP_COLUMNS[MAP_HEIGHT]={2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
 
-IGF::Tileset tilemap;
+BLACKGDK::Tileset tilemap;
 
 void draw_map()
 {
@@ -34,11 +34,11 @@ void draw_map()
 
 int main(void)
 {
- IGF::Screen screen;
- IGF::Sprite font;
- IGF::Text text;
- IGF::Image image;
- IGF::Keyboard keyboard;
+ BLACKGDK::Screen screen;
+ BLACKGDK::Sprite font;
+ BLACKGDK::Text text;
+ BLACKGDK::Image image;
+ BLACKGDK::Keyboard keyboard;
  font.initialize(screen.get_handle());
  tilemap.initialize(screen.get_handle());
  keyboard.initialize();

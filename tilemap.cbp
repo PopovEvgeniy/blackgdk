@@ -40,8 +40,8 @@
 			<Add library="strmiids" />
 			<Add library="xinput" />
 		</Linker>
-		<Unit filename="IGF.cpp" />
-		<Unit filename="IGF.h" />
+		<Unit filename="blackgdk.cpp" />
+		<Unit filename="blackgdk.h" />
 		<Unit filename="tilemap.cpp" />
 		<Extensions>
 			<code_completion />
