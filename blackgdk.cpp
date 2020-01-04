@@ -3,7 +3,7 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 
 /*
-Copyright (C) 2017-2019 Popov Evgeniy Alekseyevich
+Copyright (C) 2017-2020 Popov Evgeniy Alekseyevich
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -151,8 +151,6 @@ Engine::Engine()
  window_class.cbClsExtra=0;
  window_class.cbWndExtra=0;
  window=NULL;
- width=0;
- height=0;
 }
 
 Engine::~Engine()
@@ -215,9 +213,7 @@ void Engine::prepare_engine()
 
 void Engine::create_window()
 {
- width=GetSystemMetrics(SM_CXSCREEN);
- height=GetSystemMetrics(SM_CYSCREEN);
- window=CreateWindow(window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,width,height,NULL,NULL,window_class.hInstance,NULL);
+ window=CreateWindow(window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,GetSystemMetrics(SM_CXSCREEN),GetSystemMetrics(SM_CYSCREEN),NULL,NULL,window_class.hInstance,NULL);
  if (window==NULL)
  {
   Halt("Can't create window");
@@ -264,12 +260,12 @@ bool Engine::process_message()
 
 unsigned long int Engine::get_width()
 {
- return width;
+ return GetSystemMetrics(SM_CXSCREEN);
 }
 
 unsigned long int Engine::get_height()
 {
- return height;
+ return GetSystemMetrics(SM_CYSCREEN);
 }
 
 Frame::Frame()
@@ -386,6 +382,32 @@ void Frame::restore()
  for (index=0;index<pixels;++index)
  {
   buffer[index]=shadow[index];
+ }
+
+}
+
+void Frame::restore(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height)
+{
+ unsigned long int target_x,target_y,stop_x,stop_y;
+ size_t position;
+ stop_x=x+width;
+ stop_y=y+height;
+ if ((x<frame_width)&&(y<frame_height))
+ {
+  if ((stop_x<=frame_width)&&(stop_y<=frame_height))
+  {
+   for (target_x=x;target_x<stop_x;++target_x)
+   {
+    for (target_y=y;target_y<stop_y;++target_y)
+    {
+     position=this->get_offset(target_x,target_y);
+     buffer[position]=shadow[position];
+    }
+
+   }
+
+  }
+
  }
 
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2017-2019 Popov Evgeniy Alekseyevich
+Copyright (C) 2017-2020 Popov Evgeniy Alekseyevich
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -162,8 +162,6 @@ class Engine
  private:
  WNDCLASS window_class;
  HWND window;
- unsigned long int width;
- unsigned long int height;
  void get_instance();
  void load_icon();
  void load_cursor();
@@ -206,6 +204,7 @@ class Frame
  void clear_screen();
  void save();
  void restore();
+ void restore(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height);
  unsigned long int get_frame_width();
  unsigned long int get_frame_height();
 };
