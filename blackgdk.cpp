@@ -218,7 +218,6 @@ void Engine::create_window()
  {
   Halt("Can't create window");
  }
- EnableWindow(window,TRUE);
  SetFocus(window);
 }
 
