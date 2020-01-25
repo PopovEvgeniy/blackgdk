@@ -163,7 +163,6 @@ class Engine
  WNDCLASS window_class;
  HWND window;
  void get_instance();
- void load_icon();
  void load_cursor();
  void register_window_class();
  protected:
