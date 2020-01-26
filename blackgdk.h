@@ -277,6 +277,8 @@ class Mouse
 {
  private:
  unsigned char preversion[MOUSE];
+ POINT position;
+ void get_position();
  public:
  Mouse();
  ~Mouse();
