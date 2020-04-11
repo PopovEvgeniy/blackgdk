@@ -299,11 +299,6 @@ unsigned int Frame::get_rgb(const unsigned int red,const unsigned int green,cons
  return red+(green<<8)+(blue<<16);
 }
 
-size_t Frame::get_offset(const unsigned long int x,const unsigned long int y)
-{
- return (size_t)x+(size_t)y*(size_t)frame_width;
-}
-
 void Frame::put_pixel(const size_t offset,const unsigned int red,const unsigned int green,const unsigned int blue)
 {
  if (offset<pixels)
@@ -311,6 +306,16 @@ void Frame::put_pixel(const size_t offset,const unsigned int red,const unsigned 
   buffer[offset]=this->get_rgb(blue,green,red);
  }
 
+}
+
+size_t Frame::get_offset(const unsigned long int x,const unsigned long int y,const unsigned long int target_width)
+{
+ return (size_t)x+(size_t)y*(size_t)target_width;
+}
+
+size_t Frame::get_offset(const unsigned long int x,const unsigned long int y)
+{
+ return this->get_offset(x,y,frame_width);
 }
 
 void Frame::set_size(const unsigned long int surface_width,const unsigned long int surface_height)
@@ -1822,9 +1827,14 @@ void Surface::set_buffer(IMG_Pixel *buffer)
  image=buffer;
 }
 
+size_t Surface::get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y,const unsigned long int target_width)
+{
+ return (size_t)start+(size_t)x+(size_t)y*(size_t)target_width;
+}
+
 size_t Surface::get_offset(const unsigned long int start,const unsigned long int x,const unsigned long int y)
 {
- return (size_t)start+(size_t)x+(size_t)y*(size_t)width;
+ return this->get_offset(start,x,y,width);
 }
 
 void Surface::draw_image_pixel(const size_t offset,const unsigned long int x,const unsigned long int y)
@@ -1914,7 +1924,7 @@ void Surface::resize_image(const unsigned long int new_width,const unsigned long
 {
  float x_ratio,y_ratio;
  unsigned long int x,y;
- size_t index,index2;
+ size_t index,position;
  IMG_Pixel *scaled_image;
  scaled_image=this->create_buffer(new_width,new_height);
  x_ratio=(float)width/(float)new_width;
@@ -1923,9 +1933,9 @@ void Surface::resize_image(const unsigned long int new_width,const unsigned long
  {
   for (y=0;y<new_height;++y)
   {
-   index=(size_t)x+(size_t)y*(size_t)new_width;
-   index2=(size_t)(x_ratio*(float)x)+(size_t)width*(size_t)(y_ratio*(float)y);
-   scaled_image[index]=image[index2];
+   index=this->get_offset(0,x,y,new_width);
+   position=this->get_offset(0,(x_ratio*(float)x),(y_ratio*(float)y),width);
+   scaled_image[index]=image[position];
   }
 
  }
