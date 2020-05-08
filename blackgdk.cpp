@@ -1300,7 +1300,7 @@ unsigned long int Memory::get_usage()
 
 System::System()
 {
- srand(time(NULL));
+ srand(UINT_MAX);
 }
 
 System::~System()
