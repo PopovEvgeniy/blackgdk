@@ -20,6 +20,10 @@ freely, subject to the following restrictions:
 
 #include "blackgdk.h"
 
+const size_t KEYBOARD=256;
+const unsigned char KEY_RELEASE=0;
+const unsigned char KEY_PRESS=1;
+
 unsigned char Keys[KEYBOARD];
 unsigned char Buttons[MOUSE];
 

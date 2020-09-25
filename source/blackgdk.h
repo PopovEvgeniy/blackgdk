@@ -47,12 +47,7 @@ freely, subject to the following restrictions:
 
 #define GETSCANCODE(argument) ((argument >> 16)&0x7f)
 
-#define KEYBOARD 256
 #define MOUSE 3
-
-#define KEY_RELEASE 0
-#define KEY_PRESS 1
-
 #define MOUSE_LEFT 0
 #define MOUSE_RIGHT 1
 #define MOUSE_MIDDLE 2
