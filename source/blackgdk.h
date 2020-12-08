@@ -39,6 +39,7 @@ freely, subject to the following restrictions:
 #include <string.h>
 #include <time.h>
 #include <wchar.h>
+#include <new>
 #include <windows.h>
 #include <unknwn.h>
 #include <d2d1.h>
@@ -181,6 +182,9 @@ class Frame
  unsigned long int frame_line;
  unsigned int *buffer;
  unsigned int *shadow;
+ void calculate_buffer_length();
+ unsigned int *get_memory(const char *error);
+ void clear_buffer(unsigned int *target);
  unsigned int *create_buffer(const char *error);
  void put_pixel(const size_t offset,const unsigned int red,const unsigned int green,const unsigned int blue);
  protected:
@@ -288,7 +292,8 @@ class Keyboard
 {
  private:
  unsigned char *preversion;
- unsigned char *create_buffer(const char *error);
+ void create_buffer();
+ void clear_buffer();
  bool check_state(const unsigned char code,const unsigned char state);
  public:
  Keyboard();
@@ -368,6 +373,8 @@ class Multimedia: public COM_Base
  IMediaControl *player;
  IMediaSeeking *controler;
  IVideoWindow *video;
+ wchar_t *get_memory(const size_t length);
+ void clear_buffer(wchar_t *target,const size_t length);
  wchar_t *create_buffer(const size_t length);
  void convert_string(const char *source,wchar_t *target);
  wchar_t *convert_file_name(const char *target);
