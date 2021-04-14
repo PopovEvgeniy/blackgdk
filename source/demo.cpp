@@ -47,8 +47,8 @@ int main()
   if (keyboard.check_hold(80)==true) ship.increase_y(2);
   if (keyboard.check_hold(75)==true) ship.decrease_x(2);
   if (keyboard.check_hold(77)==true) ship.increase_x(2);
-  if (keyboard.check_press(71)==true) ship.mirror_image(MIRROR_HORIZONTAL);
-  if (keyboard.check_press(79)==true) ship.mirror_image(MIRROR_VERTICAL);
+  if (keyboard.check_press(71)==true) ship.horizontal_mirror();
+  if (keyboard.check_press(79)==true) ship.vertical_mirror();
   if (gamepad.check_button_press(GAMEPAD_X)==true) break;
   if (gamepad.check_button_hold(GAMEPAD_UP)==true) ship.decrease_y(2);
   if (gamepad.check_button_hold(GAMEPAD_DOWN)==true) ship.increase_y(2);
@@ -60,8 +60,8 @@ int main()
   if (gamepad.get_stick_y(GAMEPAD_LEFT_STICK)==GAMEPAD_NEGATIVE_DIRECTION) ship.increase_y(2);
   if (gamepad.check_trigger_hold(GAMEPAD_LEFT_TRIGGER)==true) gamepad.set_vibration(65535,65535);
   if (gamepad.check_trigger_hold(GAMEPAD_RIGHT_TRIGGER)==true) gamepad.set_vibration(0,0);
-  if (gamepad.check_button_press(GAMEPAD_A)==true) ship.mirror_image(MIRROR_HORIZONTAL);
-  if (gamepad.check_button_press(GAMEPAD_B)==true) ship.mirror_image(MIRROR_VERTICAL);
+  if (gamepad.check_button_press(GAMEPAD_A)==true) ship.horizontal_mirror();
+  if (gamepad.check_button_press(GAMEPAD_B)==true) ship.vertical_mirror();
   if (ship.get_x()>screen.get_frame_width()) ship.set_x(screen.get_frame_width()/2);
   if (ship.get_y()>screen.get_frame_height()) ship.set_y(screen.get_frame_height()/2);
   itoa(screen.get_fps(),perfomance,10);
