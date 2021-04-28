@@ -49,10 +49,11 @@
         <ul>
           <li><a href="#mozTocId236677">Chapter 1. Interaction with operation
               system</a></li>
-          <li><a href="#mozTocId853711">Chapter 2. Abnormal program termination</a></li>
-          <li><a href="#mozTocId656377">Chapter 3. Timer</a></li>
-          <li><a href="#mozTocId638476">Chapter 4. Coordinate system</a></li>
-          <li><a href="#mozTocId381935">Chapter 5. Collision</a></li>
+          <li><a href="#mozTocId50693">Chapter 2. Filesystem</a></li>
+          <li><a href="#mozTocId853711">Chapter 3. Abnormal program termination</a></li>
+          <li><a href="#mozTocId656377">Chapter 4. Timer</a></li>
+          <li><a href="#mozTocId638476">Chapter 5. Coordinate system</a></li>
+          <li><a href="#mozTocId381935">Chapter 6. Collision</a></li>
         </ul>
       </li>
       <li><a href="#mozTocId944902">Part 5. Binary files</a>
@@ -182,7 +183,6 @@
     <big><br>
     </big>
     <table style="text-align: left; width: 575px; height: 236px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -942,8 +942,22 @@ C++
       successfully complete.<br>
       <br>
       This is all that you must know about this class. It is just very simple
-      class for few important things. </big>
-    <h2><a class="mozTocH2" name="mozTocId853711"></a><big>Chapter 2. Abnormal
+      class for few important things.<br>
+      <br>
+    </big>
+    <h2><a id="mozTocId50693" class="mozTocH2"></a><big>Chapter 2. Filesystem</big></h2>
+    <big><br>
+      Filesystem subsystem let you doing some file operation. <span style="font-style: italic;">Filesystem</span>
+      class provide simple access to this subsystem. Let’s look to public
+      methods.<br>
+      <br>
+      <span style="font-style: italic;">void Filesystem::file_exist(const char
+        *name);</span> – Check the target file for exist.<br>
+      <span style="font-style: italic;">void Filesystem::delete_file(const char
+        *name);</span> – Delete the target file.<br>
+      <span style="font-style: italic;">bool Filesystem::get_status() const;</span>
+      – Return false if last file operation was failed. </big>
+    <h2><a class="mozTocH2" name="mozTocId853711"></a><big>Chapter 3. Abnormal
         program termination</big></h2>
     <big><br>
       You can use Halt function for terminate program. This function declared in
@@ -952,7 +966,7 @@ C++
       <span style="font-style: italic;">void BLACKGDK::Halt(const char
         *message);</span> – Terminate the program. Write error message to log
       file if logging enabled.</big><big> </big>
-    <h2><a class="mozTocH2" name="mozTocId656377"></a><big>Chapter 3. Timer</big></h2>
+    <h2><a class="mozTocH2" name="mozTocId656377"></a><big>Chapter 4. Timer</big></h2>
     <big><br>
       Timer is very useful thing. Just use <span style="font-style: italic;">Timer</span>
       class for work with the timer. Let’s look to public methods.<br>
@@ -964,7 +978,7 @@ C++
       Initialize stop point. Return true and reinitialize start point if
       interval between stop and start points large or equal than specific
       seconds. </big>
-    <h2><a class="mozTocH2" name="mozTocId638476"></a><big>Chapter 4. Coordinate
+    <h2><a class="mozTocH2" name="mozTocId638476"></a><big>Chapter 5. Coordinate
         system</big></h2>
     <big><br>
       <span style="text-decoration: underline;">Two kinds of coordinate system</span><br>
@@ -995,7 +1009,7 @@ C++
       <span style="font-style: italic;">float
         Transformation::get_surface_y(const float screen_y) const;</span> –
       Convert screen y-coordinate to surface y-coordinate. </big>
-    <h2><a class="mozTocH2" name="mozTocId381935"></a><big>Chapter 5. Collision</big></h2>
+    <h2><a class="mozTocH2" name="mozTocId381935"></a><big>Chapter 6. Collision</big></h2>
     <big><br>
       <span style="text-decoration: underline;">Very important thing for any
         game</span><br>
@@ -2105,6 +2119,7 @@ C++
     <big>3.3.8 – Source code was synced with Neon game development kit 5.0.9.</big><br>
     <big>3.3.9 – Source code was synced with Neon game development kit 5.1.</big><br>
     <big>3.4 – Source code was synced with Neon game development kit 5.1.1.</big><br>
-    <big>3.4.1 – Source code was synced with Neon game development kit 5.1.2.</big>
+    <big>3.4.1 – Source code was synced with Neon game development kit 5.1.2.</big><br>
+    <big>3.4.2 – Source code was synced with Neon game development kit 5.1.4.</big>
   </body>
 </html>
