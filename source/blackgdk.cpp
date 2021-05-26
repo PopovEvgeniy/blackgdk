@@ -949,7 +949,7 @@ bool Gamepad::read_battery_status()
 {
  bool result;
  result=false;
- if (XInputGetBatteryInformation(active,BATTERY_DEVTYPE_GAMEPAD,&battery)==ERROR_SUCCESS) return result;
+ if (XInputGetBatteryInformation(active,BATTERY_DEVTYPE_GAMEPAD,&battery)==ERROR_SUCCESS) result=true;
  return result;
 }
 
