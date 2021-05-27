@@ -957,10 +957,7 @@ Gamepad::~Gamepad()
 
 bool Gamepad::read_battery_status()
 {
- bool result;
- result=false;
- if (XInputGetBatteryInformation(active,BATTERY_DEVTYPE_GAMEPAD,&battery)==ERROR_SUCCESS) result=true;
- return result;
+ return XInputGetBatteryInformation(active,BATTERY_DEVTYPE_GAMEPAD,&battery)==ERROR_SUCCESS;
 }
 
 void Gamepad::clear_state()
@@ -971,18 +968,12 @@ void Gamepad::clear_state()
 
 bool Gamepad::read_state()
 {
- bool result;
- result=false;
- if (XInputGetState(active,&current)==ERROR_SUCCESS) result=true;
- return result;
+ return XInputGetState(active,&current)==ERROR_SUCCESS;
 }
 
 bool Gamepad::write_state()
 {
- bool result;
- result=false;
- if (XInputSetState(active,&vibration)==ERROR_SUCCESS) result=true;
- return result;
+ return XInputSetState(active,&vibration)==ERROR_SUCCESS;
 }
 
 void Gamepad::set_motor(const unsigned short int left,const unsigned short int right)
@@ -1003,8 +994,14 @@ bool Gamepad::check_trigger(XINPUT_STATE &target,const GAMEPAD_TRIGGERS trigger)
 {
  bool result;
  result=false;
- if ((trigger==GAMEPAD_LEFT_TRIGGER)&&(target.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
- if ((trigger==GAMEPAD_RIGHT_TRIGGER)&&(target.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD)) result=true;
+ if (trigger==GAMEPAD_LEFT_TRIGGER)
+ {
+  if (target.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD) result=true;
+ }
+ else
+ {
+  if (target.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD) result=true;
+ }
  return result;
 }
 
