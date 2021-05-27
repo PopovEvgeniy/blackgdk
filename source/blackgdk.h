@@ -295,6 +295,8 @@ class Render:public COM_Base, public Engine, public Frame
 class Screen:public FPS, public Synchronization, public Render
 {
  public:
+ Screen();
+ ~Screen();
  void initialize();
  void initialize(const SURFACE surface);
  bool update();
@@ -486,7 +488,7 @@ class Primitive
  public:
  Primitive();
  ~Primitive();
- void initialize(Screen *Screen);
+ void initialize(Screen *screen);
  void set_color(const unsigned char red,const unsigned char green,const unsigned char blue);
  void draw_line(const unsigned long int x1,const unsigned long int y1,const unsigned long int x2,const unsigned long int y2);
  void draw_rectangle(const unsigned long int x,const unsigned long int y,const unsigned long int width,const unsigned long int height);

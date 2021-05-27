@@ -729,6 +729,16 @@ void Render::refresh()
  if (target->EndDraw()==(HRESULT)D2DERR_RECREATE_TARGET) this->recreate_render();
 }
 
+Screen::Screen()
+{
+
+}
+
+Screen::~Screen()
+{
+
+}
+
 void Screen::initialize()
 {
  this->prepare_engine();
@@ -1605,9 +1615,9 @@ Primitive::~Primitive()
 
 }
 
-void Primitive::initialize(Screen *Screen)
+void Primitive::initialize(Screen *screen)
 {
- surface=Screen;
+ surface=screen;
 }
 
 void Primitive::set_color(const unsigned char red,const unsigned char green,const unsigned char blue)
