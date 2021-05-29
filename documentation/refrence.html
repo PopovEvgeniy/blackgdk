@@ -1713,11 +1713,15 @@ C++
       active game-pad is pressed.<br>
       <span style="font-style: italic;">bool
         Gamepad::check_trigger_release(const GAMEPAD_TRIGGERS trigger);</span> –
-      Return true if specific trigger of active game-pad is released.<br>
-      <span style="font-style: italic;">unsigned char Gamepad::get_trigger(const
-        GAMEPAD_TRIGGERS trigger) const;</span> – Return current value of the
-      analog trigger.<br>
-      <span style="font-style: italic;">GAMEPAD_DIRECTION
+      Return true if specific trigger of active game-pad is released.</big><br>
+    <big> <span style="font-style: italic;">unsigned char
+        Gamepad::get_trigger(const GAMEPAD_TRIGGERS trigger) const;</span> –
+      Return current value of the analog trigger.</big><br>
+    <big><i>unsigned char Gamepad::get_left_trigger() const;</i> – Return
+      current value of left analog trigger.</big><br>
+    <big><i>unsigned char Gamepad::get_right_trigger() const;</i> – Return
+      current value of right analog trigger.</big><br>
+    <big> <span style="font-style: italic;">GAMEPAD_DIRECTION
         Gamepad::get_stick_x(const GAMEPAD_TRIGGERS stick) const;</span> –
       Return x-direction of specific stick.<br>
       <span style="font-style: italic;">GAMEPAD_DIRECTION
@@ -2129,6 +2133,7 @@ C++
     <big>3.4.8 – Source code was synced with Neon game development kit 5.2.3.</big><br>
     <big>3.4.9 – Source code was synced with Neon game development kit 5.2.4.</big><br>
     <big>3.5 – 3.5.2 – Game-pad subsystem was improved.</big><br>
-    <big>3.5.3 – Source code was synced with Neon game development kit 5.2.5.</big>
+    <big>3.5.3 – Source code was synced with Neon game development kit 5.2.5.</big><br>
+    <big>3.5.4 – Game-pad subsystem was improved.</big>
   </body>
 </html>

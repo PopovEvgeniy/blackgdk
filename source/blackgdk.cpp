@@ -1185,6 +1185,16 @@ unsigned char Gamepad::get_trigger(const GAMEPAD_TRIGGERS trigger) const
  return result;
 }
 
+unsigned char Gamepad::get_left_trigger() const
+{
+ return current.Gamepad.bLeftTrigger;
+}
+
+unsigned char Gamepad::get_right_trigger() const
+{
+ return current.Gamepad.bRightTrigger;
+}
+
 bool Gamepad::set_vibration(const unsigned short int left,const unsigned short int right)
 {
  this->set_motor(left,right);

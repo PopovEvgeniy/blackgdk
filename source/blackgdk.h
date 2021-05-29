@@ -376,6 +376,8 @@ class Gamepad
  bool check_trigger_press(const GAMEPAD_TRIGGERS trigger);
  bool check_trigger_release(const GAMEPAD_TRIGGERS trigger);
  unsigned char get_trigger(const GAMEPAD_TRIGGERS trigger) const;
+ unsigned char get_left_trigger() const;
+ unsigned char get_right_trigger() const;
  bool set_vibration(const unsigned short int left,const unsigned short int right);
  bool disable_vibration();
  GAMEPAD_DIRECTION get_stick_x(const GAMEPAD_STICKS stick) const;
