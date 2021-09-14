@@ -222,20 +222,6 @@ void Engine::create_window()
  SetFocus(window);
 }
 
-void Engine::capture_mouse()
-{
- RECT border;
- if (GetClientRect(window,&border)==FALSE)
- {
-  Halt("Can't capture window");
- }
- if (ClipCursor(&border)==FALSE)
- {
-  Halt("Can't capture cursor");
- }
-
-}
-
 bool Engine::process_message()
 {
  bool run;
@@ -513,7 +499,7 @@ Timer::~Timer()
 
 }
 
-void Timer::set_timer(const unsigned long int seconds)
+void Timer::set_timer(const double seconds)
 {
  interval=seconds;
  start=time(NULL);
@@ -533,7 +519,7 @@ bool Timer::check_timer()
 
 FPS::FPS()
 {
- timer.set_timer(1);
+ start=time(NULL);
  current=0;
  fps=0;
 }
@@ -546,10 +532,11 @@ FPS::~FPS()
 void FPS::update_counter()
 {
  ++current;
- if (timer.check_timer()==true)
+ if (difftime(time(NULL),start)>=1)
  {
   fps=current;
   current=0;
+  start=time(NULL);
  }
 
 }
@@ -745,7 +732,6 @@ void Screen::initialize()
  this->create_buffers();
  this->create_timer();
  this->create_window();
- this->capture_mouse();
  this->create_render();
  this->set_timer(17);
 }
@@ -834,11 +820,8 @@ void Keyboard::initialize()
 
 bool Keyboard::check_hold(const unsigned char code)
 {
- bool result;
- result=false;
- if (Keys[code]==KEY_PRESS) result=true;
  preversion[code]=Keys[code];
- return result;
+ return Keys[code]==KEY_PRESS;
 }
 
 bool Keyboard::check_press(const unsigned char code)
@@ -919,14 +902,8 @@ unsigned long int Mouse::get_y()
 
 bool Mouse::check_hold(const MOUSE_BUTTON button)
 {
- bool result;
- result=false;
- if (Buttons[button]==KEY_PRESS)
- {
-  result=true;
- }
  preversion[button]=Buttons[button];
- return result;
+ return Buttons[button]==KEY_PRESS;
 }
 
 bool Mouse::check_press(const MOUSE_BUTTON button)
@@ -944,9 +921,9 @@ Gamepad::Gamepad()
  length=sizeof(XINPUT_STATE);
  XInputEnable(TRUE);
  memset(&current,0,length);
- memset(&preversion,0,length);
  memset(&vibration,0,sizeof(XINPUT_VIBRATION));
  memset(&battery,0,sizeof(XINPUT_BATTERY_INFORMATION));
+ preversion=current;
  active=0;
 }
 
@@ -963,7 +940,7 @@ bool Gamepad::read_battery_status()
 void Gamepad::clear_state()
 {
  memset(&current,0,length);
- memset(&preversion,0,length);
+ preversion=current;
 }
 
 bool Gamepad::read_state()
@@ -1007,7 +984,7 @@ bool Gamepad::check_trigger(XINPUT_STATE &target,const GAMEPAD_TRIGGERS trigger)
 
 void Gamepad::set_active(const unsigned long int gamepad)
 {
- if (active<XUSER_MAX_COUNT)
+ if (gamepad<XUSER_MAX_COUNT)
  {
   this->clear_state();
   active=gamepad;
@@ -1129,24 +1106,12 @@ bool Gamepad::check_button_hold(const GAMEPAD_BUTTONS button)
 
 bool Gamepad::check_button_press(const GAMEPAD_BUTTONS button)
 {
- bool result;
- result=false;
- if (this->check_button(current,button)==true)
- {
-  if (this->check_button(preversion,button)==false) result=true;
- }
- return result;
+ return (this->check_button(current,button)==true) && (this->check_button(preversion,button)==false);
 }
 
 bool Gamepad::check_button_release(const GAMEPAD_BUTTONS button)
 {
- bool result;
- result=false;
- if (this->check_button(current,button)==false)
- {
-  if (this->check_button(preversion,button)==true) result=true;
- }
- return result;
+ return (this->check_button(current,button)==false) && (this->check_button(preversion,button)==true);
 }
 
 bool Gamepad::check_trigger_hold(const GAMEPAD_TRIGGERS trigger)
@@ -1156,31 +1121,18 @@ bool Gamepad::check_trigger_hold(const GAMEPAD_TRIGGERS trigger)
 
 bool Gamepad::check_trigger_press(const GAMEPAD_TRIGGERS trigger)
 {
- bool result;
- result=false;
- if (this->check_trigger(current,trigger)==true)
- {
-  if (this->check_trigger(preversion,trigger)==false) result=true;
- }
- return result;
+ return (this->check_trigger(current,trigger)==true) && (this->check_trigger(preversion,trigger)==false);
 }
 
 bool Gamepad::check_trigger_release(const GAMEPAD_TRIGGERS trigger)
 {
- bool result;
- result=false;
- if (this->check_trigger(current,trigger)==false)
- {
-  if (this->check_trigger(preversion,trigger)==true) result=true;
- }
- return result;
+ return (this->check_trigger(current,trigger)==false) && (this->check_trigger(preversion,trigger)==true);
 }
 
 unsigned char Gamepad::get_trigger(const GAMEPAD_TRIGGERS trigger) const
 {
  unsigned char result;
- result=0;
- if (trigger==GAMEPAD_LEFT_TRIGGER) result=current.Gamepad.bLeftTrigger;
+ result=current.Gamepad.bLeftTrigger;
  if (trigger==GAMEPAD_RIGHT_TRIGGER) result=current.Gamepad.bRightTrigger;
  return result;
 }
@@ -1461,7 +1413,7 @@ void System::enable_logging(const char *name)
 
 Filesystem::Filesystem()
 {
- status=false;
+
 }
 
 Filesystem::~Filesystem()
@@ -1469,27 +1421,23 @@ Filesystem::~Filesystem()
 
 }
 
-void Filesystem::file_exist(const char *name)
+bool Filesystem::file_exist(const char *name)
 {
  FILE *target;
- status=false;
+ bool exist;
+ exist=false;
  target=fopen(name,"rb");
  if (target!=NULL)
  {
-  status=true;
+  exist=true;
   fclose(target);
  }
-
+ return exist;
 }
 
-void Filesystem::delete_file(const char *name)
+bool Filesystem::delete_file(const char *name)
 {
- status=(remove(name)==0);
-}
-
-bool Filesystem::get_status() const
-{
- return status;
+ return remove(name)==0;
 }
 
 Binary_File::Binary_File()
@@ -1945,15 +1893,6 @@ void Surface::clear_buffer()
 
 }
 
-void Surface::load_from_buffer(Image &buffer)
-{
- width=buffer.get_width();
- height=buffer.get_height();
- this->clear_buffer();
- image=this->create_buffer(width,height);
- memmove(image,buffer.get_data(),buffer.get_length());
-}
-
 void Surface::set_width(const unsigned long int image_width)
 {
  width=image_width;
@@ -2030,6 +1969,15 @@ size_t Surface::get_length() const
 IMG_Pixel *Surface::get_image()
 {
  return image;
+}
+
+void Surface::load_image(Image &buffer)
+{
+ width=buffer.get_width();
+ height=buffer.get_height();
+ this->clear_buffer();
+ image=this->create_buffer(width,height);
+ memmove(image,buffer.get_data(),buffer.get_length());
 }
 
 unsigned long int Surface::get_image_width() const
@@ -2118,19 +2066,19 @@ void Surface::vertical_mirror()
  this->mirror_image(MIRROR_VERTICAL);
 }
 
-Canvas::Canvas()
+Animation::Animation()
 {
  start=0;
  frame=1;
  frames=1;
 }
 
-Canvas::~Canvas()
+Animation::~Animation()
 {
 
 }
 
-void Canvas::set_frame(const unsigned long int target)
+void Animation::set_frame(const unsigned long int target)
 {
  if (target>0)
  {
@@ -2139,7 +2087,7 @@ void Canvas::set_frame(const unsigned long int target)
 
 }
 
-void Canvas::increase_frame()
+void Animation::increase_frame()
 {
  ++frame;
  if (frame>frames)
@@ -2149,24 +2097,19 @@ void Canvas::increase_frame()
 
 }
 
-void Canvas::set_frames(const unsigned long int amount)
+void Animation::set_frames(const unsigned long int amount)
 {
  if (amount>1) frames=amount;
 }
 
-unsigned long int Canvas::get_frames() const
+unsigned long int Animation::get_frames() const
 {
  return frames;
 }
 
-unsigned long int Canvas::get_frame() const
+unsigned long int Animation::get_frame() const
 {
  return frame;
-}
-
-void Canvas::load_image(Image &buffer)
-{
- this->load_from_buffer(buffer);
 }
 
 Background::Background()
@@ -2615,7 +2558,7 @@ void Tileset::load_tileset(Image &buffer,const unsigned long int row_amount,cons
 {
  if ((row_amount>0)&&(column_amount>0))
  {
-  this->load_from_buffer(buffer);
+  this->load_image(buffer);
   rows=row_amount;
   columns=column_amount;
   tile_width=this->get_image_width()/rows;
@@ -2676,7 +2619,7 @@ void Text::draw_text(const char *text)
   this->draw_character(text[index]);
   this->increase_position();
  }
- this->restore_position();
+
 }
 
 void Text::draw_character(const unsigned long int x,const unsigned long int y,const char target)
@@ -2738,10 +2681,7 @@ Collision::Collision()
  first.y=0;
  first.width=0;
  first.height=0;
- second.x=0;
- second.y=0;
- second.width=0;
- second.height=0;
+ second=first;
 }
 
 Collision::~Collision()
