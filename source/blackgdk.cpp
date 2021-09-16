@@ -751,10 +751,8 @@ bool Screen::update()
 
 bool Screen::sync()
 {
- bool run;
- run=this->update();
  this->wait_timer();
- return run;
+ return this->update();
 }
 
 Screen* Screen::get_handle()
