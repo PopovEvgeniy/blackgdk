@@ -431,7 +431,7 @@ class System
  public:
  System();
  ~System();
- unsigned long int get_random(const unsigned long int number);
+ unsigned int get_random(const unsigned int number);
  void quit();
  void run(const char *command);
  char* read_environment(const char *variable);

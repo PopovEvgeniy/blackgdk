@@ -287,7 +287,7 @@ Frame::~Frame()
 void Frame::calculate_buffer_length()
 {
  pixels=static_cast<size_t>(frame_width)*static_cast<size_t>(frame_height);
- frame_line=frame_width*static_cast<unsigned long int>(sizeof(unsigned int));
+ frame_line=frame_width*static_cast<unsigned int>(sizeof(unsigned int));
 }
 
 unsigned int *Frame::get_memory(const char *error)
@@ -883,7 +883,8 @@ void Mouse::get_position()
 {
  if (GetCursorPos(&position)==FALSE)
  {
-  Halt("Can't get the mouse cursor position");
+  position.x=0;
+  position.y=0;
  }
 
 }
@@ -914,7 +915,8 @@ void Mouse::set_position(const unsigned int x,const unsigned int y)
 {
  if (SetCursorPos(x,y)==FALSE)
  {
-  Halt("Can't set the mouse cursor position");
+  position.x=0;
+  position.y=0;
  }
 
 }
@@ -1448,7 +1450,8 @@ void Memory::get_status()
 {
  if (GlobalMemoryStatusEx(&memory)==FALSE)
  {
-  Halt("Can't get the memory status");
+  memset(&memory,0,sizeof(MEMORYSTATUSEX));
+  memory.dwLength=sizeof(MEMORYSTATUSEX);
  }
 
 }
@@ -1493,7 +1496,7 @@ System::~System()
 
 }
 
-unsigned long int System::get_random(const unsigned long int number)
+unsigned int System::get_random(const unsigned int number)
 {
  return rand()%number;
 }
@@ -1685,7 +1688,7 @@ void Primitive::set_color(const unsigned char red,const unsigned char green,cons
 
 void Primitive::draw_line(const unsigned int x1,const unsigned int y1,const unsigned int x2,const unsigned int y2)
 {
- unsigned long int delta_x,delta_y,index,steps;
+ unsigned int delta_x,delta_y,index,steps;
  float x,y,shift_x,shift_y;
  if (x1>x2)
  {
@@ -1724,7 +1727,7 @@ void Primitive::draw_line(const unsigned int x1,const unsigned int y1,const unsi
 
 void Primitive::draw_rectangle(const unsigned int x,const unsigned int y,const unsigned int width,const unsigned int height)
 {
- unsigned long int stop_x,stop_y;
+ unsigned int stop_x,stop_y;
  stop_x=x+width;
  stop_y=y+height;
  this->draw_line(x,y,stop_x,y);
@@ -1735,7 +1738,7 @@ void Primitive::draw_rectangle(const unsigned int x,const unsigned int y,const u
 
 void Primitive::draw_filled_rectangle(const unsigned int x,const unsigned int y,const unsigned int width,const unsigned int height)
 {
- unsigned long int step_x,step_y,stop_x,stop_y;
+ unsigned int step_x,step_y,stop_x,stop_y;
  stop_x=x+width;
  stop_y=y+height;
  for (step_x=x;step_x<stop_x;++step_x)
@@ -2322,7 +2325,7 @@ void Background::get_maximum_height()
 
 void Background::slow_draw_background()
 {
- unsigned long int x,y,index;
+ unsigned int x,y,index;
  x=0;
  y=0;
  for (index=maximum_width*maximum_height;index>0;--index)
