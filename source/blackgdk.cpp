@@ -1581,26 +1581,46 @@ void Binary_File::close()
 
 void Binary_File::set_position(const long int offset)
 {
- fseek(target,offset,SEEK_SET);
+ if (target!=NULL)
+ {
+  fseek(target,offset,SEEK_SET);
+ }
+
 }
 
 long int Binary_File::get_position()
 {
- return ftell(target);
+ long int position;
+ position=0;
+ if (target!=NULL)
+ {
+  position=ftell(target);
+ }
+ return position;
 }
 
 long int Binary_File::get_length()
 {
- long int result;
- fseek(target,0,SEEK_END);
- result=ftell(target);
- rewind(target);
- return result;
+ long int length;
+ length=0;
+ if (target!=NULL)
+ {
+  fseek(target,0,SEEK_END);
+  length=ftell(target);
+  rewind(target);
+ }
+ return length;
 }
 
 bool Binary_File::check_error()
 {
- return ferror(target)!=0;
+ int error;
+ error=-1;
+ if (target!=NULL)
+ {
+  error=ferror(target);
+ }
+ return error!=0;
 }
 
 bool Binary_File::is_open() const
@@ -1626,7 +1646,15 @@ void Input_File::open(const char *name)
 
 void Input_File::read(void *buffer,const size_t length)
 {
- fread(buffer,sizeof(char),length,target);
+ if (target!=NULL)
+ {
+  if (buffer!=NULL)
+  {
+   fread(buffer,sizeof(char),length,target);
+  }
+
+ }
+
 }
 
 Output_File::Output_File()
@@ -1653,12 +1681,24 @@ void Output_File::create_temp()
 
 void Output_File::write(void *buffer,const size_t length)
 {
- fwrite(buffer,sizeof(char),length,target);
+ if (target!=NULL)
+ {
+  if (buffer!=NULL)
+  {
+   fwrite(buffer,sizeof(char),length,target);
+  }
+
+ }
+
 }
 
 void Output_File::flush()
 {
- fflush(target);
+ if (target!=NULL)
+ {
+  fflush(target);
+ }
+
 }
 
 Primitive::Primitive()
