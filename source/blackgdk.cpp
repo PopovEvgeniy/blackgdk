@@ -1477,7 +1477,7 @@ namespace BLACKGDK
   {
    bool check;
    check=current.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD;
-   if (trigger==GAMEPAD_RIGHT_TRIGGER)
+   if (trigger==BLACKGDK::GAMEPAD_RIGHT_TRIGGER)
    {
     check=current.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD;
    }
@@ -1488,7 +1488,7 @@ namespace BLACKGDK
   {
    bool check;
    check=preversion.Gamepad.bLeftTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD;
-   if (trigger==GAMEPAD_RIGHT_TRIGGER)
+   if (trigger==BLACKGDK::GAMEPAD_RIGHT_TRIGGER)
    {
     check=preversion.Gamepad.bRightTrigger>=XINPUT_GAMEPAD_TRIGGER_THRESHOLD;
    }
@@ -1529,22 +1529,22 @@ namespace BLACKGDK
   BLACKGDK::GAMEPAD_BATTERY_TYPE Gamepad::get_battery_type()
   {
    GAMEPAD_BATTERY_TYPE battery_type;
-   battery_type=GAMEPAD_BATTERY_TYPE_ERROR;
+   battery_type=BLACKGDK::GAMEPAD_BATTERY_TYPE_ERROR;
    if (this->read_battery_status()==true)
    {
     switch (battery.BatteryType)
     {
      case BATTERY_TYPE_ALKALINE:
-     battery_type=GAMEPAD_BATTERY_ALKAINE;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_ALKAINE;
      break;
      case BATTERY_TYPE_NIMH:
-     battery_type=GAMEPAD_BATTERY_NIMH;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_NIMH;
      break;
      case BATTERY_TYPE_UNKNOWN:
-     battery_type=GAMEPAD_BATTERY_UNKNOW;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_UNKNOW;
      break;
      default:
-     battery_type=GAMEPAD_BATTERY_TYPE_ERROR;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_TYPE_ERROR;
      break;
     }
 
@@ -1555,31 +1555,31 @@ namespace BLACKGDK
   BLACKGDK::GAMEPAD_BATTERY_LEVEL Gamepad::get_battery_level()
   {
    GAMEPAD_BATTERY_LEVEL level;
-   level=GAMEPAD_BATTERY_LEVEL_ERROR;
+   level=BLACKGDK::GAMEPAD_BATTERY_LEVEL_ERROR;
    if (this->read_battery_status()==true)
    {
     switch (battery.BatteryLevel)
     {
      case BATTERY_LEVEL_EMPTY:
-     level=GAMEPAD_BATTERY_EMPTY;
+     level=BLACKGDK::GAMEPAD_BATTERY_EMPTY;
      break;
      case BATTERY_LEVEL_LOW:
-     level=GAMEPAD_BATTERY_LOW;
+     level=BLACKGDK::GAMEPAD_BATTERY_LOW;
      break;
      case BATTERY_LEVEL_MEDIUM:
-     level=GAMEPAD_BATTERY_MEDIUM;
+     level=BLACKGDK::GAMEPAD_BATTERY_MEDIUM;
      break;
      case BATTERY_LEVEL_FULL:
-     level=GAMEPAD_BATTERY_FULL;
+     level=BLACKGDK::GAMEPAD_BATTERY_FULL;
      break;
     }
     if (battery.BatteryType==BATTERY_TYPE_WIRED)
     {
-     level=GAMEPAD_BATTERY_FULL;
+     level=BLACKGDK::GAMEPAD_BATTERY_FULL;
     }
     if (battery.BatteryType==BATTERY_TYPE_DISCONNECTED)
     {
-     level=GAMEPAD_BATTERY_LEVEL_ERROR;
+     level=BLACKGDK::GAMEPAD_BATTERY_LEVEL_ERROR;
     }
 
    }
@@ -1671,7 +1671,7 @@ namespace BLACKGDK
   {
    short int control;
    BLACKGDK::GAMEPAD_DIRECTION directional;
-   directional=GAMEPAD_NEUTRAL_DIRECTION;
+   directional=BLACKGDK::GAMEPAD_NEUTRAL_DIRECTION;
    if (stick==BLACKGDK::GAMEPAD_LEFT_STICK)
    {
     control=SHRT_MAX-XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.945,=D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\demo.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.148,C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1.cbproj=D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\demo.cbproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.706,=D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\blackgdk.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.563,=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.148,D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\demo.cbproj=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.329,=C:\Users\Евгений\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.945,=D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\blackgdk.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.945,=D:\Образ\Black game development kit\Version 4.1.8\blackgdk\source\demo.cpp</Transaction>
   </Transactions>
 </BorlandProject>
