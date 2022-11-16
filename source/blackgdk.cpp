@@ -1647,6 +1647,16 @@ namespace BLACKGDK
    return this->set_vibration(0,0);
   }
 
+  unsigned short int Gamepad::get_left_motor() const
+  {
+   return vibration.wLeftMotorSpeed;
+  }
+
+  unsigned short int Gamepad::get_right_motor() const
+  {
+   return vibration.wRightMotorSpeed;
+  }
+
   BLACKGDK::GAMEPAD_DIRECTION Gamepad::get_stick_x(const BLACKGDK::GAMEPAD_STICKS stick) const
   {
    BLACKGDK::GAMEPAD_DIRECTION directional;

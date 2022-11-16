@@ -53,6 +53,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 
 #if defined _MSC_VER && _MSC_VER>=1930
   #pragma warning(disable : 4996)
+  #pragma warning(disable : 4995)
 #endif
 
 #include <stddef.h>
@@ -614,6 +615,8 @@ typedef enum
    unsigned char get_right_trigger() const;
    bool set_vibration(const unsigned short int left,const unsigned short int right);
    bool disable_vibration();
+   unsigned short int get_left_motor() const;
+   unsigned short int get_right_motor() const;
    BLACKGDK::GAMEPAD_DIRECTION get_stick_x(const BLACKGDK::GAMEPAD_STICKS stick) const;
    BLACKGDK::GAMEPAD_DIRECTION get_stick_y(const BLACKGDK::GAMEPAD_STICKS stick) const;
    BLACKGDK::GAMEPAD_DIRECTION get_left_stick_x() const;

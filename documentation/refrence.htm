@@ -1139,12 +1139,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       Exit from your program and return user to operating system.<br>
       <br>
       <span style="font-style: italic;">bool enable_logging(const char *name); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Enable redirecting error messages to
       a log file and return false if the operation failed.<br>
       <br>
       <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Initialize random number generator.<br>
       <br>
       <span style="font-style: italic;">unsigned int get_random(const int
@@ -1928,6 +1926,14 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Disable vibration of active game-pad. Return false if operation was
       fail.<br>
       <br>
+      <span style="font-style: italic;">unsigned short int
+        Gamepad::get_left_motor() const;</span> – Return vibration level of left
+      rumble motor.<br>
+      <br>
+      <span style="font-style: italic;">unsigned short int
+        Gamepad::get_right_motor() const;</span> – Return vibration level of
+      right rumble motor.<br>
+      <br>
       <span style="font-style: italic;">bool Gamepad::is_wireless();</span> –
       Return true if current active game-pad is the wireless game-pad.<br>
       <br>
@@ -2068,6 +2074,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.1.8 – 4.1.9 – Small changes.<br>
       4.2 – Synchronization timer improved.<br>
       4.2.1 – Small changes.<br>
+      4.2.2 – Source code synced with Simple windows game framework 6.6.8.<br>
+      4.2.3 – Small changes.<br>
     </big><big> </big>
     <p></p>
   </body>
