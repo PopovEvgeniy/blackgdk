@@ -51,7 +51,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #pragma comment(lib,"strmiids.lib")
 #pragma comment(lib,"xinput.lib")
 
-#if defined _MSC_VER && _MSC_VER>=1930
+#if defined _MSC_VER && _MSC_VER>=1800
   #pragma warning(disable : 4996)
   #pragma warning(disable : 4995)
 #endif

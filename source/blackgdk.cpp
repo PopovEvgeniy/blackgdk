@@ -160,7 +160,7 @@ namespace BLACKGDK
 
   void Synchronization::create_timer()
   {
-   timer=CreateWaitableTimerEx(NULL,NULL,CREATE_WAITABLE_TIMER_HIGH_RESOLUTION,TIMER_MODIFY_STATE|SYNCHRONIZE);
+   timer=CreateWaitableTimerEx(NULL,NULL,0,TIMER_MODIFY_STATE|SYNCHRONIZE);
    if (timer==NULL)
    {
     BLACKGDK::Halt("Can't create synchronization timer");

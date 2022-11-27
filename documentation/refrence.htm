@@ -23,7 +23,7 @@
           <li><a href="#mozTocId336772">Chapter 4. System requirements</a></li>
           <li><a href="#mozTocId928115">Chapter 5. Trouble guide</a></li>
           <li><a href="#mozTocId491993">Chapter 6. Compilers</a></li>
-          <li><a href="#mozTocId56069">Chapter 7. Visual C++ specific notes</a></li>
+          <li><a href="#mozTocId56069">Chapter 7. Platform specific notes</a></li>
           <li><a href="#mozTocId914689">Chapter 8. The engine name–space</a></li>
           <li><a href="#mozTocId417277">Chapter 9. Custom date types</a></li>
         </ul>
@@ -214,7 +214,7 @@
       <tbody>
         <tr>
           <td><big>Operating system </big></td>
-          <td><big>Windows 10(November 2019 Update) or higher </big></td>
+          <td><big>Windows 8 or higher </big></td>
         </tr>
         <tr>
           <td><big>System type </big></td>
@@ -241,19 +241,50 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <h2><a name="mozTocId491993" class="mozTocH2"></a><big>Chapter 6. Compilers</big></h2>
     <big> This engine successfully tested with these compilers:</big><br>
     <ul>
+      <li><big>Visual C++ 2013</big></li>
+      <li><big>Visual C++ 2015<br>
+        </big></li>
+      <li><big>Visual C++ 2017</big></li>
+      <li><big>Visual C++ 2019</big></li>
       <li><big>Visual C++ 2022</big></li>
+      <li><big>C++ Builder 10 Seattle</big></li>
+      <li><big>C++ Builder 10.1 Berlin<br>
+        </big></li>
+      <li><big>C++ Builder 10.2 Tokyo</big></li>
+      <li><big>C++ Builder 10.3 Rio<br>
+        </big></li>
       <li><big>C++ Builder 10.4 Sydney</big></li>
       <li><big>C++ Builder 11 Alexandria</big></li>
     </ul>
-    <h2><a name="mozTocId56069" class="mozTocH2"></a><big>Chapter 7. Visual C++
+    <h2><a name="mozTocId56069" class="mozTocH2"></a><big>Chapter 7. Platform
         specific notes</big></h2>
-    <big><span style="text-decoration: underline;"></span></big><big> Disable
-      pre–compiled headers before start compilation. Follow these steps:<br>
+    <big><span style="text-decoration: underline;"></span></big><big><span style="text-decoration: underline;">Visual
+        C++ specific notes</span><br>
+      <br>
+      Disable pre–compiled headers before start compilation. Old Visual C++
+      users can do it via project creation wizard.<br>
+      Visual C++ 2017 or higher users must follow these steps:<br>
     </big>
     <ul>
       <li><big> Go to «Project properties – C/C++ – Precompiled Headers»</big></li>
       <li><big> Set «Precomiled Header» option to «Not Using Precompiled
           Headers»</big></li>
+    </ul>
+    <big><span style="text-decoration: underline;">Compiler optimization</span><br>
+      <br>
+      Disable all compiler optimization for correct working. See documentation
+      of your favorite compiler for more information about compiler
+      optimization.<br>
+      <br>
+      <span style="text-decoration: underline;">Windows 8 support</span><br style="text-decoration: underline;">
+      <br>
+      You need one of follow compilers for <a href="https://en.wikipedia.org/wiki/Windows_8">Windows
+        8</a> support:<br>
+    </big>
+    <ul>
+      <li><big>Visual C++ 2013</big></li>
+      <li><big>Visual C++ 2015</big></li>
+      <li><big>C++ Builder 10 Seattle</big></li>
     </ul>
     <big> </big>
     <h2><a name="mozTocId914689" class="mozTocH2"></a><big>Chapter 8. The engine
@@ -1759,6 +1790,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -1801,6 +1833,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2078,6 +2111,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.2.3 – Small changes.<br>
       4.2.4 – Source code synced with Simple windows game framework 6.6.9.<br>
       4.2.5 – Source code synced with Simple windows game framework 6.7.<br>
+      4.2.6 – Windows 8 support added.<br>
+      4.2.7 – Small changes.<br>
     </big><big> </big>
     <p></p>
   </body>

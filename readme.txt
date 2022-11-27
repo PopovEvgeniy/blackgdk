@@ -1,7 +1,7 @@
 Project Description
 
 Black game development kit is the advanced fork of Simple windows game framework.
-It intend for Windows 10(November 2019 Update) or higher.
+It intend for Windows 8 or higher.
 
 License
 
