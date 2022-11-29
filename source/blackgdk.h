@@ -43,17 +43,23 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #ifndef BLACKGDK_H
 #define BLACKGDK_H
 
-#pragma comment(lib,"kernel32.lib")
-#pragma comment(lib,"user32.lib")
-#pragma comment(lib,"gdi32.lib")
-#pragma comment(lib,"opengl32.lib")
-#pragma comment(lib,"ole32.lib")
-#pragma comment(lib,"strmiids.lib")
-#pragma comment(lib,"xinput.lib")
-
 #if defined _MSC_VER && _MSC_VER>=1800
   #pragma warning(disable : 4996)
   #pragma warning(disable : 4995)
+#endif
+
+#if !defined __GNUC__
+ #pragma comment(lib,"kernel32.lib")
+ #pragma comment(lib,"user32.lib")
+ #pragma comment(lib,"gdi32.lib")
+ #pragma comment(lib,"opengl32.lib")
+ #pragma comment(lib,"ole32.lib")
+ #pragma comment(lib,"strmiids.lib")
+ #pragma comment(lib,"xinput.lib")
+#endif
+
+#if defined __GNUC__
+ #define _WIN32_WINNT 0x0602
 #endif
 
 #include <stddef.h>

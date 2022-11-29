@@ -241,7 +241,11 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <h2><a name="mozTocId491993" class="mozTocH2"></a><big>Chapter 6. Compilers</big></h2>
     <big> This engine successfully tested with these compilers:</big><br>
     <ul>
-      <li><big>Visual C++ 2013</big></li>
+      <li><a href="https://jmeubank.github.io/tdm-gcc/"><big>TDM–GCC</big></a></li>
+      <li><big><a href="http://mingw-w64.org">MINGW–w64</a><br>
+        </big></li>
+      <li><big>Visual C++ 2013<br>
+        </big></li>
       <li><big>Visual C++ 2015<br>
         </big></li>
       <li><big>Visual C++ 2017</big></li>
@@ -276,13 +280,32 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       of your favorite compiler for more information about compiler
       optimization.<br>
       <br>
+      <span style="text-decoration: underline;">Note for MINGW–w64 and TDM–GCC
+        users</span><br>
+      <br>
+      Don't forget to link your program with these files:</big><br>
+    <ul>
+      <li><big>user32.lib</big></li>
+      <li><big>kernel32.lib</big></li>
+      <li><big>gdi32.lib</big></li>
+      <li><big>opengl32.lib</big></li>
+      <li><big>ole32.lib</big></li>
+      <li><big>strmiids.lib</big></li>
+      <li><big>xinput.lib</big></li>
+    </ul>
+    <big>See documentation of the compiler for more information about linking.<br>
+      <br>
       <span style="text-decoration: underline;">Windows 8 support</span><br style="text-decoration: underline;">
       <br>
       You need one of follow compilers for <a href="https://en.wikipedia.org/wiki/Windows_8">Windows
         8</a> support:<br>
     </big>
     <ul>
-      <li><big>Visual C++ 2013</big></li>
+      <li><big>TDM–GCC</big></li>
+      <li><big>MINGW–w64<br>
+        </big></li>
+      <li><big>Visual C++ 2013<br>
+        </big></li>
       <li><big>Visual C++ 2015</big></li>
       <li><big>C++ Builder 10 Seattle</big></li>
     </ul>
@@ -1790,7 +1813,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2112,7 +2134,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.2.4 – Source code synced with Simple windows game framework 6.6.9.<br>
       4.2.5 – Source code synced with Simple windows game framework 6.7.<br>
       4.2.6 – Windows 8 support added.<br>
-      4.2.7 – Small changes.<br>
+      4.2.7 – 4.2.8 – Small changes.<br>
+      4.2.9 – New supported compilers added.<br>
     </big><big> </big>
     <p></p>
   </body>
