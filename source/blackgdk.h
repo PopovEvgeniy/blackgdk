@@ -4,7 +4,7 @@ Some code taken from wglext.h(https://www.khronos.org/registry/OpenGL/api/GL/wgl
 
 Black game development kit license
 
-Copyright (C) 2017 - 2022 Popov Evgeniy Alekseyevich
+Copyright (C) 2017 - 2023 Popov Evgeniy Alekseyevich
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -59,7 +59,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #endif
 
 #if defined __GNUC__
- #define _WIN32_WINNT 0x0602
+ #define _WIN32_WINNT 0x0600
 #endif
 
 #include <stddef.h>
@@ -167,14 +167,17 @@ typedef enum
   typedef BOOL (WINAPI * PFNWGLSWAPINTERVALEXTPROC) (int interval); // This code taken from wglext.h by The Khronos Group Inc
 
   LRESULT CALLBACK Process_Message(HWND window,UINT Message,WPARAM wParam,LPARAM lParam);
+  VOID CALLBACK set_event(PVOID lpParam,BOOLEAN TimerOrWaitFired);
 
   class Synchronization
   {
    private:
+   HANDLE event;
    HANDLE timer;
+   void create_event();
+   void timer_setup(const unsigned int delay);
    protected:
-   void create_timer();
-   void set_timer(const unsigned long int interval);
+   void create_timer(const unsigned int delay);
    void wait_timer();
    public:
    Synchronization();

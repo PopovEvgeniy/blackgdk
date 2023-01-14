@@ -166,7 +166,7 @@
     <big> <span style="text-decoration: underline;"> Black game development kit
         license</span><br>
       <br>
-      Copyright (C) 2017 – 2022 Popov Evgeniy Alekseyevich<br>
+      Copyright (C) 2017 – 2023 Popov Evgeniy Alekseyevich<br>
       <br>
       This software is provided 'as–is', without any express or implied<br>
       warranty. In no event will the authors be held liable for any damages<br>
@@ -214,7 +214,7 @@
       <tbody>
         <tr>
           <td><big>Operating system </big></td>
-          <td><big>Windows 8 or higher </big></td>
+          <td><big>Windows Vista or higher </big></td>
         </tr>
         <tr>
           <td><big>System type </big></td>
@@ -295,19 +295,20 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     </ul>
     <big>See documentation of the compiler for more information about linking.<br>
       <br>
-      <span style="text-decoration: underline;">Windows 8 support</span><br style="text-decoration: underline;">
+      <span style="text-decoration: underline;">Windows Vista and Windows 7
+        support</span><br style="text-decoration: underline;">
       <br>
-      You need one of follow compilers for <a href="https://en.wikipedia.org/wiki/Windows_8">Windows
-        8</a> support:<br>
+      You need TDM–GCC for <a href="https://en.wikipedia.org/wiki/Windows_Vista">Windows
+        Vista</a> and <a href="https://en.wikipedia.org/wiki/Windows_7">Windows
+        7</a> support.</big><big></big><big><br>
+      <br style="text-decoration: underline;">
+      <span style="text-decoration: underline;">DirectX</span><br>
+      <br>
+      You need update <a href="https://www.microsoft.com/en-my/download/details.aspx?id=35">DirectX
+        End-User Runtime</a> if you game will run under Windows Vista or Windows
+      7.<br>
     </big>
     <ul>
-      <li><big>TDM–GCC</big></li>
-      <li><big>MINGW–w64<br>
-        </big></li>
-      <li><big>Visual C++ 2013<br>
-        </big></li>
-      <li><big>Visual C++ 2015</big></li>
-      <li><big>C++ Builder 10 Seattle</big></li>
     </ul>
     <big> </big>
     <h2><a name="mozTocId914689" class="mozTocH2"></a><big>Chapter 8. The engine
@@ -560,7 +561,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Load background </big><big>from target file</big><big>.<br>
       <br>
       <span style="font-style: italic;">void Background::load(</span></big><big
-
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load normal background from target file.<br>
       <br>
@@ -912,8 +912,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <span style="font-style: italic;">void Text::set_height(const unsigned int
         height);</span> – Set the font height.<br>
       <br>
-      <span style="font-style: italic;">void Text::set_setting(const unsigned int
-        width,const unsigned int height,const BLACKGDK::TEXT_KIND kind);</span>
+      <span style="font-style: italic;">void Text::set_setting(const unsigned
+        int width,const unsigned int height,const BLACKGDK::TEXT_KIND kind);</span>
       – Set text output settings.<br>
       <br>
       <span style="font-style: italic;"> void Text::load_font(Image *font);</span>
@@ -2125,7 +2125,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <big> </big>
     <h2><a name="mozTocId692266" class="mozTocH2"></a><big>Chapter 6. Multimedia</big></h2>
     <big> Multimedia subsystem working over <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>.
-      It is available as part of <a href="https://docs.microsoft.com/en-us/windows/desktop/directx-sdk--august-2009-">DirectX</a>.
+      It is available as part of <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>.
       DirectX is pre–installed by default under modern versions of Windows. </big>
     <h1><a name="mozTocId78453" class="mozTocH1"></a><big>Version history</big></h1>
     <big> 0.1 – 4.1.4 – Old branch.<br>
@@ -2142,6 +2142,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.2.7 – 4.2.8 – Small changes.<br>
       4.2.9 – New supported compilers added.<br>
       4.3 – Source code synced with Eugene game development kit 6.6.1.<br>
+      4.3.1 – Source code synced with Simple windows game framework kit 6.3.5.<br>
     </big><big> </big>
     <p></p>
   </body>

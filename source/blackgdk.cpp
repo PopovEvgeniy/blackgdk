@@ -4,7 +4,7 @@ Some code taken from wglext.h(https://www.khronos.org/registry/OpenGL/api/GL/wgl
 
 Black game development kit license
 
-Copyright (C) 2017 - 2022 Popov Evgeniy Alekseyevich
+Copyright (C) 2017 - 2023 Popov Evgeniy Alekseyevich
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -142,8 +142,18 @@ namespace BLACKGDK
    return DefWindowProc(window,Message,wParam,lParam);
   }
 
+  VOID CALLBACK set_event(PVOID lpParam,BOOLEAN TimerOrWaitFired)
+  {
+   if (lpParam!=NULL)
+   {
+    SetEvent(reinterpret_cast<HANDLE>(lpParam));
+   }
+
+  }
+
   Synchronization::Synchronization()
   {
+   event=NULL;
    timer=NULL;
   }
 
@@ -151,39 +161,49 @@ namespace BLACKGDK
   {
    if (timer!=NULL)
    {
-    CancelWaitableTimer(timer);
-    CloseHandle(timer);
+    DeleteTimerQueueTimer(NULL,timer,event);
     timer=NULL;
    }
-
-  }
-
-  void Synchronization::create_timer()
-  {
-   timer=CreateWaitableTimerEx(NULL,NULL,0,TIMER_MODIFY_STATE|SYNCHRONIZE);
-   if (timer==NULL)
+   if (event!=NULL)
    {
-    BLACKGDK::Halt("Can't create synchronization timer");
+    CloseHandle(event);
+    event=NULL;
    }
 
   }
 
-  void Synchronization::set_timer(const unsigned long int interval)
+  void Synchronization::create_event()
   {
-   LARGE_INTEGER start;
-   start.QuadPart=0;
-   if (SetWaitableTimer(timer,&start,interval,NULL,NULL,FALSE)==FALSE)
+   event=CreateEventEx(NULL,NULL,CREATE_EVENT_MANUAL_RESET,EVENT_MODIFY_STATE|SYNCHRONIZE);
+   if (event==NULL)
    {
-    BLACKGDK::Halt("Can't set timer");
+    BLACKGDK::Halt("Can't create synchronization event");
    }
 
+  }
+
+  void Synchronization::timer_setup(const unsigned int delay)
+  {
+   if (CreateTimerQueueTimer(&timer,NULL,Internal::set_event,reinterpret_cast<PVOID>(event),0,delay,WT_EXECUTEDEFAULT)==FALSE)
+   {
+    timer=NULL;
+    BLACKGDK::Halt("Can't set timer setting");
+   }
+
+  }
+
+  void Synchronization::create_timer(const unsigned int delay)
+  {
+   this->create_event();
+   this->timer_setup(delay);
   }
 
   void Synchronization::wait_timer()
   {
-   if (timer!=NULL)
+   if (event!=NULL)
    {
-    WaitForSingleObjectEx(timer,INFINITE,TRUE);
+    WaitForSingleObjectEx(event,INFINITE,TRUE);
+    ResetEvent(event);
    }
 
   }
@@ -1908,8 +1928,7 @@ namespace BLACKGDK
    this->prepare_engine();
    this->set_render(this->get_context(),this->get_depth());
    this->start_render(this->get_display_width(),this->get_display_height());
-   this->create_timer();
-   this->set_timer(17);
+   this->create_timer(17);
   }
 
   void Screen::clear_screen()
