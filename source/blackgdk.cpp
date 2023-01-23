@@ -1028,13 +1028,12 @@ namespace BLACKGDK
 
   }
 
-  void Multimedia::set_screen_mode()
+  void Multimedia::disable_video()
   {
    if (video!=NULL)
    {
     video->put_FullScreenMode(OAFALSE);
     video->put_AutoShow(OAFALSE);
-    video->put_WindowStyle(WS_POPUP);
    }
 
   }
@@ -1046,12 +1045,6 @@ namespace BLACKGDK
     loader->RenderFile(target,NULL);
    }
 
-  }
-
-  void Multimedia::open(const wchar_t *target)
-  {
-   this->load_content(target);
-   this->set_screen_mode();
   }
 
   bool Multimedia::is_play()
@@ -1084,10 +1077,6 @@ namespace BLACKGDK
 
   void Multimedia::play_content()
   {
-   if (video!=NULL)
-   {
-    video->put_WindowState(SW_MAXIMIZE);
-   }
    if (player!=NULL)
    {
     player->Run();
@@ -1137,14 +1126,14 @@ namespace BLACKGDK
 
   }
 
-  void Multimedia::create_video_player()
+  void Multimedia::get_video_instance()
   {
    if (video==NULL)
    {
     if (loader->QueryInterface(IID_IVideoWindow,reinterpret_cast<void**>(&video))!=S_OK)
     {
      video=NULL;
-     BLACKGDK::Halt("Can't create a video player");
+     BLACKGDK::Halt("Can't get access to video windows instance");
     }
 
    }
@@ -1157,7 +1146,8 @@ namespace BLACKGDK
    this->create_loader();
    this->create_player();
    this->create_controler();
-   this->create_video_player();
+   this->get_video_instance();
+   this->disable_video();
   }
 
   bool Multimedia::check_playing()
@@ -1186,10 +1176,6 @@ namespace BLACKGDK
    {
     player->Stop();
    }
-   if (video!=NULL)
-   {
-    video->put_WindowState(SW_HIDE);
-   }
 
   }
 
@@ -1213,7 +1199,7 @@ namespace BLACKGDK
   {
    Core::Unicode_Convertor convertor;
    this->stop();
-   this->open(convertor.convert(target));
+   this->load_content(convertor.convert(target));
   }
 
   void Multimedia::initialize(const char *target)
