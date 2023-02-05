@@ -3119,6 +3119,11 @@ namespace BLACKGDK
    start=time(NULL);
   }
 
+  double Timer::get_interval() const
+  {
+   return interval;
+  }
+
   bool Timer::check_timer()
   {
    bool check;

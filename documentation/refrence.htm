@@ -561,7 +561,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Load background </big><big>from target file</big><big>.<br>
       <br>
       <span style="font-style: italic;">void Background::load(</span></big><big
-
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load normal background from target file.<br>
       <br>
@@ -799,10 +798,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       public methods.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1002,7 +1003,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <h2><a name="mozTocId853711" class="mozTocH2"></a><big>Chapter 2. Abnormal
         program termination</big></h2>
     <big> You can use <span style="font-style: italic;">Halt</span> function to
-      terminate a program. This function declared in EGENEGDK name–space.<br>
+      terminate a program. This function declared in <span style="font-style: italic;">BLACKGDK</span>
+      name–space.<br>
       <br>
       <span style="font-style: italic;"> void BLACKGDK::Halt(const char
         *message);</span> – Terminate the program. Write error message to log
@@ -1013,6 +1015,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
       <span style="font-style: italic;"> void Timer::set_timer(const double
         seconds); </span>– Set timer interval and initialize start point.<br>
+      <br>
+      <span style="font-style: italic;">double Timer::get_interval() const; </span>–
+      Return current timer interval.<br>
       <br>
       <span style="font-style: italic;"> bool Timer::check_timer();</span> –
       Return true and reinitialize start point if interval between stop and
@@ -1031,10 +1036,11 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
       <span style="font-style: italic;"> typedef struct</span><br style="font-style: italic;">
       <span style="font-style: italic;"> {</span><br style="font-style: italic;">
-      <span style="font-style: italic;"> unsigned int x;</span><br style="font-style: italic;">
-      <span style="font-style: italic;"> unsigned int y;</span><br style="font-style: italic;">
-      <span style="font-style: italic;"> unsigned int width;</span><br style="font-style: italic;">
-      <span style="font-style: italic;"> unsigned int height;</span><br style="font-style: italic;">
+      &nbsp; <span style="font-style: italic;">unsigned int x;</span><br style="font-style: italic;">
+      &nbsp; <span style="font-style: italic;"> unsigned int y;</span><br style="font-style: italic;">
+      &nbsp; <span style="font-style: italic;"> unsigned int width;</span><br style="font-style: italic;">
+      &nbsp; <span style="font-style: italic;"> unsigned int height;</span><br
+        style="font-style: italic;">
       <span style="font-style: italic;"> } BOX;</span><br>
       <br>
       <span style="text-decoration: underline;"> Work with collision detector</span><br>
@@ -2026,8 +2032,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <big> </big><br>
     <big style="font-style: italic;"> typedef struct Vertex</big><br style="font-style: italic;">
     <big style="font-style: italic;"> {</big><br style="font-style: italic;">
-    <big style="font-style: italic;"> int x;</big><br style="font-style: italic;">
-    <big style="font-style: italic;"> int y;</big><br style="font-style: italic;">
+    &nbsp; <big style="font-style: italic;">int x;</big><br style="font-style: italic;">
+    &nbsp; <big style="font-style: italic;"> int y;</big><br style="font-style: italic;">
     <big style="font-style: italic;"> };</big><br>
     <big> </big><br>
     <big> </big><big>Single texture coordinate represent by follow custom data
@@ -2035,8 +2041,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
     <big> </big><br>
     <big style="font-style: italic;"> typedef struct</big><br style="font-style: italic;">
     <big style="font-style: italic;"> {</big><br style="font-style: italic;">
-    <big style="font-style: italic;"> double u;</big><br style="font-style: italic;">
-    <big style="font-style: italic;"> double v;</big><br style="font-style: italic;">
+    &nbsp; <big style="font-style: italic;">double u;</big><br style="font-style: italic;">
+    &nbsp; <big style="font-style: italic;"> double v;</big><br style="font-style: italic;">
     <big style="font-style: italic;"> } Point;</big><br>
     <big> </big> <br>
     <big>All these custom types declared in <span style="font-style: italic;">Core</span>
@@ -2096,6 +2102,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.3.1 – Source code synced with Simple windows game framework kit 6.3.5.<br>
       4.3.2 – Source code synced with Eugene game development kit 6.6.6.<br>
       4.3.3 – Source code synced with Eugene game development kit 6.7.<br>
+      4.3.4 – Source code synced with Eugene game development kit 6.7.1.<br>
     </big><big> </big>
     <p></p>
   </body>
