@@ -561,6 +561,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Load background </big><big>from target file</big><big>.<br>
       <br>
       <span style="font-style: italic;">void Background::load(</span></big><big
+
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load normal background from target file.<br>
       <br>
@@ -798,12 +799,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       public methods.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1776,6 +1775,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -1865,7 +1865,11 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       with game–pad. Let's look at public methods.<br>
       <br>
       <span style="font-style: italic;">void Gamepad::set_active(const unsigned
-        int gamepad);</span> – Set current active game-pad.<br>
+        int gamepad);</span> – Set current active game-pad. Always call it after
+      get amount of connected game-pads.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int Gamepad::get_amount();</span>
+      – Return amount of connected game-pads.<br>
       <br>
       <span style="font-style: italic;">unsigned int Gamepad::get_active()
         const;</span> – Return identifer of current active game-pad.<br>
@@ -1874,7 +1878,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Return true if active game-pad is connected.<br>
       <br>
       <span style="font-style: italic;">void Gamepad::update();</span> – Update
-      internal game-pad state. Always call it before call another methods.<br>
+      game-pad state.<br>
       <br>
       <span style="font-style: italic;">bool Gamepad::check_button_hold(const
         BLACKGDK::GAMEPAD_BUTTONS button);</span> – Return true if a button of
@@ -2103,6 +2107,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.3.2 – Source code synced with Eugene game development kit 6.6.6.<br>
       4.3.3 – Source code synced with Eugene game development kit 6.7.<br>
       4.3.4 – Source code synced with Eugene game development kit 6.7.1.<br>
+      4.3.5 – Source code synced with Simple windows game framework 6.7.9.<br>
+      4.3.6 – Source code synced with Simple windows game framework 6.8.<br>
     </big><big> </big>
     <p></p>
   </body>

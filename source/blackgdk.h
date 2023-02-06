@@ -607,6 +607,7 @@ typedef enum
    Gamepad();
    ~Gamepad();
    void set_active(const unsigned int gamepad);
+   unsigned int get_amount();
    unsigned int get_active() const;
    bool check_connection();
    bool is_wireless();

@@ -1521,6 +1521,25 @@ namespace BLACKGDK
 
   }
 
+  unsigned int Gamepad::get_amount()
+  {
+   unsigned int amount;
+   amount=0;
+   for (active=0;active<XUSER_MAX_COUNT;++active)
+   {
+    if (this->read_state()==true)
+    {
+     amount=1+active;
+    }
+    else
+    {
+     break;
+    }
+
+   }
+   return amount;
+  }
+
   unsigned int Gamepad::get_active() const
   {
    return active;
