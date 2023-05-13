@@ -7,7 +7,7 @@ int main()
  BLACKGDK::Input::Keyboard keyboard;
  BLACKGDK::Input::Gamepad gamepad;
  BLACKGDK::Input::Mouse mouse;
- BLACKGDK::Misc::Multimedia media;
+ BLACKGDK::Misc::Audio media;
  BLACKGDK::Graphics::Screen screen;
  BLACKGDK::Graphics::Background space;
  BLACKGDK::Graphics::Sprite ship;
