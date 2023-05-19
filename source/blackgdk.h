@@ -623,12 +623,12 @@ typedef enum
    BLACKGDK::GAMEPAD_BATTERY_TYPE get_battery_type();
    BLACKGDK::GAMEPAD_BATTERY_LEVEL get_battery_level();
    void update();
-   bool check_button_hold(const BLACKGDK::GAMEPAD_BUTTONS button);
-   bool check_button_press(const BLACKGDK::GAMEPAD_BUTTONS button);
-   bool check_button_release(const BLACKGDK::GAMEPAD_BUTTONS button);
-   bool check_trigger_hold(const BLACKGDK::GAMEPAD_TRIGGERS trigger);
-   bool check_trigger_press(const BLACKGDK::GAMEPAD_TRIGGERS trigger);
-   bool check_trigger_release(const BLACKGDK::GAMEPAD_TRIGGERS trigger);
+   bool check_button_hold(const BLACKGDK::GAMEPAD_BUTTONS button) const;
+   bool check_button_press(const BLACKGDK::GAMEPAD_BUTTONS button) const;
+   bool check_button_release(const BLACKGDK::GAMEPAD_BUTTONS button) const;
+   bool check_trigger_hold(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const;
+   bool check_trigger_press(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const;
+   bool check_trigger_release(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const;
    unsigned char get_left_trigger() const;
    unsigned char get_right_trigger() const;
    bool set_vibration(const unsigned short int left,const unsigned short int right);
