@@ -43,7 +43,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #ifndef BLACKGDK_H
 #define BLACKGDK_H
 
-#if defined _MSC_VER && _MSC_VER>=1800
+#if defined _MSC_VER && _MSC_VER>=1900
   #pragma warning(disable : 4996)
   #pragma warning(disable : 4995)
 #endif
@@ -59,7 +59,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #endif
 
 #if defined __GNUC__
- #define _WIN32_WINNT 0x0600
+ #define _WIN32_WINNT 0x0602
 #endif
 
 #include <stddef.h>

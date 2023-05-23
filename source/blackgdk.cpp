@@ -184,7 +184,7 @@ namespace BLACKGDK
 
   void Synchronization::timer_setup(const unsigned int delay)
   {
-   if (CreateTimerQueueTimer(&timer,NULL,Internal::set_event,reinterpret_cast<PVOID>(event),0,delay,WT_EXECUTEDEFAULT)==FALSE)
+   if (CreateTimerQueueTimer(&timer,NULL,Internal::set_event,reinterpret_cast<PVOID>(event),0,delay,WT_EXECUTEINTIMERTHREAD)==FALSE)
    {
     timer=NULL;
     BLACKGDK::Halt("Can't set timer setting");
