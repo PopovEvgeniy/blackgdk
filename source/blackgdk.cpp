@@ -237,6 +237,15 @@ namespace BLACKGDK
 
   }
 
+  void Display::correct_depth()
+  {
+   if (display.dmBitsPerPel<16)
+   {
+    display.dmBitsPerPel=16;
+   }
+
+  }
+
   void Display::set_setting(const unsigned long int width,const unsigned long int height)
   {
    display.dmPelsWidth=width;
@@ -416,6 +425,7 @@ namespace BLACKGDK
    setting.cAuxBuffers=0;
    setting.cBlueBits=0;
    setting.cBlueShift=0;
+   setting.cColorBits=0;
    setting.cDepthBits=0;
    setting.cGreenBits=0;
    setting.cGreenShift=0;
@@ -430,7 +440,6 @@ namespace BLACKGDK
    setting.dwFlags=PFD_DRAW_TO_WINDOW|PFD_SUPPORT_OPENGL|PFD_DOUBLEBUFFER;
    setting.iPixelType=PFD_TYPE_RGBA;
    setting.iLayerType=PFD_MAIN_PLANE;
-   setting.cColorBits=IMAGE_COLOR;
   }
 
   WINGL::~WINGL()
@@ -449,9 +458,10 @@ namespace BLACKGDK
    return (setting.dwFlags&flag)!=0;
   }
 
-  int WINGL::get_pixel_format(HDC target)
+  int WINGL::get_pixel_format(HDC target,const unsigned long int color)
   {
    device=target;
+   setting.cColorBits=color;
    return ChoosePixelFormat(device,&setting);
   }
 
@@ -489,9 +499,9 @@ namespace BLACKGDK
 
   }
 
-  void WINGL::set_render(HDC target)
+  void WINGL::set_render(HDC target,const unsigned long int color)
   {
-   this->set_pixel_format(this->get_pixel_format(target));
+   this->set_pixel_format(this->get_pixel_format(target,color));
    this->create_render_context();
    this->disable_vsync();
   }
@@ -1988,9 +1998,21 @@ namespace BLACKGDK
 
   }
 
+  void Screen::check_video_mode()
+  {
+   this->get_video_mode();
+   if (this->get_depth()<16)
+   {
+    this->correct_depth();
+    this->set_video_mode();
+   }
+
+  }
+
   void Screen::set_resolution(const unsigned long int width,const unsigned long int height)
   {
    this->get_video_mode();
+   this->correct_depth();
    this->set_setting(width,height);
    this->set_video_mode();
   }
@@ -1998,7 +2020,7 @@ namespace BLACKGDK
   void Screen::screen_setup()
   {
    this->prepare_engine();
-   this->set_render(this->get_context());
+   this->set_render(this->get_context(),this->get_depth());
    this->start_render(this->get_display_width(),this->get_display_height());
    this->create_timer(17);
   }
@@ -2016,7 +2038,7 @@ namespace BLACKGDK
   {
    if (this->get_context()==NULL)
    {
-    this->get_video_mode();
+    this->check_video_mode();
     this->screen_setup();
    }
 

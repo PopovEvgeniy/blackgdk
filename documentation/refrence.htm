@@ -214,11 +214,29 @@
       <tbody>
         <tr>
           <td><big>Operating system </big></td>
-          <td><big>Windows 8 or higher </big></td>
+          <td><big>Windows Vista or higher </big></td>
         </tr>
         <tr>
-          <td><big>Sound card </big></td>
-          <td><big>Any sound card </big></td>
+          <td style="vertical-align: top;"><big>Minimum color depth<br>
+            </big></td>
+          <td style="vertical-align: top;"><big>16 bits<br>
+            </big></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><big>Sound card</big></td>
+          <td style="vertical-align: top;"><big>Any sound card</big></td>
+        </tr>
+        <tr>
+          <td colspan="1" rowspan="2" style="vertical-align: top;"><big>
+              Processor</big><br>
+          </td>
+          <td style="vertical-align: top;"><big>Intel Pentium 4 for 32–bit
+              system</big><br>
+          </td>
+        </tr>
+        <tr>
+          <td><big> Intel Core 2 Duo for 64–bit system </big><br>
+          </td>
         </tr>
         <tr>
         </tr>
@@ -228,19 +246,23 @@
     <h2><a name="mozTocId928115" class="mozTocH2"></a><big>Chapter 5. Trouble
         guide</big></h2>
     <big> You need <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Visual
-C++ Redistributable Packages</a> if you game code compiled under Visual C++.
-    </big>
+C++ Redistributable Packages</a> if you game code compiled under Visual C++.</big>
     <h2><a name="mozTocId491993" class="mozTocH2"></a><big>Chapter 6. Compilers</big></h2>
     <big> This engine successfully tested with these compilers:</big><br>
     <ul>
       <li><a href="https://jmeubank.github.io/tdm-gcc/"><big>TDM–GCC</big></a></li>
       <li><big><a href="http://mingw-w64.org">MINGW–w64</a><br>
         </big></li>
+      <li><big>Visual C++ 2013</big></li>
       <li><big>Visual C++ 2015<br>
         </big></li>
       <li><big>Visual C++ 2017</big></li>
       <li><big>Visual C++ 2019</big></li>
       <li><big>Visual C++ 2022</big></li>
+      <li><big>C++ Builder 10 Seattle</big></li>
+      <li><big>C++ Builder 10.1 Berlin</big></li>
+      <li><big>C++ Builder 10.2 Tokyo</big></li>
+      <li><big>C++ Builder 10.3 Rio</big></li>
       <li><big>C++ Builder 10.4 Sydney</big></li>
       <li><big>C++ Builder 11 Alexandria</big></li>
     </ul>
@@ -275,7 +297,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <li><big>opengl32.lib</big></li>
       <li><big>ole32.lib</big></li>
       <li><big>strmiids.lib</big></li>
-      <li><big>xinput1_4.lib</big></li>
+      <li><big>xinput.lib</big></li>
     </ul>
     <big>See documentation of the compiler for more information about linking.<br>
       <br>
@@ -288,9 +310,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br style="text-decoration: underline;">
       <span style="text-decoration: underline;">DirectX</span><br>
       <br>
-      You need to update <a href="https://www.microsoft.com/en-my/download/details.aspx?id=35">DirectX
-        End-User Runtime</a> if your game will run under Windows Vista or
-      Windows 7.<br>
+      You need to update <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8109">DirectX
+        End-User Runtime</a> before run your game.<br>
     </big>
     <ul>
     </ul>
@@ -557,7 +578,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       – Load background </big><big>from target file</big><big>.<br>
       <br>
       <span style="font-style: italic;">void Background::load(</span></big><big
-
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load normal background from target file.<br>
       <br>
@@ -1837,6 +1857,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2142,6 +2163,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.
       4.4.8 – Source code synced with Eugene game development kit 6.9.2.<br>
       4.4.9 – 4.5.1 – Small changes.<br>
       4.5.2 – Synchronization timer improved.<br>
+      4.5.3 – Small changes.<br>
     </big><big> </big>
     <p></p>
   </body>

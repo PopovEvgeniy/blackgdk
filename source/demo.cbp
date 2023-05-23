@@ -45,7 +45,7 @@
 			<Add library="opengl32" />
 			<Add library="ole32" />
 			<Add library="strmiids" />
-			<Add library="xinput1_4" />
+			<Add library="xinput" />
 		</Linker>
 		<Unit filename="blackgdk.cpp" />
 		<Unit filename="blackgdk.h" />

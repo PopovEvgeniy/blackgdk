@@ -43,7 +43,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #ifndef BLACKGDK_H
 #define BLACKGDK_H
 
-#if defined _MSC_VER && _MSC_VER>=1900
+#if defined _MSC_VER && _MSC_VER>=1800
   #pragma warning(disable : 4996)
   #pragma warning(disable : 4995)
 #endif
@@ -59,7 +59,7 @@ THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 #endif
 
 #if defined __GNUC__
- #define _WIN32_WINNT 0x0602
+ #define _WIN32_WINNT 0x0600
 #endif
 
 #include <stddef.h>
@@ -191,6 +191,7 @@ typedef enum
    protected:
    void set_video_mode();
    void get_video_mode();
+   void correct_depth();
    void set_setting(const unsigned long int width,const unsigned long int height);
    unsigned long int get_depth() const;
    unsigned long int get_display_width() const;
@@ -230,12 +231,12 @@ typedef enum
    PIXELFORMATDESCRIPTOR setting;
    PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT;
    bool check_flag(const unsigned long int flag) const;
-   int get_pixel_format(HDC target);
+   int get_pixel_format(HDC target,const unsigned long int color);
    void set_pixel_format(const int format);
    void create_render_context();
    void disable_vsync();
    protected:
-   void set_render(HDC target);
+   void set_render(HDC target,const unsigned long int color);
    void Swap();
    bool is_software_render() const;
    public:
@@ -693,6 +694,7 @@ typedef enum
   class Screen: public Core::FPS, public Core::Render, public Internal::Display, public Internal::Engine, public Internal::WINGL, public Internal::Synchronization
  {
    private:
+   void check_video_mode();
    void set_resolution(const unsigned long int width,const unsigned long int height);
    void screen_setup();
    public:
