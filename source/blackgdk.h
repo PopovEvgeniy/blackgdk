@@ -860,6 +860,7 @@ typedef enum
    void reset_sheet_setting();
    void prepare_sheet();
    public:
+   Sheet* get_handle();
    Sheet();
    ~Sheet();
    unsigned int get_row(const unsigned int target) const;
@@ -867,6 +868,8 @@ typedef enum
    unsigned int calculate(const unsigned int row,const unsigned int column) const;
    unsigned int get_rows() const;
    unsigned int get_columns() const;
+   void clone(Sheet *target);
+   void clone(Sheet &target);
    void destroy();
    void select(const unsigned int row,const unsigned int column);
    void select(const unsigned int target);
