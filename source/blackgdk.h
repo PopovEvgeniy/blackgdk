@@ -764,7 +764,6 @@ typedef enum
    private:
    unsigned int frames;
    unsigned int frame;
-   void correct_frame();
    protected:
    void reset_animation_setting();
    void increase_frame();
