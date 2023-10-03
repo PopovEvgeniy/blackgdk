@@ -55,6 +55,7 @@
           <li><a href="#mozTocId853711">Chapter 2. Abnormal program termination</a></li>
           <li><a href="#mozTocId656377">Chapter 3. Timer</a></li>
           <li><a href="#mozTocId381935">Chapter 4. Collision</a></li>
+          <li><a href="#mozTocId410969">Chapter 5. Tile–map</a></li>
         </ul>
       </li>
       <li><a href="#mozTocId611237">Part 5. Other important things</a>
@@ -578,6 +579,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       – Load background </big><big>from target file</big><big>.<br>
       <br>
       <span style="font-style: italic;">void Background::load(</span></big><big
+
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load normal background from target file.<br>
       <br>
@@ -817,9 +819,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <img src="sheet.png"><br>
       <br>
-      <span style="text-decoration: underline;"> Row and column</span><br>
+      <span style="text-decoration: underline;"> Rows and columns</span><br>
       <br>
-      First row is 1. First column is 1.<br>
+      First row index is 1. First column index is 1.<br>
     </big><big><br>
     </big><big><span style="text-decoration: underline;"> Work with sprite sheet
         subsystem</span><br>
@@ -1114,6 +1116,57 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;"> bool Collision::check_collision(const
         BLACKGDK::BOX &amp;first_target,const BLACKGDK::BOX &amp;second_target);</span>
       – Set collision targets and check collision between it.<br>
+    </big>
+    <h2><a class="mozTocH2" name="mozTocId410969"></a><big>Chapter 5. Tile–map</big></h2>
+    <big><span style="text-decoration: underline;">A few words about tile-map</span><br>
+      <br>
+      The tile–map is tile matrix. A tile is a small non–transparent sprite. A
+      tile–map is very useful thing for level background.<br>
+      <br>
+      <span style="text-decoration: underline;">Rows and columns</span><br>
+      <br>
+      First row index is 0. First column index is 0.<br>
+      <br style="text-decoration: underline;">
+      <span style="text-decoration: underline;">Work with tile-map</span><br>
+      <br>
+      <span style="font-style: italic;">Tilemap</span> class provide easy access
+      to the tile–map. It is a simple class with few methods. Let's look at
+      public methods.<br>
+      <br>
+      <span style="font-style: italic;">void Tilemap::initialize(const unsigned
+        int tile_width,const unsigned int tile_height);</span> – Initialize the
+      subsystem.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int Tilemap::get_tile_width()
+        const;</span> – Return the tile width in pixels.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">unsigned int Tilemap::get_tile_height()
+        const;</span> – Return the tile height in pixels.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">unsigned int Tilemap::get_x(const
+        unsigned int row) const;</span> – Get x-coordinate from target row.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int Tilemap::get_y(const
+        unsigned int column) const;</span> – Get y-coordinate from target
+      column.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">unsigned int Tilemap::get_row(const
+        unsigned int x) const;</span> – Get the row from x-coordinate.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">unsigned int Tilemap::get_column(const
+        unsigned int y) const;</span> – Get the column from y-coordinate.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int
+        Tilemap::get_row_amount(const unsigned int viewport_width) const;</span>
+      – Get amount of maximum visible rows.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int
+        Tilemap::get_column_amount(const unsigned int viewport_width) const;</span>
+      – Get amount of maximum visible columns.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">BLACKGDK::BOX Tilemap::get_box(const
+        unsigned int row,const unsigned int column) const;</span> – Return
+      collision related information.<br>
     </big>
     <h1><a name="mozTocId611237" class="mozTocH1"></a><big>Part 5. Other
         important things</big></h1>
@@ -1833,7 +1886,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -1876,6 +1928,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2207,6 +2260,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       4.7.6 – Source code synced with Eugene game development kit 7.3.6.<br>
       4.7.7 – Source code synced with Simple windows game framework 7.3.5.<br>
       4.7.8 – Source code synced with Eugene game development kit 7.3.7.<br>
+      4.7.9 – Source code synced with Eugene game development kit 7.4.4.<br>
     </big><big> </big>
     <p></p>
   </body>
