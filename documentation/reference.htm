@@ -1043,7 +1043,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <span style="text-decoration: underline;"> Important remark</span><br>
       <br>
-      A new will image replace current image if current image already exist.
+      A new image will replace current image if current image already exist.
       Incorrect images will ignore and don't load.<br>
       <br>
       <span style="text-decoration: underline;"> Supported format</span><br>
@@ -1074,18 +1074,34 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <img style="width: 107px; height: 111px;" alt="" src="cartesian_system.png"><br>
       <br>
-      <span style="text-decoration: underline;">Convert cartesian coordinates to
-        screen coordinates and convert screen coordinates to cartsian
-        coordinates.</span><br>
+      <span style="text-decoration: underline;">Cartesian coordinates to screen
+        coordinates convertion and screen coordinates to cartesian coordinates
+        conversion</span><br>
       <br>
       You can convert cartesian coordinates to screen coordinates. You can also
       convert screen coordinates to cartesian coordinates.<br>
-      Just use <span style="font-style: italic;">Coordinates</span> for doing
-      it. Let's look at public methods.<br>
+      Just use <span style="font-style: italic;">Coordinates</span> class for
+      doing it. Let's look at public methods.<br>
       <br>
       <span style="font-style: italic;">void Coordinates::initialize(const int
         viewport_width,const int viewport_height);</span> – Initialize the
       subsystem.<br>
+      <br>
+      <span style="font-style: italic;">int
+        Coordinates::get_lowest_cartesian_x() const;</span> – Return lowest
+      allowable cartesian x-coordinate.<br>
+      <br>
+      <span style="font-style: italic;">int
+        Coordinates::get_highest_cartesian_x() const;</span> – Return highest
+      allowable cartesian x-coordinate.<br>
+      <br>
+      <span style="font-style: italic;">int
+        Coordinates::get_lowest_cartesian_y() const;</span> – Return lowest
+      allowable cartesian y-coordinate.<br>
+      <br>
+      <span style="font-style: italic;">int
+        Coordinates::get_highest_cartesian_y() const;</span> – Return highest
+      allowable cartesian y-coordinate.<br>
       <br>
       <span style="font-style: italic;">int Coordinates::get_screen_x(const int
         x) const;</span> – Convert cartesian x-coordinate to screen
@@ -1149,7 +1165,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       &nbsp; <span style="font-style: italic;"> unsigned int y;</span><br style="font-style: italic;">
       &nbsp; <span style="font-style: italic;"> unsigned int width;</span><br style="font-style: italic;">
       &nbsp; <span style="font-style: italic;"> unsigned int height;</span><br
-
         style="font-style: italic;">
       <span style="font-style: italic;"> } BOX;</span><br>
       <br>
@@ -2319,6 +2334,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       4.8 – Source code synced with Eugene game development kit 7.4.5.<br>
       4.8.1 – Source code synced with Eugene game development kit 7.5.<br>
       4.8.2 – Source code synced with Eugene game development kit 7.5.3.<br>
+      4.8.3 – Source code synced with Eugene game development kit 7.5.4.<br>
     </big><big> </big>
     <p></p>
   </body>
