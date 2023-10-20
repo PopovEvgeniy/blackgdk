@@ -52,8 +52,8 @@
       <li><a href="#mozTocId803993">Part 4. Transformation</a>
         <ul>
           <li><a href="#mozTocId373768">Chapter 1. The sub–namespace</a></li>
-          <li><a href="#mozTocId182266">Chapter 2. Cartesian coordinates and
-              screen coordinates.</a></li>
+          <li><a href="#mozTocId743343">Chapter 2. Cartesian coordinates and
+              screen coordinates</a></li>
         </ul>
       </li>
       <li><a href="#mozTocId64443">Part 5. Common things</a>
@@ -340,8 +340,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
     <h2><a name="mozTocId312970" class="mozTocH2"></a><big>Chapter 1. Coordinate
         system</big></h2>
     <big><br>
-      The engine uses standard coordinate system. Coordinates start at top–left
-      corner. Look to this picture to understand it.<br>
+      The engine uses standard coordinate system by default. Coordinates start
+      at top–left corner. Look to this picture to understand it.<br>
       <br>
       <img style="width: 107px; height: 111px;" alt="" src="coordinate_system.png">
     </big>
@@ -1064,8 +1064,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
     <big>All subsystems in this section declared in <span style="font-style: italic;">Transformation</span>
       sub–namespace.<br>
     </big>
-    <h2><a id="mozTocId182266" class="mozTocH2"></a><big>Chapter 2. Cartesian
-        coordinates and screen coordinates.</big></h2>
+    <h2><a id="mozTocId743343" class="mozTocH2"></a><big>Chapter 2. Cartesian
+        coordinates and screen coordinates</big></h2>
     <big><br>
       <span style="text-decoration: underline;">Cartesian coordinates</span><br>
       <br>
@@ -1102,13 +1102,21 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;">int
         Coordinates::get_highest_cartesian_y() const;</span> – Return highest
       allowable cartesian y-coordinate.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">bool
+        Coordinates::check_cartesian_x(const int x) const;</span> – Return true
+      if the cartesian x-coordinate is valid.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">bool
+        Coordinates::check_cartesian_y(const int y) const;</span> – Return true
+      if the cartesian y-coordinate is valid.<br>
       <br>
       <span style="font-style: italic;">int Coordinates::get_screen_x(const int
         x) const;</span> – Convert cartesian x-coordinate to screen
       x-coordinate.<br>
       <br>
       <span style="font-style: italic;">int Coordinates::get_screen_y(const int
-        x) const;</span> – Convert cartesian y-coordinate to screen
+        y) const;</span> – Convert cartesian y-coordinate to screen
       y-coordinate.<br>
       <br>
       <span style="font-style: italic;">int Coordinates::get_cartesian_x(const
@@ -1116,7 +1124,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       x-coordinate.<br>
       <br>
       <span style="font-style: italic;">int Coordinates::get_cartesian_y(const
-        int x) const;</span> – Convert screen y-coordinate to cartesian
+        int y) const;</span> – Convert screen y-coordinate to cartesian
       y-coordinate.<br>
     </big> <big> </big>
     <h1><a name="mozTocId64443" class="mozTocH1"></a><big>Part 5. Common things</big></h1>
@@ -1897,7 +1905,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -1956,7 +1963,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -1999,6 +2005,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2335,6 +2342,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       4.8.1 – Source code synced with Eugene game development kit 7.5.<br>
       4.8.2 – Source code synced with Eugene game development kit 7.5.3.<br>
       4.8.3 – Source code synced with Eugene game development kit 7.5.4.<br>
+      4.8.4 – Source code synced with Eugene game development kit 7.5.8.<br>
     </big><big> </big>
     <p></p>
   </body>
