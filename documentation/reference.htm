@@ -166,6 +166,7 @@
       <li><a href="https://vk.com/strong666"><big>Vitaliy Molochkov</big></a></li>
       <li><a href="mailto:eyegem@mail.ru"><big>Evgenia Germanova</big></a></li>
       <li><big>DDMZ</big></li>
+      <li><big>Anastasiya</big></li>
     </ul>
     <big><br>
       Also thanks to PVS–Studio team for <a href="https://www.viva64.com/en/b/0614/">free
@@ -840,10 +841,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       public methods.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1173,6 +1176,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       &nbsp; <span style="font-style: italic;"> unsigned int y;</span><br style="font-style: italic;">
       &nbsp; <span style="font-style: italic;"> unsigned int width;</span><br style="font-style: italic;">
       &nbsp; <span style="font-style: italic;"> unsigned int height;</span><br
+
         style="font-style: italic;">
       <span style="font-style: italic;"> } BOX;</span><br>
       <br>
@@ -1240,6 +1244,19 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;">unsigned int
         Tilemap::get_column_amount(const unsigned int viewport_width) const;</span>
       – Get amount of maximum visible columns.<br>
+      <br>
+      <span style="font-style: italic;">unsigned int
+        Tilemap::get_tile_amount(const unsigned int viewport_width,const
+        unsigned int viewport_height) const;</span> – Get amount of maximum
+      visible tiles.<br>
+      <br>
+      <span style="font-style: italic;">bool Tilemap::check_row(const unsigned
+        int row,const unsigned int viewport_width) const;</span> – Return true
+      if the row is valid.<br>
+      <br>
+      <span style="font-style: italic;">bool Tilemap::check_column(const
+        unsigned int column,const unsigned int viewport_height) const;</span> –
+      Return true if the column is valid.<br>
       <br style="font-style: italic;">
       <span style="font-style: italic;">BLACKGDK::BOX Tilemap::get_box(const
         unsigned int row,const unsigned int column) const;</span> – Return
@@ -2005,7 +2022,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2187,7 +2203,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
     <big><br style="text-decoration: underline;">
       <span style="text-decoration: underline;"> Core classes</span><br>
       <br>
-      All engine core classes and functions declared in <span style="font-style: italic;">Core</span>
+      All engine core classes declared in <span style="font-style: italic;">Core</span>
       sub–namespace.<br>
       <br>
     </big> <big><span style="font-style: italic;"> FPS</span> implement fps
@@ -2343,6 +2359,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       4.8.2 – Source code synced with Eugene game development kit 7.5.3.<br>
       4.8.3 – Source code synced with Eugene game development kit 7.5.4.<br>
       4.8.4 – Source code synced with Eugene game development kit 7.5.8.<br>
+      4.8.5 – Source code synced with Eugene game development kit 7.6.3.<br>
     </big><big> </big>
     <p></p>
   </body>
