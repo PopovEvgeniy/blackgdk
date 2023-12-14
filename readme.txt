@@ -21,6 +21,8 @@ Features
  Text drawing subsystem.
  Custom fonts.
  Timers.
+ Coordinates transformation.
+ Isometric.
  Collision detector.
  Integrated fps counter.
  Powerful input subsystem: keyboard, mouse, game-pad.
