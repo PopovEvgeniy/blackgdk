@@ -3610,6 +3610,30 @@ namespace BLACKGDK
    return cartesian_y;
   }
 
+  int Isometric::get_isometric_x(const int x,const int y)
+  {
+   this->set_target(x,y);
+   return this->get_isometric_x();
+  }
+
+  int Isometric::get_isometric_y(const int x,const int y)
+  {
+   this->set_target(x,y);
+   return this->get_isometric_y();
+  }
+
+  int Isometric::get_cartesian_x(const int x,const int y)
+  {
+   this->set_target(x,y);
+   return this->get_cartesian_x();
+  }
+
+  int Isometric::get_cartesian_y(const int x,const int y)
+  {
+   this->set_target(x,y);
+   return this->get_cartesian_y();
+  }
+
   World::World()
   {
    half_tile_width=1;
