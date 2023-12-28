@@ -1207,7 +1207,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       at public methods.<br>
       <br>
       <span style="font-style: italic;">void World::initialize(const int
-        tile_width,const int tile_height);</span> – Initialize the subsystem.<br>
+        tile_width,const int tile_height,const int screen_width,const int
+        screen_height);</span> – Initialize the subsystem.<br>
       <br>
       <span style="font-style: italic;">int World::get_target_x(const int row,</span></big><big
       style="font-style: italic;">const int column</big><big><span style="font-style: italic;">)
@@ -1226,8 +1227,17 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;">int World::get_column(const int y</span></big><big
       style="font-style: italic;">,</big><big style="font-style: italic;">const
       int y</big><big><span style="font-style: italic;">) const;</span> – Get
-      the column</big><big> from target point.</big><br>
-    <big> </big>
+      the column</big><big> from target point.<br>
+      <br>
+      <span style="font-style: italic;">int World::get_row_amount() const;</span>
+      – Get amount of maximum visible rows.<br>
+      <br>
+      <span style="font-style: italic;">int World::get_column_amount() const;</span>
+      – Get amount of maximum visible columns.<br>
+      <br>
+      <span style="font-style: italic;">int World::get_tile_amount() const;</span>
+      – Get amount of maximum visible isometric tiles.<br>
+    </big> <big> </big>
     <h1><a name="mozTocId64443" class="mozTocH1"></a><big>Part 5. Common things</big></h1>
     <h2><a name="mozTocId597525" class="mozTocH2"></a><big>Chapter 1. The
         sub–namespace</big></h2>
@@ -1457,10 +1467,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Exit from your program and return user to operating system.<br>
       <br>
       <span style="font-style: italic;">bool enable_logging(const char *name); </span></big><big>–</big><big><span
+
         style="font-style: italic;"></span> Enable redirecting error messages to
       a log file and return false if the operation failed.<br>
       <br>
       <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big><span
+
         style="font-style: italic;"></span> Initialize random number generator.<br>
       <br>
       <span style="font-style: italic;">unsigned int get_random(const int
@@ -2077,7 +2089,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2120,6 +2131,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2472,6 +2484,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       4.9.7 – Source code synced with Eugene game development kit 7.8.<br>
       4.9.8 – Source code synced with Eugene game development kit 7.8.1.<br>
       4.9.9 – Source code synced with Eugene game development kit 7.8.2.<br>
+      5.0 – Source code synced with Eugene game development kit 7.8.4.<br>
     </big>
     <p></p>
     <big> </big>
