@@ -3005,6 +3005,16 @@ namespace BLACKGDK
    return this;
   }
 
+  bool Sheet::check_row(const unsigned int target) const
+  {
+   return (target>0) && (target<=rows);
+  }
+
+  bool Sheet::check_column(const unsigned int target) const
+  {
+   return (target>0) && (target<=columns);
+  }
+
   void Sheet::reset_sheet_setting()
   {
    rows=0;
@@ -3055,9 +3065,9 @@ namespace BLACKGDK
   {
    unsigned int target;
    target=1;
-   if ((row>0)&&(row<=rows))
+   if (this->check_row(row)==true)
    {
-    if ((column>0)&&(column<=columns))
+    if (this->check_column(column)==true)
     {
      target+=(row-1)+(column-1)*rows;
     }
@@ -3115,9 +3125,9 @@ namespace BLACKGDK
 
   void Sheet::select(const unsigned int row,const unsigned int column)
   {
-   if ((row>0)&&(row<=rows))
+   if (this->check_row(row)==true)
    {
-    if ((column>0)&&(column<=columns))
+    if (this->check_column(column)==true)
     {
      billboard.set_tile_offset(static_cast<double>(row),static_cast<double>(rows),static_cast<double>(column),static_cast<double>(columns));
     }
