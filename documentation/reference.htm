@@ -662,6 +662,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;"> bool Billboard::get_transparent()
         const;</span> – Return true if transparent mode is enable.<br>
       <br>
+      <span style="font-style: italic;">void Billboard::set_start(const unsigned
+        int x, const unsigned int y);</span> – Set start position of the sprite.<br>
+      <br>
     </big><big><span style="font-style: italic;">void
         Billboard::set_position(const unsigned int x, const unsigned int y);</span>
       – Set sprite position.<br>
@@ -738,6 +741,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <span style="font-style: italic;">void Billboard::complex_mirror();</span>
       – Set both horizontal and vertical sprite mirroring mode.<br>
+      <br>
+      <span style="font-style: italic;">void Billboard::go_start();</span> – Set
+      sprite position to start position.<br>
       <br>
     </big><big> </big><big><span style="font-style: italic;">void
         Billboard::draw();</span> – Draw a sprite.<br>
@@ -859,12 +865,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         int target) const;</span> – Return true if target column is valid.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1477,12 +1481,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Exit from your program and return user to operating system.<br>
       <br>
       <span style="font-style: italic;">bool enable_logging(const char *name); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Enable redirecting error messages to
       a log file and return false if the operation failed.<br>
       <br>
       <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Initialize random number generator.<br>
       <br>
       <span style="font-style: italic;">unsigned int get_random(const int
@@ -2041,7 +2043,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2143,7 +2144,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2500,6 +2500,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.0.1 – Source code synced with Eugene game development kit 7.8.5.<br>
       5.0.2 – Source code synced with Eugene game development kit 7.8.6.<br>
       5.0.3 – Source code synced with Eugene game development kit 7.8.8.<br>
+      5.0.4 – Source code synced with Eugene game development kit 7.8.9.<br>
     </big>
     <p></p>
     <big> </big>
