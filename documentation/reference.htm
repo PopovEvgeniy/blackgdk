@@ -368,7 +368,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         subsystem</span><br>
       <br>
       Base graphics subsystem do rendering game scene. This subsystem using <a
-
         href="http://opengl.org">OPENGL</a> for render. Most modern video–card
       support hardware accelerated OPENGL. Software emulated OPENGL will
       activate if </big><big>hardware acceleration not available.</big><br>
@@ -546,6 +545,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       Just use <span style="font-style: italic;">Background</span> class to
       work with background. Let's look at public methods.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">Background* Background::get_handle();</span>
+      – Return the handle to background object.<br>
     </big><big><br style="font-style: italic;">
       <span style="font-style: italic;"> void Background::prepare(const Screen
         *screen);</span> – Prepare for drawing.<br>
@@ -615,6 +617,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <span style="font-style: italic;"> void Background::destroy();</span> –
       Destroy a background image and destroy a background texture.<br>
+      <br style="font-style: italic;">
+      <span style="font-style: italic;">bool Background::is_last_frame() const;</span>
+      – Return true if current frame of scrollable background is last frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Background::get_frame()
         const;</span> – Return current frame in scrollable background.<br>
@@ -2050,6 +2055,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2151,6 +2157,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2510,7 +2517,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.0.4 – Source code synced with Eugene game development kit 7.8.9.<br>
       5.0.5 – Source code synced with Eugene game development kit 7.9.<br>
       5.0.6 – Source code synced with Eugene game development kit 7.9.1.<br>
+      5.0.7 – Source code synced with Eugene game development kit 7.9.2.<br>
     <p></p>
-    <big> </big>
+    <big> <big> </big> </big>
   </body>
 </html>
