@@ -9,7 +9,7 @@ int main()
  BLACKGDK::Input::Mouse mouse;
  BLACKGDK::Misc::Audio media;
  BLACKGDK::Graphics::Screen screen;
- BLACKGDK::Graphics::Background space;
+ BLACKGDK::Graphics::Scene space;
  BLACKGDK::Graphics::Sprite ship;
  BLACKGDK::Graphics::Text text;
  BLACKGDK::Tools::enable_logging("log.txt");
