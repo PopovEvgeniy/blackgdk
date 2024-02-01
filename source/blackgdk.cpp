@@ -618,9 +618,9 @@ namespace BLACKGDK
   {
    unsigned int next_x;
    next_x=x+1;
-   if (next_x>=source_width)
+   if (next_x==source_width)
    {
-    next_x=source_width-1;
+    --next_x;
    }
    return next_x;
   }
@@ -629,9 +629,9 @@ namespace BLACKGDK
   {
    unsigned int next_y;
    next_y=y+1;
-   if (next_y>=source_height)
+   if (next_y==source_height)
    {
-    next_y=source_height-1;
+    --next_y;
    }
    return next_y;
   }
@@ -2433,14 +2433,10 @@ namespace BLACKGDK
   void Picture::copy_image(const unsigned int *target)
   {
    size_t index;
-   if (target!=NULL)
+   image[0]=target[0];
+   for (index=image.get_length()-1;index>0;--index)
    {
-    image[0]=target[0];
-    for (index=image.get_length()-1;index>0;--index)
-    {
-     image[index]=target[index];
-    }
-
+    image[index]=target[index];
    }
 
   }
