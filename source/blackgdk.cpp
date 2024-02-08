@@ -111,6 +111,9 @@ namespace BLACKGDK
     case WM_DESTROY:
     PostQuitMessage(0);
     break;
+    case WM_ACTIVATE:
+    if (LOWORD(lParam)!=WA_INACTIVE) SetFocus(window);
+    break;
     case WM_LBUTTONDOWN:
     Buttons[BLACKGDK::MOUSE_LEFT]=KEY_PRESS;
     break;
@@ -369,6 +372,7 @@ namespace BLACKGDK
    {
     BLACKGDK::Halt("Can't create window");
    }
+   UpdateWindow(window);
    SetFocus(window);
   }
 
