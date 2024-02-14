@@ -5,7 +5,7 @@ int main()
  int x,y,row,column;
  BLACKGDK::Graphics::Screen screen;
  BLACKGDK::Graphics::Scene sky;
- BLACKGDK::Graphics::Sprite ground;
+ BLACKGDK::Graphics::Cartoon ground;
  BLACKGDK::Graphics::Text text;
  BLACKGDK::Transformation::Coordinates cartesian;
  BLACKGDK::Transformation::World level;
