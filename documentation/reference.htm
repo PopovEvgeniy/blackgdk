@@ -499,6 +499,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <span style="font-style: italic;">bool Animation::is_last_frame() const;</span>
       – Return true if current frame is last frame.<br>
+      <br>
+      <span style="font-style: italic;">bool Animation::check_frame(const
+        unsigned int target) const;</span> – Return true if target frame is
+      valid.<br>
     </big>
     <h2><a name="mozTocId904725" class="mozTocH2"></a><big>Chapter 5. Image kind</big></h2>
     <big></big>
@@ -974,10 +978,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         int target) const;</span> – Return true if target column is valid.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1356,12 +1362,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Get target cartesian y-coordinate </big><big>from the row and column.<br>
       <br>
     </big><big><span style="font-style: italic;">int World::get_row(const int x,</span></big><big
-
       style="font-style: italic;">const int y</big><big><span style="font-style: italic;">)
         const;</span> – Get the row from target point.<br>
       <br>
       <span style="font-style: italic;">int World::get_column(const int y</span></big><big
-
       style="font-style: italic;">,</big><big style="font-style: italic;">const
       int y</big><big><span style="font-style: italic;">) const;</span> – Get
       the column</big><big> from target point.<br>
@@ -1613,12 +1617,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Exit from your program and return user to operating system.<br>
       <br>
       <span style="font-style: italic;">bool enable_logging(const char *name); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Enable redirecting error messages to
       a log file and return false if the operation failed.<br>
       <br>
       <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big><span
-
         style="font-style: italic;"></span> Initialize random number generator.<br>
       <br>
       <span style="font-style: italic;">unsigned int get_random(const int
@@ -2183,7 +2185,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2284,6 +2285,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2669,7 +2671,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.3 – Source code synced with Eugene game development kit 8.2.6.<br>
       5.3.1 – Source code synced with Eugene game development kit 8.2.8.<br>
       5.3.2 – Source code synced with Eugene game development kit 8.3.<br>
-      <p></p>
-    </big>
+      5.3.3 – Source code synced with Eugene game development kit 8.3.1.<br>
+      5.3.4 – Source code synced with Eugene game development kit 8.3.2.<br>
+    </big><big> 5.3.5 – Source code synced with Eugene game development kit 8.3.3.</big><br>
   </body>
 </html>
