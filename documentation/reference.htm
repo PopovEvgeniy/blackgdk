@@ -5,6 +5,7 @@
   </head>
   <body>
     <p> </p>
+    <p> </p>
     <p> <big> </big> </p>
     <div>
       <div style="text-align: center;"><big>Black game development kit:
@@ -358,7 +359,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       What is the main point in your game? A game cycle. You can see the
       structure of a typical game cycle below.<br>
       <br>
-      <img style="width: 379px; height: 354px;" alt="" src="game_cycle.png"> </big>
+      <img style="width: 379px; height: 354px;" alt="" src="game_cycle.png">
+    </big>
     <h1><a name="mozTocId760374" class="mozTocH1"></a><big>Part 3. Graphics</big></h1>
     <h2><a name="mozTocId182571" class="mozTocH2"></a><big>Chapter 1. The
         sub–namespace</big></h2>
@@ -607,6 +609,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br style="font-style: italic;">
       <span style="font-style: italic;">bool Background::is_last_frame() const;</span>
       – Return true if current frame.<br>
+      <br>
+      <span style="font-style: italic;">bool Background::check_frame(const
+        unsigned int target) const;</span> – Return true if target frame is
+      valid.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Background::get_frame()
         const;</span> – Return current frame.<br>
@@ -983,7 +989,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1216,7 +1221,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Cartesian coordinates start at center of the screen. Look to this picture
       to understand it.<br>
       <br>
-      <img style="width: 107px; height: 111px;" alt="" src="cartesian_system.png"><br>
+      <img style="width: 107px; height: 111px;" alt="" src="file:///D:/%D0%9E%D0%B1%D1%80%D0%B0%D0%B7/blackgdk/Version%205.3.6/blackgdk/documentation/cartesian_system.png"><br>
       <br>
       <span style="text-decoration: underline;">Cartesian coordinates to screen
         coordinates convertion and screen coordinates to cartesian coordinates
@@ -1341,6 +1346,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       </big></h2>
     <big><span style="text-decoration: underline;"></span> Isometric level
       subsystem intend for help you to create an isometric levels. Just use <span
+
         style="font-style: italic;">World</span> class for doing it. Let's look
       at public methods.<br>
       <br>
@@ -2674,5 +2680,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.3.3 – Source code synced with Eugene game development kit 8.3.1.<br>
       5.3.4 – Source code synced with Eugene game development kit 8.3.2.<br>
     </big><big> 5.3.5 – Source code synced with Eugene game development kit 8.3.3.</big><br>
+    <big> 5.3.6 – Source code synced with Eugene game development kit 8.3.4.</big><br>
   </body>
 </html>
