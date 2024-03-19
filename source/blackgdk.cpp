@@ -2209,6 +2209,15 @@ namespace BLACKGDK
    return this->update();
   }
 
+  bool Screen::sync(const bool limit)
+  {
+   if (limit==true)
+   {
+    this->wait_timer();
+   }
+   return this->update();
+  }
+
   bool Screen::is_ready()
   {
    return this->get_context()!=NULL;
