@@ -538,7 +538,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       Background is a big image. It is like decoration in theater stage. Any
       game has a background. The background will stretch to screen resolution
-      before rendering the game scene.<br>
+      before rendering the game scene. Background transparency is disabled.<br>
       <br>
       There are two background kinds: horizontal orientated scrolling background
       and vertical orientated scrolling background. It is a big image with few
@@ -687,6 +687,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         &amp;background);</span> – Load a background </big><big>from the buffer</big><big>.<br>
       <br>
     </big><big><span style="font-style: italic;">void Scene::load(</span></big><big
+
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load a background from target file.</big><br>
     <big><br>
@@ -986,12 +987,10 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         int target) const;</span> – Return true if target column is valid.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
-
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -1196,11 +1195,13 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       A new image will replace current image if current image already exist.
       Incorrect images will ignore and don't load.<br>
+      Source image will convert to <a href="https://en.wikipedia.org/wiki/RGBA">RGBA</a>
+      format. Pixels equal to top-left pixel will mark as transparent.<br>
       <br>
       <span style="text-decoration: underline;"> Supported format</span><br>
     </big>
     <p><big> All loading images must have correct specification. You can load an
-        image from 32 bit </big><big><a href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision
+        image from 24 bit </big><big><a href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision
           TGA</a> pictures. </big></p>
     <big><span style="text-decoration: underline;"> Recommend software</span><br>
       <br>
@@ -2193,6 +2194,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2680,8 +2682,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.3.2 – Source code synced with Eugene game development kit 8.3.<br>
       5.3.3 – Source code synced with Eugene game development kit 8.3.1.<br>
       5.3.4 – Source code synced with Eugene game development kit 8.3.2.<br>
-    </big><big> 5.3.5 – Source code synced with Eugene game development kit 8.3.3.</big><br>
-    <big> 5.3.6 – Source code synced with Eugene game development kit 8.3.4.<br>
+      5.3.5 – Source code synced with Eugene game development kit 8.3.3.<br>
+      5.3.6 – Source code synced with Eugene game development kit 8.3.4.<br>
       5.3.7 – Source code synced with Neon game development kit 5.2.9.<br>
       5.3.8 – Source code synced with Neon game development kit 5.3.<br>
       5.3.9 – Source code synced with Neon game development kit 5.3.1.<br>
@@ -2694,6 +2696,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.4.6 – Source code synced with Eugene game development kit 8.4.5.<br>
       5.4.7 – Source code synced with Eugene game development kit 8.4.6.<br>
       5.4.8 – Source code synced with Eugene game development kit 8.4.8.<br>
+      5.4.9 – Source code synced with Eugene game development kit 8.5.<br>
     </big>
   </body>
 </html>
