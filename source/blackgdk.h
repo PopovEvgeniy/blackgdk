@@ -1131,9 +1131,9 @@ typedef enum
    Collision();
    ~Collision();
    Collision* get_handle();
-   void set_target(const BLACKGDK::BOX &first_target,const BLACKGDK::BOX &second_target);
+   void set_target(const BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);
    bool check_collision() const;
-   bool check_collision(const BLACKGDK::BOX &first_target,const BLACKGDK::BOX &second_target);
+   bool check_collision(const BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);
   };
 
   class Tilemap
