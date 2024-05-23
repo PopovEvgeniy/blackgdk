@@ -393,10 +393,6 @@ namespace BLACKGDK
      TranslateMessage(&Message);
      DispatchMessage(&Message);
     }
-    else
-    {
-     break;
-    }
 
    }
    return run;
