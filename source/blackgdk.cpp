@@ -1763,7 +1763,7 @@ namespace BLACKGDK
      battery_type=BLACKGDK::GAMEPAD_BATTERY_UNKNOW;
      break;
      default:
-     battery_type=BLACKGDK::GAMEPAD_BATTERY_TYPE_ERROR;
+     ;
      break;
     }
 
@@ -1791,6 +1791,9 @@ namespace BLACKGDK
      case BATTERY_LEVEL_FULL:
      level=BLACKGDK::GAMEPAD_BATTERY_FULL;
      break;
+     default:
+     ;
+     break;
     }
     if (battery.BatteryType==BATTERY_TYPE_WIRED)
     {
@@ -1798,7 +1801,7 @@ namespace BLACKGDK
     }
     if (battery.BatteryType==BATTERY_TYPE_DISCONNECTED)
     {
-     level=BLACKGDK::GAMEPAD_BATTERY_LEVEL_ERROR;
+     level=BLACKGDK::GAMEPAD_BATTERY_EMPTY;
     }
 
    }
