@@ -429,8 +429,8 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;"> unsigned int Screen::get_fps() const;</span>
       – Return current fps value.<br>
       <br>
-      <span style="font-style: italic;"> unsigned int Screen::get_color()
-        const;</span> – Return current color depth in bits per pixel.<br>
+      <span style="font-style: italic;"> unsigned int Screen::get_color() const;</span>
+      – Return current color depth in bits per pixel.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Screen::get_width() const;</span>
       – Return screen width in pixels.<br>
@@ -687,6 +687,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         &amp;background);</span> – Load a background </big><big>from the buffer</big><big>.<br>
       <br>
     </big><big><span style="font-style: italic;">void Scene::load(</span></big><big
+
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load a background from target file.</big><br>
     <big><br>
@@ -1451,16 +1452,16 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       – Return the handle to the collision detector.<br>
     </big><br>
     <big><span style="font-style: italic;">void Collision::set_target(const
-        BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);</span>
-      – Set targets for collision detector.<br>
+        BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);</span> –
+      Set targets for collision detector.<br>
       <br>
       <span style="font-style: italic;"> bool Collision::check_collision()
         const;</span> – Return true if collision between two objects is
       accepted.<br>
       <br>
       <span style="font-style: italic;"> bool Collision::check_collision(const
-        BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);</span>
-      – Set collision targets and check collision between it.<br>
+        BLACKGDK::BOX first_target,const BLACKGDK::BOX second_target);</span> –
+      Set collision targets and check collision between it.<br>
     </big>
     <h2><a class="mozTocH2" name="mozTocId410969"></a><big>Chapter 5. Tile–map</big></h2>
     <big><span style="text-decoration: underline;">A few words about tile-map</span><br>
@@ -1556,6 +1557,14 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <span style="font-style: italic;"> unsigned long long int
         Memory::get_free_virtual();</span> – Return free <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual
         memory</a> size in bytes.<br>
+      <br>
+      <span style="font-style: italic;">unsigned long long int
+        Memory::get_physical_usge();</span> – Return usage physical memory in
+      bytes.<br>
+      <br>
+      <span style="font-style: italic;">unsigned long long int
+        Memory::get_virtual_usge();</span> – Return usage virtual memory in
+      bytes.<br>
       <br>
       <span style="font-style: italic;"> unsigned long int Memory::get_usage();</span>
       – Return percentage of physical memory usage. <br>
@@ -2253,7 +2262,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 708px; height: 149px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2296,6 +2304,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2724,6 +2733,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.7.3 – Game–pad subsystem improved.<br>
       5.7.4 – Source code synced with Eugene game development kit 8.7.9.<br>
       5.7.5 – 5.7.6 – Small changes.<br>
+      5.7.7 – Source code synced with Eugene game development kit 8.8.3.<br>
     </big>
   </body>
 </html>
