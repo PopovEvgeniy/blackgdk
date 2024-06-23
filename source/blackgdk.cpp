@@ -2436,7 +2436,7 @@ namespace BLACKGDK
    height=0;
   }
 
-  unsigned char *Image::load_tga(const char *name)
+  unsigned char *Image::load(const char *name)
   {
    File::Input_File target;
    if (name!=NULL)
@@ -3018,7 +3018,7 @@ namespace BLACKGDK
   void Sprite::load(const char *name,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames)
   {
    Image picture;
-   picture.load_tga(name);
+   picture.load(name);
    this->load(picture,kind,frames);
    picture.destroy_image();
   }
@@ -3104,7 +3104,7 @@ namespace BLACKGDK
   void Cartoon::load(const char *name)
   {
    Image picture;
-   picture.load_tga(name);
+   picture.load(name);
    this->load(picture);
    picture.destroy_image();
   }
@@ -3326,7 +3326,7 @@ namespace BLACKGDK
   void Sheet::load(const char *name,const unsigned int row_amount,const unsigned int column_amount)
   {
    Image picture;
-   picture.load_tga(name);
+   picture.load(name);
    this->load(picture,row_amount,column_amount);
    picture.destroy_image();
   }
