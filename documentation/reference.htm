@@ -687,7 +687,6 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         &amp;background);</span> – Load a background </big><big>from the buffer</big><big>.<br>
       <br>
     </big><big><span style="font-style: italic;">void Scene::load(</span></big><big
-
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load a background from target file.</big><br>
     <big><br>
@@ -1636,10 +1635,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       Exit from your program and return user to operating system.<br>
       <br>
       <span style="font-style: italic;">bool enable_logging(const char *name); </span></big><big>–</big><big><span
+
         style="font-style: italic;"></span> Enable redirecting error messages to
       a log file and return false if the operation failed.<br>
       <br>
       <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big><span
+
         style="font-style: italic;"></span> Initialize random number generator.<br>
       <br>
       <span style="font-style: italic;">unsigned int get_random(const int
@@ -1658,23 +1659,22 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
     <big>A resource is an instance of a user–defined class or structure.
       Resource manager is storage for resources. It implemented as few template
       functions. All these functions declared in <span style="font-style: italic;">Resource</span>
-      sub–namespace.<br>
-      <br>
-      <span style="font-style: italic;"> create</span> function create single
-      resource or terminate the program if operation failed. It didn't take
-      argument and return handle of the resource.<br>
-      <br style="font-style: italic;">
-      <span style="font-style: italic;"> create_array</span> function create
-      resource array or terminate the program if operation failed. It takes
-      resource amount as argument and return handle of resource array.<br>
-      <br>
-      <span style="font-style: italic;"> destroy</span> function delete resource
-      if it already exists. This function takes resource handle as argument.<br>
-      <br>
-      <span style="font-style: italic;"> destroy_array</span> function delete
-      resource array if it already exists. This function takes resource array
-      handle as argument.<br>
-    </big>
+      sub–namespace.</big><br>
+    <big> </big><br>
+    <big> <span style="font-style: italic;"> create</span> function create a
+      single resource or array of resources. It has two form. First form create
+      a single resource. First form takes a handle to resource handle as
+      arguments.</big><big> Second form create array of resources. Second form
+      takes a handle to resource handle and resource amount as arguments.<br>
+    </big><br>
+    <big> <span style="font-style: italic;"> destroy</span> function delete
+      resource if it already exists. This function takes resource handle as
+      argument.</big><br>
+    <big> </big><br>
+    <big> <span style="font-style: italic;"> destroy_array</span> function
+      delete resource array if it already exists. This function takes resource
+      array handle as argument.</big><br>
+    <big> </big>
     <h1><a name="mozTocId590919" class="mozTocH1"></a><big> Part 8. Binary files</big></h1>
     <h2><a name="mozTocId200879" class="mozTocH2"></a><big>Chapter 1. The
         sub–namespace</big></h2>
@@ -2204,6 +2204,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2736,6 +2737,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       5.7.7 – Source code synced with Eugene game development kit 8.8.3.<br>
       5.7.8 – Source code synced with Eugene game development kit 8.8.4.<br>
       5.7.9 – Source code synced with Eugene game development kit 8.8.5.<br>
+      5.8 – Resource manager improved.<br>
+      5.8.1 – Small changes.<br>
+      5.8.2 – Resource manager improved.<br>
     </big>
   </body>
 </html>
