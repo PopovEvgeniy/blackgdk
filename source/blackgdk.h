@@ -254,7 +254,8 @@ typedef enum
    }
    catch (...)
    {
-    BLACKGDK::Halt("Can't allocate memory");
+    puts("Can't allocate memory");
+    exit(EXIT_FAILURE);
    }
 
   }
@@ -268,7 +269,8 @@ typedef enum
    }
    catch (...)
    {
-    BLACKGDK::Halt("Can't allocate memory");
+    puts("Can't allocate memory");
+    exit(EXIT_FAILURE);
    }
 
   }
