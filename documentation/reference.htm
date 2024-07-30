@@ -690,6 +690,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         &amp;background);</span> – Load a background </big><big>from the buffer</big><big>.<br>
       <br>
     </big><big><span style="font-style: italic;">void Scene::load(</span></big><big
+
       style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
       – Load a background from target file.</big><br>
     <big><br>
@@ -808,6 +809,9 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       <br>
       <span style="font-style: italic;"> unsigned int Billboard::get_height()
         const;</span> – Return the height of the sprite.<br>
+      <br>
+      <span style="font-style: italic;">bool Billboard::is_load() const;</span>
+      – Return true if the sprite is already loaded.<br>
       <br>
     </big><big><span style="font-style: italic;">BLACKGDK::BOX
         Billboard::get_box() const;</span> – Return collision related
@@ -989,10 +993,12 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
         int target) const;</span> – Return true if target column is valid.<br>
       <br>
     </big><big style="font-style: italic;"> unsigned int Sheet::get_row(</big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return row of target frame.<br>
       <br>
       <span style="font-style: italic;"> unsigned int Sheet::get_column(</span></big><big
+
       style="font-style: italic;">const unsigned int target</big><big><span style="font-style: italic;">)
         const;</span> – Return</big><big> column</big><big> </big><big>of
       target frame</big><big>.<br>
@@ -2751,6 +2757,7 @@ C++ Redistributable Packages</a> if you game code compiled under Visual C++.</bi
       6.0.2 – Source code synced with Eugene game development kit 9.0.1.<br>
       6.0.3 – Small bug fixed.<br>
       6.0.4 – Source code synced with Eugene game development kit 9.0.3.<br>
+      6.0.5 – Source code synced with Eugene game development kit 9.0.4.<br>
     </big>
   </body>
 </html>
