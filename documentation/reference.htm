@@ -465,7 +465,7 @@
         look at the publicly available methods.<br>
         <br>
         <span style="font-style: italic;"> unsigned int *Picture::get_image();</span>
-        – Return handle to image storage.<br>
+        – Return the handle to the image storage.<br>
         <br>
       </big><big><span style="font-style: italic;">void
           Picture::destroy_image();</span> – Destroy an image in the storage.<br>
@@ -521,7 +521,7 @@
     <h2><a class="mozTocH2" name="mozTocId904725"></a><big>Chapter 5. Image kind</big></h2>
     <p><big>The image kinds look like the predefined constants. You can see it
         below.</big></p>
-    <table style="width: 666px; height: 106px;" border="1">
+    <table style="width: 684px; height: 106px;" border="1">
       <tbody>
         <tr>
           <td><big>Image kind<br>
@@ -542,17 +542,15 @@
     <h2><a class="mozTocH2" name="mozTocId738557"></a><big>Chapter 6. Background</big></h2>
     <p><big><span style="text-decoration: underline;">Level decoration</span><br>
         <br>
-        A background is a big image. It is like decoration on a theater stage.
-        Any game has a background. The background will be stretched to the
-        screen resolution before rendering the game scene. The background
-        transparency is always disabled.<br>
+        A
+        background is a big image with a few frames. Any game has a background.
+        The background will be stretched to the screen resolution before
+        rendering the game scene. The background transparency is always
+        disabled.<br>
         <br>
-        There are two kinds of backgrounds: horizontally oriented scrolling
-        backgrounds and vertically oriented scrolling backgrounds. It is a big
-        image with few frames. The horizontal-oriented scrolling backgrounds
-        look like the horizontal-oriented photo ribbons. Vertically oriented
-        scrolling backgrounds look like the vertically-oriented photo ribbons.<span
-          style="text-decoration: underline;"><br>
+        The horizontal scrolling backgrounds look like the horizontal photo
+        ribbons. The vertical scrolling backgrounds look like the vertical
+        photo ribbons.<span style="text-decoration: underline;"><br>
         </span></big></p>
     <p><big><span style="text-decoration: underline;"></span></big><big><span style="text-decoration: underline;">Work
           with the background</span><br>
@@ -701,6 +699,7 @@
           background);</span> – Load a background </big><big>from the buffer.</big><big><br>
         <br>
       </big><big><span style="font-style: italic;">void Scene::load(</span></big><big
+
         style="font-style: italic;">const char *name</big><big><span style="font-style: italic;">);</span>
         – Load a background from the target file.</big><br>
       <big><br>
@@ -875,18 +874,17 @@
     <h2><a class="mozTocH2" name="mozTocId662651"></a><big>Chapter 9. Ordinary
         sprites</big></h2>
     <p><big><span style="text-decoration: underline;">Sprite types</span><br>
-        <br>
-        There are two kinds of ordinary sprites: horizontal strips and vertical
-        strips. It is a small image with few frames. Do you remember an analog
-        camera? The strips look like a photo ribbon.</big></p>
-    <p><big>The horizontal strip looks like the horizontally oriented photo
-        ribbon.<br>
-        The vertical strip looks like the vertically oriented photo ribbon.<br>
+      </big></p>
+    <p><big>here are two kinds of ordinary sprites: the horizontal strips and
+        the vertical strips. It is a small image with a few frames.<br>
+        The horizontal strip looks like the horizontal photo ribbon. The
+        vertical strip looks like the vertical photo ribbon.<br>
       </big><big><br>
       </big><big><span style="text-decoration: underline;">Work with the sprites</span><br>
         <br>
         Just use the <span style="font-style: italic;">Sprite</span> class to
         work with a sprite. It is derived from three classes: </big><big><span
+
           style="font-style: italic;">Billboard</span>, <span style="font-style: italic;">Animation,</span>
         and <span style="font-style: italic;">Picture. </span></big><big>Let's
         look at the publicly available methods.<br>
@@ -1032,6 +1030,7 @@
           const;</span> – Return</big><big> the number of column</big><big>s.<br>
         <br>
       </big><big><span style="font-style: italic;">void Sheet::destroy()</span></big><big><span
+
           style="font-style: italic;">;</span> – </big><big><span style="font-style: italic;"></span>Destroy
         a sprite sheet image and the texture.<br>
         <br>
@@ -1387,8 +1386,8 @@
     <h2><a class="mozTocH2" name="mozTocId143616"></a><big>Chapter 4. Isometric
         Level<br>
       </big></h2>
-    <p><big> The isometric level subsystem intends to help you create isometric
-        levels. Just use the <span style="font-style: italic;">World</span>
+    <p><big> The isometric level subsystem is intended to help you create
+        isometric levels. Just use the <span style="font-style: italic;">World</span>
         class for doing it. Let's look at the publicly available methods.<br>
         <br>
         <span style="font-style: italic;">World *World::get_handle();</span> –
@@ -1697,14 +1696,14 @@
         <br>
         <span style="font-style: italic;">bool enable_logging(const char *name);
         </span></big><big>–</big><big> Enable redirecting error messages to a
-        log file and return false if the operation failed.<br>
+        log file and return false if the operation was failed.<br>
         <br>
         <span style="font-style: italic;">void randomize(); </span></big><big>–</big><big>
         Initialize the random number generator.<br>
         <br>
-        <span style="font-style: italic;">unsigned int get_random(const int
-          number); </span></big><big>–</big><big> Return a random value between
-        zero and the number.<br>
+        <span style="font-style: italic;">unsigned int get_random(const unsigned
+          int number); </span></big><big>–</big><big> Return a random value
+        between zero and the number.<br>
         <br>
         <span style="font-style: italic;"> unsigned int get_texture_size();</span>
       </big><big>–</big><big> Return the maximum width or height of the texture.<br>
@@ -1759,7 +1758,7 @@
         in bytes.<br>
         <br>
         <em> bool Binary_File::check_error();</em> – Return true if the last
-        file operation failed.<br>
+        file operation was failed.<br>
         <br>
         <span style="font-style: italic;"> bool Binary_File::is_open() const;</span>
         – Return true if the file was successfully opened.<br>
@@ -2268,7 +2267,6 @@
       <br>
     </big>
     <table style="text-align: left; width: 366px; height: 91px;" cellspacing="2"
-
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2373,6 +2371,7 @@
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2493,7 +2492,7 @@
     <big> <br>
       <span style="font-style: italic;">bool Gamepad::set_vibration(const
         unsigned short int left,const unsigned short int right);</span> – Set
-      the vibration level of rumble motors (left and right). Return false if the
+      the vibration level of the rumble motors (left and right). Return false if the
       operation was failed.<br>
       <br>
       <span style="font-style: italic;">bool Gamepad::disable_vibration();</span>
@@ -2823,6 +2822,6 @@
       6.0.9: Source code synced with Eugene game development kit 9.0.8.<br>
       6.1: Source code synced with Eugene game development kit 9.0.9.<br>
       6.1.1: Source code synced with Eugene game development kit 9.1.<br>
-      6.1.1.1 – 6.1.1.4: Documentation updated.</big><br>
+      6.1.1.1 – 6.1.1.5: Documentation updated.</big><br>
   </body>
 </html>
