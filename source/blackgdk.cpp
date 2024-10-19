@@ -3279,7 +3279,7 @@ namespace BLACKGDK
      this->set_frames(rows*columns);
      this->prepare_sheet();
      this->set_transparent(target->get_transparent());
-     this->select(target->get_frame());
+     this->set_target(target->get_frame());
      this->set_size(target->get_width(),target->get_height());
     }
 
@@ -3305,7 +3305,7 @@ namespace BLACKGDK
 
   }
 
-  void Sheet::select(const unsigned int target)
+  void Sheet::set_target(const unsigned int target)
   {
    this->set_frame(target);
    this->select(this->get_row(this->get_frame()),this->get_column(this->get_frame()));
@@ -3330,7 +3330,7 @@ namespace BLACKGDK
       columns=column_amount;
       this->reset_animation_setting();
       this->set_frames(rows*columns);
-      this->select(1);
+      this->set_target(1);
       this->prepare_sheet();
      }
 
@@ -3700,7 +3700,7 @@ namespace BLACKGDK
 
   void Text::print(const char target)
   {
-   text.select(static_cast<unsigned char>(target)+1);
+   text.set_target(static_cast<unsigned char>(target)+1);
    text.draw(true);
   }
 
