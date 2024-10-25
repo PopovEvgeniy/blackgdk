@@ -812,7 +812,7 @@ typedef enum
    ~Sprite();
    Sprite* get_handle();
    BLACKGDK::IMAGE_KIND get_kind() const;
-   void set_setting(const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
+   void set_settings(const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    void load(Image *buffer,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    void load(Image &buffer,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    void load(const char *name,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
@@ -877,7 +877,7 @@ typedef enum
    void prepare(const Screen *screen);
    void prepare(Screen &screen);
    void prepare(const unsigned int width,const unsigned int height);
-   void set_setting(const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
+   void set_settings(const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    void load(Image *background,const IMAGE_KIND kind,const unsigned int frames);
    void load(Image &background,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    void load(const char *name,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
@@ -947,7 +947,7 @@ typedef enum
    void set_size(const unsigned int width,const unsigned int height);
    void set_width(const unsigned int width);
    void set_height(const unsigned int height);
-   void set_setting(const unsigned int width,const unsigned int height,const BLACKGDK::TEXT_KIND kind);
+   void set_settings(const unsigned int width,const unsigned int height,const BLACKGDK::TEXT_KIND kind);
    void load_font(Image *font);
    void load_font(Image &font);
    void load_font(const char *name);
