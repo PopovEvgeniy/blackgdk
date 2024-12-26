@@ -202,7 +202,7 @@ namespace BLACKGDK
   {
    if (event!=NULL)
    {
-    WaitForSingleObjectEx(event,INFINITE,TRUE);
+    WaitForSingleObjectEx(event,INFINITE,FALSE);
     ResetEvent(event);
    }
 
