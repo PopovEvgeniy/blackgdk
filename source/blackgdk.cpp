@@ -3657,6 +3657,16 @@ namespace BLACKGDK
    return text.get_height();
   }
 
+  unsigned int Text::get_x() const
+  {
+   return text.get_start_x();
+  }
+
+  unsigned int Text::get_y() const
+  {
+   return text.get_start_y();
+  }
+
   void Text::set_position(const unsigned int x,const unsigned int y)
   {
    text.set_start(x,y);
