@@ -6,7 +6,7 @@ int main()
  BLACKGDK::Graphics::Text text;
  BLACKGDK::Graphics::Sheet tile;
  BLACKGDK::Input::Keyboard keyboard;
- BLACKGDK::Common::Tilemap tilemap;
+ BLACKGDK::Map::Tilemap tilemap;
  unsigned int row,column,row_amount,column_amount;
  keyboard.initialize();
  screen.initialize();
