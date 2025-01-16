@@ -8,7 +8,7 @@ int main()
  BLACKGDK::Graphics::Cartoon ground;
  BLACKGDK::Graphics::Text text;
  BLACKGDK::Transformation::Coordinates cartesian;
- BLACKGDK::Transformation::Entity level;
+ BLACKGDK::Transformation::Level level;
  BLACKGDK::Input::Keyboard keyboard;
  keyboard.initialize();
  screen.initialize();
