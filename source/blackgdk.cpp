@@ -3997,24 +3997,12 @@ namespace BLACKGDK
 
   unsigned int Tilemap::get_row(const unsigned int x) const
   {
-   unsigned int row;
-   row=0;
-   if (x>cell_width)
-   {
-    row=x/cell_width;
-   }
-   return row;
+   return x/cell_width;
   }
 
   unsigned int Tilemap::get_column(const unsigned int y) const
   {
-   unsigned int column;
-   column=0;
-   if (y>cell_height)
-   {
-    column=y/cell_height;
-   }
-   return column;
+   return y/cell_height;
   }
 
   unsigned int Tilemap::get_row_amount(const unsigned int viewport_width) const
