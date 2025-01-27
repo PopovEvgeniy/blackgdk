@@ -278,21 +278,13 @@ typedef enum
   template <class RESOURCE>
   void destroy(RESOURCE *target)
   {
-   if (target!=NULL)
-   {
-    delete target;
-   }
-
+   delete target;
   }
 
   template <class RESOURCE>
   void destroy_array(RESOURCE *target)
   {
-   if (target!=NULL)
-   {
-    delete[] target;
-   }
-
+   delete[] target;
   }
 
  }
