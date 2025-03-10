@@ -25,6 +25,7 @@ Features
  Coordinates transformation.
  Isometric.
  Timers.
+ 2D camera.
  Collision detector.
  Integrated FPS counter.
  Powerful input subsystem: keyboard, mouse, gamepad.

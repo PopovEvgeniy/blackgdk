@@ -328,6 +328,7 @@ typedef enum
   ALPHA_COMPONENT=24
  } PIXEL_COMPONENT;
 
+  void set_camera(const double x,const double y,const double viewport_width,const double view_height,const double screen_width,const double screen_height);
   float get_start_offset(const float current,const float total);
   float get_end_offset(const float current,const float total);
   unsigned int get_pixel_component(const unsigned int pixel,const Core::PIXEL_COMPONENT component);
@@ -670,6 +671,45 @@ typedef enum
    bool check_x(const unsigned int x) const;
    bool check_y(const unsigned int y) const;
    Screen* get_handle();
+  };
+
+  class Camera
+  {
+   private:
+   unsigned int screen_width;
+   unsigned int screen_height;
+   unsigned int viewport_width;
+   unsigned int viewport_height;
+   unsigned int camera_x;
+   unsigned int camera_y;
+   public:
+   Camera();
+   ~Camera();
+   Camera* get_handle();
+   unsigned int get_x() const;
+   unsigned int get_y() const;
+   unsigned int get_screen_width() const;
+   unsigned int get_screen_height() const;
+   unsigned int get_viewport_width() const;
+   unsigned int get_viewport_height() const;
+   unsigned int convert_screen_x(const unsigned int x);
+   unsigned int convert_screen_y(const unsigned int y);
+   unsigned int convert_camera_x(const unsigned int x);
+   unsigned int convert_camera_y(const unsigned int y);
+   void initialize(const unsigned int width,const unsigned int height);
+   void set_viewport(const unsigned int width,const unsigned int height);
+   void set_x(const unsigned int x);
+   void set_y(const unsigned int y);
+   void set_position(const unsigned int x,const unsigned int y);
+   unsigned int increase_x(const unsigned int increment);
+   unsigned int increase_y(const unsigned int increment);
+   unsigned int increase_x();
+   unsigned int increase_y();
+   unsigned int decrease_x(const unsigned int decrement);
+   unsigned int decrease_y(const unsigned int decrement);
+   unsigned int decrease_x();
+   unsigned int decrease_y();
+   void update();
   };
 
   class Image

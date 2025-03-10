@@ -500,6 +500,14 @@ namespace BLACKGDK
  namespace Core
  {
 
+  void set_camera(const double x,const double y,const double viewport_width,const double view_height,const double screen_width,const double screen_height)
+  {
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+   glTranslated(-1.0*x,-1.0*y,0.0);
+   glScaled(screen_width/viewport_width,screen_height/view_height,1.0);
+  }
+
   float get_start_offset(const float current,const float total)
   {
    return (1.0f/total)*(current-1.0f);
@@ -2263,6 +2271,175 @@ namespace BLACKGDK
   Screen* Screen::get_handle()
   {
    return this;
+  }
+
+  Camera::Camera()
+  {
+   screen_width=1;
+   screen_height=1;
+   viewport_width=1;
+   viewport_height=1;
+   camera_x=0;
+   camera_y=0;
+  }
+
+  Camera::~Camera()
+  {
+
+  }
+
+  Camera* Camera::get_handle()
+  {
+   return this;
+  }
+
+  unsigned int Camera::get_x() const
+  {
+   return camera_x;
+  }
+
+  unsigned int Camera::get_y() const
+  {
+   return camera_y;
+  }
+
+  unsigned int Camera::get_viewport_width() const
+  {
+   return viewport_width;
+  }
+
+  unsigned int Camera::get_viewport_height() const
+  {
+   return viewport_height;
+  }
+
+  unsigned int Camera::get_screen_width() const
+  {
+   return screen_width;
+  }
+
+  unsigned int Camera::get_screen_height() const
+  {
+   return screen_height;
+  }
+
+  unsigned int Camera::convert_screen_x(const unsigned int x)
+  {
+   return (x*screen_width)/viewport_width;
+  }
+
+  unsigned int Camera::convert_screen_y(const unsigned int y)
+  {
+   return (y*screen_height)/viewport_height;
+  }
+
+  unsigned int Camera::convert_camera_x(const unsigned int x)
+  {
+   return (x*viewport_width)/screen_width;
+  }
+
+  unsigned int Camera::convert_camera_y(const unsigned int y)
+  {
+   return (y*viewport_height)/screen_height;
+  }
+
+  void Camera::initialize(const unsigned int width,const unsigned int height)
+  {
+   if (width>0)
+   {
+    screen_width=width;
+   }
+   if (screen_height>0)
+   {
+    screen_height=height;
+   }
+
+  }
+
+  void Camera::set_viewport(const unsigned int width,const unsigned int height)
+  {
+   if (width>0)
+   {
+    viewport_width=width;
+   }
+   if (height>0)
+   {
+    viewport_height=height;
+   }
+
+  }
+
+  void Camera::set_x(const unsigned int x)
+  {
+   camera_x=this->convert_screen_x(x);
+  }
+
+  void Camera::set_y(const unsigned int y)
+  {
+   camera_y=this->convert_screen_y(y);
+  }
+
+  void Camera::set_position(const unsigned int x,const unsigned int y)
+  {
+   this->set_x(x);
+   this->set_y(y);
+  }
+
+  unsigned int Camera::increase_x(const unsigned int increment)
+  {
+   camera_x+=increment;
+   return camera_x;
+  }
+
+  unsigned int Camera::increase_y(const unsigned int increment)
+  {
+   camera_y+=increment;
+   return camera_y;
+  }
+
+  unsigned int Camera::increase_x()
+  {
+   ++camera_x;
+   return camera_x;
+  }
+
+  unsigned int Camera::increase_y()
+  {
+   ++camera_y;
+   return camera_y;
+  }
+
+  unsigned int Camera::decrease_x(const unsigned int decrement)
+  {
+   if (camera_x>=decrement)
+   {
+    camera_x-=decrement;
+   }
+   return camera_x;
+  }
+
+  unsigned int Camera::decrease_y(const unsigned int decrement)
+  {
+   if (camera_y>=decrement)
+   {
+    camera_y-=decrement;
+   }
+   return camera_y;
+  }
+
+  unsigned int Camera::decrease_x()
+  {
+   return this->decrease_x(1);
+  }
+
+  unsigned int Camera::decrease_y()
+  {
+   return this->decrease_y(1);
+  }
+
+  void Camera::update()
+  {
+   Core::set_camera(static_cast<double>(camera_x),static_cast<double>(camera_y),static_cast<double>(viewport_width),static_cast<double>(viewport_height),static_cast<double>(screen_width),static_cast<double>(screen_height));
   }
 
   Image::Image()
