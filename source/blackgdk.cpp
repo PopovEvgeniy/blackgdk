@@ -2349,7 +2349,7 @@ namespace BLACKGDK
    {
     screen_width=width;
    }
-   if (screen_height>0)
+   if (height>0)
    {
     screen_height=height;
    }
@@ -2371,18 +2371,18 @@ namespace BLACKGDK
 
   void Camera::set_x(const unsigned int x)
   {
-   camera_x=this->convert_screen_x(x);
+   camera_x=x;
   }
 
   void Camera::set_y(const unsigned int y)
   {
-   camera_y=this->convert_screen_y(y);
+   camera_y=y;
   }
 
   void Camera::set_position(const unsigned int x,const unsigned int y)
   {
-   this->set_x(x);
-   this->set_y(y);
+   camera_x=x;
+   camera_y=y;
   }
 
   unsigned int Camera::increase_x(const unsigned int increment)
@@ -2397,23 +2397,11 @@ namespace BLACKGDK
    return camera_y;
   }
 
-  unsigned int Camera::increase_x()
-  {
-   ++camera_x;
-   return camera_x;
-  }
-
-  unsigned int Camera::increase_y()
-  {
-   ++camera_y;
-   return camera_y;
-  }
-
   unsigned int Camera::decrease_x(const unsigned int decrement)
   {
    if (camera_x>=decrement)
    {
-    camera_x-=decrement;
+    camera_x=-decrement;
    }
    return camera_x;
   }
@@ -2422,9 +2410,19 @@ namespace BLACKGDK
   {
    if (camera_y>=decrement)
    {
-    camera_y-=decrement;
+    camera_y=-decrement;
    }
    return camera_y;
+  }
+
+  unsigned int Camera::increase_x()
+  {
+   return this->increase_x(1);
+  }
+
+  unsigned int Camera::increase_y()
+  {
+   return this->increase_y(1);
   }
 
   unsigned int Camera::decrease_x()
@@ -2440,6 +2438,13 @@ namespace BLACKGDK
   void Camera::update()
   {
    Core::set_camera(static_cast<double>(camera_x),static_cast<double>(camera_y),static_cast<double>(viewport_width),static_cast<double>(viewport_height),static_cast<double>(screen_width),static_cast<double>(screen_height));
+  }
+
+  void Camera::reset()
+  {
+   this->set_position(0,0);
+   this->set_viewport(1,1);
+   this->initialize(1,1);
   }
 
   Image::Image()

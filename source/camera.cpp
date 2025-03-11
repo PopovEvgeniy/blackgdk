@@ -7,7 +7,9 @@ int main()
  BLACKGDK::Graphics::Cartoon punk;
  BLACKGDK::Graphics::Camera camera;
  BLACKGDK::Input::Keyboard keyboard;
+ BLACKGDK::Input::Mouse mouse;
  keyboard.initialize();
+ mouse.hide();
  screen.initialize();
  city.load("city.tga");
  punk.load("punk.tga");
@@ -24,13 +26,13 @@ int main()
   }
   if (keyboard.check_hold(77)==true)
   {
-   punk.increase_x(2);
+   punk.increase_x();
   }
   if (keyboard.check_hold(75)==true)
   {
-   punk.decrease_x(2);
+   punk.decrease_x();
   }
-  camera.set_x(punk.get_x());
+  camera.set_x(camera.convert_screen_x(punk.get_x()));
   camera.update();
   city.draw();
   punk.draw();
