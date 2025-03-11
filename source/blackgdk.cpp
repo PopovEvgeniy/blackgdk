@@ -2401,7 +2401,7 @@ namespace BLACKGDK
   {
    if (camera_x>=decrement)
    {
-    camera_x=-decrement;
+    camera_x-=decrement;
    }
    return camera_x;
   }
@@ -2410,7 +2410,7 @@ namespace BLACKGDK
   {
    if (camera_y>=decrement)
    {
-    camera_y=-decrement;
+    camera_y-=decrement;
    }
    return camera_y;
   }
