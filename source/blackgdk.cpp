@@ -2313,6 +2313,16 @@ namespace BLACKGDK
    return viewport_height;
   }
 
+  unsigned int Camera::get_viewport_half_width() const
+  {
+   return viewport_width/2;
+  }
+
+  unsigned int Camera::get_viewport_half_height() const
+  {
+   return viewport_height/2;
+  }
+
   unsigned int Camera::get_screen_width() const
   {
    return screen_width;
@@ -2393,7 +2403,7 @@ namespace BLACKGDK
 
   unsigned int Camera::increase_y(const unsigned int increment)
   {
-   camera_y+=increment;
+   camera_y=+increment;
    return camera_y;
   }
 
