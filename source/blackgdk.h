@@ -692,8 +692,6 @@ typedef enum
    unsigned int get_screen_height() const;
    unsigned int get_viewport_width() const;
    unsigned int get_viewport_height() const;
-   unsigned int get_viewport_half_width() const;
-   unsigned int get_viewport_half_height() const;
    unsigned int convert_screen_x(const unsigned int x);
    unsigned int convert_screen_y(const unsigned int y);
    unsigned int convert_camera_x(const unsigned int x);
