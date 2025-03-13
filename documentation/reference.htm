@@ -825,14 +825,14 @@
   <span style="text-decoration: underline;">Work with the camera</span><br>
   <br>
   The <span style="font-style: italic;">Camera</span> class provides simple access to the camera subsystem. Let's look at the publicly available methods.<br></big></p><big><span style="font-style: italic;">Camera *Camera::get_handle(); -</span> Return the handle to the camera subsystem.<br>
-  <br></big> <big><em>unsigned int Camera::increase_x(); -</em> Increase the x-coordinate and return it</big><big>.<br>
-  <br></big> <big><em>unsigned int Camera::decrease_x(); -</em> Decrease the x-coordinate and return it</big><big>.<br>
-  <br></big> <big><span style="font-style: italic;">unsigned int Camera::increase_y(); -</span> Increase the y-coordinate and return it.<br>
-  <br></big> <big><em>unsigned int Camera::decrease_y(); -</em> Decrease the y-coordinate and return it</big><big>.<br>
-  <br></big> <big><em>unsigned int Camera::increase_x(const unsigned int increment); -</em> Increase</big> <big>the</big> <big>x-coordinate with the user value and return</big> <big>it.<br>
-  <br></big> <big><em>unsigned int Camera::decrease_x(const unsigned int decrement); -</em> Decrease</big> <big>the</big> <big>x-coordinate with the user value and return</big> <big>it</big><big>.<br>
-  <br></big> <big><em>unsigned int Camera::increase_y(const unsigned int increment); -</em> Increase</big> <big>the</big> <big>y-coordinate with the user value and return</big> <big>it</big><big>.<br>
-  <br></big> <big><em>unsigned int Camera::decrease_y(const unsigned int decrement);</em> <span style="font-style: italic;">-</span> Decrease</big> <big>the</big> <big>y-coordinate with the user value and return</big> <big>it</big><big>.</big><br>
+  <br></big> <big><em>unsigned int Camera::increase_x(); -</em> Increase the x-coordinate</big> <big>of the camera position</big> <big>and return it</big><big>.<br>
+  <br></big> <big><em>unsigned int Camera::decrease_x(); -</em> Decrease the x-coordinate</big> <big>of the camera position</big> <big>and return it</big><big>.<br>
+  <br></big> <big><span style="font-style: italic;">unsigned int Camera::increase_y(); -</span> Increase the y-coordinate</big> <big>of the camera position</big> <big>and return it.<br>
+  <br></big> <big><em>unsigned int Camera::decrease_y(); -</em> Decrease the y-coordinate</big> <big>of the camera position</big> <big>and return it</big><big>.<br>
+  <br></big> <big><em>unsigned int Camera::increase_x(const unsigned int increment); -</em> Increase</big> <big>the</big> <big>x-coordinate</big> <big>of the camera position</big> <big>with the user value and return</big> <big>it.<br>
+  <br></big> <big><em>unsigned int Camera::decrease_x(const unsigned int decrement); -</em> Decrease</big> <big>the</big> <big>x-coordinate</big> <big>of the camera position</big> <big>with the user value and return</big> <big>it</big><big>.<br>
+  <br></big> <big><em>unsigned int Camera::increase_y(const unsigned int increment); -</em> Increase</big> <big>the</big> <big>y-coordinate</big> <big>of the camera position</big> <big>with the user value and return</big> <big>it</big><big>.<br>
+  <br></big> <big><em>unsigned int Camera::decrease_y(const unsigned int decrement);</em> <span style="font-style: italic;">-</span> Decrease</big> <big>the</big> <big>y-coordinate</big> <big>of the camera position</big> <big>with the user value and return</big> <big>it</big><big>.</big><br>
   <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_x() const; -</span> Return the x-coordinate of the camera position.<br>
   <br>
   <span style="font-style: italic;">unsigned int Camera::get_y() const; -</span> Return the y-coordinate of the camera position.<br>
@@ -841,12 +841,12 @@
   <span style="font-style: italic;">unsigned int Camera::get_screen_height() const; -</span> Return</big> <big>the</big> <big>screen height in pixels.</big><br>
   <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_viewport_width() const; -</span> Return</big> <big>the</big> <big>viewport width in pixels.<br>
   <br>
-  <span style="font-style: italic;">unsigned int Camera::get_viewport_height() const; -</span> Return</big> <big>the</big> <big>viewport height in pixels.<br></big> <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::convert_screen_x(const unsigned int x) const; -</span> Convert the screen x-coordinate to the camera x-coordinate.<br>
+  <span style="font-style: italic;">unsigned int Camera::get_viewport_height() const; -</span> Return</big> <big>the</big> <big>viewport height in pixels.<br></big> <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_world_x(const unsigned</span></big> <big><span style="font-style: italic;">screen_</span></big><big><span style="font-style: italic;">int x) const; -</span> Convert the screen x-coordinate to the world x-coordinate.<br>
   <br>
-  <span style="font-style: italic;">unsigned int Camera::convert_screen_y(const unsigned int y) const; -</span> Convert the screen y-coordinate to the camera y-coordinate.<br>
-  <br></big> <big><span style="font-style: italic;">unsigned int Camera::convert_camera_x(const unsigned int x) const; -</span> Convert the camera x-coordinate to the screen x-coordinate.<br>
+  <span style="font-style: italic;">unsigned int Camera::get_world_y(const unsigned</span></big> <big><span style="font-style: italic;">screen_</span></big><big><span style="font-style: italic;">int y) const; -</span> Convert the screen y-coordinate to the world y-coordinate.<br>
+  <br></big> <big><span style="font-style: italic;">unsigned int Camera::get_screen_x(const unsigned int</span></big> <big><span style="font-style: italic;">world_</span></big><big><span style="font-style: italic;">x) const; -</span> Convert the world x-coordinate to the screen x-coordinate.<br>
   <br>
-  <span style="font-style: italic;">unsigned int Camera::convert_camera_y(const unsigned int y) const; -</span> Convert the camera y-coordinate to the screen y-coordinate.</big><br>
+  <span style="font-style: italic;">unsigned int Camera::get_screen_y(const unsigned int</span></big> <big><span style="font-style: italic;">world_</span></big><big><span style="font-style: italic;">y) const; -</span> Convert the world y-coordinate to the screen y-coordinate.</big><br>
   <big><br></big> <big style="font-style: italic;">void Camera::initialize(const unsigned int width,</big> <big style="font-style: italic;">const unsigned int height</big><big><span style="font-style: italic;">); -</span> Initialize the subsystem and set the screen size.</big><br>
   <big><br></big> <big><span style="font-style: italic;">void Camera::set_viewport(const unsigned int width, const unsigned int height); -</span> Set the viewport settings.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::set_x(const unsigned int x); -</span> Set the x-coordinate of the camera position.<br>
@@ -1981,6 +1981,8 @@
   6.7.1: The small changes.<br>
   6.7.2: The camera subsystem has improved.<br>
   6.7.3-6.7.4: The small changes.<br>
-  6.7.5-6.8.9: The camera subsystem has improved.<br></big>
+  6.7.5-6.8.9: The camera subsystem has improved.<br>
+  6.9: The small changes.<br>
+  6.9.1: The camera subsystem has improved.<br></big>
 </body>
 </html>

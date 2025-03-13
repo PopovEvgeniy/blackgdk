@@ -2323,24 +2323,42 @@ namespace BLACKGDK
    return screen_height;
   }
 
-  unsigned int Camera::convert_screen_x(const unsigned int x)
+  unsigned int Camera::get_world_x(const unsigned int screen_x)
   {
-   return (x*screen_width)/viewport_width+camera_x;
+   return (screen_x*screen_width)/viewport_width+camera_x;
   }
 
-  unsigned int Camera::convert_screen_y(const unsigned int y)
+  unsigned int Camera::get_world_y(const unsigned int screen_y)
   {
-   return (y*screen_height)/viewport_height+camera_y;
+   return (screen_y*screen_height)/viewport_height+camera_y;
   }
 
-  unsigned int Camera::convert_camera_x(const unsigned int x)
+  unsigned int Camera::get_screen_x(const unsigned int world_x)
   {
-   return (x*viewport_width)/screen_width;
+   unsigned int target_x;
+   if (world_x>camera_x)
+   {
+    target_x=world_x-camera_x;
+   }
+   else
+   {
+    target_x=camera_x-world_x;
+   }
+   return (target_x*viewport_width)/screen_width;
   }
 
-  unsigned int Camera::convert_camera_y(const unsigned int y)
+  unsigned int Camera::get_screen_y(const unsigned int world_y)
   {
-   return (y*viewport_height)/screen_height;
+   unsigned int target_y;
+   if (world_y>camera_y)
+   {
+    target_y=world_y-camera_y;
+   }
+   else
+   {
+    target_y=camera_y-world_y;
+   }
+   return (target_y*viewport_height)/screen_height;
   }
 
   void Camera::initialize(const unsigned int width,const unsigned int height)
