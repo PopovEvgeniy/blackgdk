@@ -841,13 +841,18 @@
   <span style="font-style: italic;">unsigned int Camera::get_screen_height() const; -</span> Return</big> <big>the</big> <big>screen height in pixels.</big><br>
   <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_viewport_width() const; -</span> Return</big> <big>the</big> <big>viewport width in pixels.<br>
   <br>
-  <span style="font-style: italic;">unsigned int Camera::get_viewport_height() const; -</span> Return</big> <big>the</big> <big>viewport height in pixels.<br></big> <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_world_x(const unsigned</span></big> <big><span style="font-style: italic;">screen_</span></big><big><span style="font-style: italic;">int x) const; -</span> Convert the screen x-coordinate to the world x-coordinate.<br>
+  <span style="font-style: italic;">unsigned int Camera::get_viewport_height() const; -</span> Return</big> <big>the</big> <big>viewport height in pixels.<br>
+  <br></big> <big><span style="font-style: italic;">unsigned int Camera::get_highest_x() const; -</span> Return</big> <big>the</big> <big>highest allowable x-coordinate of the current visible area.<br>
+  <br></big> <big><span style="font-style: italic;">unsigned int Camera::get_highest_y() const; -</span> Return</big> <big>the</big> <big>highest allowable y-coordinate of the current visible area.</big><br>
+  <big><br></big> <big><span style="font-style: italic;">unsigned int Camera::get_world_x(const unsigned</span></big> <big><span style="font-style: italic;">screen_</span></big><big><span style="font-style: italic;">int x) const; -</span> Convert the screen x-coordinate to the world x-coordinate.<br>
   <br>
   <span style="font-style: italic;">unsigned int Camera::get_world_y(const unsigned</span></big> <big><span style="font-style: italic;">screen_</span></big><big><span style="font-style: italic;">int y) const; -</span> Convert the screen y-coordinate to the world y-coordinate.<br>
   <br></big> <big><span style="font-style: italic;">unsigned int Camera::get_screen_x(const unsigned int</span></big> <big><span style="font-style: italic;">world_</span></big><big><span style="font-style: italic;">x) const; -</span> Convert the world x-coordinate to the screen x-coordinate.<br>
   <br>
   <span style="font-style: italic;">unsigned int Camera::get_screen_y(const unsigned int</span></big> <big><span style="font-style: italic;">world_</span></big><big><span style="font-style: italic;">y) const; -</span> Convert the world y-coordinate to the screen y-coordinate.</big><br>
-  <big><br></big> <big style="font-style: italic;">void Camera::initialize(const unsigned int width,</big> <big style="font-style: italic;">const unsigned int height</big><big><span style="font-style: italic;">); -</span> Initialize the subsystem and set the screen size.</big><br>
+  <big><br></big> <big style="font-style: italic;">void Camera::initialize(const unsigned int width,</big> <big style="font-style: italic;">const unsigned int height</big><big><span style="font-style: italic;">); -</span> Initialize the subsystem and set the screen size.<br>
+  <br></big> <big style="font-style: italic;">void Camera::initialize(Screen *screen</big><big><span style="font-style: italic;">); -</span> Initialize the subsystem and set the screen size.<br>
+  <br></big> <big style="font-style: italic;">void Camera::initialize(Screen &amp;screen</big><big><span style="font-style: italic;">); -</span> Initialize the subsystem and set the screen size.</big><br>
   <big><br></big> <big><span style="font-style: italic;">void Camera::set_viewport(const unsigned int width, const unsigned int height); -</span> Set the viewport settings.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::set_x(const unsigned int x); -</span> Set the x-coordinate of the camera position.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::set_y(const unsigned int y); -</span> Set the y-coordinate of the camera position.</big><br>
@@ -1983,6 +1988,6 @@
   6.7.3-6.7.4: The small changes.<br>
   6.7.5-6.8.9: The camera subsystem has improved.<br>
   6.9: The small changes.<br>
-  6.9.1: The camera subsystem has improved.<br></big>
+  6.9.1-6.9.3: The camera subsystem has improved.<br></big>
 </body>
 </html>

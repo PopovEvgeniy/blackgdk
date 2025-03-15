@@ -2303,6 +2303,16 @@ namespace BLACKGDK
    return camera_y;
   }
 
+  unsigned int Camera::get_screen_width() const
+  {
+   return screen_width;
+  }
+
+  unsigned int Camera::get_screen_height() const
+  {
+   return screen_height;
+  }
+
   unsigned int Camera::get_viewport_width() const
   {
    return viewport_width;
@@ -2313,14 +2323,14 @@ namespace BLACKGDK
    return viewport_height;
   }
 
-  unsigned int Camera::get_screen_width() const
+  unsigned int Camera::get_highest_x() const
   {
-   return screen_width;
+   return camera_x+viewport_width;
   }
 
-  unsigned int Camera::get_screen_height() const
+  unsigned int Camera::get_highest_y() const
   {
-   return screen_height;
+   return camera_y+viewport_height;
   }
 
   unsigned int Camera::get_world_x(const unsigned int screen_x)
@@ -2372,6 +2382,20 @@ namespace BLACKGDK
     screen_height=height;
    }
 
+  }
+
+  void Camera::initialize(Screen *screen)
+  {
+   if (screen!=NULL)
+   {
+    this->initialize(screen->get_width(),screen->get_height());
+   }
+
+  }
+
+  void Camera::initialize(Screen &screen)
+  {
+   this->initialize(screen.get_handle());
   }
 
   void Camera::set_viewport(const unsigned int width,const unsigned int height)

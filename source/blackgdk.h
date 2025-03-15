@@ -692,11 +692,15 @@ typedef enum
    unsigned int get_screen_height() const;
    unsigned int get_viewport_width() const;
    unsigned int get_viewport_height() const;
+   unsigned int get_highest_x() const;
+   unsigned int get_highest_y() const;
    unsigned int get_world_x(const unsigned int screen_x);
    unsigned int get_world_y(const unsigned int screen_y);
    unsigned int get_screen_x(const unsigned int world_x);
    unsigned int get_screen_y(const unsigned int world_y);
    void initialize(const unsigned int width,const unsigned int height);
+   void initialize(Screen *screen);
+   void initialize(Screen &screen);
    void set_viewport(const unsigned int width,const unsigned int height);
    void set_x(const unsigned int x);
    void set_y(const unsigned int y);

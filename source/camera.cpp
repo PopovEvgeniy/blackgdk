@@ -16,10 +16,12 @@ int main()
  punk.load("punk.tga");
  text.load_font("font.tga");
  city.prepare(screen);
- punk.set_size(192,384);
- punk.set_position(0,screen.get_height()-punk.get_height());
- camera.set_viewport(600,screen.get_height());
- camera.initialize(screen.get_width(),screen.get_height());
+ punk.set_size(64,128);
+ camera.set_viewport(320,240);
+ city.prepare(camera.get_viewport_width()*4,camera.get_viewport_height());
+ camera.initialize(screen);
+ camera.update();
+ punk.set_position(0,city.get_height()-punk.get_height());
  while (screen.sync())
  {
   if (keyboard.check_hold(1)==true)
@@ -28,13 +30,23 @@ int main()
   }
   if (keyboard.check_hold(77)==true)
   {
-   punk.increase_x(4);
-   camera.increase_x(6);
+   punk.increase_x();
   }
   if (keyboard.check_hold(75)==true)
   {
-   punk.decrease_x(4);
-   camera.decrease_x(6);
+   punk.decrease_x();
+  }
+  if ((punk.get_x()+punk.get_width())>=camera.get_highest_x())
+  {
+   punk.decrease_x(6);
+  }
+  if (punk.get_x()<=camera.get_x())
+  {
+   camera.decrease_x();
+  }
+  if (camera.get_highest_x()>=city.get_width())
+  {
+   camera.decrease_x();
   }
   camera.update();
   city.draw();
