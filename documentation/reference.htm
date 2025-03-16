@@ -327,8 +327,10 @@
   <span style="font-style: italic;">unsigned int Screen::get_height() const; -</span> Return the screen height in pixels.<br>
   <br>
   <span style="font-style: italic;">bool Screen::check_x(const unsigned int x) const; -</span> Return true if the x-coordinate is valid.<br>
-  <br></big> <big><span style="font-style: italic;">bool Screen::check_y(const unsigned int y) const; -</span> Return true if the y-coordinate is valid.</big><br>
+  <br></big> <big><span style="font-style: italic;">bool Screen::check_y(const unsigned int y) const; -</span> Return true if the y-coordinate is valid.<br></big></p>
+  <p><big><span style="font-style: italic;">bool Screen::check_horizontal_border(const BLACKGDK::BOX target) const; -</span> Return true if a game object is collided with the horizontal screen border.<br>
   <br>
+  <span style="font-style: italic;">bool Screen::check_vertical_border(const BLACKGDK::BOX target) const; -</span> Return true if a game object is collided with the vertical screen border.<br></big><br>
   <big><span style="font-style: italic;">Screen *Screen::get_handle(); -</span> Return the handle to the base graphics subsystem object.</big></p>
   <h2><a class="mozTocH2" name="mozTocId289525" id="mozTocId289525"></a><big>Chapter 3. Picture subsystem</big></h2>
   <p><big><span style="text-decoration: underline;">An important subsystem</span><br>
@@ -1988,6 +1990,7 @@
   6.7.3-6.7.4: The small changes.<br>
   6.7.5-6.8.9: The camera subsystem has improved.<br>
   6.9: The small changes.<br>
-  6.9.1-6.9.3: The camera subsystem has improved.<br></big>
+  6.9.1-6.9.3: The camera subsystem has improved.<br>
+  6.9.4: The source code synced with the Eugene game development kit 9.5.7.<br></big>
 </body>
 </html>
