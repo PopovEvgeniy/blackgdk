@@ -858,7 +858,11 @@
   <big><br></big> <big><span style="font-style: italic;">void Camera::set_viewport(const unsigned int width, const unsigned int height); -</span> Set the viewport settings.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::set_x(const unsigned int x); -</span> Set the x-coordinate of the camera position.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::set_y(const unsigned int y); -</span> Set the y-coordinate of the camera position.</big><br>
-  <big><br></big> <big><span style="font-style: italic;">void Camera::set_position(const unsigned int x, const unsigned int y); -</span> Set the camera position.<br></big> <big><br></big> <big><span style="font-style: italic;">void Camera::update(); -</span> Update the camera.<br>
+  <big><br></big> <big><span style="font-style: italic;">void Camera::set_position(const unsigned int x, const unsigned int y); -</span> Set the camera position.<br>
+  <br></big> <big><span style="font-style: italic;">bool Camera::check_horizontal_border(const BLACKGDK::BOX target) const; -</span> Return true if a game object is collided with the horizontal visible area border.<br>
+  <br>
+  <span style="font-style: italic;">bool Camera::check_vertical_border(const BLACKGDK::BOX target) const; -</span> Return true if a game object is collided with the vertical visible area border.</big><br>
+  <big><br></big> <big><span style="font-style: italic;">void Camera::update(); -</span> Update the camera.<br>
   <br></big> <big><span style="font-style: italic;">void Camera::reset(); -</span> Reset the camera settings.</big><br>
   <big><br>
   <span style="text-decoration: underline;">Important remark</span><br>
@@ -1991,6 +1995,7 @@
   6.7.5-6.8.9: The camera subsystem has improved.<br>
   6.9: The small changes.<br>
   6.9.1-6.9.3: The camera subsystem has improved.<br>
-  6.9.4: The source code synced with the Eugene game development kit 9.5.7.<br></big>
+  6.9.4: The source code synced with the Eugene game development kit 9.5.7.<br>
+  6.9.5: The camera subsystem has improved.<br></big>
 </body>
 </html>

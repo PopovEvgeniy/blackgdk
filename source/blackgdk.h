@@ -715,6 +715,8 @@ typedef enum
    unsigned int increase_y();
    unsigned int decrease_x();
    unsigned int decrease_y();
+   bool check_horizontal_border(const BLACKGDK::BOX target) const;
+   bool check_vertical_border(const BLACKGDK::BOX target) const;
    void update();
    void reset();
   };

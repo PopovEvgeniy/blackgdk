@@ -2487,6 +2487,16 @@ namespace BLACKGDK
    return this->decrease_y(1);
   }
 
+  bool Camera::check_horizontal_border(const BLACKGDK::BOX target) const
+  {
+   return (target.x+target.width)>=this->get_highest_x();
+  }
+
+  bool Camera::check_vertical_border(const BLACKGDK::BOX target) const
+  {
+   return (target.y+target.height)>=this->get_highest_y();
+  }
+
   void Camera::update()
   {
    Core::set_camera(static_cast<double>(camera_x),static_cast<double>(camera_y),static_cast<double>(viewport_width),static_cast<double>(viewport_height),static_cast<double>(screen_width),static_cast<double>(screen_height));
