@@ -2433,19 +2433,19 @@ namespace BLACKGDK
 
   void Camera::set_position(const unsigned int x,const unsigned int y)
   {
-   camera_x=x;
-   camera_y=y;
+   this->set_x(x);
+   this->set_y(y);
   }
 
   unsigned int Camera::increase_x(const unsigned int increment)
   {
-   camera_x+=increment;
+   this->set_x(camera_x+increment);
    return camera_x;
   }
 
   unsigned int Camera::increase_y(const unsigned int increment)
   {
-   camera_y+=increment;
+   this->set_y(camera_y+increment);
    return camera_y;
   }
 
