@@ -2360,9 +2360,13 @@ namespace BLACKGDK
    {
     target_x=world_x-camera_x;
    }
-   else
+   if (world_x<camera_x)
    {
-    target_x=camera_x-world_x;
+    target_x=camera_x+world_x;
+   }
+   if (world_x==camera_x)
+   {
+    target_x=camera_x;
    }
    return (target_x*viewport_width)/screen_width;
   }
@@ -2374,9 +2378,13 @@ namespace BLACKGDK
    {
     target_y=world_y-camera_y;
    }
-   else
+   if (world_y<camera_y)
    {
-    target_y=camera_y-world_y;
+    target_y=camera_y+world_y;
+   }
+   if (world_y==camera_y)
+   {
+    target_y=camera_y;
    }
    return (target_y*viewport_height)/screen_height;
   }
