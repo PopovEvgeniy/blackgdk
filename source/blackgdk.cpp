@@ -2360,11 +2360,7 @@ namespace BLACKGDK
    {
     target_x=world_x-x_offset;
    }
-   if (world_x<x_offset)
-   {
-    target_x=x_offset+world_x;
-   }
-   if (world_x==x_offset)
+   else
    {
     target_x=x_offset;
    }
@@ -2378,11 +2374,7 @@ namespace BLACKGDK
    {
     target_y=world_y-y_offset;
    }
-   if (world_y<y_offset)
-   {
-    target_y=y_offset+world_y;
-   }
-   if (world_y==y_offset)
+   else
    {
     target_y=y_offset;
    }
