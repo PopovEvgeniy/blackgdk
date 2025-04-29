@@ -2343,14 +2343,42 @@ namespace BLACKGDK
    return y_offset+viewport_height;
   }
 
+  unsigned int Camera::get_highest_x_offset() const
+  {
+   unsigned int highest_x_offset;
+   if (screen_width>viewport_width)
+   {
+    highest_x_offset=screen_width-viewport_width;
+   }
+   else
+   {
+    highest_x_offset=viewport_width-screen_width;
+   }
+   return highest_x_offset;
+  }
+
+  unsigned int Camera::get_highest_y_offset() const
+  {
+   unsigned int highest_y_offset;
+   if (screen_height>viewport_height)
+   {
+    highest_y_offset=screen_height-viewport_height;
+   }
+   else
+   {
+    highest_y_offset=viewport_height-screen_height;
+   }
+   return highest_y_offset;
+  }
+
   unsigned int Camera::get_world_x(const unsigned int screen_x)
   {
-   return (screen_x*screen_width)/viewport_width+x_offset;
+   return (screen_x*viewport_width)/screen_width+x_offset;
   }
 
   unsigned int Camera::get_world_y(const unsigned int screen_y)
   {
-   return (screen_y*screen_height)/viewport_height+y_offset;
+   return (screen_y*viewport_height)/screen_height+y_offset;
   }
 
   unsigned int Camera::get_screen_x(const unsigned int world_x)
