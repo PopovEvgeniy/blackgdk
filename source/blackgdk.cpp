@@ -2392,7 +2392,7 @@ namespace BLACKGDK
    {
     target_x=x_offset;
    }
-   return (target_x*viewport_width)/screen_width;
+   return (target_x*screen_width)/viewport_width;
   }
 
   unsigned int Camera::get_screen_y(const unsigned int world_y)
@@ -2406,7 +2406,7 @@ namespace BLACKGDK
    {
     target_y=y_offset;
    }
-   return (target_y*viewport_height)/screen_height;
+   return (target_y*screen_height)/viewport_height;
   }
 
   void Camera::initialize(const unsigned int width,const unsigned int height)
