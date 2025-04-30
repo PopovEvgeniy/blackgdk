@@ -500,12 +500,12 @@ namespace BLACKGDK
  namespace Core
  {
 
-  void set_camera(const double x,const double y,const double viewport_width,const double view_height,const double screen_width,const double screen_height)
+  void set_camera(const float x,const float y,const float viewport_width,const float view_height,const float screen_width,const float screen_height)
   {
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
-   glTranslated(-1.0*x,-1.0*y,0.0);
-   glScaled(screen_width/viewport_width,screen_height/view_height,1.0);
+   glTranslatef(-1.0f*x,-1.0f*y,0.0f);
+   glScaled(screen_width/viewport_width,screen_height/view_height,1.0f);
   }
 
   float get_start_offset(const float current,const float total)
@@ -2390,7 +2390,7 @@ namespace BLACKGDK
    }
    else
    {
-    target_x=x_offset;
+    target_x=world_x;
    }
    return (target_x*screen_width)/viewport_width;
   }
@@ -2404,7 +2404,7 @@ namespace BLACKGDK
    }
    else
    {
-    target_y=y_offset;
+    target_y=world_y;
    }
    return (target_y*screen_height)/viewport_height;
   }
@@ -2527,7 +2527,7 @@ namespace BLACKGDK
 
   void Camera::update()
   {
-   Core::set_camera(static_cast<double>(x_offset),static_cast<double>(y_offset),static_cast<double>(viewport_width),static_cast<double>(viewport_height),static_cast<double>(screen_width),static_cast<double>(screen_height));
+   Core::set_camera(static_cast<float>(x_offset),static_cast<float>(y_offset),static_cast<float>(viewport_width),static_cast<float>(viewport_height),static_cast<float>(screen_width),static_cast<float>(screen_height));
   }
 
   void Camera::reset()

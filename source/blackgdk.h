@@ -328,7 +328,7 @@ typedef enum
   ALPHA_COMPONENT=24
  } PIXEL_COMPONENT;
 
-  void set_camera(const double x,const double y,const double viewport_width,const double view_height,const double screen_width,const double screen_height);
+  void set_camera(const float x,const float y,const float viewport_width,const float view_height,const float screen_width,const float screen_height);
   float get_start_offset(const float current,const float total);
   float get_end_offset(const float current,const float total);
   unsigned int get_pixel_component(const unsigned int pixel,const Core::PIXEL_COMPONENT component);
