@@ -505,7 +505,7 @@ namespace BLACKGDK
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
    glTranslatef(-1.0f*x,-1.0f*y,0.0f);
-   glScaled(screen_width/viewport_width,screen_height/view_height,1.0f);
+   glScalef(screen_width/viewport_width,screen_height/view_height,1.0f);
   }
 
   float get_start_offset(const float current,const float total)
