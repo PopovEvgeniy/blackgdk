@@ -2298,6 +2298,42 @@ namespace BLACKGDK
 
   }
 
+  bool Camera::check_viewport_width(const unsigned int width) const
+  {
+   return (width>0) && (width<=screen_width);
+  }
+
+  bool Camera::check_viewport_heigth(const unsigned int height) const
+  {
+   return (height>0) && (height<=screen_height);
+  }
+
+  void Camera::set_viewport_width(const unsigned int width)
+  {
+   if (this->check_viewport_width(width)==true)
+   {
+    viewport_width=width;
+   }
+   else
+   {
+    viewport_width=screen_width;
+   }
+
+  }
+
+  void Camera::set_viewport_heigth(const unsigned int height)
+  {
+   if (this->check_viewport_heigth(height)==true)
+   {
+    viewport_height=height;
+   }
+   else
+   {
+    viewport_height=screen_height;
+   }
+
+  }
+
   Camera* Camera::get_handle()
   {
    return this;
@@ -2438,15 +2474,8 @@ namespace BLACKGDK
 
   void Camera::set_viewport(const unsigned int width,const unsigned int height)
   {
-   if (width>0)
-   {
-    viewport_width=width;
-   }
-   if (height>0)
-   {
-    viewport_height=height;
-   }
-
+   this->set_viewport_width(width);
+   this->set_viewport_heigth(height);
   }
 
   void Camera::set_x(const unsigned int x)
@@ -2533,8 +2562,8 @@ namespace BLACKGDK
   void Camera::reset()
   {
    this->set_offset(0,0);
-   this->set_viewport(1,1);
-   this->initialize(1,1);
+   this->set_viewport(screen_width,screen_height);
+   this->update();
   }
 
   Image::Image()

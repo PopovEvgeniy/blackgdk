@@ -684,6 +684,10 @@ typedef enum
    unsigned int viewport_height;
    unsigned int x_offset;
    unsigned int y_offset;
+   bool check_viewport_width(const unsigned int width) const;
+   bool check_viewport_heigth(const unsigned int height) const;
+   void set_viewport_width(const unsigned int width);
+   void set_viewport_heigth(const unsigned int height);
    public:
    Camera();
    ~Camera();
