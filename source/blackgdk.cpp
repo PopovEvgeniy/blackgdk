@@ -2293,8 +2293,6 @@ namespace BLACKGDK
    camera_y=0;
    highest_x_offset=0;
    highest_y_offset=0;
-   x_ratio=0;
-   y_ratio=0;
   }
 
   Camera::~Camera()
@@ -2302,16 +2300,10 @@ namespace BLACKGDK
 
   }
 
-  void Camera::calucalate_ratio()
-  {
-   x_ratio=(screen_width*UCHAR_MAX)/viewport_width;
-   y_ratio=(screen_height*UCHAR_MAX)/viewport_height;
-  }
-
   void Camera::calucalate_limits()
   {
-   highest_x_offset=((screen_width-viewport_width)*x_ratio)/UCHAR_MAX;
-   highest_y_offset=((screen_height-viewport_height)*y_ratio)/UCHAR_MAX;
+   highest_x_offset=((screen_width-viewport_width)*screen_width)/viewport_width;
+   highest_y_offset=((screen_height-viewport_height)*screen_height)/viewport_height;
   }
 
   bool Camera::check_viewport_width(const unsigned int width) const
@@ -2474,7 +2466,6 @@ namespace BLACKGDK
   {
    this->set_viewport_width(width);
    this->set_viewport_heigth(height);
-   this->calucalate_ratio();
    this->calucalate_limits();
   }
 
@@ -2496,7 +2487,7 @@ namespace BLACKGDK
 
   unsigned int Camera::increase_x(const unsigned int increment)
   {
-   this->set_x(camera_y+increment);
+   this->set_x(camera_x+increment);
    return camera_x;
   }
 

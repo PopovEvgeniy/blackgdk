@@ -18,8 +18,8 @@ int main()
  city.prepare(screen);
  punk.set_size(192,384);
  punk.set_position(0,screen.get_height()-punk.get_height());
+ camera.initialize(screen);
  camera.set_viewport(600,screen.get_height());
- camera.initialize(screen.get_width(),screen.get_height());
  while (screen.sync())
  {
   if (keyboard.check_hold(1)==true)

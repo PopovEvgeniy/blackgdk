@@ -686,9 +686,6 @@ typedef enum
    unsigned int camera_y;
    unsigned int highest_x_offset;
    unsigned int highest_y_offset;
-   unsigned int x_ratio;
-   unsigned int y_ratio;
-   void calucalate_ratio();
    void calucalate_limits();
    bool check_viewport_width(const unsigned int width) const;
    bool check_viewport_heigth(const unsigned int height) const;
