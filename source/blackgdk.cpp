@@ -2289,13 +2289,29 @@ namespace BLACKGDK
    screen_height=1;
    viewport_width=1;
    viewport_height=1;
-   x_offset=0;
-   y_offset=0;
+   camera_x=0;
+   camera_y=0;
+   highest_x_offset=0;
+   highest_y_offset=0;
+   x_ratio=0;
+   y_ratio=0;
   }
 
   Camera::~Camera()
   {
 
+  }
+
+  void Camera::calucalate_ratio()
+  {
+   x_ratio=(screen_width*UCHAR_MAX)/viewport_width;
+   y_ratio=(screen_height*UCHAR_MAX)/viewport_height;
+  }
+
+  void Camera::calucalate_limits()
+  {
+   highest_x_offset=((screen_width-viewport_width)*x_ratio)/UCHAR_MAX;
+   highest_y_offset=((screen_height-viewport_height)*y_ratio)/UCHAR_MAX;
   }
 
   bool Camera::check_viewport_width(const unsigned int width) const
@@ -2341,12 +2357,12 @@ namespace BLACKGDK
 
   unsigned int Camera::get_x() const
   {
-   return x_offset;
+   return camera_x;
   }
 
   unsigned int Camera::get_y() const
   {
-   return y_offset;
+   return camera_y;
   }
 
   unsigned int Camera::get_screen_width() const
@@ -2371,58 +2387,40 @@ namespace BLACKGDK
 
   unsigned int Camera::get_highest_x() const
   {
-   return x_offset+viewport_width;
+   return camera_x+viewport_width;
   }
 
   unsigned int Camera::get_highest_y() const
   {
-   return y_offset+viewport_height;
+   return camera_y+viewport_height;
   }
 
   unsigned int Camera::get_highest_x_offset() const
   {
-   unsigned int highest_x_offset;
-   if (screen_width>viewport_width)
-   {
-    highest_x_offset=screen_width-viewport_width;
-   }
-   else
-   {
-    highest_x_offset=viewport_width-screen_width;
-   }
    return highest_x_offset;
   }
 
   unsigned int Camera::get_highest_y_offset() const
   {
-   unsigned int highest_y_offset;
-   if (screen_height>viewport_height)
-   {
-    highest_y_offset=screen_height-viewport_height;
-   }
-   else
-   {
-    highest_y_offset=viewport_height-screen_height;
-   }
    return highest_y_offset;
   }
 
   unsigned int Camera::get_world_x(const unsigned int screen_x)
   {
-   return (screen_x*viewport_width)/screen_width+x_offset;
+   return (screen_x*viewport_width)/screen_width+camera_x;
   }
 
   unsigned int Camera::get_world_y(const unsigned int screen_y)
   {
-   return (screen_y*viewport_height)/screen_height+y_offset;
+   return (screen_y*viewport_height)/screen_height+camera_y;
   }
 
   unsigned int Camera::get_screen_x(const unsigned int world_x)
   {
    unsigned int target_x;
-   if (world_x>x_offset)
+   if (world_x>camera_x)
    {
-    target_x=world_x-x_offset;
+    target_x=world_x-camera_x;
    }
    else
    {
@@ -2434,9 +2432,9 @@ namespace BLACKGDK
   unsigned int Camera::get_screen_y(const unsigned int world_y)
   {
    unsigned int target_y;
-   if (world_y>y_offset)
+   if (world_y>camera_y)
    {
-    target_y=world_y-y_offset;
+    target_y=world_y-camera_y;
    }
    else
    {
@@ -2476,19 +2474,21 @@ namespace BLACKGDK
   {
    this->set_viewport_width(width);
    this->set_viewport_heigth(height);
+   this->calucalate_ratio();
+   this->calucalate_limits();
   }
 
   void Camera::set_x(const unsigned int x)
   {
-   x_offset=x;
+   camera_x=x;
   }
 
   void Camera::set_y(const unsigned int y)
   {
-   y_offset=y;
+   camera_y=y;
   }
 
-  void Camera::set_offset(const unsigned int x,const unsigned int y)
+  void Camera::set_position(const unsigned int x,const unsigned int y)
   {
    this->set_x(x);
    this->set_y(y);
@@ -2496,32 +2496,32 @@ namespace BLACKGDK
 
   unsigned int Camera::increase_x(const unsigned int increment)
   {
-   this->set_x(x_offset+increment);
-   return x_offset;
+   this->set_x(camera_y+increment);
+   return camera_x;
   }
 
   unsigned int Camera::increase_y(const unsigned int increment)
   {
-   this->set_y(y_offset+increment);
-   return y_offset;
+   this->set_y(camera_y+increment);
+   return camera_y;
   }
 
   unsigned int Camera::decrease_x(const unsigned int decrement)
   {
-   if (x_offset>=decrement)
+   if (camera_x>=decrement)
    {
-    x_offset-=decrement;
+    camera_x-=decrement;
    }
-   return x_offset;
+   return camera_x;
   }
 
   unsigned int Camera::decrease_y(const unsigned int decrement)
   {
-   if (y_offset>=decrement)
+   if (camera_y>=decrement)
    {
-    y_offset-=decrement;
+    camera_y-=decrement;
    }
-   return y_offset;
+   return camera_y;
   }
 
   unsigned int Camera::increase_x()
@@ -2556,12 +2556,12 @@ namespace BLACKGDK
 
   void Camera::update()
   {
-   Core::set_camera(static_cast<float>(x_offset),static_cast<float>(y_offset),static_cast<float>(viewport_width),static_cast<float>(viewport_height),static_cast<float>(screen_width),static_cast<float>(screen_height));
+   Core::set_camera(static_cast<float>(camera_x),static_cast<float>(camera_y),static_cast<float>(viewport_width),static_cast<float>(viewport_height),static_cast<float>(screen_width),static_cast<float>(screen_height));
   }
 
   void Camera::reset()
   {
-   this->set_offset(0,0);
+   this->set_position(0,0);
    this->set_viewport(screen_width,screen_height);
    this->update();
   }

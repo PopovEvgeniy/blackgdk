@@ -682,8 +682,14 @@ typedef enum
    unsigned int screen_height;
    unsigned int viewport_width;
    unsigned int viewport_height;
-   unsigned int x_offset;
-   unsigned int y_offset;
+   unsigned int camera_x;
+   unsigned int camera_y;
+   unsigned int highest_x_offset;
+   unsigned int highest_y_offset;
+   unsigned int x_ratio;
+   unsigned int y_ratio;
+   void calucalate_ratio();
+   void calucalate_limits();
    bool check_viewport_width(const unsigned int width) const;
    bool check_viewport_heigth(const unsigned int height) const;
    void set_viewport_width(const unsigned int width);
@@ -712,7 +718,7 @@ typedef enum
    void set_viewport(const unsigned int width,const unsigned int height);
    void set_x(const unsigned int x);
    void set_y(const unsigned int y);
-   void set_offset(const unsigned int x,const unsigned int y);
+   void set_position(const unsigned int x,const unsigned int y);
    unsigned int increase_x(const unsigned int increment);
    unsigned int increase_y(const unsigned int increment);
    unsigned int decrease_x(const unsigned int decrement);
