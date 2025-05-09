@@ -177,7 +177,7 @@ namespace BLACKGDK
    event=CreateEventEx(NULL,NULL,CREATE_EVENT_MANUAL_RESET,EVENT_MODIFY_STATE|SYNCHRONIZE);
    if (event==NULL)
    {
-    BLACKGDK::Halt("Can't create synchronization event");
+    BLACKGDK::Halt("Can't create the synchronization event");
    }
 
   }
@@ -187,7 +187,7 @@ namespace BLACKGDK
    if (CreateTimerQueueTimer(&timer,NULL,Internal::set_event,event,0,delay,WT_EXECUTEINTIMERTHREAD)==FALSE)
    {
     timer=NULL;
-    BLACKGDK::Halt("Can't set timer setting");
+    BLACKGDK::Halt("Can't set the timer settings");
    }
 
   }
@@ -223,7 +223,7 @@ namespace BLACKGDK
   {
    if (ChangeDisplaySettingsEx(NULL,&display,NULL,CDS_FULLSCREEN,NULL)!=DISP_CHANGE_SUCCESSFUL)
    {
-    BLACKGDK::Halt("Can't change video mode");
+    BLACKGDK::Halt("Can't change the video mode");
    }
 
   }
@@ -232,7 +232,7 @@ namespace BLACKGDK
   {
    if (EnumDisplaySettingsEx(NULL,ENUM_CURRENT_SETTINGS,&display,EDS_RAWMODE)==FALSE)
    {
-    BLACKGDK::Halt("Can't get display setting");
+    BLACKGDK::Halt("Can't get the display settings");
    }
 
   }
@@ -314,7 +314,7 @@ namespace BLACKGDK
    window_class.hbrBackground=CreateSolidBrush(RGB(0,0,0));
    if (window_class.hbrBackground==NULL)
    {
-    BLACKGDK::Halt("Can't set background color");
+    BLACKGDK::Halt("Can't set the background color");
    }
 
   }
@@ -343,7 +343,7 @@ namespace BLACKGDK
   {
    if (RegisterClassEx(&window_class)==0)
    {
-    BLACKGDK::Halt("Can't register window class");
+    BLACKGDK::Halt("Can't register the window class");
    }
 
   }
@@ -353,7 +353,7 @@ namespace BLACKGDK
    context=GetWindowDC(window);
    if (context==NULL)
    {
-    BLACKGDK::Halt("Can't take window context");
+    BLACKGDK::Halt("Can't take the window context");
    }
 
   }
@@ -363,7 +363,7 @@ namespace BLACKGDK
    window=CreateWindowEx(WS_EX_APPWINDOW,window_class.lpszClassName,NULL,WS_VISIBLE|WS_POPUP,0,0,GetSystemMetrics(SM_CXSCREEN),GetSystemMetrics(SM_CYSCREEN),NULL,NULL,window_class.hInstance,NULL);
    if (window==NULL)
    {
-    BLACKGDK::Halt("Can't create window");
+    BLACKGDK::Halt("Can't create the window");
    }
    UpdateWindow(window);
   }
@@ -458,7 +458,7 @@ namespace BLACKGDK
    DescribePixelFormat(device,format,setting.nSize,&setting);
    if (SetPixelFormat(device,format,&setting)==FALSE)
    {
-    BLACKGDK::Halt("Can't set pixel format");
+    BLACKGDK::Halt("Can't set the pixel format");
    }
 
   }
@@ -468,7 +468,7 @@ namespace BLACKGDK
    render=wglCreateContext(device);
    if (render==NULL)
    {
-    BLACKGDK::Halt("Can't create render context");
+    BLACKGDK::Halt("Can't create the render context");
    }
    wglMakeCurrent(device,render);
   }
@@ -2300,7 +2300,7 @@ namespace BLACKGDK
 
   }
 
-  void Camera::calucalate_limits()
+  void Camera::calculate_limits()
   {
    highest_x_offset=((screen_width-viewport_width)*screen_width)/viewport_width;
    highest_y_offset=((screen_height-viewport_height)*screen_height)/viewport_height;
@@ -2435,6 +2435,32 @@ namespace BLACKGDK
    return (target_y*screen_height)/viewport_height;
   }
 
+  unsigned int Camera::set_x(const unsigned int x)
+  {
+   if (x<highest_x_offset)
+   {
+    camera_x=x;
+   }
+   else
+   {
+    camera_x=highest_x_offset;
+   }
+   return camera_x;
+  }
+
+  unsigned int Camera::set_y(const unsigned int y)
+  {
+   if (y<highest_y_offset)
+   {
+    camera_y=y;
+   }
+   else
+   {
+    camera_y=highest_y_offset;
+   }
+   return camera_y;
+  }
+
   void Camera::initialize(const unsigned int width,const unsigned int height)
   {
    if (width>0)
@@ -2466,17 +2492,7 @@ namespace BLACKGDK
   {
    this->set_viewport_width(width);
    this->set_viewport_heigth(height);
-   this->calucalate_limits();
-  }
-
-  void Camera::set_x(const unsigned int x)
-  {
-   camera_x=x;
-  }
-
-  void Camera::set_y(const unsigned int y)
-  {
-   camera_y=y;
+   this->calculate_limits();
   }
 
   void Camera::set_position(const unsigned int x,const unsigned int y)
@@ -2487,14 +2503,12 @@ namespace BLACKGDK
 
   unsigned int Camera::increase_x(const unsigned int increment)
   {
-   this->set_x(camera_x+increment);
-   return camera_x;
+   return this->set_x(camera_x+increment);
   }
 
   unsigned int Camera::increase_y(const unsigned int increment)
   {
-   this->set_y(camera_y+increment);
-   return camera_y;
+   return this->set_y(camera_y+increment);
   }
 
   unsigned int Camera::decrease_x(const unsigned int decrement)

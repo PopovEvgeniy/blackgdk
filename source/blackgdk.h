@@ -686,7 +686,7 @@ typedef enum
    unsigned int camera_y;
    unsigned int highest_x_offset;
    unsigned int highest_y_offset;
-   void calucalate_limits();
+   void calculate_limits();
    bool check_viewport_width(const unsigned int width) const;
    bool check_viewport_heigth(const unsigned int height) const;
    void set_viewport_width(const unsigned int width);
@@ -709,12 +709,12 @@ typedef enum
    unsigned int get_world_y(const unsigned int screen_y);
    unsigned int get_screen_x(const unsigned int world_x);
    unsigned int get_screen_y(const unsigned int world_y);
+   unsigned int set_x(const unsigned int x);
+   unsigned int set_y(const unsigned int y);
    void initialize(const unsigned int width,const unsigned int height);
    void initialize(Screen *screen);
    void initialize(Screen &screen);
    void set_viewport(const unsigned int width,const unsigned int height);
-   void set_x(const unsigned int x);
-   void set_y(const unsigned int y);
    void set_position(const unsigned int x,const unsigned int y);
    unsigned int increase_x(const unsigned int increment);
    unsigned int increase_y(const unsigned int increment);
