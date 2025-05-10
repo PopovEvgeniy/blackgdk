@@ -2289,8 +2289,8 @@ namespace BLACKGDK
    screen_height=1;
    viewport_width=1;
    viewport_height=1;
-   camera_x=0;
-   camera_y=0;
+   x_offset=0;
+   y_offset=0;
    highest_x_offset=0;
    highest_y_offset=0;
   }
@@ -2349,12 +2349,12 @@ namespace BLACKGDK
 
   unsigned int Camera::get_x() const
   {
-   return camera_x;
+   return x_offset;
   }
 
   unsigned int Camera::get_y() const
   {
-   return camera_y;
+   return y_offset;
   }
 
   unsigned int Camera::get_screen_width() const
@@ -2379,12 +2379,24 @@ namespace BLACKGDK
 
   unsigned int Camera::get_highest_x() const
   {
-   return camera_x+viewport_width;
+   unsigned int highest_x;
+   highest_x=x_offset+viewport_width;
+   if (highest_x>=highest_x_offset)
+   {
+    highest_x=screen_width;
+   }
+   return highest_x;
   }
 
   unsigned int Camera::get_highest_y() const
   {
-   return camera_y+viewport_height;
+   unsigned int highest_y;
+   highest_y=y_offset+viewport_height;
+   if (highest_y>=highest_y_offset)
+   {
+    highest_y=screen_height;
+   }
+   return highest_y;
   }
 
   unsigned int Camera::get_highest_x_offset() const
@@ -2399,20 +2411,20 @@ namespace BLACKGDK
 
   unsigned int Camera::get_world_x(const unsigned int screen_x)
   {
-   return (screen_x*viewport_width)/screen_width+camera_x;
+   return (screen_x*viewport_width)/screen_width+x_offset;
   }
 
   unsigned int Camera::get_world_y(const unsigned int screen_y)
   {
-   return (screen_y*viewport_height)/screen_height+camera_y;
+   return (screen_y*viewport_height)/screen_height+y_offset;
   }
 
   unsigned int Camera::get_screen_x(const unsigned int world_x)
   {
    unsigned int target_x;
-   if (world_x>camera_x)
+   if (world_x>x_offset)
    {
-    target_x=world_x-camera_x;
+    target_x=world_x-x_offset;
    }
    else
    {
@@ -2424,9 +2436,9 @@ namespace BLACKGDK
   unsigned int Camera::get_screen_y(const unsigned int world_y)
   {
    unsigned int target_y;
-   if (world_y>camera_y)
+   if (world_y>y_offset)
    {
-    target_y=world_y-camera_y;
+    target_y=world_y-y_offset;
    }
    else
    {
@@ -2439,26 +2451,26 @@ namespace BLACKGDK
   {
    if (x<highest_x_offset)
    {
-    camera_x=x;
+    x_offset=x;
    }
    else
    {
-    camera_x=highest_x_offset;
+    x_offset=highest_x_offset;
    }
-   return camera_x;
+   return x_offset;
   }
 
   unsigned int Camera::set_y(const unsigned int y)
   {
    if (y<highest_y_offset)
    {
-    camera_y=y;
+    y_offset=y;
    }
    else
    {
-    camera_y=highest_y_offset;
+    y_offset=highest_y_offset;
    }
-   return camera_y;
+   return y_offset;
   }
 
   void Camera::initialize(const unsigned int width,const unsigned int height)
@@ -2495,7 +2507,7 @@ namespace BLACKGDK
    this->calculate_limits();
   }
 
-  void Camera::set_position(const unsigned int x,const unsigned int y)
+  void Camera::set_offset(const unsigned int x,const unsigned int y)
   {
    this->set_x(x);
    this->set_y(y);
@@ -2503,30 +2515,30 @@ namespace BLACKGDK
 
   unsigned int Camera::increase_x(const unsigned int increment)
   {
-   return this->set_x(camera_x+increment);
+   return this->set_x(x_offset+increment);
   }
 
   unsigned int Camera::increase_y(const unsigned int increment)
   {
-   return this->set_y(camera_y+increment);
+   return this->set_y(y_offset+increment);
   }
 
   unsigned int Camera::decrease_x(const unsigned int decrement)
   {
-   if (camera_x>=decrement)
+   if (x_offset>=decrement)
    {
-    camera_x-=decrement;
+    x_offset-=decrement;
    }
-   return camera_x;
+   return x_offset;
   }
 
   unsigned int Camera::decrease_y(const unsigned int decrement)
   {
-   if (camera_y>=decrement)
+   if (y_offset>=decrement)
    {
-    camera_y-=decrement;
+    y_offset-=decrement;
    }
-   return camera_y;
+   return y_offset;
   }
 
   unsigned int Camera::increase_x()
@@ -2561,12 +2573,12 @@ namespace BLACKGDK
 
   void Camera::update()
   {
-   Core::set_camera(static_cast<float>(camera_x),static_cast<float>(camera_y),static_cast<float>(viewport_width),static_cast<float>(viewport_height),static_cast<float>(screen_width),static_cast<float>(screen_height));
+   Core::set_camera(static_cast<float>(x_offset),static_cast<float>(y_offset),static_cast<float>(viewport_width),static_cast<float>(viewport_height),static_cast<float>(screen_width),static_cast<float>(screen_height));
   }
 
   void Camera::reset()
   {
-   this->set_position(0,0);
+   this->set_offset(0,0);
    this->set_viewport(screen_width,screen_height);
    this->update();
   }
