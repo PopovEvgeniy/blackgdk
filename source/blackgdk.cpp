@@ -2381,7 +2381,7 @@ namespace BLACKGDK
   {
    unsigned int highest_x;
    highest_x=x_offset+viewport_width;
-   if (highest_x>=highest_x_offset)
+   if (highest_x>screen_width)
    {
     highest_x=screen_width;
    }
@@ -2392,7 +2392,7 @@ namespace BLACKGDK
   {
    unsigned int highest_y;
    highest_y=y_offset+viewport_height;
-   if (highest_y>=highest_y_offset)
+   if (highest_y>screen_height)
    {
     highest_y=screen_height;
    }
