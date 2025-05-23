@@ -2385,13 +2385,9 @@ namespace BLACKGDK
    {
     highest_x=screen_width;
    }
-   if (screen_width<highest_x_offset)
+   if (highest_x>screen_width)
    {
-    if (highest_x>=screen_width)
-    {
-     highest_x=x_offset;
-    }
-
+    highest_x=x_offset;
    }
    return highest_x;
   }
@@ -2404,13 +2400,9 @@ namespace BLACKGDK
    {
     highest_y=screen_height;
    }
-   if (screen_height<highest_y_offset)
+   if (highest_y>screen_height)
    {
-    if (highest_y>=screen_height)
-    {
-     highest_y=y_offset;
-    }
-
+    highest_y=y_offset;
    }
    return highest_y;
   }
@@ -2475,11 +2467,8 @@ namespace BLACKGDK
 
   unsigned int Camera::set_x(const unsigned int x)
   {
-   if (x<highest_x_offset)
-   {
-    x_offset=x;
-   }
-   else
+   x_offset=x;
+   if (x_offset>highest_x_offset)
    {
     x_offset=highest_x_offset;
    }
@@ -2488,11 +2477,8 @@ namespace BLACKGDK
 
   unsigned int Camera::set_y(const unsigned int y)
   {
-   if (y<highest_y_offset)
-   {
-    y_offset=y;
-   }
-   else
+   y_offset=y;
+   if (y_offset>highest_y_offset)
    {
     y_offset=highest_y_offset;
    }
