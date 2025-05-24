@@ -2306,19 +2306,9 @@ namespace BLACKGDK
    highest_y_offset=((screen_height-viewport_height)*screen_height)/viewport_height;
   }
 
-  bool Camera::check_viewport_width(const unsigned int width) const
-  {
-   return (width>0) && (width<=screen_width);
-  }
-
-  bool Camera::check_viewport_heigth(const unsigned int height) const
-  {
-   return (height>0) && (height<=screen_height);
-  }
-
   void Camera::set_viewport_width(const unsigned int width)
   {
-   if (this->check_viewport_width(width)==true)
+   if ((width>0) && (width<=screen_width))
    {
     viewport_width=width;
    }
@@ -2331,7 +2321,7 @@ namespace BLACKGDK
 
   void Camera::set_viewport_heigth(const unsigned int height)
   {
-   if (this->check_viewport_heigth(height)==true)
+   if ((height>0) && (height<=screen_height))
    {
     viewport_height=height;
    }
