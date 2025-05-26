@@ -5,7 +5,6 @@ int main()
  BLACKGDK::Graphics::Screen screen;
  BLACKGDK::Graphics::Scene city;
  BLACKGDK::Graphics::Cartoon punk;
- BLACKGDK::Graphics::Text text;
  BLACKGDK::Graphics::Camera camera;
  BLACKGDK::Input::Keyboard keyboard;
  BLACKGDK::Input::Mouse mouse;
@@ -14,7 +13,6 @@ int main()
  screen.initialize(640,480);
  city.load("city.tga");
  punk.load("punk.tga");
- text.load_font("font.tga");
  city.prepare(screen);
  camera.initialize(screen);
  camera.set_viewport(320,screen.get_height());
