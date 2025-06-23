@@ -6,14 +6,10 @@
   <body>
     <div align="center"><big>Black game development kit: Programmer Reference</big><br>
     </div>
-    <big><br>
-      <br>
-      <br>
-    </big>
+    <big> </big>
     <h1><a id="mozTocId62565" class="mozTocH1"></a><big>Part 1. Welcome to Black
         game development kit</big></h1>
-    <big><br>
-    </big>
+    <big> </big>
     <ol id="mozToc">
       <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
       <li><a href="#mozTocId62565">Part 1. Welcome to Black game development kit</a>
@@ -124,10 +120,9 @@
       <br>
       Hello from Russia. My name is Popov Evgeniy Alekseyevich. I am the
       individual programmer. I enjoy creating software. I also like the
-      old-school video games. Do you want to develop video games for
-      Microsoft Windows? You need a good game engine to do it. I made my own
-      engine. I hope that my C++ game engine will be useful for many
-      programmers.<br>
+      old-school video games. Do you want to develop video games for Microsoft
+      Windows? You need a good game engine to do it. I made my own engine. I
+      hope that my C++ game engine will be useful for many programmers.<br>
       <br>
       <u>Features</u><br>
       <br>
@@ -219,13 +214,13 @@
       the following conditions:<br>
       The above copyright notice and this permission notice shall be included<br>
       in all copies or substantial portions of the Materials.<br>
-      THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-      EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-      IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-      CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-      TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-      MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.<br>
+      THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+      NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+      DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+      OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE MATERIALS OR THE
+      USE OR OTHER DEALINGS IN THE MATERIALS.<br>
     </big>
     <h2><a id="mozTocId799775" class="mozTocH2"></a><big>Chapter 4. System
         requirements</big></h2>
@@ -350,9 +345,8 @@
     <h2><a id="mozTocId889232" class="mozTocH2"></a><big>Chapter 1. Coordinate
         system</big></h2>
     <big><br>
-      The engine uses the standard coordinate system by default. The
-      coordinates start at the top-left corner. Look at this picture to
-      understand it.<br>
+      The engine uses the standard coordinate system by default. The coordinates
+      start at the top-left corner. Look at this picture to understand it.<br>
       <br>
       <img alt="" src="coordinate_system.png" height="111" width="107"><br>
     </big>
@@ -377,28 +371,29 @@
         Introduce</u><br>
       <br>
       The base graphics subsystem does render a game scene. This subsystem uses
-      <a href="http://opengl.org">OPENGL</a> for rendering. All modern video cards support hardware-accelerated
-      OPENGL. The software OPENGL will be activated if the acceleration is
-      not available.<br>
+      <a href="http://opengl.org">OPENGL</a> for rendering. All modern video
+      cards support hardware-accelerated OPENGL. The software OPENGL will be
+      activated if the acceleration is not available.<br>
       <br>
       <u>Render performance</u><br>
       <br>
       Always use the latest video card drivers. It may increase rendering
-      performance. You can also try to change the screen resolution if you
-      have low rendering performance.<br>
+      performance. You can also try to change the screen resolution if you have
+      low rendering performance.<br>
       <br>
       <u>FPS limitation</u><br>
       <br>
-      FPS is an important thing. Many FPS are needed for good animation, but
-      it also needs high processor usage. The FPS limit is 60 by default. It
-      has an ideal value.<br>
+      FPS is an important thing. Many FPS are needed for good animation, but it
+      also needs high processor usage. The FPS limit is 60 by default. It has an
+      ideal value.<br>
       <br>
       <u>Work with the base graphics subsystem</u><br>
       <br>
       The <i>Screen</i> class provides access to the base graphic subsystem.
       Let's look at the publicly available methods.<br>
       <br>
-      <i>void Screen::clear_screen(); -</i> Clear the screen. Fill it with black color.<br>
+      <i>void Screen::clear_screen(); -</i> Clear the screen. Fill it with black
+      color.<br>
       <br>
       <i>void Screen::initialize(); -</i> Initialize the base graphic subsystem
       with the default screen resolution.<br>
@@ -407,9 +402,9 @@
         height); -</i> Initialize the base graphic subsystem with the custom
       screen resolution.<br>
       <br>
-      <i>bool Screen::sync(); -</i> Show the current content of the back
-      buffer on the screen. Return false if a game is terminated. This method
-      uses the FPS limits and waits between frames.<br>
+      <i>bool Screen::sync(); -</i> Show the current content of the back buffer
+      on the screen. Return false if a game is terminated. This method uses the
+      FPS limits and waits between frames.<br>
       <br>
       <i>bool Screen::update(); -</i> Show the current content of the back
       buffer on the screen. Return false if a game is terminated. This method
@@ -581,10 +576,9 @@
     <big><br>
       <u>Level decoration</u><br>
       <br>
-      A background is a big image with a few frames. Any game has a
-      background. The background will be stretched to the screen resolution
-      before rendering the game scene. The background transparency is always
-      disabled.<br>
+      A background is a big image with a few frames. Any game has a background.
+      The background will be stretched to the screen resolution before rendering
+      the game scene. The background transparency is always disabled.<br>
       <br>
       The horizontal animated backgrounds look like the horizontal photo
       ribbons. The vertical animated backgrounds look like the vertical photo
@@ -598,14 +592,16 @@
         Background *Background::get_handle(); -</i> Return the handle to the
       background object.<br>
       <i><br>
-        void Background::prepare(const Screen *screen); -</i> Prepare for drawing.<br>
+        void Background::prepare(const Screen *screen); -</i> Prepare for
+      drawing.<br>
       <i><br>
         void Background::prepare(Screen &amp;screen); -</i> Prepare for drawing.<br>
       <br>
       <i>void Background::prepare(const unsigned int width, const unsigned int
         height); -</i> Prepare for drawing.<br>
       <br>
-      <i>void Background::disable_mirror(); -</i> Disable background mirroring mode.<br>
+      <i>void Background::disable_mirror(); -</i> Disable background mirroring
+      mode.<br>
       <br>
       <i>void Background::horizontal_mirror(); -</i> Set horizontal background
       mirroring mode.<br>
@@ -644,7 +640,8 @@
       <br>
       <i>void Background::destroy_image(); -</i> Destroy a background image.<br>
       <i><br>
-        void Background::destroy(); -</i> Destroy a background image and the texture.<br>
+        void Background::destroy(); -</i> Destroy a background image and the
+      texture.<br>
       <i><br>
         bool Background::is_load() const; -</i> Return true if a background has
       already been loaded.<br>
@@ -692,7 +689,8 @@
       Just use the <i>Scene</i> class to work with the static background. Let's
       look at the publicly available methods.<br>
       <i><br>
-        Scene *Scene::get_handle(); -</i> Return the handle to the background object.<br>
+        Scene *Scene::get_handle(); -</i> Return the handle to the background
+      object.<br>
       <i><br>
         void Scene::prepare(const Screen *screen); -</i> Prepare for drawing.<br>
       <br>
@@ -712,9 +710,11 @@
       <i>void Scene::complex_mirror(); -</i> Set both horizontal and vertical
       background mirroring modes.<br>
       <br>
-      <i>void Scene::load(Image *background); -</i> Load a background from the buffer.<br>
+      <i>void Scene::load(Image *background); -</i> Load a background from the
+      buffer.<br>
       <br>
-      <i>void Scene::load(Image &amp; background); -</i> Load a background from the buffer.<br>
+      <i>void Scene::load(Image &amp; background); -</i> Load a background from
+      the buffer.<br>
       <br>
       <i>void Scene::load(const char *name); -</i> Load a background from the
       target file.<br>
@@ -723,14 +723,17 @@
       <i><br>
         void Scene::destroy_image(); -</i> Destroy a background image.<br>
       <br>
-      <i>void Scene::destroy(); -</i> Destroy a background image and destroy the texture.<br>
+      <i>void Scene::destroy(); -</i> Destroy a background image and destroy the
+      texture.<br>
       <br>
       <i>bool Scene::is_load() const; -</i> Return true if a static background
       has already been loaded.<br>
       <i><br>
-        unsigned int Scene::get_width() const; -</i> Return the width of the background.<br>
+        unsigned int Scene::get_width() const; -</i> Return the width of the
+      background.<br>
       <i><br>
-        unsigned int Scene::get_height() const; -</i> Return the height of the background.<br>
+        unsigned int Scene::get_height() const; -</i> Return the height of the
+      background.<br>
       <u><br>
         A background texture</u><br>
       <br>
@@ -759,14 +762,16 @@
       <i>Parallax *Parallax::get_handle(); -</i> Return the handle to the
       background object.<br>
       <br>
-      <i>void Parallax::prepare(const Screen *screen); -</i> Prepare for drawing.<br>
+      <i>void Parallax::prepare(const Screen *screen); -</i> Prepare for
+      drawing.<br>
       <br>
       <i>void Parallax::prepare(Screen &amp;screen); -</i> Prepare for drawing.<br>
       <br>
       <i>void Parallax::prepare(const unsigned int width, const unsigned int
         height); -</i> Prepare for drawing.<br>
       <br>
-      <i>void Parallax::disable_mirror(); -</i> Disable background mirroring mode.<br>
+      <i>void Parallax::disable_mirror(); -</i> Disable background mirroring
+      mode.<br>
       <i><br>
         void Parallax::horizontal_mirror(); -</i> Set horizontal background
       mirroring mode.<br>
@@ -786,11 +791,17 @@
       <i>void Parallax::load(const char *name); -</i> Load a background from the
       target file.<br>
       <br>
+      <i>void Parallax::set_horizontal_speed(const float speed); -</i> Set the
+      horizontal scrolling speed.<br>
+      <br>
+      <i>void Parallax::set_vertical_speed(const float speed); -</i> Set the
+      vertical scrolling speed.<br>
+      <br>
       <i>void Parallax::set_speed(const float horizontal,const float vertical);
         -</i> Set the scrolling speed.<br>
-      <i><br>
-        float Parallax::get_horizontal_speed() const; -</i> Return the
-      horizontal speed.<br>
+      <br>
+      float Parallax::get_horizontal_speed() const; - Return the horizontal
+      speed.<br>
       <br>
       <i>float Parallax::get_vertical_speed() const; -</i> Return the vertical
       speed.<br>
@@ -957,8 +968,8 @@
       <u>Work with the sprites</u><br>
       <br>
       Just use the <i>Sprite</i> class to work with a sprite. It is derived
-      from three classes: Billboard, Animation, and Picture. Let's look at
-      the publicly available methods.<br>
+      from three classes: Billboard, Animation, and Picture. Let's look at the
+      publicly available methods.<br>
       <br>
       <i>void Sprite::set_settings(const BLACKGDK::IMAGE_KIND kind, const
         unsigned int frames); -</i> Set the sprite settings.<br>
@@ -1117,8 +1128,8 @@
         How do I draw a text?</u><br>
       <br>
       Just use the text subsystem to draw a text. This subsystem needs a font
-      for text drawing. You must load a font before starting to draw the
-      text. The font is just a sprite sheet with 16 rows and 16 columns.<br>
+      for text drawing. You must load a font before starting to draw the text.
+      The font is just a sprite sheet with 16 rows and 16 columns.<br>
       <u><br>
         Valid characters</u><br>
       <br>
@@ -1154,7 +1165,8 @@
       The <i>Text</i> class provides a simple interface to the text subsystem.
       Let's look at the publicly available methods.<br>
       <br>
-      <i>Text *Text::get_handle(); -</i> Return the handle to the text drawing subsystem.<br>
+      <i>Text *Text::get_handle(); -</i> Return the handle to the text drawing
+      subsystem.<br>
       <br>
       <i>BLACKGDK::TEXT_KIND Text::get_orientation() const; -</i> Get the
       current text orientation.<br>
@@ -1280,8 +1292,8 @@
     <big><u><br>
         A few words about the camera</u><br>
       <br>
-      The 2D camera defines the size of the visible area. It will be
-      stretched to the screen resolution before rendering the game scene.<br>
+      The 2D camera defines the size of the visible area. It will be stretched
+      to the screen resolution before rendering the game scene.<br>
       <u><br>
         Work with the camera</u><br>
       <br>
@@ -1412,9 +1424,8 @@
       <br>
       <u>Coordinates conversion</u><br>
       <br>
-      You can convert the Cartesian coordinates to the screen coordinates.
-      You can also convert the screen coordinates to the Cartesian
-      coordinates.<br>
+      You can convert the Cartesian coordinates to the screen coordinates. You
+      can also convert the screen coordinates to the Cartesian coordinates.<br>
       <br>
       Just use the <i>Coordinates</i> class to do it. Let's look at the
       publicly available methods.<br>
@@ -1548,9 +1559,9 @@
       <i>double Timer::get_interval() const; -</i> Return the current timer
       interval.<br>
       <br>
-      <i>bool Timer::check_timer(); -</i> Return true and reinitialize the
-      start point if the interval between the stop and start points is large
-      than or equal to a specific number of seconds.<br>
+      <i>bool Timer::check_timer(); -</i> Return true and reinitialize the start
+      point if the interval between the stop and start points is larger than or
+      equal to a specific number of seconds.<br>
     </big>
     <h2><a id="mozTocId271996" class="mozTocH2"></a><big>Chapter 4. Collision</big></h2>
     <big><br>
@@ -1560,9 +1571,8 @@
       <u><br>
         Collision detail</u><br>
       <br>
-      The detector uses the bounding box collision method to detect a
-      collision. The collision-related information is stored in a custom data
-      type.<br>
+      The detector uses the bounding box collision method to detect a collision.
+      The collision-related information is stored in a custom data type.<br>
       <br>
       <i>typedef struct<br>
         {<br>
@@ -1771,10 +1781,10 @@
       resource manager is implemented as a few template functions. All these
       functions are declared in the <i>Resource</i> sub-namespace.<br>
       <br>
-      <i>create</i> creates a resources. The first form of this function
-      creates a single resource. It takes a handle to a resource handle as an
-      argument. The second form creates an array of resources. It takes a
-      handle to a resource handle and a resource amount.<br>
+      <i>create</i> creates a resources. The first form of this function creates
+      a single resource. It takes a handle to a resource handle as an argument.
+      The second form creates an array of resources. It takes a handle to a
+      resource handle and a resource amount.<br>
       <br>
       <i>destroy</i> delete a resource if it already exists. This function takes
       a resource handle as an argument.<br>
@@ -2203,8 +2213,8 @@
       <u>Best friend of a retro gamer</u><br>
       <br>
       What is a good choice for a game control device when the user plays an
-      arcade or an old-school style video game? A gamepad. This engine
-      provides simple access to it.<br>
+      arcade or an old-school style video game? A gamepad. This engine provides
+      simple access to it.<br>
       <u><br>
         Number of connected gamepads</u><br>
       <br>
@@ -2415,6 +2425,7 @@
       <br>
     </big>
     <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
       cellpadding="2" border="1">
       <tbody>
         <tr>
@@ -2656,26 +2667,30 @@
       DirectX is pre-installed by default under the modern versions of Windows.<br>
     </big>
     <h2><a id="mozTocId78481" class="mozTocH2"></a><big>Version history</big></h2>
-    <big>
-      0.1-4.1.4: The old branch.<br>
-      4.1.5: The source code synced with the Simple Windows Game Framework 6.6.4.<br>
+    <big> 0.1-4.1.4: The old branch.<br>
+      4.1.5: The source code synced with the Simple Windows Game Framework
+      6.6.4.<br>
       4.1.6-4.1.7: The gamepad support has improved.<br>
       4.1.8-4.1.9: The small changes.<br>
       4.2: The synchronization timer has improved.<br>
       4.2.1: The small changes.<br>
-      4.2.2: The source code synced with the Simple Windows Game Framework 6.6.8.<br>
+      4.2.2: The source code synced with the Simple Windows Game Framework
+      6.6.8.<br>
       4.2.3: The small changes.<br>
-      4.2.4: The source code synced with the Simple Windows Game Framework 6.6.9.<br>
+      4.2.4: The source code synced with the Simple Windows Game Framework
+      6.6.9.<br>
       4.2.5: The source code synced with the Simple Windows Game Framework 6.7.<br>
       4.2.6: Windows 8 support has been added.<br>
       4.2.7-4.2.8: The small changes.<br>
       4.2.9: The new supported compilers have been added.<br>
       4.3: The source code synced with the Eugene game development kit 6.6.1.<br>
-      4.3.1: The source code synced with the Simple Windows Game Framework Kit 6.3.5.<br>
+      4.3.1: The source code synced with the Simple Windows Game Framework Kit
+      6.3.5.<br>
       4.3.2: The source code synced with the Eugene game development kit 6.6.6.<br>
       4.3.3: The source code synced with the Eugene game development kit 6.7.<br>
       4.3.4: The source code synced with the Eugene game development kit 6.7.1.<br>
-      4.3.5: The source code synced with the Simple Windows Game Framework 6.7.9.<br>
+      4.3.5: The source code synced with the Simple Windows Game Framework
+      6.7.9.<br>
       4.3.6: The source code synced with the Simple Windows Game Framework 6.8.<br>
       4.3.7: The source code synced with the Eugene game development kit 6.7.6.<br>
       4.3.8: The source code synced with the Eugene game development kit 6.7.7.<br>
@@ -2715,7 +2730,8 @@
       4.7.4: The source code synced with the Eugene game development kit 7.3.3.<br>
       4.7.5: The source code synced with the Eugene game development kit 7.3.4.<br>
       4.7.6: The source code synced with the Eugene game development kit 7.3.6.<br>
-      4.7.7: The source code synced with the Simple Windows Game Framework 7.3.5.<br>
+      4.7.7: The source code synced with the Simple Windows Game Framework
+      7.3.5.<br>
       4.7.8: The source code synced with the Eugene game development kit 7.3.7.<br>
       4.7.9: The source code synced with the Eugene game development kit 7.4.4.<br>
       4.8: The source code synced with the Eugene game development kit 7.4.5.<br>
@@ -2826,7 +2842,8 @@
       5.8.9-5.9.4: The image loader has improved.<br>
       5.9.5: The small changes.<br>
       5.9.6: The image loader has improved.<br>
-      5.9.7: The keyboard input subsystem is backported from the Neon game development kit 7.9.1.<br>
+      5.9.7: The keyboard input subsystem is backported from the Neon game
+      development kit 7.9.1.<br>
       5.9.8: The source code synced with the Eugene game development kit 8.9.7.<br>
       5.9.9: The source code synced with the Eugene game development kit 8.9.8.<br>
       6.0: The source code synced with the Eugene game development kit 8.9.9.<br>
@@ -2915,6 +2932,7 @@
       7.4.8-7.5: The small changes.<br>
       7.5.1: The camera subsystem has improved.<br>
       7.5.1.1: The documentation has been updated.<br>
+      7.5.2: The parallax background subsystem has improved.<br>
     </big>
   </body>
 </html>
