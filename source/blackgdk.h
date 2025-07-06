@@ -563,8 +563,6 @@ typedef enum
    bool read_battery_status();
    void clear_state();
    bool read_state();
-   bool write_state();
-   void set_motor(const unsigned short int left,const unsigned short int right);
    bool check_current_button(const BLACKGDK::GAMEPAD_BUTTONS button) const;
    bool check_preversion_button(const BLACKGDK::GAMEPAD_BUTTONS button) const;
    bool check_current_trigger(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const;
