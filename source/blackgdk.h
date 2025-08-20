@@ -590,6 +590,10 @@ typedef enum
    bool disable_vibration();
    unsigned short int get_left_motor() const;
    unsigned short int get_right_motor() const;
+   short int get_left_stick_horizontal_axis() const;
+   short int get_left_stick_vertical_axis() const;
+   short int get_right_stick_horizontal_axis() const;
+   short int get_right_stick_vertical_axis() const;
    BLACKGDK::GAMEPAD_DIRECTION get_stick_x(const BLACKGDK::GAMEPAD_STICKS stick) const;
    BLACKGDK::GAMEPAD_DIRECTION get_stick_y(const BLACKGDK::GAMEPAD_STICKS stick) const;
    BLACKGDK::GAMEPAD_DIRECTION get_left_stick_x() const;
