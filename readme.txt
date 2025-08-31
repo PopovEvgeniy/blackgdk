@@ -1,10 +1,10 @@
 Project Description
 
-Black game development kit is an ultra-fast 2D game engine for Windows Vista or higher. It uses OPENGL for rendering.
+Black Game Development Kit is an ultra-fast 2D game engine for Windows Vista or higher. It uses OPENGL for rendering.
 
 License
 
-Black game development kit is distributed under a zlib license.
+Black Game Development Kit is distributed under a zlib license.
 
 Features
 
