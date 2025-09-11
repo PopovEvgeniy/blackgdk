@@ -1168,8 +1168,7 @@
     void Camera::set_viewport(const unsigned int width, const unsigned int
     height);</i> - Set the viewport settings.<br>
    <br>
-   <i>void Camera::set_offset(const unsigned int x, const unsigned int y);</i>
-   - Set the camera offset.<br>
+   <i>void Camera::set_offset(const unsigned int x, const unsigned int y);</i> - Set the camera offset.<br>
    <br>
    <i> bool Camera::check_horizontal_border(const BLACKGDK::BOX target)
     const;</i> - Return true if a game object has collided with the horizontal visible area border.<br>
@@ -1178,6 +1177,8 @@
    - Return true if a game object has collided with the vertical visible area border.<br>
    <br>
    <i>void Camera::update();</i> - Update the camera.<br>
+   <i><br>
+    void Camera::update(const unsigned int x, const unsigned int y); -</i> Set the offsets and update the camera.<br>
    <br>
    <i> void Camera::reset();</i> - Reset the camera settings.<br>
    <br>
@@ -2580,6 +2581,7 @@
    7.5.7.1-7.5.7.2: The documentation has been updated.<br>
    7.5.8: The source code synced with the Eugene Game Development Kit 9.7.<br>
    7.5.8.1-7.5.8.4: The documentation has been updated.<br>
+   7.5.9: The source code synced with the Eugene Game Development Kit 9.7.1.<br>
   </big>
  </body>
 </html>
