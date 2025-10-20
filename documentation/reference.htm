@@ -311,8 +311,8 @@
    See the documentation of the compiler for more information about linking.<br>
   </big>
   <h2><a id="mozTocId524576" class="mozTocH2"></a><big>Chapter 8. The engine namespace</big></h2>
-  <big><i><br>
-    BLACKGDK</i> is the main namespace. All the engine classes are declared in a few nested namespaces.<br>
+  <br>
+  <big><i>BLACKGDK</i> is the main namespace. All the engine classes are declared in a few nested namespaces.<br>
   </big>
   <h2><a id="mozTocId539089" class="mozTocH2"></a><big>Chapter 9. The custom data types</big></h2>
   <big><br>
@@ -369,8 +369,7 @@
    <br>
    <i>void Screen::initialize(); -</i> Initialize the base graphic subsystem with the default screen resolution.<br>
    <br>
-   <i>void Screen::initialize(const unsigned int width, const unsigned int
-    height); -</i> Initialize the base graphic subsystem with the custom screen resolution.<br>
+   <i>void Screen::initialize(const unsigned int width, const unsigned int height); -</i> Initialize the base graphic subsystem with the custom screen resolution.<br>
    <br>
    <i>bool Screen::sync(); -</i> Show the current content of the back buffer
    on the screen. Return false if a game is terminated. This method uses the FPS limits and waits between frames.<br>
@@ -402,11 +401,9 @@
    <br>
    <i>bool Screen::check_y(const unsigned int y) const; -</i> Return true if the y-coordinate is valid.<br>
    <i><br>
-    bool Screen::check_horizontal_border(const BLACKGDK::BOX target) const;
-    -</i> Return true if a game object has collided with the horizontal screen border.<br>
+    bool Screen::check_horizontal_border(const BLACKGDK::BOX target) const; -</i> Return true if a game object has collided with the horizontal screen border.<br>
    <i><br>
-    bool Screen::check_vertical_border(const BLACKGDK::BOX target) const; -</i>
-   Return true if a game object has collided with the vertical screen border.<br>
+    bool Screen::check_vertical_border(const BLACKGDK::BOX target) const; -</i> Return true if a game object has collided with the vertical screen border.<br>
    <br>
    <i>Screen *Screen::get_handle(); -</i> Return the handle to the base graphics subsystem object.<br>
   </big>
@@ -448,8 +445,7 @@
    <u>Work with the animation subsystem.</u><br>
    <br>
    The <i>Animation</i> class provides simple access to the animation
-   subsystem. Don't use it directly. Let's look at the publicly available
-   methods.<br>
+   subsystem. Don't use it directly. Let's look at the publicly available methods.<br>
    <br>
    <i>unsigned int Animation::get_frames() const; -</i> Return the number of the frames.<br>
    <i><br>
@@ -457,8 +453,7 @@
    <i><br>
     bool Animation::is_last_frame() const; -</i> Return true if the current frame is the last frame.<br>
    <br>
-   <i>bool Animation::check_frame(const unsigned int target) const; -</i>
-   Return true if the target frame is valid.<br>
+   <i>bool Animation::check_frame(const unsigned int target) const; -</i> Return true if the target frame is valid.<br>
   </big>
   <h2><a id="mozTocId614034" class="mozTocH2"></a><big>Chapter 5. The vertex index</big></h2>
   <big><br>
@@ -541,8 +536,7 @@
    <i><br>
     void Background::prepare(Screen &amp;screen); -</i> Prepare for drawing.<br>
    <br>
-   <i>void Background::prepare(const unsigned int width, const unsigned int
-    height); -</i> Prepare for drawing.<br>
+   <i>void Background::prepare(const unsigned int width, const unsigned int height); -</i> Prepare for drawing.<br>
    <br>
    <i>void Background::disable_mirror(); -</i> Disable the background mirroring mode.<br>
    <br>
@@ -557,17 +551,13 @@
    <br>
    <i>void Background::step(); -</i> Increase the target frame. Set it to 1 if the target is more than the number of frames.<br>
    <br>
-   <i>void Background::set_settings(const BLACKGDK::IMAGE_KIND kind, const
-    unsigned int frames); -</i> Set the background settings.<br>
+   <i>void Background::set_settings(const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Set the background settings.<br>
    <br>
-   <i>bool Background::load(Image *background, const BLACKGDK::IMAGE_KIND
-    kind, const unsigned int frames); -</i> Load a background from the buffer and return true if it is loaded.<br>
+   <i>bool Background::load(Image *background, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a background from the buffer and return true if it is loaded.<br>
    <i><br>
-    bool Background::load(Image &amp;background, const BLACKGDK::IMAGE_KIND
-    kind, const unsigned int frames); -</i> Load a background from the buffer and return true if it is loaded.<br>
+    bool Background::load(Image &amp;background, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a background from the buffer and return true if it is loaded.<br>
    <i><br>
-    bool Background::load(const char *name, const BLACKGDK::IMAGE_KIND kind,
-    const unsigned int frames); -</i> Load a background from the target file and return true if it is loaded.<br>
+    bool Background::load(const char *name, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a background from the target file and return true if it is loaded.<br>
    <br>
    <i>void Background::draw(); -</i> Draw a background.<br>
    <br>
@@ -581,8 +571,7 @@
    <i><br>
     bool Background::is_last_frame() const; -</i> Return true if the current frame is the last frame.<br>
    <i><br>
-    bool Background::check_frame(const unsigned int target) const; -</i>
-   Return true if the target frame is valid.<br>
+    bool Background::check_frame(const unsigned int target) const; -</i> Return true if the target frame is valid.<br>
    <i><br>
     unsigned int Background::get_frame() const; -</i> Return the current frame.<br>
    <i><br>
@@ -619,8 +608,7 @@
    <br>
    <i>void Scene::prepare(Screen &amp;screen); -</i> Prepare for drawing.<br>
    <i><br>
-    void Scene::prepare(const unsigned int width, const unsigned int
-    height); -</i> Prepare for drawing.<br>
+    void Scene::prepare(const unsigned int width, const unsigned int height); -</i> Prepare for drawing.<br>
    <br>
    <i>void Scene::disable_mirror(); -</i> Disable the background mirroring mode.<br>
    <br>
@@ -679,8 +667,7 @@
    <br>
    <i>void Parallax::prepare(Screen &amp;screen); -</i> Prepare for drawing.<br>
    <br>
-   <i>void Parallax::prepare(const unsigned int width, const unsigned int
-    height); -</i> Prepare for drawing.<br>
+   <i>void Parallax::prepare(const unsigned int width, const unsigned int height); -</i> Prepare for drawing.<br>
    <br>
    <i>void Parallax::disable_mirror(); -</i> Disable the background mirroring mode.<br>
    <i><br>
@@ -701,8 +688,7 @@
    <br>
    <i>void Parallax::set_vertical_speed(const float speed); -</i> Set the vertical scrolling speed.<br>
    <br>
-   <i>void Parallax::set_speed(const float horizontal, const float vertical);
-    -</i> Set the scrolling speed.<br>
+   <i>void Parallax::set_speed(const float horizontal, const float vertical); -</i> Set the scrolling speed.<br>
    <br>
    float Parallax::get_horizontal_speed() const; - Return the horizontal speed.<br>
    <br>
@@ -747,14 +733,11 @@
    <i><br>
     bool Billboard::get_transparent() const; -</i> Return true if the transparent mode is enabled.<br>
    <i><br>
-    void Billboard::set_position(const unsigned int x, const unsigned int
-    y); -</i> Set the sprite position.<br>
+    void Billboard::set_position(const unsigned int x, const unsigned int y); -</i> Set the sprite position.<br>
    <i><br>
-    void Billboard::set_start(const unsigned int x, const unsigned int y); -</i>
-   Set the start position of the sprite.<br>
+    void Billboard::set_start(const unsigned int x, const unsigned int y); -</i> Set the start position of the sprite.<br>
    <br>
-   <i>void Billboard::set_size(const unsigned int width, const unsigned int
-    height); -</i> Change the sprite size.<br>
+   <i>void Billboard::set_size(const unsigned int width, const unsigned int height); -</i> Change the sprite size.<br>
    <i><br>
     void Billboard::set_x(const unsigned int x); -</i> Set the x-coordinate of the sprite position.<br>
    <i><br>
@@ -772,17 +755,13 @@
    <br>
    <i>unsigned int Billboard::decrease_y(); -</i> Decrease the y-coordinate and return it.<br>
    <br>
-   <i>unsigned int Billboard::increase_x(const unsigned int increment); -</i>
-   Increase the x-coordinate with the user value and return it.<br>
+   <i>unsigned int Billboard::increase_x(const unsigned int increment); -</i> Increase the x-coordinate with the user value and return it.<br>
    <i><br>
-    unsigned int Billboard::decrease_x(const unsigned int decrement); -</i>
-   Decrease the x-coordinate with the user value and return it.<br>
+    unsigned int Billboard::decrease_x(const unsigned int decrement); -</i> Decrease the x-coordinate with the user value and return it.<br>
    <br>
-   <i>unsigned int Billboard::increase_y(const unsigned int increment); -</i>
-   Increase the y-coordinate with the user value and return it.<br>
+   <i>unsigned int Billboard::increase_y(const unsigned int increment); -</i> Increase the y-coordinate with the user value and return it.<br>
    <br>
-   <i>unsigned int Billboard::decrease_y(const unsigned int decrement); -</i>
-   Decrease the y-coordinate with the user value and return it.<br>
+   <i>unsigned int Billboard::decrease_y(const unsigned int decrement); -</i> Decrease the y-coordinate with the user value and return it.<br>
    <br>
    <i>unsigned int Billboard::get_start_x() const; -</i> Return the x-coordinate of the start position.<br>
    <br>
@@ -821,8 +800,7 @@
    <i><br>
     void Billboard::draw(const bool transparency); -</i> Set the transparent mode and draw a sprite.<br>
    <br>
-   <i>void Billboard::draw(const bool transparency, const unsigned int x,
-    const unsigned int y); -</i> Set the transparent mode and draw a sprite at the target position.<br>
+   <i>void Billboard::draw(const bool transparency, const unsigned int x, const unsigned int y); -</i> Set the transparent mode and draw a sprite at the target position.<br>
   </big>
   <h2><a id="mozTocId954424" class="mozTocH2"></a><big>Chapter 11. The ordinary sprites</big></h2>
   <big><u><br>
@@ -838,17 +816,13 @@
    Just use the <i>Sprite</i> class to work with a sprite. It is derived
    from three classes: Billboard, Animation, and Picture. Let's look at the publicly available methods.<br>
    <br>
-   <i>void Sprite::set_settings(const BLACKGDK::IMAGE_KIND kind, const
-    unsigned int frames); -</i> Set the sprite settings.<br>
+   <i>void Sprite::set_settings(const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Set the sprite settings.<br>
    <i><br>
-    bool Sprite::load(Image *buffer, const BLACKGDK::IMAGE_KIND kind, const
-    unsigned int frames); -</i> Load a sprite from the buffer and return true if it is loaded.<br>
+    bool Sprite::load(Image *buffer, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a sprite from the buffer and return true if it is loaded.<br>
    <br>
-   <i>bool Sprite::load(Image &amp;buffer, const BLACKGDK::IMAGE_KIND kind,
-    const unsigned int frames); -</i> Load a sprite from the buffer and return true if it is loaded.<br>
+   <i>bool Sprite::load(Image &amp;buffer, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a sprite from the buffer and return true if it is loaded.<br>
    <br>
-   <i>bool Sprite::load(const char *name, const BLACKGDK::IMAGE_KIND kind,
-    const unsigned int frames); -</i> Load a sprite from the target file and return true if it is loaded.<br>
+   <i>bool Sprite::load(const char *name, const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Load a sprite from the target file and return true if it is loaded.<br>
    <i><br>
     void Sprite::set_target(const unsigned int target); -</i> Set the target frame.<br>
    <i><br>
@@ -927,8 +901,7 @@
    <br>
    <i>unsigned int Sheet::get_column(const unsigned int target) const; -</i> Return column of the target frame.<br>
    <br>
-   <i>unsigned int Sheet::calculate(const unsigned int row, const unsigned
-    int column) const; -</i> Calculate the frame by row and column.<br>
+   <i>unsigned int Sheet::calculate(const unsigned int row, const unsigned int column) const; -</i> Calculate the frame by row and column.<br>
    <i><br>
     unsigned int Sheet::get_rows() const; -</i> Return the number of rows.<br>
    <i><br>
@@ -936,21 +909,17 @@
    <br>
    <i>void Sheet::destroy(); -</i> Destroy a sprite sheet image and the texture.<br>
    <i><br>
-    void Sheet::select(const unsigned int row, const unsigned int column); -</i>
-   Select the target frame by row and column.<br>
+    void Sheet::select(const unsigned int row, const unsigned int column); -</i> Select the target frame by row and column.<br>
    <i><br>
     void Sheet::set_target(const unsigned int target); -</i> Set the target frame.<br>
    <br>
    <i>void Sheet::step(); -</i> Increase the target frame. Set it to 1 if the target is more than the number of frames.<br>
    <br>
-   <i>bool Sheet::load(Image *sheet, const unsigned int row_amount, const
-    unsigned int column_amount); -</i> Load a sprite sheet from the buffer and return true if it is loaded.<br>
+   <i>bool Sheet::load(Image *sheet, const unsigned int row_amount, const unsigned int column_amount); -</i> Load a sprite sheet from the buffer and return true if it is loaded.<br>
    <br>
-   <i>bool Sheet::load(Image &amp;sheet, const unsigned int row_amount, const
-    unsigned int column_amount); -</i> Load a sprite sheet from the buffer and return true if it is loaded.<br>
+   <i>bool Sheet::load(Image &amp;sheet, const unsigned int row_amount, const unsigned int column_amount); -</i> Load a sprite sheet from the buffer and return true if it is loaded.<br>
    <br>
-   <i>bool Sheet::load(const char *name, const unsigned int row_amount, const
-    unsigned int column_amount); -</i> Load a sprite sheet from a target file and return true if it is loaded.<br>
+   <i>bool Sheet::load(const char *name, const unsigned int row_amount, const unsigned int column_amount); -</i> Load a sprite sheet from a target file and return true if it is loaded.<br>
    <br>
    <i>Sheet *Sheet::get_handle(); -</i> Return the handle to the sprite sheet.<br>
    <br>
@@ -1020,19 +989,15 @@
    <br>
    <i>unsigned int Text::get_y() const; -</i> Get the y-coordinate of the text output position.<br>
    <br>
-   <i>void Text::set_position(const unsigned int x, const unsigned int y); -</i>
-   Set the output position.<br>
+   <i>void Text::set_position(const unsigned int x, const unsigned int y); -</i> Set the output position.<br>
    <i><br>
-    void Text::set_size(const unsigned int width, const unsigned int
-    height); -</i> Change the font size.<br>
+    void Text::set_size(const unsigned int width, const unsigned int height); -</i> Change the font size.<br>
    <i><br>
     void Text::set_width(const unsigned int width); -</i> Set the font width.<br>
    <br>
-   <i>void Text::set_height(const unsigned int height); -</i> Set the font
-   height.<br>
+   <i>void Text::set_height(const unsigned int height); -</i> Set the font height.<br>
    <br>
-   <i>void Text::set_settings(const unsigned int width, const unsigned int
-    height, const BLACKGDK::TEXT_KIND kind); -</i> Set the text output settings.<br>
+   <i>void Text::set_settings(const unsigned int width, const unsigned int height, const BLACKGDK::TEXT_KIND kind); -</i> Set the text output settings.<br>
    <i><br>
     bool Text::load_font(Image *font); -</i> Load a font from the buffer and return true if it is loaded.<br>
    <br>
@@ -1042,13 +1007,11 @@
    <br>
    <i>void Text::print(const char target); -</i> Print a single character at the current position.<br>
    <i><br>
-    void Text::print(const unsigned int x, const unsigned int y, const char
-    target); -</i> Print a single character at the specific position.<br>
+    void Text::print(const unsigned int x, const unsigned int y, const char target); -</i> Print a single character at the specific position.<br>
    <br>
    <i>size_t Text::print(const char *target); -</i> Print a text at the current position and return the text length.<br>
    <i><br>
-    size_t Text::print(const unsigned int x, const unsigned int y, const
-    char *target); -</i> Print a text at the specific position and return the text length.<br>
+    size_t Text::print(const unsigned int x, const unsigned int y, const char *target); -</i> Print a text at the specific position and return the text length.<br>
    <i><br>
     void Text::destroy_image();</i> - Destroy a font image.<br>
    <i><br>
@@ -1094,7 +1057,7 @@
    to do it. It is a powerful image editor.<br>
   </big>
   <h2><a id="mozTocId825145" class="mozTocH2"></a><big>Chapter 16. The camera</big></h2>
-  <big><u> A few words about the camera.</u><br>
+  <big><u>A few words about the camera.</u><br>
    <br>
    The 2D camera defines the size of the visible area. It will be stretched
    to the screen resolution before rendering the game scene.<br>
@@ -1104,81 +1067,71 @@
    The <i>Camera</i> class provides simple access to the camera subsystem.
    Let's look at the publicly available methods.<br>
    <br>
-   <i> Camera *Camera::get_handle();</i> - Return the handle to the camera subsystem.<br>
+   <i>Camera *Camera::get_handle(); -</i> Return the handle to the camera subsystem.<br>
    <i><br>
-    unsigned int Camera::increase_x();</i> - Increase the x-coordinate of the camera offset and return it.<br>
+    unsigned int Camera::increase_x(); -</i> Increase the x-coordinate of the camera offset and return it.<br>
    <i><br>
-    unsigned int Camera::decrease_x();</i> - Decrease the x-coordinate of the camera offset and return it.<br>
+    unsigned int Camera::decrease_x(); -</i> Decrease the x-coordinate of the camera offset and return it.<br>
    <i><br>
-    unsigned int Camera::increase_y();</i> - Increase the y-coordinate of the camera offset and return it.<br>
+    unsigned int Camera::increase_y(); -</i> Increase the y-coordinate of the camera offset and return it.<br>
    <br>
-   <i>unsigned int Camera::decrease_y();</i> - Decrease the y-coordinate of the camera offset and return it.<br>
+   <i>unsigned int Camera::decrease_y(); -</i> Decrease the y-coordinate of the camera offset and return it.<br>
    <br>
-   <i> unsigned int Camera::increase_x(const unsigned int increment);</i> -
-   Increase the x-coordinate of the camera offset with the user value and return it.<br>
+   <i>unsigned int Camera::increase_x(const unsigned int increment); -</i> Increase the x-coordinate of the camera offset with the user value and return it.<br>
    <i><br>
-    unsigned int Camera::decrease_x(const unsigned int decrement);</i> -
-   Decrease the x-coordinate of the camera offset with the user value and return it.<br>
+    unsigned int Camera::decrease_x(const unsigned int decrement); -</i> Decrease the x-coordinate of the camera offset with the user value and return it.<br>
    <i><br>
-    unsigned int Camera::increase_y(const unsigned int increment);</i> -
-   Increase the y-coordinate of the camera offset with the user value and return it.<br>
+    unsigned int Camera::increase_y(const unsigned int increment); -</i> Increase the y-coordinate of the camera offset with the user value and return it.<br>
    <br>
-   <i> unsigned int Camera::decrease_y(const unsigned int decrement);</i> -
-   Decrease the y-coordinate of the camera offset with the user value and return it.<br>
+   <i>unsigned int Camera::decrease_y(const unsigned int decrement); -</i> Decrease the y-coordinate of the camera offset with the user value and return it.<br>
    <i><br>
-    unsigned int Camera::get_x() const;</i> - Return the x-coordinate of the camera offset.<br>
+    unsigned int Camera::get_x() const; -</i> Return the x-coordinate of the camera offset.<br>
    <i><br>
-    unsigned int Camera::get_y() const;</i> - Return the y-coordinate of the camera offset.<br>
+    unsigned int Camera::get_y() const; -</i> Return the y-coordinate of the camera offset.<br>
    <br>
-   <i>unsigned int Camera::get_screen_width() const;</i> - Return the screen width in pixels.<br>
+   <i>unsigned int Camera::get_screen_width() const; -</i> Return the screen width in pixels.<br>
    <i><br>
-    unsigned int Camera::get_screen_height() const;</i> - Return the screen height in pixels.<br>
+    unsigned int Camera::get_screen_height() const; -</i> Return the screen height in pixels.<br>
    <br>
-   <i> unsigned int Camera::get_viewport_width() const;</i> - Return the viewport width in pixels.<br>
+   <i>unsigned int Camera::get_viewport_width() const; -</i> Return the viewport width in pixels.<br>
    <i><br>
-    unsigned int Camera::get_viewport_height() const;</i> - Return the viewport height in pixels.<br>
+    unsigned int Camera::get_viewport_height() const; -</i> Return the viewport height in pixels.<br>
    <br>
-   <i> unsigned int Camera::get_highest_x() const;</i> - Return the highest allowable x-coordinate of the current visible area.<br>
+   <i>unsigned int Camera::get_highest_x() const; -</i> Return the highest allowable x-coordinate of the current visible area.<br>
    <i><br>
-    unsigned int Camera::get_highest_y() const;</i> - Return the highest allowable y-coordinate of the current visible area.<br>
+    unsigned int Camera::get_highest_y() const; -</i> Return the highest allowable y-coordinate of the current visible area.<br>
    <i><br>
-    unsigned int Camera::get_highest_x_offset() const;</i> - Return the highest allowable x-offset of the camera.<br>
+    unsigned int Camera::get_highest_x_offset() const; -</i> Return the highest allowable x-offset of the camera.<br>
    <br>
-   <i> unsigned int Camera::get_highest_y_offset() const;</i> - Return the highest allowable y-offset of the camera.<br>
+   <i>unsigned int Camera::get_highest_y_offset() const; -</i> Return the highest allowable y-offset of the camera.<br>
    <br>
-   <i> unsigned int Camera::get_world_x(const unsigned screen_int x) const;</i>
-   - Convert the screen x-coordinate to the world x-coordinate.<br>
+   <i>unsigned int Camera::get_world_x(const unsigned screen_int x) const; -</i> Convert the screen x-coordinate to the world x-coordinate.<br>
    <br>
-   <i>unsigned int Camera::get_world_y(const unsigned screen_int y) const;</i>
-   - Convert the screen y-coordinate to the world y-coordinate.<br>
+   <i>unsigned int Camera::get_world_y(const unsigned screen_int y) const; -</i> Convert the screen y-coordinate to the world y-coordinate.<br>
    <br>
-   <i> unsigned int Camera::set_x(const unsigned int x);</i> - Set the x-coordinate of the camera offset and return it.<br>
+   <i>unsigned int Camera::set_x(const unsigned int x); -</i> Set the x-coordinate of the camera offset and return it.<br>
    <i><br>
-    unsigned int Camera::set_y(const unsigned int y);</i> - Set the y-coordinate of the camera offset and return it.<br>
+    unsigned int Camera::set_y(const unsigned int y); -</i> Set the y-coordinate of the camera offset and return it.<br>
    <i><br>
-    void Camera::initialize(const unsigned int width, const unsigned int
-    height);</i> - Initialize the subsystem and set the screen size.<br>
+    void Camera::initialize(const unsigned int width, const unsigned int height); -</i> Initialize the subsystem and set the screen size.<br>
    <br>
-   <i>void Camera::initialize(Screen *screen);</i> - Initialize the subsystem and set the screen size.<br>
+   <i>void Camera::initialize(Screen *screen); -</i> Initialize the subsystem and set the screen size.<br>
    <i><br>
-    void Camera::initialize(Screen &amp;screen);</i> - Initialize the subsystem and set the screen size.<br>
+    void Camera::initialize(Screen &amp;screen); -</i> Initialize the subsystem and set the screen size.<br>
    <i><br>
-    void Camera::set_viewport(const unsigned int width, const unsigned int
-    height);</i> - Set the viewport settings.<br>
+    void Camera::set_viewport(const unsigned int width, const unsigned int height); -</i> Set the viewport settings.<br>
    <br>
-   <i>void Camera::set_offset(const unsigned int x, const unsigned int y);</i> - Set the camera offset.<br>
+   <i>void Camera::set_offset(const unsigned int x, const unsigned int y); -</i> Set the camera offset.<br>
    <br>
-   <i> bool Camera::check_horizontal_border(const BLACKGDK::BOX target)
-    const;</i> - Return true if a game object has collided with the horizontal visible area border.<br>
+   <i>bool Camera::check_horizontal_border(const BLACKGDK::BOX target) const; -</i> Return true if a game object has collided with the horizontal visible area border.<br>
    <br>
-   <i> bool Camera::check_vertical_border(const BLACKGDK::BOX target) const;</i>
-   - Return true if a game object has collided with the vertical visible area border.<br>
+   <i>bool Camera::check_vertical_border(const BLACKGDK::BOX target) const; -</i> Return true if a game object has collided with the vertical visible area border.<br>
    <br>
-   <i>void Camera::update();</i> - Update the camera.<br>
+   <i>void Camera::update(); -</i> Update the camera.<br>
    <i><br>
     void Camera::update(const unsigned int x, const unsigned int y); -</i> Set the offsets and update the camera.<br>
    <br>
-   <i> void Camera::reset();</i> - Reset the camera settings.<br>
+   <i> void Camera::reset(); -</i> Reset the camera settings.<br>
    <br>
    <u>An important remark.</u><br>
    <br>
@@ -1206,32 +1159,31 @@
    <i><br>
     Coordinates *Coordinates::get_handle();</i> - Return the handle to the coordinates conversion subsystem.<br>
    <br>
-   <i>void Coordinates::initialize(const int viewport_width, const int
-    viewport_height);</i> - Initialize the subsystem.<br>
+   <i>void Coordinates::initialize(const int viewport_width, const int viewport_height); -</i> Initialize the subsystem.<br>
    <i><br>
-    int Coordinates::get_viewport_width() const;</i> - Return the viewport width in pixels.<br>
+    int Coordinates::get_viewport_width() const; -</i> Return the viewport width in pixels.<br>
    <i><br>
-    int Coordinates::get_viewport_height() const;</i> - Return the viewport height in pixels.<br>
+    int Coordinates::get_viewport_height() const; -</i> Return the viewport height in pixels.<br>
    <i><br>
-    int Coordinates::get_lowest_cartesian_x() const;</i> - Return the lowest allowable Cartesian x-coordinate.<br>
+    int Coordinates::get_lowest_cartesian_x() const; -</i> Return the lowest allowable Cartesian x-coordinate.<br>
    <br>
-   <i> int Coordinates::get_highest_cartesian_x() const;</i> - Return the highest allowable Cartesian x-coordinate.<br>
+   <i> int Coordinates::get_highest_cartesian_x() const; -</i> Return the highest allowable Cartesian x-coordinate.<br>
    <i><br>
-    int Coordinates::get_lowest_cartesian_y() const;</i> - Return the lowest allowable Cartesian y-coordinate.<br>
+    int Coordinates::get_lowest_cartesian_y() const; -</i> Return the lowest allowable Cartesian y-coordinate.<br>
    <i><br>
-    int Coordinates::get_highest_cartesian_y() const;</i> - Return the highest allowable Cartesian y-coordinate.<br>
+    int Coordinates::get_highest_cartesian_y() const; -</i> Return the highest allowable Cartesian y-coordinate.<br>
    <br>
-   <i>bool Coordinates::check_cartesian_x(const int x) const;</i> - Return true if the Cartesian x-coordinate is valid.<br>
+   <i>bool Coordinates::check_cartesian_x(const int x) const; -</i> Return true if the Cartesian x-coordinate is valid.<br>
    <br>
-   <i>bool Coordinates::check_cartesian_y(const int y) const;</i> - Return true if the Cartesian y-coordinate is valid.<br>
+   <i>bool Coordinates::check_cartesian_y(const int y) const; -</i> Return true if the Cartesian y-coordinate is valid.<br>
    <i><br>
-    int Coordinates::get_screen_x(const int x) const;</i> - Convert the Cartesian x-coordinate to the screen x-coordinate.<br>
+    int Coordinates::get_screen_x(const int x) const; -</i> Convert the Cartesian x-coordinate to the screen x-coordinate.<br>
    <i><br>
-    int Coordinates::get_screen_y(const int y) const;</i> - Convert the Cartesian y-coordinate to the screen y-coordinate.<br>
+    int Coordinates::get_screen_y(const int y) const; -</i> Convert the Cartesian y-coordinate to the screen y-coordinate.<br>
    <i><br>
-    int Coordinates::get_cartesian_x(const int x) const;</i> - Convert the screen x-coordinate to the Cartesian x-coordinate.<br>
+    int Coordinates::get_cartesian_x(const int x) const; -</i> Convert the screen x-coordinate to the Cartesian x-coordinate.<br>
    <i><br>
-    int Coordinates::get_cartesian_y(const int y) const;</i> - Convert the screen y-coordinate to the Cartesian y-coordinate.<br>
+    int Coordinates::get_cartesian_y(const int y) const; -</i> Convert the screen y-coordinate to the Cartesian y-coordinate.<br>
   </big>
   <h2><a id="mozTocId221171" class="mozTocH2"></a><big>Chapter 3. The Cartesian coordinates and the isometric coordinates</big></h2>
   <big><br>
@@ -1246,38 +1198,32 @@
    You can also convert the isometric coordinates to the Cartesian
    coordinates. Just use the <i>Isometric</i> class to do it. Let's look at the publicly available methods.<br>
    <i><br>
-    static int Isometric::get_isometric_x(const int x, const int y);</i> -
-   Convert the x-coordinate from the Cartesian system to the isometric system.<br>
+    static int Isometric::get_isometric_x(const int x, const int y); -</i> Convert the x-coordinate from the Cartesian system to the isometric system.<br>
    <i><br>
-    static int Isometric::get_isometric_y(const int x, const int y);</i> -
-   Convert the y-coordinate from the Cartesian system to the isometric system.<br>
+    static int Isometric::get_isometric_y(const int x, const int y); -</i> Convert the y-coordinate from the Cartesian system to the isometric system.<br>
    <i><br>
-    static int Isometric::get_cartesian_x(const int x, const int y);</i> -
-   Convert the x-coordinate from the isometric system to the Cartesian system.<br>
+    static int Isometric::get_cartesian_x(const int x, const int y); -</i> Convert the x-coordinate from the isometric system to the Cartesian system.<br>
    <br>
-   <i>static int Isometric::get_cartesian_y(const int x, const int y);</i> -
-   Convert the y-coordinate from the isometric system to the Cartesian system.<br>
+   <i>static int Isometric::get_cartesian_y(const int x, const int y); -</i> Convert the y-coordinate from the isometric system to the Cartesian system.<br>
   </big>
   <h2><a id="mozTocId405261" class="mozTocH2"></a><big>Chapter 4. An isometric level</big></h2>
   <big><br>
    The isometric level subsystem is intended to help you create an isometric
    level. Just use the <i>Level</i> class to do it. Let's look at the publicly available methods.<br>
    <br>
-   <i>Level *Level::get_handle();</i> - Return the handle to the isometric level subsystem.<br>
+   <i>Level *Level::get_handle(); -</i> Return the handle to the isometric level subsystem.<br>
    <i><br>
-    void Level::initialize(const int tile_width, const int tile_height);</i>
-   - Initialize the subsystem.<br>
+    void Level::initialize(const int tile_width, const int tile_height); -</i> Initialize the subsystem.<br>
    <i><br>
-    void Level::set_offset(const int x_offset, const int y_offset);</i> -
-   Set the coordinates offset.<br>
+    void Level::set_offset(const int x_offset, const int y_offset); -</i> Set the coordinates offset.<br>
    <i><br>
-    int Level::get_x_offset() const;</i> - Return the x-offset.<br>
+    int Level::get_x_offset() const; -</i> Return the x-offset.<br>
    <i><br>
-    int Level::get_y_offset() const;</i> - Return the y-offset.<br>
+    int Level::get_y_offset() const; -</i> Return the y-offset.<br>
    <i><br>
-    int Level::get_x(const int row, const int column) const;</i> - Return the target x-coordinate.<br>
+    int Level::get_x(const int row, const int column) const; -</i> Return the target x-coordinate.<br>
    <i><br>
-    int Level::get_y(const int row, const int column) const;</i> - Return the target y-coordinate.<br>
+    int Level::get_y(const int row, const int column) const; -</i> Return the target y-coordinate.<br>
   </big>
   <h1><a id="mozTocId893742" class="mozTocH1"></a><big>Part 5. The common things</big></h1>
   <h2><a id="mozTocId844074" class="mozTocH2"></a><big>Chapter 1. The sub-namespace</big></h2>
@@ -1295,13 +1241,13 @@
    A timer is a very useful thing. Just use the <i>Timer</i> class to work
    with the timer. Let's look at the publicly available methods.<br>
    <br>
-   <i>Timer *Timer::get_handle();</i> - Return the handle to the timer.<br>
+   <i>Timer *Timer::get_handle(); -</i> Return the handle to the timer.<br>
    <i><br>
-    void Timer::set_timer(const double seconds);</i> - Set the timer interval and initialize the start point.<br>
+    void Timer::set_timer(const double seconds); -</i> Set the timer interval and initialize the start point.<br>
    <br>
-   <i>double Timer::get_interval() const;</i> - Return the current timer interval.<br>
+   <i>double Timer::get_interval() const; -</i> Return the current timer interval.<br>
    <i><br>
-    bool Timer::check_timer();</i> - Return true and reinitialize the start
+    bool Timer::check_timer(); -</i> Return true and reinitialize the start
    point if the interval between the stop and start points is larger than or
    equal to a specific number of seconds.<br>
   </big>
@@ -1329,15 +1275,13 @@
    The <i>Collision</i> class provides easy access to the collision
    detectors. It is a simple class with a few methods. Let's look at the publicly available methods.<br>
    <br>
-   <i> Collision *Collision::get_handle();</i> - Return the handle to the collision detector.<br>
+   <i> Collision *Collision::get_handle(); -</i> Return the handle to the collision detector.<br>
    <br>
-   <i>void Collision::set_target(const BLACKGDK::BOX first_target, const
-    BLACKGDK::BOX second_target);</i> - Set the targets for the collision detector.<br>
+   <i>void Collision::set_target(const BLACKGDK::BOX first_target, const BLACKGDK::BOX second_target); -</i> Set the targets for the collision detector.<br>
    <br>
-   <i>bool Collision::check_collision() const;</i> - Return true if the collision between two objects is accepted.<br>
+   <i>bool Collision::check_collision() const; -</i> Return true if the collision between two objects is accepted.<br>
    <br>
-   <i>bool Collision::check_collision(const BLACKGDK::BOX first_target, const
-    BLACKGDK::BOX second_target);</i> - Set the targets and check the collision between them.<br>
+   <i>bool Collision::check_collision(const BLACKGDK::BOX first_target, const BLACKGDK::BOX second_target); -</i> Set the targets and check the collision between them.<br>
   </big>
   <h2><a id="mozTocId206054" class="mozTocH2"></a><big>Chapter 5. The tilemaps</big></h2>
   <big><u><br>
@@ -1356,38 +1300,31 @@
    <i><br>
     Tilemap *Tilemap::get_handle();</i> - Return the handle to the tilemap subsystem.<br>
    <br>
-   <i>void Tilemap::initialize(const unsigned int tile_width, const unsigned
-    int tile_height);</i> - Initialize the subsystem.<br>
+   <i>void Tilemap::initialize(const unsigned int tile_width, const unsigned int tile_height); -</i> Initialize the subsystem.<br>
    <br>
-   <i> unsigned int Tilemap::get_tile_width() const;</i> - Return the tile width in pixels.<br>
+   <i> unsigned int Tilemap::get_tile_width() const; -</i> Return the tile width in pixels.<br>
    <br>
-   <i>unsigned int Tilemap::get_tile_height() const;</i> - Return the tile height in pixels.<br>
+   <i>unsigned int Tilemap::get_tile_height() const; -</i> Return the tile height in pixels.<br>
    <br>
-   <i> unsigned int Tilemap::get_x(const unsigned int row) const;</i> - Get the x-coordinate from the target row.<br>
+   <i>unsigned int Tilemap::get_x(const unsigned int row) const; -</i> Get the x-coordinate from the target row.<br>
    <br>
-   <i>unsigned int Tilemap::get_y(const unsigned int column) const;</i> - Get the y-coordinate from the target column.<br>
+   <i>unsigned int Tilemap::get_y(const unsigned int column) const; -</i> Get the y-coordinate from the target column.<br>
    <i><br>
-    unsigned int Tilemap::get_row(const unsigned int x) const;</i> - Get the row from the x-coordinate.<br>
+    unsigned int Tilemap::get_row(const unsigned int x) const; -</i> Get the row from the x-coordinate.<br>
    <br>
-   <i>unsigned int Tilemap::get_column(const unsigned int y) const;</i> - Get the column from the y-coordinate.<br>
+   <i>unsigned int Tilemap::get_column(const unsigned int y) const; -</i> Get the column from the y-coordinate.<br>
    <i><br>
-    unsigned int Tilemap::get_row_amount(const unsigned int viewport_width)
-    const;</i> - Get the maximum number of the visible rows.<br>
+    unsigned int Tilemap::get_row_amount(const unsigned int viewport_width) const; -</i> Get the maximum number of the visible rows.<br>
    <br>
-   <i>unsigned int Tilemap::get_column_amount(const unsigned int
-    viewport_width) const;</i> - Get the maximum number of the visible columns.<br>
+   <i>unsigned int Tilemap::get_column_amount(const unsigned int viewport_width) const; -</i> Get the maximum number of the visible columns.<br>
    <br>
-   <i>unsigned int Tilemap::get_tile_amount(const unsigned int
-    viewport_width, const unsigned int viewport_height) const;</i> - Get the maximum number of the visible tiles.<br>
+   <i>unsigned int Tilemap::get_tile_amount(const unsigned int viewport_width, const unsigned int viewport_height) const; -</i> Get the maximum number of the visible tiles.<br>
    <br>
-   <i>bool Tilemap::check_row(const unsigned int row, const unsigned int
-    viewport_width) const;</i> - Return true if the row is valid.<br>
+   <i>bool Tilemap::check_row(const unsigned int row, const unsigned int viewport_width) const; -</i> Return true if the row is valid.<br>
    <br>
-   <i>bool Tilemap::check_column(const unsigned int column, const unsigned int
-    viewport_height) const;</i> - Return true if the column is valid.<br>
+   <i>bool Tilemap::check_column(const unsigned int column, const unsigned int viewport_height) const; -</i> Return true if the column is valid.<br>
    <br>
-   <i>BLACKGDK::BOX Tilemap::get_box(const unsigned int row, const unsigned
-    int column) const;</i> - Return the collision-related information.<br>
+   <i>BLACKGDK::BOX Tilemap::get_box(const unsigned int row, const unsigned int column) const; -</i> Return the collision-related information.<br>
   </big>
   <h1><a id="mozTocId972112" class="mozTocH1"></a><big>Part 6. The other important things</big></h1>
   <h2><a id="mozTocId779219" class="mozTocH2"></a><big>Chapter 1. The sub-namespace</big></h2>
@@ -1399,19 +1336,19 @@
    RAM is an important resource. Just use the <i>Memory</i> class to get the
    total memory size and the free memory size. Let's look at the publicly available methods.<br>
    <i><br>
-    unsigned long long int Memory::get_total_physical();</i> - Return the total physical memory size in bytes.<br>
+    unsigned long long int Memory::get_total_physical(); -</i> Return the total physical memory size in bytes.<br>
    <i><br>
-    unsigned long long int Memory::get_free_physical();</i> - Return the free physical memory size in bytes.<br>
+    unsigned long long int Memory::get_free_physical(); -</i> Return the free physical memory size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_total_virtual();</i> - Return the total <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+   <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <i><br>
-    unsigned long long int Memory::get_free_virtual();</i> - Return the free <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+    unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <i><br>
-    unsigned long long int Memory::get_physical_usge();</i> - Return the physical memory usage in bytes.<br>
+    unsigned long long int Memory::get_physical_usge(); -</i> Return the physical memory usage in bytes.<br>
    <i><br>
-    unsigned long long int Memory::get_virtual_usge();</i> - Return the virtual memory usage in bytes.<br>
+    unsigned long long int Memory::get_virtual_usge(); -</i> Return the virtual memory usage in bytes.<br>
    <i><br>
-    unsigned long int Memory::get_usage();</i> - Return the percentage of the physical memory used.<br>
+    unsigned long int Memory::get_usage(); -</i> Return the percentage of the physical memory used.<br>
   </big>
   <h2><a id="mozTocId980461" class="mozTocH2"></a><big>Chapter 3. The audio</big></h2>
   <big><br>
@@ -1429,21 +1366,21 @@
    <br>
    Just use the <i>Audio</i> class to work with the audio. Let's look at the publicly available methods.<br>
    <i><br>
-    void Audio::initialize();</i> - Initialize the subsystem.<br>
+    void Audio::initialize(); -</i> Initialize the subsystem.<br>
    <i><br>
-    void Audio::initialize(const char *target);</i> - Initialize the subsystem and load a sound file.<br>
+    void Audio::initialize(const char *target); -</i> Initialize the subsystem and load a sound file.<br>
    <br>
-   <i>void Audio::load(const char *target);</i> - Load a sound file.<br>
+   <i>void Audio::load(const char *target); -</i> Load a sound file.<br>
    <i><br>
-    void Audio::play();</i> - Play a sound.<br>
+    void Audio::play(); -</i> Play a sound.<br>
    <i><br>
-    void Audio::play_loop();</i> - Checking the playback status and restarting playback if needed.<br>
+    void Audio::play_loop(); -</i> Checking the playback status and restarting playback if needed.<br>
    <i><br>
-    void Audio::play(const bool loop);</i> - Play a sound. You can set loop mode if you want.<br>
+    void Audio::play(const bool loop); -</i> Play a sound. You can set loop mode if you want.<br>
    <br>
-   <i>void Audio::stop();</i> - Stop playing the content of the target file.<br>
+   <i>void Audio::stop(); -</i> Stop playing the content of the target file.<br>
    <i><br>
-    bool Audio::check_playing();</i> - Return true if the sound resource is playing.<br>
+    bool Audio::check_playing(); -</i> Return true if the sound resource is playing.<br>
   </big>
   <h1><a id="mozTocId485472" class="mozTocH1"></a><big>Part 7. Misc</big></h1>
   <h2><a id="mozTocId134970" class="mozTocH2"></a><big>Chapter 1. The Filesystem</big></h2>
@@ -1462,17 +1399,15 @@
    <br>
    <i> void quit();</i> - Exit from your program and return the user to the operating system.<br>
    <br>
-   <i>bool enable_logging(const char *name);</i> - Enable redirecting error
-   messages to a log file and return false if the operation failed.<br>
+   <i>bool enable_logging(const char *name); -</i> Enable redirecting error messages to a log file and return false if the operation failed.<br>
    <br>
-   <i> void randomize();</i> - Initialize the random number generator.<br>
+   <i> void randomize(); -</i> Initialize the random number generator.<br>
    <br>
-   <i>unsigned int get_random(const unsigned int number);</i> - Return a random value between zero and the number.<br>
+   <i>unsigned int get_random(const unsigned int number); -</i> Return a random value between zero and the number.<br>
    <br>
-   <i>unsigned int get_texture_size();</i> - Return the maximum width or height of the texture.<br>
+   <i>unsigned int get_texture_size(); -</i> Return the maximum width or height of the texture.<br>
    <br>
-   <i>BLACKGDK::BOX generate_box(const unsigned int x, const unsigned int
-    y, const unsigned int width, const unsigned int height);</i> - Generate the collision-related information.<br>
+   <i>BLACKGDK::BOX generate_box(const unsigned int x, const unsigned int y, const unsigned int width, const unsigned int height); -</i> Generate the collision-related information.<br>
   </big>
   <h2><a id="mozTocId655645" class="mozTocH2"></a><big>Chapter 3. The resource manager</big></h2>
   <big><br>
@@ -1503,17 +1438,17 @@
    The <i>Binary_File</i> class provides simple access to the base binary
    subsystem. Don't use it directly. Let's look at the publicly available methods.<br>
    <br>
-   <i> void Binary_File::close();</i> - Close the file.<br>
+   <i> void Binary_File::close(); -</i> Close the file.<br>
    <br>
-   <i>void Binary_File::set_position(const long int offset);</i> - Set the file position.<br>
+   <i>void Binary_File::set_position(const long int offset); -</i> Set the file position.<br>
    <br>
-   <i> long int Binary_File::get_position();</i> - Return the current file position.<br>
+   <i> long int Binary_File::get_position(); -</i> Return the current file position.<br>
    <i><br>
-    long int Binary_File::get_length();</i> - Return the file length in bytes.<br>
+    long int Binary_File::get_length(); -</i> Return the file length in bytes.<br>
    <i><br>
-    bool Binary_File::check_error();</i> - Return true if the last file operation failed.<br>
+    bool Binary_File::check_error(); -</i> Return true if the last file operation failed.<br>
    <br>
-   <i>bool Binary_File::is_open() const;</i> - Return true if the file was successfully opened.<br>
+   <i>bool Binary_File::is_open() const; -</i> Return true if the file was successfully opened.<br>
    <u><br>
     An important notice</u><br>
    <br>
@@ -1524,26 +1459,26 @@
    The file reader is intended to read data from the binary files. The <i>Input_File</i>
    class provides access to a file reader. It is derived from the <i>Binary_File</i> class. Let's look at the publicly available methods.<br>
    <br>
-   <i> Input_File* Input_File::get_handle();</i> - Return the handle to the file reader.<br>
+   <i> Input_File* Input_File::get_handle(); -</i> Return the handle to the file reader.<br>
    <i><br>
-    void Input_File::open(const char *name);</i> - Open a file to read.<br>
+    void Input_File::open(const char *name); -</i> Open a file to read.<br>
    <br>
-   <i>void Input_File::read(void *buffer, const size_t length);</i> - Read data from the file.<br>
+   <i>void Input_File::read(void *buffer, const size_t length); -</i> Read data from the file.<br>
   </big>
   <h2><a id="mozTocId755374" class="mozTocH2"></a><big>Chapter 4. The file writer</big></h2>
   <big><br>
    The file writer is intended to write data to the binary files. The <i>Output_File</i>
    class provides access to a file writer. It is derived from the <i>Binary_File</i> class. Let's look at the publicly available methods.<br>
    <br>
-   <i> Output_File* Output_File::get_handle();</i> - Return the handle to the file writer.<br>
+   <i> Output_File* Output_File::get_handle(); -</i> Return the handle to the file writer.<br>
    <br>
-   <i> void Output_File::open(const char *name);</i> - Open a file to write.<br>
+   <i> void Output_File::open(const char *name); -</i> Open a file to write.<br>
    <br>
-   <i> void Output_File::create_temp();</i> - Create a temporary file. This file will be deleted when it is closed.<br>
+   <i> void Output_File::create_temp(); -</i> Create a temporary file. This file will be deleted when it is closed.<br>
    <br>
-   <i>void Output_File::write(const void *buffer, const size_t length);</i> - Write data to the file.<br>
+   <i>void Output_File::write(const void *buffer, const size_t length); -</i> Write data to the file.<br>
    <i><br>
-    void Output_File::flush();</i> - Force writing the internal buffer data to the file.<br>
+    void Output_File::flush(); -</i> Force writing the internal buffer data to the file.<br>
   </big>
   <h1><a id="mozTocId210744" class="mozTocH1"></a><big>Part 9. The input</big></h1>
   <h2><a id="mozTocId368659" class="mozTocH2"></a><big>Chapter 1. The sub-namespace</big></h2>
@@ -1561,15 +1496,15 @@
    <br>
    Just use the <i>Keyboard</i> class to work with a keyboard. Let's look at the publicly available methods.<br>
    <i><br>
-    void Keyboard::initialize();</i> - Initialize the subsystem.<br>
+    void Keyboard::initialize(); -</i> Initialize the subsystem.<br>
    <i><br>
-    bool Keyboard::check_hold(const unsigned char code);</i> - Return true if a key with a specific scan code is pressed or held.<br>
+    bool Keyboard::check_hold(const unsigned char code); -</i> Return true if a key with a specific scan code is pressed or held.<br>
    <i><br>
-    bool Keyboard::check_press(const unsigned char code);</i> - Return true if a key with a specific scan code was pressed.<br>
+    bool Keyboard::check_press(const unsigned char code); -</i> Return true if a key with a specific scan code was pressed.<br>
    <i><br>
-    bool Keyboard::check_release(const unsigned char code);</i> - Return true if a key with a specific scan code was released.<br>
+    bool Keyboard::check_release(const unsigned char code); -</i> Return true if a key with a specific scan code was released.<br>
    <i><br>
-    bool Keyboard::is_ready() const;</i> - Return true if the subsystem has already been initialized.<br>
+    bool Keyboard::is_ready() const; -</i> Return true if the subsystem has already been initialized.<br>
    <br>
    <u>List of supported scan codes</u><br>
    <br>
@@ -1834,25 +1769,21 @@
    <br>
    Just use the <i>Mouse</i> class to work with a mouse. Let's look at the publicly available methods.<br>
    <br>
-   <i>void Mouse::show();</i> - Show the mouse cursor.<br>
+   <i>void Mouse::show(); -</i> Show the mouse cursor.<br>
    <br>
-   <i> void Mouse::hide();</i> - Hide the mouse cursor.<br>
+   <i> void Mouse::hide(); -</i> Hide the mouse cursor.<br>
    <i><br>
-    unsigned int Mouse::get_x();</i> - Return the x-position of the mouse.<br>
+    unsigned int Mouse::get_x(); -</i> Return the x-position of the mouse.<br>
    <br>
-   <i>unsigned int Mouse::get_y();</i> - Return the y-position of the mouse.<br>
+   <i>unsigned int Mouse::get_y(); -</i> Return the y-position of the mouse.<br>
    <i><br>
-    void Mouse::set_position(const unsigned int x, const unsigned int y);</i>
-   - Set the position of the mouse.<br>
+    void Mouse::set_position(const unsigned int x, const unsigned int y); -</i> Set the position of the mouse.<br>
    <br>
-   <i>bool Mouse::check_hold(const BLACKGDK::MOUSE_BUTTON button);</i> -
-   Return true if a mouse button is pressed or held.<br>
+   <i>bool Mouse::check_hold(const BLACKGDK::MOUSE_BUTTON button); -</i> Return true if a mouse button is pressed or held.<br>
    <i><br>
-    bool Mouse::check_press(const BLACKGDK::MOUSE_BUTTON button);</i> -
-   Return true if a mouse button was pressed.<br>
+    bool Mouse::check_press(const BLACKGDK::MOUSE_BUTTON button); -</i> Return true if a mouse button was pressed.<br>
    <i><br>
-    bool Mouse::check_release(const BLACKGDK::MOUSE_BUTTON button);</i> -
-   Return true if a mouse button was released.<br>
+    bool Mouse::check_release(const BLACKGDK::MOUSE_BUTTON button); -</i> Return true if a mouse button was released.<br>
    <br>
    <u>The mouse buttons.</u><br>
    <br>
@@ -2134,75 +2065,65 @@
    <br>
    Just use the <i>Gamepad</i> class to work with the gamepad. Let's look at the publicly available methods.<br>
    <br>
-   <i>void Gamepad::set_active(const unsigned int gamepad);</i> - Set the current active gamepad.<br>
+   <i>void Gamepad::set_active(const unsigned int gamepad); -</i> Set the current active gamepad.<br>
    <br>
-   <i>unsigned int Gamepad::get_amount();</i> - Return the number of the connected gamepads.<br>
+   <i>unsigned int Gamepad::get_amount(); -</i> Return the number of the connected gamepads.<br>
    <i><br>
-    unsigned int Gamepad::get_active() const;</i> - Return the identifier of the current active gamepad.<br>
+    unsigned int Gamepad::get_active() const; -</i> Return the identifier of the current active gamepad.<br>
    <i><br>
-    bool Gamepad::check_connection();</i> - Return true if the active gamepad has been connected.<br>
+    bool Gamepad::check_connection(); -</i> Return true if the active gamepad has been connected.<br>
    <i><br>
-    void Gamepad::update();</i> - Update the gamepad state.<br>
+    void Gamepad::update(); -</i> Update the gamepad state.<br>
    <br>
-   <i>bool Gamepad::check_button_hold(const BLACKGDK::GAMEPAD_BUTTONS button)
-    const;</i> - Return true if the button is pressed or held.<br>
+   <i>bool Gamepad::check_button_hold(const BLACKGDK::GAMEPAD_BUTTONS button) const; -</i> Return true if the button is pressed or held.<br>
    <i><br>
-    bool Gamepad::check_button_press(const BLACKGDK::GAMEPAD_BUTTONS button)
-    const;</i> - Return true if the button was pressed.<br>
+    bool Gamepad::check_button_press(const BLACKGDK::GAMEPAD_BUTTONS button) const; -</i> Return true if the button was pressed.<br>
    <br>
-   <i>bool Gamepad::check_button_release(const BLACKGDK::GAMEPAD_BUTTONS
-    button) const;</i> - Return true if the button was released.<br>
+   <i>bool Gamepad::check_button_release(const BLACKGDK::GAMEPAD_BUTTONS button) const; -</i> Return true if the button was released.<br>
    <br>
-   <i>bool Gamepad::check_trigger_hold(const BLACKGDK::GAMEPAD_TRIGGERS
-    trigger) const;</i> - Return true if the specific trigger of the active gamepad is pressed or held.<br>
+   <i>bool Gamepad::check_trigger_hold(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const; -</i> Return true if the specific trigger of the active gamepad is pressed or held.<br>
    <i><br>
-    bool Gamepad::check_trigger_press(const BLACKGDK::GAMEPAD_TRIGGERS
-    trigger) const;</i> - Return true if the specific trigger of the active gamepad was pressed.<br>
+    bool Gamepad::check_trigger_press(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const; -</i> Return true if the specific trigger of the active gamepad was pressed.<br>
    <i><br>
-    bool Gamepad::check_trigger_release(const BLACKGDK::GAMEPAD_TRIGGERS
-    trigger) const;</i> - Return true if the specific trigger of the active gamepad was released.<br>
+    bool Gamepad::check_trigger_release(const BLACKGDK::GAMEPAD_TRIGGERS trigger) const; -</i> Return true if the specific trigger of the active gamepad was released.<br>
    <i><br>
-    unsigned char Gamepad::get_left_trigger() const;</i> - Return the current value of the left analog trigger.<br>
+    unsigned char Gamepad::get_left_trigger() const; -</i> Return the current value of the left analog trigger.<br>
    <i><br>
-    unsigned char Gamepad::get_right_trigger() const;</i> - Return the current value of the right analog trigger.<br>
+    unsigned char Gamepad::get_right_trigger() const; -</i> Return the current value of the right analog trigger.<br>
    <i><br>
-    GAMEPAD_DIRECTION Gamepad::get_stick_x(const BLACKGDK::GAMEPAD_STICKS
-    stick) const;</i> - Return the x-direction of a specific stick.<br>
+    GAMEPAD_DIRECTION Gamepad::get_stick_x(const BLACKGDK::GAMEPAD_STICKS stick) const; -</i> Return the x-direction of a specific stick.<br>
    <i><br>
-    GAMEPAD_DIRECTION Gamepad::get_stick_y(const BLACKGDK::GAMEPAD_STICKS
-    stick) const;</i> - Return the y-direction of a specific stick.<br>
+    GAMEPAD_DIRECTION Gamepad::get_stick_y(const BLACKGDK::GAMEPAD_STICKS stick) const; -</i> Return the y-direction of a specific stick.<br>
    <br>
-   <i> GAMEPAD_DIRECTION Gamepad::get_left_stick_x() const;</i> - Return the x-direction of the left stick.<br>
+   <i>GAMEPAD_DIRECTION Gamepad::get_left_stick_x() const; -</i> Return the x-direction of the left stick.<br>
    <i><br>
-    GAMEPAD_DIRECTION Gamepad::get_left_stick_y() const;</i> - Return the y-direction of the left stick.<br>
+    GAMEPAD_DIRECTION Gamepad::get_left_stick_y() const; -</i> Return the y-direction of the left stick.<br>
    <i><br>
-    GAMEPAD_DIRECTION Gamepad::get_right_stick_x() const;</i> - Return the x-direction of the right stick.<br>
+    GAMEPAD_DIRECTION Gamepad::get_right_stick_x() const; -</i> Return the x-direction of the right stick.<br>
    <br>
-   <i> GAMEPAD_DIRECTION Gamepad::get_right_stick_y() const;</i> - Return the y-direction of the right stick.<br>
+   <i>GAMEPAD_DIRECTION Gamepad::get_right_stick_y() const; -</i> Return the y-direction of the right stick.<br>
    <br>
-   <i>bool Gamepad::set_vibration(const unsigned short int left, const
-    unsigned short int right); - Set the vibration level of the rumble
-    motors (left and right);</i> - Return false if the operation failed.<br>
+   <i>bool Gamepad::set_vibration(const unsigned short int left, const unsigned short int right); -</i> Set the vibration level of the rumble motors (left and right). Return false if the operation failed.<br>
    <i><br>
-    bool Gamepad::disable_vibration();</i> - Disable the vibration. Return false if the operation failed.<br>
+    bool Gamepad::disable_vibration(); -</i> Disable the vibration. Return false if the operation failed.<br>
    <br>
-   <i> unsigned short int Gamepad::get_left_motor() const;</i> - Return the vibration level of the left rumble motor.<br>
+   <i> unsigned short int Gamepad::get_left_motor() const; -</i> Return the vibration level of the left rumble motor.<br>
    <br>
-   <i> unsigned short int Gamepad::get_right_motor() const;</i> - Return the vibration level of the right rumble motor.<br>
+   <i> unsigned short int Gamepad::get_right_motor() const; -</i> Return the vibration level of the right rumble motor.<br>
    <br>
-   <i> short int Gamepad::get_left_stick_horizontal_axis() const;</i> - Return the current value of the left stick horizontal axis.<br>
+   <i> short int Gamepad::get_left_stick_horizontal_axis() const; -</i> Return the current value of the left stick horizontal axis.<br>
    <br>
-   <i> short int Gamepad::get_left_stick_vertical_axis() const;</i> - Return the current value of the left stick vertical axis.<br>
+   <i> short int Gamepad::get_left_stick_vertical_axis() const; -</i> Return the current value of the left stick vertical axis.<br>
    <i><br>
-    short int Gamepad::get_right_stick_horizontal_axis() const;</i> - Return the current value of the right stick horizontal axis.<br>
+    short int Gamepad::get_right_stick_horizontal_axis() const; -</i> Return the current value of the right stick horizontal axis.<br>
    <i><br>
-    short int Gamepad::get_right_stick_vertical_axis() const;</i> - Return the current value of the right stick vertical axis.<br>
+    short int Gamepad::get_right_stick_vertical_axis() const; -</i> Return the current value of the right stick vertical axis.<br>
    <br>
-   <i>bool Gamepad::is_wireless();</i> - Return true if the current active gamepad is the wireless gamepad.<br>
+   <i>bool Gamepad::is_wireless(); -</i> Return true if the current active gamepad is the wireless gamepad.<br>
    <i><br>
-    BLACKGDK::GAMEPAD_BATTERY_TYPE Gamepad::get_battery_type();</i> - Return the battery type of the wireless gamepad.<br>
+    BLACKGDK::GAMEPAD_BATTERY_TYPE Gamepad::get_battery_type(); -</i> Return the battery type of the wireless gamepad.<br>
    <i><br>
-    BLACKGDK::GAMEPAD_BATTERY_LEVEL Gamepad::get_battery_level();</i> - Return the battery level of the wireless gamepad.<br>
+    BLACKGDK::GAMEPAD_BATTERY_LEVEL Gamepad::get_battery_level(); -</i> Return the battery level of the wireless gamepad.<br>
   </big>
   <h1><a id="mozTocId782338" class="mozTocH1"></a><big>Part 10. The internal details of the engine subsystems</big></h1>
   <h2><a id="mozTocId376321" class="mozTocH2"></a><big>Chapter 1. A few words for a curious programmer</big></h2>
@@ -2585,6 +2506,7 @@
    7.6.2: The source code synced with the Eugene Game Development Kit 9.7.4.<br>
    7.6.3: The source code synced with the Eugene Game Development Kit 9.7.5.<br>
    7.6.4: The source code synced with the Eugene Game Development Kit 9.7.6.<br>
+   7.6.4.1: The documentation has been updated.<br>
   </big>
  </body>
 </html>
