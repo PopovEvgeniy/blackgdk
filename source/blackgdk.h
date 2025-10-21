@@ -877,7 +877,7 @@ typedef enum
    bool load(Image *buffer,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    bool load(Image &buffer,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
    bool load(const char *name,const BLACKGDK::IMAGE_KIND kind,const unsigned int frames);
-   void set_target(const unsigned int target);
+   unsigned int set_target(const unsigned int target);
    void step();
    void destroy();
    void clone(Sprite *target);
@@ -920,7 +920,7 @@ typedef enum
    void clone(Sheet *target);
    void clone(Sheet &target);
    void select(const unsigned int row,const unsigned int column);
-   void set_target(const unsigned int target);
+   unsigned int set_target(const unsigned int target);
    void step();
    bool load(Image *sheet,const unsigned int row_amount,const unsigned int column_amount);
    bool load(Image &sheet,const unsigned int row_amount,const unsigned int column_amount);
