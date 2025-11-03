@@ -3884,6 +3884,21 @@ namespace BLACKGDK
    stage.complex_mirror();
   }
 
+  bool Scene::is_horizontally_mirrored() const
+  {
+   return stage.is_horizontally_mirrored();
+  }
+
+  bool Scene::is_vertically_mirrored() const
+  {
+   return stage.is_vertically_mirrored();
+  }
+
+  bool Scene::is_complex_mirrored() const
+  {
+   return stage.is_complex_mirrored();
+  }
+
   void Scene::draw()
   {
    stage.draw(false);
