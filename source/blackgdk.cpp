@@ -3218,6 +3218,11 @@ namespace BLACKGDK
    return mirror==Core::MIRROR_BOTH;
   }
 
+  bool Billboard::is_mirrored() const
+  {
+   return mirror!=Core::MIRROR_NONE;
+  }
+
   void Billboard::go_start()
   {
    this->set_position(start_x,start_y);
