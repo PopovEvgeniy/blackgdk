@@ -2214,7 +2214,7 @@ namespace BLACKGDK
 
   }
 
-  bool Screen::update()
+  bool Screen::sync(const bool limit)
   {
    if (this->get_context()!=NULL)
    {
@@ -2222,22 +2222,21 @@ namespace BLACKGDK
     this->update_counter();
     this->clear_stage();
    }
+   if (limit==true)
+   {
+    this->wait_timer();
+   }
    return this->process_message();
   }
 
   bool Screen::sync()
   {
-   this->wait_timer();
-   return this->update();
+   return this->sync(true);
   }
 
-  bool Screen::sync(const bool limit)
+  bool Screen::update()
   {
-   if (limit==true)
-   {
-    this->wait_timer();
-   }
-   return this->update();
+   return this->sync(false);
   }
 
   bool Screen::is_ready()
