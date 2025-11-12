@@ -545,15 +545,15 @@
     void Background::vertical_mirror(); -</i> Set the vertical background mirroring mode.<br>
    <br>
    <i>void Background::complex_mirror(); -</i> Set both the horizontal
-   background mirroring mode and the vertical background mirroring mode.<br>
-   <br>
-   <i>bool Background::is_mirrored const(); -</i> Return true if the background is mirrored in any way.<br>      
+   background mirroring mode and the vertical background mirroring mode.<br>         
    <br>
    <i>bool Background::is_horizontally_mirrored const(); -</i> Return true if the background is horizontally mirrored.<br>
    <br>
    <i>bool Background::is_vertically_mirrored const(); -</i> Return true if the background is vertically mirrored.<br>
    <br>
    <i>bool Background::is_complex_mirrored const(); -</i> Return true if the background is both horizontally and vertically mirrored.<br>
+   <br>
+   <i>bool Background::is_mirrored const(); -</i> Return true if the background is mirrored in any way.<br>
    <br>   
    <i>unsigned int Background::set_target(const unsigned int target); -</i> Set the target frame and return it.<br>
    <br>
@@ -625,15 +625,15 @@
    <i>void Scene::vertical_mirror(); -</i> Set the vertical background mirroring mode.<br>
    <br>
    <i>void Scene::complex_mirror(); -</i> Set both the horizontal background
-   mirroring mode and the vertical background mirroring mode.<br>
-   <br>
-   <i>bool Scene::is_mirrored const(); -</i> Return true if the background is mirrored in any way.<br>     
+   mirroring mode and the vertical background mirroring mode.<br>      
    <br>
    <i>bool Scene::is_horizontally_mirrored const(); -</i> Return true if the background is horizontally mirrored.<br>
    <br>
    <i>bool Scene::is_vertically_mirrored const(); -</i> Return true if the background is vertically mirrored.<br>
    <br>
-   <i>bool Scene::is_complex_mirrored const(); -</i> Return true if the background is both horizontally and vertically mirrored.<br>      
+   <i>bool Scene::is_complex_mirrored const(); -</i> Return true if the background is both horizontally and vertically mirrored.<br>
+   <br>
+   <i>bool Scene::is_mirrored const(); -</i> Return true if the background is mirrored in any way.<br>      
    <br>
    <i>bool Scene::load(Image *background); -</i> Load a background from the buffer and return true if it is loaded.<br>
    <br>
@@ -698,7 +698,9 @@
    <br>
    <i>bool Parallax::is_vertically_mirrored const(); -</i> Return true if the background is vertically mirrored.<br>
    <br>
-   <i>bool Parallax::is_complex_mirrored const(); -</i> Return true if the background is both horizontally and vertically mirrored.<br>      
+   <i>bool Parallax::is_complex_mirrored const(); -</i> Return true if the background is both horizontally and vertically mirrored.<br>
+   <br>
+   <i>bool Parallax::is_mirrored() const; -</i> Return true if the background is mirrored in any way.<br>     
    <br>
    <i>bool Parallax::load(Image *background); -</i> Load a background from the buffer and return true if it is loaded.<br>
    <i><br>
@@ -2550,6 +2552,7 @@
    7.7.5: The source code synced with the Eugene Game Development Kit 9.8.8.<br>
    7.7.6: The source code synced with the Eugene Game Development Kit 9.8.9.<br>
    7.7.7: The source code synced with the Eugene Game Development Kit 9.9.<br>
+   7.7.8: The source code synced with the Eugene Game Development Kit 9.9.1.<br>
   </big>
  </body>
 </html>
