@@ -3459,6 +3459,11 @@ namespace BLACKGDK
    return (target>0) && (target<=columns);
   }
 
+  bool Sheet::check_cell(const unsigned int row,const unsigned int column) const
+  {
+   return this->check_row(row) && this->check_column(column);
+  }
+
   void Sheet::reset_sheet_settings()
   {
    rows=1;
@@ -3497,13 +3502,9 @@ namespace BLACKGDK
   {
    unsigned int target;
    target=1;
-   if (this->check_row(row)==true)
+   if (this->check_cell(row,column)==true)
    {
-    if (this->check_column(column)==true)
-    {
-     target+=(row-1)+(column-1)*rows;
-    }
-
+    target+=(row-1)+(column-1)*rows;
    }
    return target;
   }
