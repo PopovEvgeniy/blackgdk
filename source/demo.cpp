@@ -11,14 +11,14 @@ int main()
  BLACKGDK::Misc::Audio media;
  BLACKGDK::Graphics::Screen screen;
  BLACKGDK::Graphics::Scene space;
- BLACKGDK::Graphics::Sprite ship;
+ BLACKGDK::Graphics::Ribbon ship;
  BLACKGDK::Graphics::Text text;
  BLACKGDK::Tools::enable_logging("log.txt");
  keyboard.initialize();
  screen.initialize();
  space.load("space.tga");
  space.prepare(screen);
- ship.load("ship.tga",BLACKGDK::HORIZONTAL_ANIMATED,2);
+ ship.load("ship.tga",2);
  ship.set_position(screen.get_width()/2,screen.get_height()/2);
  text.load_font("font.tga");
  text.set_position(text.get_font_width(),text.get_font_height());
