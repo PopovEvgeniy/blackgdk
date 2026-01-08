@@ -37,17 +37,18 @@
           <li><a href="#mozTocId614034">Chapter 5. The vertex index</a></li>
           <li><a href="#mozTocId121387">Chapter 6. The image kind</a></li>
           <li><a href="#mozTocId587336">Chapter 7. The ordinary background</a></li>
-          <li><a href="#mozTocId538474">Chapter 8. The static background</a></li>
-          <li><a href="#mozTocId791799">Chapter 9. The parallax background.</a></li>
-          <li><a href="#mozTocId838792">Chapter 10. The base sprite subsystem</a></li>
-          <li><a href="#mozTocId954424">Chapter 11. The ordinary sprites</a></li>
-          <li><a href="#mozTocId412464">Chapter 12. The ribbons</a></li>
-          <li><a href="#mozTocId839836">Chapter 13. The tier</a></li>
-          <li><a href="#mozTocId472937">Chapter 14. The static sprites</a></li>
-          <li><a href="#mozTocId382104">Chapter 15. The sprite sheet</a></li>
-          <li><a href="#mozTocId906787">Chapter 16. The text</a></li>
-          <li><a href="#mozTocId326116">Chapter 17. Loading an image</a></li>
-          <li><a href="#mozTocId368461">Chapter 18. The camera</a></li>
+          <li><a href="#mozTocId461777">Chapter 8. The section.</a></li>
+          <li><a href="#mozTocId717736">Chapter 9. The static background</a></li>
+          <li><a href="#mozTocId102485">Chapter 10. The parallax background.</a></li>
+          <li><a href="#mozTocId870882">Chapter 11. The base sprite subsystem</a></li>
+          <li><a href="#mozTocId578345">Chapter 12. The ordinary sprites</a></li>
+          <li><a href="#mozTocId89913">Chapter 13. The ribbons</a></li>
+          <li><a href="#mozTocId928228">Chapter 14. The tier</a></li>
+          <li><a href="#mozTocId658800">Chapter 15. The static sprites</a></li>
+          <li><a href="#mozTocId160691">Chapter 16. The sprite sheet</a></li>
+          <li><a href="#mozTocId72896">Chapter 17. The text</a></li>
+          <li><a href="#mozTocId252660">Chapter 18. Loading an image</a></li>
+          <li><a href="#mozTocId21939">Chapter 19. The camera</a></li>
         </ol>
       </li>
       <li><a href="#mozTocId126518">Part 4. The transformation</a>
@@ -114,11 +115,7 @@
     <big><br>
       <u>The introduction.</u><br>
       <br>
-      Hello! My name is Popov Evgeniy Alekseyevich. I am an individual
-      programmer. I enjoy creating software. I also like old-school video
-      games. Do you want to develop video games for Microsoft Windows? You
-      need a good game engine to do it. I made my own engine. I hope that my
-      C++ game engine will be useful for many programmers.<br>
+      Hello! My name is Popov Evgeniy Alekseyevich. I am an individual programmer. I enjoy creating software. I also like old-school video games. Do you want to develop video games for Microsoft Windows? You need a good game engine to do it. I made my own engine. I hope that my C++ game engine will be useful for many programmers.<br>
       <br>
       <u>Features.</u><br>
       <br>
@@ -173,7 +170,7 @@
     <big><u><br>
         The Black Game Development Kit license.</u><br>
       <br>
-      Copyright (C) 2017 - 2025 Popov Evgeniy Alekseyevich<br>
+      Copyright (C) 2017 - 2026 Popov Evgeniy Alekseyevich<br>
       <br>
       This software is provided 'as-is', without any express or implied<br>
       warranty. In no event will the authors be held liable for any damages<br>
@@ -202,13 +199,7 @@
       the following conditions:<br>
       The above copyright notice and this permission notice shall be included<br>
       in all copies or substantial portions of the Materials.<br>
-      THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-      EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-      IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-      CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-      TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-      MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.<br>
+      THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.<br>
     </big>
     <h2><a id="mozTocId826016" class="mozTocH2"></a><big>Chapter 4. The system requirements</big></h2>
     <big><br>
@@ -285,12 +276,12 @@
       <u>Windows Vista and Windows 7 support.</u><br>
       <br>
       You need TDM-GCC for <a href="https://en.wikipedia.org/wiki/Windows_Vista">Windows Vista</a> and <a
+
         href="https://en.wikipedia.org/wiki/Windows_7">Windows 7</a> support.<br>
       <u><br>
         A note for the Visual C++ users</u><br>
       <br>
-      Disable the precompiled headers before starting compilation. The old
-      Visual C++ users can do it via the project creation wizard.<br>
+      Disable the precompiled headers before starting compilation. The old Visual C++ users can do it via the project creation wizard.<br>
       The Visual C++ 2017 or higher users must follow these steps:<br>
       <br>
       Go to «Project Properties — C/C++ — Precompiled Headers»<br>
@@ -324,9 +315,7 @@
     <h1><a id="mozTocId191318" class="mozTocH1"></a><big>Part 2. Basic things</big></h1>
     <h2><a id="mozTocId432722" class="mozTocH2"></a><big>Chapter 1. The coordinate system</big></h2>
     <big><br>
-      The engine uses the standard coordinate system by default. The
-      coordinates start at the top-left corner. Look at this picture to
-      understand it.<br>
+      The engine uses the standard coordinate system by default. The coordinates start at the top-left corner. Look at this picture to understand it.<br>
       <br>
       <img alt="" src="coordinate_system.png" height="111" width="107"><br>
     </big>
@@ -346,22 +335,17 @@
     <big><u><br>
         The introduction.</u><br>
       <br>
-      The base graphics subsystem does render a game scene. This subsystem uses <a href="http://opengl.org">OpenGL</a>
-      for rendering. All modern video cards support hardware acceleration.
-      The software implementation will be activated if the acceleration is
-      not available.<br>
+      The base graphics subsystem does render a game scene. This subsystem uses <a
+
+        href="http://opengl.org">OpenGL</a> for rendering. All modern video cards support hardware acceleration. The software implementation will be activated if the acceleration is not available.<br>
       <br>
       <u>The render performance.</u><br>
       <br>
-      Always use the latest video card drivers. It may increase the rendering
-      performance. You can also try to change the screen resolution if you
-      have low rendering performance.<br>
+      Always use the latest video card drivers. It may increase the rendering performance. You can also try to change the screen resolution if you have low rendering performance.<br>
       <br>
       <u>The FPS limitation.</u><br>
       <br>
-      FPS is an important thing. Many FPS are needed for a good animation,
-      but it also needs high processor usage. The FPS limit is 60 by default.
-      It has an ideal value.<br>
+      FPS is an important thing. Many FPS are needed for a good animation, but it also needs high processor usage. The FPS limit is 60 by default. It has an ideal value.<br>
       <br>
       <u>Work with the base graphics subsystem.</u><br>
       <br>
@@ -373,15 +357,9 @@
       <br>
       <i>void Screen::initialize(const unsigned int width, const unsigned int height); -</i> Initialize the base graphic subsystem with the custom screen resolution.<br>
       <br>
-      <i>bool Screen::sync(); -</i>
-      Show the current content of the back buffer on the screen. Return false
-      if a game is terminated. This method uses the FPS limits and waits
-      between frames.<br>
+      <i>bool Screen::sync(); -</i> Show the current content of the back buffer on the screen. Return false if a game is terminated. This method uses the FPS limits and waits between frames.<br>
       <br>
-      <i>bool Screen::update(); -</i>
-      Show the current content of the back buffer on the screen. Return false
-      if a game is terminated. This method ignores the FPS limit and needs
-      high processor usage.<br>
+      <i>bool Screen::update(); -</i> Show the current content of the back buffer on the screen. Return false if a game is terminated. This method ignores the FPS limit and needs high processor usage.<br>
       <br>
       <i>bool Screen::sync(const bool limit); -</i> Show the current content of the back buffer on the screen. Return false if a game is terminated.<br>
       <i><br>
@@ -521,14 +499,9 @@
     <big><br>
       <u>The decoration for a level.</u><br>
       <br>
-      A background is a big image with a few frames. Any game has a
-      background. The background will be stretched to the screen resolution
-      before rendering the game scene. The background transparency is always
-      disabled.<br>
+      A background is a big image with a few frames. Any game has a background. The background will be stretched to the screen resolution before rendering the game scene. The background transparency is always disabled.<br>
       <br>
-      The horizontal animated backgrounds look like the horizontal photo
-      ribbons. The vertical animated backgrounds look like the vertical photo
-      ribbons.<br>
+      The horizontal animated backgrounds look like the horizontal photo ribbons. The vertical animated backgrounds look like the vertical photo ribbons.<br>
       <u><br>
         Work with the background.</u><br>
       <br>
@@ -596,16 +569,102 @@
       <u><br>
         A background texture.</u><br>
       <br>
-      The background doesn't draw if the background texture doesn't exist. It
-      will be automatically created when you load an image.<br>
+      The background doesn't draw if the background texture doesn't exist. It will be automatically created when you load an image.<br>
       <br>
       <u>An important notice.</u><br>
       <br>
       Always call the prepare after the background has been loaded.<br>
+      <br>
     </big>
-    <h2><a id="mozTocId538474" class="mozTocH2"></a><big>Chapter 8. The static background</big></h2>
-    <big><u><br>
-        A few words about the static background.</u><br>
+    <h2><a id="mozTocId461777" class="mozTocH2"></a><big>Chapter 8. The section.</big></h2>
+    <big><br>
+      <u>A few words about the section.</u><br>
+      <br>
+      The section is a horizontal animated background.<br>
+      <br>
+      <u>Work with the section.</u><br>
+      <br>
+      Just use the <i>Section</i> class to work with the section. Let's look at the publicly available methods.<br>
+      <i><br>
+        Section *Section::get_handle();</i> - Return the handle to the section object.<br>
+      <i><br>
+        void Section::prepare(const Screen *screen);</i> - Prepare for drawing.<br>
+      <br>
+      <i>void Section::prepare(Screen &amp;screen);</i> - Prepare for drawing.<br>
+      <br>
+      <i>void Section::prepare(const unsigned int width, const unsigned int height);</i> - Prepare for drawing.<br>
+      <br>
+      <i>void Section::disable_mirror();</i> - Disable the background mirroring mode.<br>
+      <br>
+      <i>void Section::horizontal_mirror();</i> - Set the horizontal background mirroring mode.<br>
+      <br>
+      <i>void Section::vertical_mirror();</i> - Set the vertical background mirroring mode.<br>
+      <i>
+      <br>
+      void Section::complex_mirror();</i> - Set both the horizontal background mirroring mode and the vertical background mirroring mode.<br>
+      <i>
+      <br>
+      bool Section::is_horizontally_mirrored const();</i> - Return true if the background is horizontally mirrored.<br>
+      <i>
+      <br>
+      bool Section::is_vertically_mirrored const();</i> - Return true if the background is vertically mirrored.<br>
+      <br>
+      <i>bool Section::is_complex_mirrored const();</i> - Return true if the background is both horizontally and vertically mirrored.<br>
+      <i>
+      <br>
+      bool Section::is_mirrored const();</i> - Return true if the background is mirrored in any way.<br>
+      <i>
+      <br>
+      unsigned int Section::set_target(const unsigned int target);</i> - Set the target frame and return it.<br>
+      <i>
+      <br>
+      void Section::step();</i> - Increase the target frame. Set it to 1 if the target is more than the number of frames.<br>
+      <i>
+      <br>
+      bool Section::load(Image *background, const unsigned int frames);</i> - Load a background from the buffer and return true if it is loaded.<br>
+      <i>
+      <br>
+      bool Section::load(Image &amp;background, const unsigned int frames);</i> - Load a background from the buffer and return true if it is loaded.<br>
+      <i>
+      <br>
+      bool Section::load(const char *name, const unsigned int frames);</i> - Load a background from the target file and return true if it is loaded.<br>
+      <br>
+      <i>void Section::draw();</i> - Draw a background.<br>
+      <br>
+      <i>void Section::draw(const unsigned int target);</i> - Draw the target frame.<br>
+      <br>
+      <i>void Section::destroy_image();</i> - Destroy a background image.<br>
+      <br>
+      <i>void Section::destroy();</i> - Destroy a background image and the texture.<br>
+      <br>
+      <i>bool Section::is_load() const;</i> - Return true if a background has already been loaded.<br>
+      <br>
+      <i>bool Section::is_last_frame() const;</i> - Return true if the current frame is the last frame.<br>
+      <i>
+      <br>
+      bool Section::check_frame(const unsigned int target) const;</i> - Return true if the target frame is valid.<br>
+      <i>
+      <br>
+      unsigned int Section::get_frame() const;</i> - Return the current frame.<br>
+      <i>
+      <br>
+      unsigned int Section::get_frames() const;</i> - Return the number of the frames.<br>
+      <i>
+      <br>
+      unsigned int Section::get_width() const;</i> - Return the width of the background.<br>
+      <br>
+      <i>unsigned int Section::get_height() const;</i> - Return the height of the background.<br>
+      <br>
+      <u>A background texture.</u><br>
+      <br>
+      The background doesn't draw if the background texture doesn't exist. It will be automatically created when you load an image.<br>
+      <u><br>
+        An important notice.</u><br>
+      <br>
+      Always call the <i>prepare</i> after the background has been loaded.<br>
+    </big>
+    <h2><a id="mozTocId717736" class="mozTocH2"></a><big>Chapter 9. The static background</big></h2>
+    <big><u> A few words about the static background.</u><br>
       <br>
       The static background is a simple kind of background. It contains only one frame.<br>
       <br>
@@ -657,17 +716,15 @@
       <u><br>
         A background texture.</u><br>
       <br>
-      The background doesn't draw if the background texture doesn't exist. It
-      will be automatically created when you load an image.<br>
+      The background doesn't draw if the background texture doesn't exist. It will be automatically created when you load an image.<br>
       <u><br>
         An important notice.</u><br>
       <br>
       Always call the <i>prepare</i> after the background has been loaded.<br>
     </big>
-    <h2><a id="mozTocId791799" class="mozTocH2"></a><big>Chapter 9. The parallax background.<br>
+    <h2><a id="mozTocId102485" class="mozTocH2"></a><big>Chapter 10. The parallax background.<br>
       </big></h2>
-    <big><br>
-      <u>A few words about the parallax background.</u><br>
+    <big> <u>A few words about the parallax background.</u><br>
       <br>
       The parallax background is a background with scrolling support.<br>
       <u><br>
@@ -733,16 +790,14 @@
       <br>
       <u>A background texture.</u><br>
       <br>
-      The background doesn't draw if the background texture doesn't exist. It
-      will be automatically created when you load an image.<br>
+      The background doesn't draw if the background texture doesn't exist. It will be automatically created when you load an image.<br>
       <br>
       <u>An important notice.</u><br>
       <br>
       Always call the <i>prepare</i> after the background has been loaded.<br>
     </big>
-    <h2><a id="mozTocId838792" class="mozTocH2"></a><big>Chapter 10. The base sprite subsystem</big></h2>
-    <big><u><br>
-        A small, important thing.</u><br>
+    <h2><a id="mozTocId870882" class="mozTocH2"></a><big>Chapter 11. The base sprite subsystem</big></h2>
+    <big><u> A small, important thing.</u><br>
       <br>
       A sprite is a transparent image. It is useful for many things: enemies, bonuses, etc.<br>
       <br>
@@ -832,20 +887,15 @@
       <br>
       <i>void Billboard::draw(const bool transparency, const unsigned int x, const unsigned int y); -</i> Set the transparent mode and draw a sprite at the target position.<br>
     </big>
-    <h2><a id="mozTocId954424" class="mozTocH2"></a><big>Chapter 11. The ordinary sprites</big></h2>
-    <big><u><br>
-        The sprite types.</u><br>
+    <h2><a id="mozTocId578345" class="mozTocH2"></a><big>Chapter 12. The ordinary sprites</big></h2>
+    <big><u> The sprite types.</u><br>
       <br>
-      There are two kinds of ordinary sprites: the horizontal strips and the
-      vertical strips. It is a small image with a few frames.<br>
+      There are two kinds of ordinary sprites: the horizontal strips and the vertical strips. It is a small image with a few frames.<br>
       The horizontal strip looks like the horizontal photo ribbon. The vertical strip looks like the vertical photo ribbon.<br>
       <br>
       <u>Work with the sprites.</u><br>
       <br>
-      Just use the <i>Sprite</i>
-      class to work with a sprite. It is derived from three classes:
-      Billboard, Animation, and Picture. Let's look at the publicly available
-      methods.<br>
+      Just use the <i>Sprite</i> class to work with a sprite. It is derived from three classes: Billboard, Animation, and Picture. Let's look at the publicly available methods.<br>
       <br>
       <i>void Sprite::set_settings(const BLACKGDK::IMAGE_KIND kind, const unsigned int frames); -</i> Set the sprite settings.<br>
       <i><br>
@@ -871,11 +921,9 @@
       <u><br>
         A sprite texture</u><br>
       <br>
-      A sprite doesn't draw if the sprite texture doesn't exist. It will
-      automatically be created when you load or clone a sprite.<br>
-      <br>
+      A sprite doesn't draw if the sprite texture doesn't exist. It will automatically be created when you load or clone a sprite.<br>
     </big>
-    <h2><a id="mozTocId412464" class="mozTocH2"></a><big>Chapter 12. The ribbons<br>
+    <h2><a id="mozTocId89913" class="mozTocH2"></a><big>Chapter 13. The ribbons<br>
       </big></h2>
     <big> <u>A few words about the ribbons.</u><br>
       <br>
@@ -905,11 +953,9 @@
       <br>
       <u>A sprite texture</u><br>
       <br>
-      A sprite doesn't draw if the sprite texture doesn't exist. It will
-      automatically be created when you load or clone a sprite.<br>
-      <br>
+      A sprite doesn't draw if the sprite texture doesn't exist. It will automatically be created when you load or clone a sprite.<br>
     </big>
-    <h2><a id="mozTocId839836" class="mozTocH2"></a><big>Chapter 13. The tier</big></h2>
+    <h2><a id="mozTocId928228" class="mozTocH2"></a><big>Chapter 14. The tier</big></h2>
     <big><u>A few words about the tier.</u><br>
       <br>
       The tier is a vertical strip.<br>
@@ -917,12 +963,10 @@
         Work with the tier.</u><br>
       <br>
       Just use the <i>Tier</i> class to work with a tier. It is derived from three classes: <i>Billboard</i>, <i>Animation</i>, and <i>Picture</i>. Let's look at the publicly available methods.<br>
-      <i>
-      <br>
-      bool Tier::load(Image *buffer, const unsigned int frames);</i> - Load a sprite from the buffer and return true if it is loaded.<br>
-      <i>
-      <br>
-      bool Tier::load(Image &amp;buffer, const unsigned int frames);</i> - Load a sprite from the buffer and return true if it is loaded.<br>
+      <i> <br>
+        bool Tier::load(Image *buffer, const unsigned int frames);</i> - Load a sprite from the buffer and return true if it is loaded.<br>
+      <i> <br>
+        bool Tier::load(Image &amp;buffer, const unsigned int frames);</i> - Load a sprite from the buffer and return true if it is loaded.<br>
       <br>
       <i>bool Tier::load(const char *name, const unsigned int frames);</i> - Load a sprite from the target file and return true if it is loaded.<br>
       <br>
@@ -935,15 +979,15 @@
       <i>void Tier::clone(Tier *target);</i> - Create a copy of the sprite if the storage of the target sprite is not empty.<br>
       <br>
       <i>void Tier::clone(Tier &amp;target);</i> - Create a copy of the sprite if the storage of the target sprite is not empty.<br>
-      <i>
-      <br>
-      void Tier::destroy();</i> - Destroy a sprite image and destroy the texture.<br>
+      <i> <br>
+        void Tier::destroy();</i> - Destroy a sprite image and destroy the texture.<br>
       <br>
       <u>A sprite texture</u><br>
       <br>
-      A sprite doesn't draw if the sprite texture doesn't exist. It will automatically be created when you load or clone a sprite.<br>
+      A sprite doesn't draw if the sprite texture doesn't exist. It will
+      automatically be created when you load or clone a sprite.<br>
     </big>
-    <h2><a id="mozTocId472937" class="mozTocH2"></a><big>Chapter 14. The static sprites</big></h2>
+    <h2><a id="mozTocId658800" class="mozTocH2"></a><big>Chapter 15. The static sprites</big></h2>
     <big> <u>A few words about the static sprites.</u><br>
       <br>
       The static sprite is a simple kind of sprite. It contains only one frame.<br>
@@ -968,16 +1012,12 @@
       <u><br>
         A sprite texture.</u><br>
       <br>
-      A sprite doesn't draw if the sprite texture doesn't exist. It will
-      automatically be created when you load or clone a sprite.<br>
+      A sprite doesn't draw if the sprite texture doesn't exist. It will automatically be created when you load or clone a sprite.<br>
     </big>
-    <h2><a id="mozTocId382104" class="mozTocH2"></a><big>Chapter 15. The sprite sheet</big></h2>
-    <big><br>
-      <u>Some words about the sprite sheet.</u><br>
+    <h2><a id="mozTocId160691" class="mozTocH2"></a><big>Chapter 16. The sprite sheet</big></h2>
+    <big> <u>Some words about the sprite sheet.</u><br>
       <br>
-      A sprite sheet is a special kind of animated sprite. Each frame has a
-      fixed size. The sheet is a matrix of frames. Look at this picture to
-      understand it.<br>
+      A sprite sheet is a special kind of animated sprite. Each frame has a fixed size. The sheet is a matrix of frames. Look at this picture to understand it.<br>
       <br>
       <img alt="" src="sheet.png" height="249" width="380"><br>
       <br>
@@ -1027,15 +1067,12 @@
       <u><br>
         A sprite sheet texture.</u><br>
       <br>
-      A sprite sheet doesn't draw if the sprite sheet texture doesn't exist.
-      It will be automatically created when you load a sheet.<br>
+      A sprite sheet doesn't draw if the sprite sheet texture doesn't exist. It will be automatically created when you load a sheet.<br>
     </big>
-    <h2><a id="mozTocId906787" class="mozTocH2"></a><big>Chapter 16. The text</big></h2>
+    <h2><a id="mozTocId72896" class="mozTocH2"></a><big>Chapter 17. The text</big></h2>
     <big><u> How to print a text?</u><br>
       <br>
-      Just use the text subsystem to print the text. This subsystem needs a
-      font for text printing. You must load a font before starting to print
-      the text. The font is just a sprite sheet with 16 rows and 16 columns.<br>
+      Just use the text subsystem to print the text. This subsystem needs a font for text printing. You must load a font before starting to print the text. The font is just a sprite sheet with 16 rows and 16 columns.<br>
       <u><br>
         The valid characters.</u><br>
       <br>
@@ -1113,8 +1150,7 @@
       <i><br>
         void Text::destroy_font();</i> - Destroy a font image and the texture.<br>
     </big>
-    <h2><a id="mozTocId326116" class="mozTocH2"></a><big>Chapter 17. Loading an image</big></h2>
-    <br>
+    <h2><a id="mozTocId252660" class="mozTocH2"></a><big>Chapter 18. Loading an image</big></h2>
     <big><u>Load an image from a file.</u><br>
       <br>
       Use the image loader to load an image from a file. The <i>Image</i> class provides simple access to the image loader. It is a simple class with a few methods.<br>
@@ -1135,23 +1171,25 @@
       <br>
       <u>An important remark.</u><br>
       <br>
-      A new image will replace the current image if the current image already
-      exists. An incorrect image will be ignored and won't load.<br>
+      A new image will replace the current image if the current image already exists. An incorrect image will be ignored and won't load.<br>
       The source image will be converted to <a href="https://en.wikipedia.org/wiki/RGBA">RGBA</a> format. The pixels equal to the top-left pixel will be marked as transparent.<br>
       <br>
       <u>The supported format.</u><br>
       <br>
-      All loading images must have the correct specification. You can load an image from a 24-bit <a href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</a> picture.<br>
+      All loading images must have the correct specification. You can load an image from a 24-bit <a
+
+        href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</a> picture.<br>
       <br>
       <u>The recommended software.</u><br>
       <br>
-      You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a href="https://www.gimp.org">GIMP</a> to do it. It is a powerful image editor.<br>
+      You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a
+
+        href="https://www.gimp.org">GIMP</a> to do it. It is a powerful image editor.<br>
     </big>
-    <h2><a id="mozTocId368461" class="mozTocH2"></a><big>Chapter 18. The camera</big></h2>
+    <h2><a id="mozTocId21939" class="mozTocH2"></a><big>Chapter 19. The camera</big></h2>
     <big><u>A few words about the camera.</u><br>
       <br>
-      The 2D camera defines the size of the visible area. It will be
-      stretched to the screen resolution before rendering the game scene.<br>
+      The 2D camera defines the size of the visible area. It will be stretched to the screen resolution before rendering the game scene.<br>
       <u><br>
         Work with the camera.</u><br>
       <br>
@@ -1242,9 +1280,7 @@
       <br>
       <u>The coordinates conversion.</u><br>
       <br>
-      You can convert the Cartesian coordinates to the screen coordinates.
-      You can also convert the screen coordinates to the Cartesian
-      coordinates.<br>
+      You can convert the Cartesian coordinates to the screen coordinates. You can also convert the screen coordinates to the Cartesian coordinates.<br>
       <br>
       Just use the <i>Coordinates</i> class to do it. Let's look at the publicly available methods.<br>
       <i><br>
@@ -1284,9 +1320,7 @@
       <br>
       <u>The coordinates conversion.</u><br>
       <br>
-      You can convert the Cartesian coordinates to the isometric coordinates.
-      You can also convert the isometric coordinates to the Cartesian
-      coordinates. Just use the <i>Isometric</i> class to do it. Let's look at the publicly available methods.<br>
+      You can convert the Cartesian coordinates to the isometric coordinates. You can also convert the isometric coordinates to the Cartesian coordinates. Just use the <i>Isometric</i> class to do it. Let's look at the publicly available methods.<br>
       <i><br>
         static int Isometric::get_isometric_x(const int x, const int y); -</i> Convert the x-coordinate from the Cartesian system to the isometric system.<br>
       <i><br>
@@ -1323,7 +1357,8 @@
     <big><br>
       You can use the <i>Halt</i> function to terminate a program. This function is declared in the <i>BLACKGDK</i> namespace.<br>
       <br>
-      void BLACKGDK::Halt(const char *message); - Terminate the program. Write an error message to the log file if logging is enabled.<br>
+      void BLACKGDK::Halt(const char *message); - Terminate the program.
+      Write an error message to the log file if logging is enabled.<br>
     </big>
     <h2><a id="mozTocId66433" class="mozTocH2"></a><big>Chapter 3. The timers</big></h2>
     <big><br>
@@ -1335,10 +1370,7 @@
       <br>
       <i>double Timer::get_interval() const; -</i> Return the current timer interval.<br>
       <i><br>
-        bool Timer::check_timer(); -</i>
-      Return true and reinitialize the start point if the interval between
-      the stop and start points is larger than or equal to a specific number
-      of seconds.<br>
+        bool Timer::check_timer(); -</i> Return true and reinitialize the start point if the interval between the stop and start points is larger than or equal to a specific number of seconds.<br>
     </big>
     <h2><a id="mozTocId432947" class="mozTocH2"></a><big>Chapter 4. The collision detector<br>
       </big></h2>
@@ -1349,9 +1381,7 @@
       <u><br>
         The collision details.</u><br>
       <br>
-      The detector uses the bounding box collision method to detect a
-      collision. The collision-related information is stored in a custom data
-      type.<br>
+      The detector uses the bounding box collision method to detect a collision. The collision-related information is stored in a custom data type.<br>
       <br>
       <i>typedef struct<br>
         {<br>
@@ -1363,9 +1393,7 @@
       <br>
       <u>Work with the collision detector.</u><br>
       <br>
-      The <i>Collision</i>
-      class provides easy access to the collision detectors. It is a simple
-      class with a few methods. Let's look at the publicly available methods.<br>
+      The <i>Collision</i> class provides easy access to the collision detectors. It is a simple class with a few methods. Let's look at the publicly available methods.<br>
       <br>
       <i> Collision *Collision::get_handle(); -</i> Return the handle to the collision detector.<br>
       <br>
@@ -1379,8 +1407,7 @@
     <big><u><br>
         A few words about the tilemap.</u><br>
       <br>
-      The tilemap is a tile matrix. A tile is a small, non-transparent
-      sprite. A tilemap is a very useful thing for the background.<br>
+      The tilemap is a tile matrix. A tile is a small, non-transparent sprite. A tilemap is a very useful thing for the background.<br>
       <u><br>
         The rows and columns.</u><br>
       <br>
@@ -1388,9 +1415,7 @@
       <u><br>
         Work with the tilemap.</u><br>
       <br>
-      The <i>Tilemap</i>
-      class provides easy access to the tilemap. It is a simple class with a
-      few methods. Let's look at the publicly available methods.<br>
+      The <i>Tilemap</i> class provides easy access to the tilemap. It is a simple class with a few methods. Let's look at the publicly available methods.<br>
       <i><br>
         Tilemap *Tilemap::get_handle();</i> - Return the handle to the tilemap subsystem.<br>
       <br>
@@ -1433,9 +1458,13 @@
       <i><br>
         unsigned long long int Memory::get_free_physical(); -</i> Return the free physical memory size in bytes.<br>
       <br>
-      <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+      <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a
+
+        href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
       <i><br>
-        unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+        unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a
+
+        href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
       <i><br>
         unsigned long long int Memory::get_physical_usge(); -</i> Return the physical memory usage in bytes.<br>
       <i><br>
@@ -1447,7 +1476,11 @@
     <big><br>
       <u>A few words about the audio subsystem.</u><br>
       <br>
-      This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a href="https://en.wikipedia.org/wiki/Windows_Media_Audio">Windows Media Audio</a> are supported.<br>
+      This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a
+
+        href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a
+
+        href="https://en.wikipedia.org/wiki/Windows_Media_Audio">Windows Media Audio</a> are supported.<br>
       <br>
       <u>The additional formats.</u><br>
       <br>
@@ -1502,15 +1535,9 @@
     </big>
     <h2><a id="mozTocId655645" class="mozTocH2"></a><big>Chapter 3. The resource manager</big></h2>
     <big><br>
-      A resource is an instance of a user-defined class or structure. The
-      resource manager is implemented as a few template functions. All these
-      functions are declared in the <i>Resource</i> sub-namespace.<br>
+      A resource is an instance of a user-defined class or structure. The resource manager is implemented as a few template functions. All these functions are declared in the <i>Resource</i> sub-namespace.<br>
       <br>
-      <i>create</i>:
-      Create a resource. The first form of this function creates a single
-      resource. It takes a handle to a resource handle as an argument. The
-      second form creates an array of the resources. It takes a handle to a
-      resource handle and a resource amount.<br>
+      <i>create</i>: Create a resource. The first form of this function creates a single resource. It takes a handle to a resource handle as an argument. The second form creates an array of the resources. It takes a handle to a resource handle and a resource amount.<br>
       <br>
       <i>destroy</i>: Delete a resource if it already exists. This function takes a resource handle as an argument.<br>
       <br>
@@ -1576,8 +1603,7 @@
     <big><br>
       <u>The low-level input.</u><br>
       <br>
-      Any keyboard has a built-in chip. It generates a special code when the
-      user presses or releases the key. This code is called a «scan code».<br>
+      Any keyboard has a built-in chip. It generates a special code when the user presses or releases the key. This code is called a «scan code».<br>
       <br>
       <u>Working with the keyboard.</u><br>
       <br>
@@ -1902,15 +1928,11 @@
     <big><br>
       <u>The best friend of a retro gamer.</u><br>
       <br>
-      What is a good choice for a game control device when the user plays an
-      arcade or an old-school video game? A gamepad. This engine provides
-      simple access to it.<br>
+      What is a good choice for a game control device when the user plays an arcade or an old-school video game? A gamepad. This engine provides simple access to it.<br>
       <u><br>
         The number of the connected gamepads.</u><br>
       <br>
-      You can connect a few gamepads. Any connected gamepad has an internal
-      index. The first gamepad index is 0. The maximum number of connected
-      gamepads is 4. The first gamepad will be activated by default.<br>
+      You can connect a few gamepads. Any connected gamepad has an internal index. The first gamepad index is 0. The maximum number of connected gamepads is 4. The first gamepad will be activated by default.<br>
       <br>
       <u>The button codes.</u><br>
       <br>
@@ -2217,9 +2239,7 @@
     <h1><a id="mozTocId782338" class="mozTocH1"></a><big>Part 10. The internal details of the engine subsystems</big></h1>
     <h2><a id="mozTocId376321" class="mozTocH2"></a><big>Chapter 1. A few words for a curious programmer</big></h2>
     <big><br>
-      The engine subsystems have a different internal structure. It has been
-      hidden from you, and you don't have access to it. Do you want to know
-      about the hidden things? Just read the next chapter.<br>
+      The engine subsystems have a different internal structure. It has been hidden from you, and you don't have access to it. Do you want to know about the hidden things? Just read the next chapter.<br>
     </big>
     <h2><a id="mozTocId695538" class="mozTocH2"></a><big>Chapter 2. The internal classes</big></h2>
     <big><u><br>
@@ -2255,8 +2275,7 @@
       <u><br>
         The textures.</u><br>
       <br>
-      A texture width must be a power of two. A texture height also must be a
-      power of two. Any image will be automatically resized before uploading.<br>
+      A texture width must be a power of two. A texture height also must be a power of two. Any image will be automatically resized before uploading.<br>
       <u><br>
         The vertex arrays and the texture coordinates array.</u><br>
       <br>
@@ -2314,7 +2333,9 @@
     </big>
     <h2><a id="mozTocId712667" class="mozTocH2"></a><big>Chapter 6. The audio</big></h2>
     <big><br>
-      The audio subsystem is working over <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>. It is available as part of <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>. DirectX is pre-installed by default under the modern versions of Windows.<br>
+      The audio subsystem is working over <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>. It is available as part of <a
+
+        href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>. DirectX is pre-installed by default under the modern versions of Windows.<br>
     </big>
     <h2><a id="mozTocId398873" class="mozTocH2"></a><big>Version history</big></h2>
     <big> 0.1-4.1.4: The old branch.<br>
@@ -2618,7 +2639,7 @@
       7.8.7-7.8.9: The ribbon subsystem has improved.<br>
       7.9: The small changes.<br>
       7.9.1: The small bug has been fixed.<br>
-      7.9.2: The new subsystem has been added.<br>
+      7.9.2-7.9.3: The new subsystem has been added.<br>
     </big>
   </body>
 </html>
