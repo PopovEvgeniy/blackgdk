@@ -2735,6 +2735,11 @@ namespace BLACKGDK
    this->set_size(0,0);
   }
 
+  size_t Image::get_pixel_amount() const
+  {
+   return length/3;
+  }
+
   size_t Image::get_length() const
   {
    return length;
