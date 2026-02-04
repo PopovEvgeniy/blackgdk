@@ -4506,6 +4506,12 @@ namespace BLACKGDK
    interval=0.0;
   }
 
+  Timer::Timer(const double seconds)
+  {
+   interval=seconds;
+   start=time(NULL);
+  }
+
   Timer::~Timer()
   {
 
