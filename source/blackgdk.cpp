@@ -548,8 +548,7 @@ namespace BLACKGDK
    length=strlen(source)+1;
    Resource::create(&target,length);
    memset(target,0,sizeof(wchar_t)*length);
-   setlocale(LC_ALL,".ACP");
-   mbstowcs(target,source,length);
+   MultiByteToWideChar(CP_ACP,0,source,-1,target,static_cast<int>(length));
    return target;
   }
 
