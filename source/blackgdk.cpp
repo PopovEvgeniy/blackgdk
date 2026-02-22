@@ -290,11 +290,11 @@ namespace BLACKGDK
     if (context!=NULL)
     {
      ReleaseDC(window,context);
+     context=NULL;
     }
     DestroyWindow(window);
+    window=NULL;
    }
-   window=NULL;
-   context=NULL;
    UnregisterClass(window_class.lpszClassName,window_class.hInstance);
   }
 
