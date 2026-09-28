@@ -3,7 +3,7 @@
 int main()
 {
  char perfomance[8];
- bool limit;
+ bool limit=true;
  BLACKGDK::Common::Timer timer(1.0);
  BLACKGDK::Input::Keyboard keyboard;
  BLACKGDK::Input::Gamepad gamepad;
@@ -32,11 +32,7 @@ int main()
  {
   gamepad.update();
   media.play_loop();
-  if (mouse.check_press(BLACKGDK::MOUSE_LEFT)==true)
-  {
-   break;
-  }
-  if (keyboard.check_hold(57)==true)
+  if (keyboard.check_hold(1)==true)
   {
    break;
   }
