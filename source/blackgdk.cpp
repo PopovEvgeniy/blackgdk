@@ -558,19 +558,19 @@ namespace BLACKGDK
    return target;
   }
 
-  Resizer::Resizer()
-  {
-   image=NULL;
-   source_width=0;
-   source_height=0;
-   x_ratio=0;
-   y_ratio=0;
-   target_width=1;
-   target_height=1;
-   normalization=UCHAR_MAX*UCHAR_MAX;
-  }
+ Resizer::Resizer()
+ {
+  image=NULL;
+  source_width=0;
+  source_height=0;
+  x_ratio=0;
+  y_ratio=0;
+  target_width=1;
+  target_height=1;
+  normalization=UCHAR_MAX*UCHAR_MAX;
+ }
 
-  Resizer::~Resizer()
+ Resizer::~Resizer()
  {
   Resource::destroy_array(image);
   image=NULL;
@@ -978,6 +978,19 @@ namespace BLACKGDK
 
   }
 
+  void Rectangle::set_face(const Core::MIRROR_KIND kind)
+  {
+   if ((kind==Core::MIRROR_BOTH)||(kind==Core::MIRROR_NONE))
+   {
+    glFrontFace(GL_CCW);
+   }
+   else
+   {
+    glFrontFace(GL_CW);
+   }
+
+  }
+
   void Rectangle::disable_transparent()
   {
    if (glIsEnabled(GL_ALPHA_TEST)==GL_TRUE)
@@ -1013,6 +1026,7 @@ namespace BLACKGDK
    if (texture!=0)
    {
     this->set_data(kind);
+    this->set_face(kind);
     this->draw_rectangle();
    }
 
@@ -1075,7 +1089,6 @@ namespace BLACKGDK
    glDisable(GL_NORMALIZE);
    glDisable(GL_AUTO_NORMAL);
    glDisable(GL_COLOR_MATERIAL);
-   glDisable(GL_CULL_FACE);
    glDisable(GL_POINT_SMOOTH);
    glDisable(GL_LINE_SMOOTH);
    glDisable(GL_POLYGON_SMOOTH);
@@ -1103,6 +1116,7 @@ namespace BLACKGDK
    glDisable(GL_MAP2_VERTEX_4);
    glEnable(GL_TEXTURE_2D);
    glEnable(GL_ALPHA_TEST);
+   glEnable(GL_CULL_FACE);
    glEnableClientState(GL_VERTEX_ARRAY);
    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
    glDisableClientState(GL_COLOR_ARRAY);
@@ -1123,7 +1137,9 @@ namespace BLACKGDK
   void Render::set_common_settings()
   {
    glDrawBuffer(GL_BACK);
-   glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+   glCullFace(GL_BACK);
+   glFrontFace(GL_CCW);
+   glPolygonMode(GL_FRONT,GL_FILL);
    glShadeModel(GL_FLAT);
    glAlphaFunc(GL_GREATER,0.6f);
    glClearColor(0.0,0.0,0.0,0.0);

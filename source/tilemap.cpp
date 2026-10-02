@@ -7,7 +7,10 @@ int main()
  BLACKGDK::Graphics::Sheet tile;
  BLACKGDK::Input::Keyboard keyboard;
  BLACKGDK::Common::Tilemap tilemap;
- unsigned int row,column,row_amount,column_amount;
+ unsigned int row=0;
+ unsigned int column=0;
+ unsigned int row_amount=0;
+ unsigned int column_amount=0;
  keyboard.initialize();
  screen.initialize();
  text.load_font("font.tga");

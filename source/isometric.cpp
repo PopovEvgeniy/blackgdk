@@ -2,7 +2,8 @@
 
 int main()
 {
- int row,column;
+ int row=0;
+ int column=0;
  BLACKGDK::Graphics::Screen screen;
  BLACKGDK::Graphics::Scene sky;
  BLACKGDK::Graphics::Cartoon ground;
