@@ -4258,7 +4258,7 @@ namespace BLACKGDK
    orientation=target;
   }
 
-  bool Text::is_font_load() const
+  bool Text::is_font_loaded() const
   {
    return text.is_loaded();
   }

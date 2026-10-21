@@ -64,7 +64,7 @@
      <li><a href="#mozTocId844074">Chapter 1. Sub-namespace</a></li>
      <li><a href="#mozTocId704565">Chapter 2. Terminating the application</a></li>
      <li><a href="#mozTocId66433">Chapter 3. Timers</a></li>
-     <li><a href="#mozTocId432947">Chapter 4. Ccollision detection</a></li>
+     <li><a href="#mozTocId434128">Chapter 4. Collision detection</a></li>
      <li><a href="#mozTocId346330">Chapter 5. Tilemaps</a></li>
     </ol>
    </li>
@@ -101,7 +101,7 @@
    <li><a href="#mozTocId782338">Part 10. Internal details of the engine subsystems</a>
     <ol>
      <li><a href="#mozTocId376321">Chapter 1. Few words for a curious programmer</a></li>
-     <li><a href="#mozTocId695538">Chapter 2. Iinternal classes</a></li>
+     <li><a href="#mozTocId980638">Chapter 2. Internal classes</a></li>
      <li><a href="#mozTocId896247">Chapter 3. Base graphics subsystem</a></li>
      <li><a href="#mozTocId55684">Chapter 4. Gamepad</a></li>
      <li><a href="#mozTocId934314">Chapter 5. User input</a></li>
@@ -114,11 +114,7 @@
   <h2><a id="mozTocId584133" class="mozTocH2"></a><big>Chapter 1. About the engine</big></h2>
   <big><u>About the engine.</u><br>
    <br>
-   Hello! My name is Popov Evgeniy Alekseyevich. I am a solo programmer. I
-   enjoy creating software. I also like old-school video games. Do you
-   want to develop video games for Microsoft Windows? You need a good game
-   engine to do so. I made my own engine. I hope that my C++ game engine
-   will be useful for many programmers. <br>
+   Hello! My name is Popov Evgeniy Alekseyevich. I am a solo programmer. I enjoy creating software. I also like old-school video games. Do you want to develop video games for Microsoft Windows? You need a good game engine to do so. I made my own engine. I hope that my C++ game engine will be useful for many programmers. <br>
    <br>
    <u>Features.</u><br>
    <br>
@@ -128,7 +124,8 @@
    <li><big>Open-source code.</big></li>
    <li><big>Very fast.</big></li>
    <li><big>An easy-to-use object-oriented design.</big></li>
-   <li><big>A minimum set of external dependencies: <a href="https://learn.microsoft.com/en-us/windows/win32/directx">DirectX</a>, <a
+   <li><big>A minimum set of external dependencies: <a href="https://learn.microsoft.com/en-us/windows/win32/directx">DirectX</a>, <a
+
       href="https://opengl.org">OpenGL</a>, and the standard <a href="https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-api-list">Windows API</a> libraries.</big></li>
    <li><big>You don't need to link a main program with the engine binary file. The engine is just the source code files.</big></li>
   </ul>
@@ -147,7 +144,7 @@
    Yes. This is really all you need to do.<br>
   </big>
   <h2><a id="mozTocId287413" class="mozTocH2"></a><big>Chapter 2. Special thanks</big></h2>
-  <big>Special thanks for the technical consultation go to these people:<br>
+  <big>Special thanks for technical consultation go to these people:<br>
   </big>
   <ul>
    <li><a href="https://github.com/dmitrysmagin"><big>Dmitry Smagin</big></a></li>
@@ -194,13 +191,7 @@
    the following conditions:<br>
    The above copyright notice and this permission notice shall be included<br>
    in all copies or substantial portions of the Materials.<br>
-   THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-   TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-   MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.<br>
+   THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.<br>
   </big>
   <h2><a id="mozTocId826016" class="mozTocH2"></a><big>Chapter 4. System requirements</big></h2>
   <big> You can see the minimum system requirements below.<br>
@@ -271,13 +262,13 @@
    <br>
    <u>Windows Vista and Windows 7 support.</u><br>
    <br>
-   You need TDM-GCC or MINGW-w64 for <a href="https://en.wikipedia.org/wiki/Windows_Vista">Windows Vista</a> and <a
+   You need TDM-GCC or MINGW-w64 for <a href="https://en.wikipedia.org/wiki/Windows_Vista">Windows Vista</a> and <a
+
     href="https://en.wikipedia.org/wiki/Windows_7">Windows 7</a> support. <br>
    <u><br>
     A note for the Visual C++ users</u><br>
    <br>
-   Disable the precompiled headers before starting compilation. The old
-   Visual C++ users can do it via the project creation wizard.<br>
+   Disable the precompiled headers before starting compilation. The old Visual C++ users can do it via the project creation wizard.<br>
    The Visual C++ 2017 or higher users must follow these steps:<br>
    <br>
    Go to «Project Properties — C/C++ — Precompiled Headers»<br>
@@ -308,10 +299,7 @@
   </big>
   <h1><a id="mozTocId191318" class="mozTocH1"></a><big>Part 2. Basic things</big></h1>
   <h2><a id="mozTocId432722" class="mozTocH2"></a><big>Chapter 1. Coordinate system</big></h2>
-  <big>
-   The engine uses the standard coordinate system by default. The
-   coordinates start at the top-left corner. Look at this picture to
-   understand it.<br>
+  <big> The engine uses the standard coordinate system by default. The coordinates start at the top-left corner. Look at this picture to understand it.<br>
    <br>
    <img alt="" src="coordinate_system.png" height="111" width="107"><br>
   </big>
@@ -328,23 +316,17 @@
   <h2><a id="mozTocId709992" class="mozTocH2"></a><big>Chapter 2. Base graphics subsystem</big></h2>
   <big><u>About the base graphics subsystem.</u><br>
    <br>
-   The base graphics subsystem renders a game scene. This subsystem uses <a
-    href="http://opengl.org">OpenGL</a>
-   for rendering. All modern video cards support hardware acceleration.
-   The software implementation will be activated if hardware acceleration
-   is not available. <br>
+   The base graphics subsystem renders a game scene. This subsystem uses <a
+
+    href="http://opengl.org">OpenGL</a> for rendering. Mos modern video cards support hardware acceleration. The software implementation will be activated if hardware acceleration is not available. <br>
    <br>
    <u>The rendering performance.</u><br>
    <br>
-   Always use the latest video card drivers. It may improve the rendering
-   performance. You can also try to change the screen resolution if you
-   have low rendering performance. <br>
+   Always use the latest video card drivers. It may improve the rendering performance. You can also try to change the screen resolution if you have low rendering performance. <br>
    <br>
    <u>The FPS limitation.</u><br>
    <br>
-   FPS is an important thing. A high FPS is needed for a smooth animation,
-   but it also needs high processor usage. The FPS limit is 60 by default.
-   <br>
+   FPS is an important thing. A high FPS is needed for smooth animation, but it also needs high processor usage. The FPS limit is 60 by default. <br>
    <br>
    <u>Working with the base graphics subsystem.</u><br>
    <br>
@@ -472,14 +454,9 @@
   <big><br>
   </big>
   <h2><a id="mozTocId754547" class="mozTocH2"></a><big>Chapter 6. Background</big></h2>
-  <big>
-   A background is a big image with a few frames. Any game has a
-   background. The background will be scaled to fit the screen. The
-   background transparency is always disabled.<br>
+  <big> A background is a big image with a few frames. Any game has a background. The background will be scaled to fit the screen. The background transparency is always disabled.<br>
    <br>
-   The horizontal
-   animated backgrounds look like horizontal photo ribbons. The vertical
-   animated backgrounds look like vertical photo ribbons.</big><br>
+   The horizontal animated backgrounds look like horizontal photo ribbons. The vertical animated backgrounds look like vertical photo ribbons.</big><br>
   <h2><a id="mozTocId12812" class="mozTocH2"></a><big>Chapter 7. Segment</big></h2>
   <big><u>A few words about the segment.</u><br>
    <br>
@@ -515,7 +492,7 @@
    <br>
    <i>unsigned int Segment::set_target(const unsigned int target);</i> - Set the target frame and return it.<br>
    <br>
-   <i>void Segment::step();</i> - Go to the next frame or jump to the start if the current frame is the last.<br>
+   <i>void Segment::step();</i> - Go to the next frame or jump to the start if the current frame is the last one.<br>
    <br>
    <i>bool Segment::load(Image *background, const unsigned int frames);</i> - Load a background from the buffer and return true if it is loaded.<br>
    <br>
@@ -587,7 +564,7 @@
    <br>
    <i>unsigned int Section::set_target(const unsigned int target);</i> - Set the target frame and return it.<br>
    <br>
-   <i>void Section::step();</i> - Go to the next frame or jump to the start if the current frame is the last.<br>
+   <i>void Section::step();</i> - Go to the next frame or jump to the start if the current frame is the last one.<br>
    <br>
    <i>bool Section::load(Image *background, const unsigned int frames);</i> - Load a background from the buffer and return true if it is loaded.<br>
    <br>
@@ -668,7 +645,7 @@
    <br>
    <i>void Scene::destroy_image(); -</i> Destroy the background image.<br>
    <br>
-   <i>void Scene::destroy(); -</i> Completely destroy the background image.<br>
+   <i>void Scene::destroy(); -</i> Completely destroy the background.<br>
    <br>
    <i>bool Scene::is_loaded() const; -</i> Return true if a static background has already been loaded.<br>
    <br>
@@ -742,7 +719,7 @@
    <br>
    <i>void Parallax::destroy_image(); -</i> Destroy the background image.<br>
    <br>
-   <i>void Parallax::destroy(); -</i> Completely destroy the background image.<br>
+   <i>void Parallax::destroy(); -</i> Completely destroy the background.<br>
    <br>
    <i>bool Parallax::is_loaded() const; -</i> Return true if a parallax background has already been loaded.<br>
    <br>
@@ -850,10 +827,8 @@
    <i>void Billboard::draw(const bool transparency, const unsigned int x, const unsigned int y); -</i> Set the transparent mode and draw a sprite at the target position.<br>
   </big>
   <h2><a id="mozTocId822857" class="mozTocH2"></a><big>Chapter 12. Animated sprites</big></h2>
-  <big>
-   There are two kinds of animated sprites: the horizontal strips and the
-   vertical strips. Each sprite is a small image with a few frames.<br>
-   The horizontal strip looks like the horizontal photo ribbon. The vertical strip looks like the vertical photo ribbon.<br>
+  <big> There are two kinds of animated sprites: the horizontal strips and the vertical strips. Each sprite is a small image with a few frames.<br>
+   The horizontal strip looks like horizontal photo ribbon. The vertical strip looks like vertical photo ribbon.<br>
   </big>
   <h2><a id="mozTocId563483" class="mozTocH2"></a><big>Chapter 13. Ribbons<br>
    </big></h2>
@@ -873,7 +848,7 @@
    <br>
    <i>unsigned int Ribbon::set_target(const unsigned int target); -</i> Set the target frame and return it.<br>
    <br>
-   <i>void Ribbon::step(); -</i> Go to the next frame or jump to the start if the current frame is the last.<br>
+   <i>void Ribbon::step(); -</i> Go to the next frame or jump to the start if the current frame is the last one.<br>
    <br>
    <i>Ribbon *Ribbon::get_pointer(); -</i> Return a pointer to the ribbon object.<br>
    <br>
@@ -900,7 +875,7 @@
    <br>
    <i>unsigned int Tier::set_target(const unsigned int target);</i> - Set the target frame and return it.<br>
    <br>
-   <i>void Tier::step();</i> - Go to the next frame or jump to the start if the current frame is the last.<br>
+   <i>void Tier::step();</i> - Go to the next frame or jump to the start if the current frame is the last one.<br>
    <br>
    <i>Tier *Tier::get_pointer();</i> - Return a pointer to the tier object.<br>
    <br>
@@ -927,7 +902,7 @@
    <br>
    <i>Cartoon *Cartoon::get_pointer(); -</i> Return a pointer to the sprite object.<br>
    <br>
-   <i>void Cartoon::destroy(); -</i> Completely destroy the sprite image. <br>
+   <i>void Cartoon::destroy(); -</i> Completely destroy the sprite. <br>
    <u><br>
     A sprite texture.</u><br>
    <br>
@@ -936,15 +911,13 @@
   <h2><a id="mozTocId196947" class="mozTocH2"></a><big>Chapter 16. Sprite sheet</big></h2>
   <big><u>Some words about the sprite sheet.</u><br>
    <br>
-   A sprite sheet is a special kind of animated sprite. Each frame has a
-   fixed size. The sheet is a matrix of frames. Look at this picture to
-   understand it.<br>
+   A sprite sheet is a special kind of animated sprite. Each frame has a fixed size. The sheet is a matrix of frames. Look at this picture to understand it.<br>
    <br>
    <img alt="" src="sheet.png" height="249" width="380"><br>
    <br>
    <u>The rows and columns.</u><br>
    <br>
-   The row index index starts at 0. The column index index starts at 0. <br>
+   The row index index starts at 0. The column index starts at 0. <br>
    <u><br>
     Working with the sheet.</u><br>
    <br>
@@ -966,13 +939,13 @@
    <br>
    <i>unsigned int Sheet::get_columns() const; -</i> Return the number of columns.<br>
    <br>
-   <i>void Sheet::destroy(); -</i> Completely destroy the sprite sheet image.<br>
+   <i>void Sheet::destroy(); -</i> Completely destroy the sprite sheet.<br>
    <br>
    <i>void Sheet::select(const unsigned int row, const unsigned int column); -</i> Select the target frame by row and column.<br>
    <br>
    <i>unsigned int Sheet::set_target(const unsigned int target); -</i> Set the target frame and return it.<br>
    <br>
-   <i>void Sheet::step(); -</i> Go to the next frame or jump to the start if the current frame is the last.<br>
+   <i>void Sheet::step(); -</i> Go to the next frame or jump to the start if the current frame is the last one.<br>
    <br>
    <i>bool Sheet::load(Image *sheet, const unsigned int row_amount, const unsigned int column_amount); -</i> Load a sprite sheet from the buffer and return true if it is loaded.<br>
    <br>
@@ -989,9 +962,7 @@
   <h2><a id="mozTocId530676" class="mozTocH2"></a><big>Chapter 17. Text</big></h2>
   <big><u>How to print text?</u><br>
    <br>
-   Use the text subsystem to print the text. This subsystem needs a font
-   for text printing. You must load a font before starting to print the
-   text. The font is just a sprite sheet with 16 rows and 16 columns. <br>
+   Use the text subsystem to print the text. This subsystem needs a font for text printing. You must load a font before starting to print the text. The font is just a sprite sheet with 16 rows and 16 columns. <br>
    <u><br>
     The supported characters.</u><br>
    <br>
@@ -1031,7 +1002,7 @@
    <br>
    <i>void Text::set_orientation(const BLACKGDK::TEXT_KIND target); -</i> Set the current text orientation.<br>
    <br>
-   <i>bool Text::is_font_load() const; -</i> Return true if the font has already been loaded.<br>
+   <i>bool Text::is_font_loaded() const; -</i> Return true if the font has already been loaded.<br>
    <br>
    <i>unsigned int Text::get_font_width() const; -</i> Return the current font width in pixels.<br>
    <br>
@@ -1067,7 +1038,7 @@
    <br>
    <i>void Text::destroy_image();</i> - Destroy a font image.<br>
    <br>
-   <i>void Text::destroy_font();</i> - Completely destroy a font image.<br>
+   <i>void Text::destroy_font();</i> - Completely destroy a font.<br>
   </big>
   <h2><a id="mozTocId332613" class="mozTocH2"></a><big>Chapter 18. Loading an image</big></h2>
   <big><u>Load an image from a file.</u><br>
@@ -1082,7 +1053,7 @@
    <br>
    <i>unsigned int Image::get_height() const;</i> - Return the height of the current image.<br>
    <br>
-   <i>size_t Image::get_pixel_amount() const; -</i> Return the amount of the image pixels.<br>
+   <i>size_t Image::get_pixel_amount() const; -</i> Return the number of image pixels.<br>
    <br>
    <i>size_t Image::get_length() const;</i> - Return the length of the image buffer in bytes.<br>
    <br>
@@ -1092,18 +1063,19 @@
    <br>
    <u>An important note.</u><br>
    <br>
-   A new image will replace the current image if the current image already
-   exists. An incorrect image will be ignored and will fail to load.<br>
+   A new image will replace the current image if the current image already exists. An incorrect image will fail to load.<br>
    The source image will be converted to the <a href="https://en.wikipedia.org/wiki/RGBA">RGBA</a> format. The pixels matching the top-left pixel will be marked as transparent. <br>
    <br>
    <u>The supported format.</u><br>
    <br>
-   All images must comply with the correct specification. You can load an image from a 24-bit <a
+   All images must comply with the correct specification. You can load an image from a 24-bit <a
+
     href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</a> picture. <br>
    <br>
    <u>The recommended software.</u><br>
    <br>
-   You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a
+   You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a
+
     href="https://www.gimp.org">GIMP</a> to do it. It is a powerful image editor.<br>
   </big>
   <h2><a id="mozTocId282598" class="mozTocH2"></a><big>Chapter 19. Camera</big></h2>
@@ -1202,9 +1174,7 @@
    <br>
    <u>Coordinate conversion.</u><br>
    <br>
-   You can convert the Cartesian coordinates to the screen coordinates.
-   You can also convert the screen coordinates to the Cartesian
-   coordinates.<br>
+   You can convert the Cartesian coordinates to the screen coordinates. You can also convert the screen coordinates to the Cartesian coordinates.<br>
    <br>
    Use the <i>Coordinates</i> class to do it. Let's look at the publicly available methods.<br>
    <br>
@@ -1243,9 +1213,7 @@
    <br>
    <u>Coordinate conversion.</u><br>
    <br>
-   You can convert the Cartesian coordinates to the isometric coordinates.
-   You can also convert the isometric coordinates to the Cartesian
-   coordinates. Use the <i>Isometric</i> class to do it. Let's look at the publicly available methods.<br>
+   You can convert the Cartesian coordinates to the isometric coordinates. You can also convert the isometric coordinates to the Cartesian coordinates. Use the <i>Isometric</i> class to do it. Let's look at the publicly available methods.<br>
    <br>
    <i>static int Isometric::get_isometric_x(const int x, const int y); -</i> Convert the x-coordinate from the Cartesian system to the isometric system.<br>
    <br>
@@ -1284,20 +1252,17 @@
   <h2><a id="mozTocId66433" class="mozTocH2"></a><big>Chapter 3. Timers</big></h2>
   <big> A timer is a very useful thing. Use the <i>Timer</i> class to work with the timer. Let's look at the publicly available methods.<br>
    <br>
-   <i>Timer::Timer(const double seconds); -</i> Create the timer and set it.<br>
+   <i>Timer::Timer(const double seconds); -</i> Create the timer and set the timer interval.<br>
    <br>
    <i>Timer *Timer::get_pointer(); -</i> Return a pointer to the timer.<br>
    <br>
-   <i>void Timer::set_timer(const double seconds); -</i> Set the timer interval and initialize the start point.<br>
+   <i>void Timer::set_timer(const double seconds); -</i> Set the timer interval.<br>
    <br>
    <i>double Timer::get_interval() const; -</i> Return the current timer interval.<br>
    <br>
-   <i>bool Timer::check_timer(); -</i>
-   Return true and reinitialize the start point if the interval between
-   the stop and start points is greater than or equal to the specified
-   number of seconds.<br>
+   <i>bool Timer::check_timer(); -</i> Return true if elapsed time is greater than or equal to the specified number of seconds. Restart the timer if needed.<br>
   </big>
-  <h2><a id="mozTocId432947" class="mozTocH2"></a><big>Chapter 4. Ccollision detection<br>
+  <h2><a id="mozTocId434128" class="mozTocH2"></a><big>Chapter 4. Collision detection<br>
    </big></h2>
   <big><u>An important thing for any game, </u><br>
    <br>
@@ -1305,9 +1270,7 @@
    <u><br>
     The collision details.</u><br>
    <br>
-   The detector uses the bounding box collision method to detect a
-   collision. The collision-related information is stored in a custom data
-   type.<br>
+   The detector uses the bounding box collision method to detect a collision. The collision-related information is stored in a custom data type.<br>
    <br>
    <i>typedef struct<br>
     {<br>
@@ -1319,9 +1282,7 @@
    <br>
    <u>Working with the collision detector.</u><br>
    <br>
-   The <i>Collision</i>
-   class provides easy access to the collision detectors. It is a simple
-   class with a few methods. Let's look at the publicly available methods.<br>
+   The <i>Collision</i> class provides easy access to the collision detectors. It is a simple class with a few methods. Let's look at the publicly available methods.<br>
    <br>
    <i>Collision *Collision::get_pointer(); -</i> Return a pointer to the collision detector.<br>
    <br>
@@ -1334,7 +1295,8 @@
   <h2><a id="mozTocId346330" class="mozTocH2"></a><big>Chapter 5. Tilemaps</big></h2>
   <big><u>A few words about the tilemap.</u><br>
    <br>
-   The tilemap is a tile matrix. A tile is a small, non-transparent sprite. A tilemap is a very useful thing for the background. <br>
+   The tilemap is a tile matrix. A tile is a small, non-transparent
+   sprite. A tilemap is a very useful thing for the background. <br>
    <u><br>
     The rows and columns.</u><br>
    <br>
@@ -1342,9 +1304,7 @@
    <u><br>
     Working with the tilemap.</u><br>
    <br>
-   The <i>Tilemap</i>
-   class provides easy access to the tilemap. It is a simple class with a
-   few methods. Let's look at the publicly available methods.<br>
+   The <i>Tilemap</i> class provides easy access to the tilemap. It is a simple class with a few methods. Let's look at the publicly available methods.<br>
    <br>
    <i>Tilemap *Tilemap::get_pointer();</i> - Return a pointer to the tilemap subsystem.<br>
    <br>
@@ -1366,7 +1326,7 @@
    <br>
    <i>unsigned int Tilemap::get_column_amount(const unsigned int viewport_width) const; -</i> Return the maximum number of visible columns.<br>
    <br>
-   <i>unsigned int Tilemap::get_tile_amount(const unsigned int viewport_width, const unsigned int viewport_height) const; -</i> Return the maximum number of the visible tiles.<br>
+   <i>unsigned int Tilemap::get_tile_amount(const unsigned int viewport_width, const unsigned int viewport_height) const; -</i> Return the maximum number of visible tiles.<br>
    <br>
    <i>bool Tilemap::check_row(const unsigned int row, const unsigned int viewport_width) const; -</i> Return true if the row is valid.<br>
    <br>
@@ -1385,13 +1345,15 @@
    <br>
    <i>unsigned long long int Memory::get_free_physical(); -</i> Return the free physical memory size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a
+   <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a
+
     href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a
+   <i>unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a
+
     href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_physical_usge(); -</i> Return the physical memory usage in bytes.<br>
+   <i>unsigned long long int Memory::get_physical_usage(); -</i> Return the physical memory usage in bytes.<br>
    <br>
    <i>unsigned long long int Memory::get_virtual_usage(); -</i> Return the virtual memory usage in bytes.<br>
    <br>
@@ -1400,8 +1362,10 @@
   <h2><a id="mozTocId980461" class="mozTocH2"></a><big>Chapter 3. Audio</big></h2>
   <big><u>A few words about the audio subsystem.</u><br>
    <br>
-   This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a
-    href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a
+   This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a
+
+    href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a
+
     href="https://en.wikipedia.org/wiki/Windows_Media_Audio">Windows Media Audio</a> are supported. <br>
    <br>
    <u>Additional formats.</u><br>
@@ -1420,7 +1384,7 @@
    <br>
    <i>void Audio::play(); -</i> Play a sound.<br>
    <br>
-   <i>void Audio::play_loop(); -</i> Check the playback status and restarting playback if needed.<br>
+   <i>void Audio::play_loop(); -</i> Check the playback status and restart playback if needed.<br>
    <br>
    <i>void Audio::play(const bool loop); -</i> Play a sound. You can set the loop mode if you want.<br>
    <br>
@@ -1430,7 +1394,7 @@
   </big>
   <h1><a id="mozTocId485472" class="mozTocH1"></a><big>Part 7. Misc</big></h1>
   <h2><a id="mozTocId134970" class="mozTocH2"></a><big>Chapter 1. Filesystem</big></h2>
-  <big> This module is implemented as two simple functions. All these functions are declared in the <i>Filesystem</i> sub-namespace.<br>
+  <big> This module is implemented as two simple functions. Both functions is declared in the <i>Filesystem</i> sub-namespace.<br>
    <br>
    <i>file_exists</i>: Check the target file to see if one exists.<br>
    <br>
@@ -1439,7 +1403,7 @@
    All functions take the target file name as an argument and return false if the operation failed.<br>
   </big>
   <h2><a id="mozTocId583891" class="mozTocH2"></a><big>Chapter 2. Tools</big></h2>
-  <big> This module is implemented as a few functions. All these functions are declared in he <i>Tools</i> sub-namespace.<br>
+  <big> This module is implemented as a few functions. All these functions are declared in the <i>Tools</i> sub-namespace.<br>
    <br>
    <i>void quit();</i> - Exit from your program and return the user to the operating system.<br>
    <br>
@@ -1449,25 +1413,18 @@
    <br>
    <i>unsigned int get_random(const unsigned int number); -</i> Return a random value between zero and the given number.<br>
    <br>
-   <i>unsigned int get_texture_size(); -</i> Return the maximum width or height of the texture.<br>
+   <i>unsigned int get_texture_size(); -</i> Return the maximum texture dimension(width or height).<br>
    <br>
    <i>BLACKGDK::BOX generate_box(const unsigned int x, const unsigned int y, const unsigned int width, const unsigned int height); -</i> Generate the collision-related information.<br>
   </big>
   <h2><a id="mozTocId655645" class="mozTocH2"></a><big>Chapter 3. Resource management</big></h2>
-  <big>
-   A resource is an instance of a user-defined class or structure. The
-   resource manager is implemented as a few template functions. All these
-   functions are declared in the <i>Resource</i> sub-namespace.<br>
+  <big> A resource is an instance of a user-defined class or structure. The resource manager is implemented as a few template functions. All these functions are declared in the <i>Resource</i> sub-namespace.<br>
    <br>
-   <i>create</i>:
-   Create a resource. The first form of this function creates a single
-   resource. It takes a pointer to a resource pointer as an argument. The
-   second form creates an array of the resources. It takes a pointer to a
-   resource pointer and a resource amount.<br>
+   <i>create</i>: Create a resource. The first form of this function creates a single resource. It takes a pointer to a resource pointer as an argument. The second form creates an array of the resources. It takes a pointer to a resource pointer and a resource amount.<br>
    <br>
    <i>destroy</i>: Delete a resource if it already exists. This function takes a resource pointer as an argument.<br>
    <br>
-   <i>destroy_array</i>: Deletes the resource array if it already exists. This function takes a resource array pointer as an argument.<br>
+   <i>destroy_array</i>: Delete the resource array if it already exists. This function takes a resource array pointer as an argument.<br>
   </big>
   <h1><a id="mozTocId598326" class="mozTocH1"></a><big>Part 8. Binary files</big></h1>
   <h2><a id="mozTocId854726" class="mozTocH2"></a><big>Chapter 1. Sub-namespace</big></h2>
@@ -1501,7 +1458,7 @@
    <br>
    <i>void Input_File::open(const char *name); -</i> Open a file to read.<br>
    <br>
-   <i>size_t Input_File::read(void *buffer, const size_t length); -</i> Read data from the file and return the number of read bytes.<br>
+   <i>size_t Input_File::read(void *buffer, const size_t length); -</i> Read data from the file and return the number of bytes read.<br>
   </big>
   <h2><a id="mozTocId755374" class="mozTocH2"></a><big>Chapter 4. File writing</big></h2>
   <big> The file writer is intended to write data to binary files. The <i>Output_File</i> class provides access to a file writer. It is derived from the <i>Binary_File</i> class. Let's look at the publicly available methods.<br>
@@ -1512,7 +1469,7 @@
    <br>
    <i>void Output_File::create_temp(); -</i> Create a temporary file. This file will be deleted when it is closed.<br>
    <br>
-   <i>size_t Output_File::write(const void *buffer, const size_t length); -</i> Write data to the file and return the number of written bytes.<br>
+   <i>size_t Output_File::write(const void *buffer, const size_t length); -</i> Write data to the file and return the number of bytes written.<br>
    <br>
    <i>void Output_File::flush(); -</i> Force writing the internal buffer data to the file.<br>
   </big>
@@ -1523,9 +1480,7 @@
   <h2><a id="mozTocId834941" class="mozTocH2"></a><big>Chapter 2. Keyboard</big></h2>
   <big><u>Low-level input.</u><br>
    <br>
-   Any keyboard contains a built-in controller. It generates a special
-   code when the user presses or releases the key. This code is called a
-   «scan code». <br>
+   Any keyboard contains a built-in controller. It generates a special code when the user presses or releases a key. This code is called a «scan code». <br>
    <br>
    <u>Working with the keyboard.</u><br>
    <br>
@@ -1848,15 +1803,11 @@
   <h2><a id="mozTocId306918" class="mozTocH2"></a><big>Chapter 4. Gamepad</big></h2>
   <big><u>The best friend of a retro gamer.</u><br>
    <br>
-   What is a good choice for a game control device when the user plays an
-   arcade game or an old-school video game? A gamepad. This engine
-   provides simple access to it. <br>
+   What is a good choice for a game control device when the user plays an arcade game or an old-school video game? A gamepad. This engine provides simple access to it. <br>
    <u><br>
-    The number of the connected gamepads.</u><br>
+    The number of connected gamepads.</u><br>
    <br>
-   You can connect a few gamepads. Any connected gamepad has an internal
-   index. The first gamepad index is 0. The maximum number of connected
-   gamepads is 4. The first gamepad is selected by default. <br>
+   You can connect several gamepads. Any connected gamepad has an internal index. The first gamepad index is 0. The maximum number of connected gamepads is 4. The first gamepad is selected by default. <br>
    <br>
    <u>The button codes.</u><br>
    <br>
@@ -1954,7 +1905,8 @@
    The trigger identifiers correspond to the predefined constants. You can see them below.<br>
    <br>
   </big>
-  <table style="text-align: left;" cellspacing="2" cellpadding="2" border="1"
+  <table style="text-align: left;" cellspacing="2" cellpadding="2" border="1"
+
    height="91" width="387">
    <tbody>
     <tr>
@@ -2012,7 +1964,8 @@
    The battery type codes correspond to the predefined constants. You can see them below.<br>
    <br>
   </big>
-  <table style="text-align: left;" cellspacing="2" cellpadding="2" border="1"
+  <table style="text-align: left;" cellspacing="2" cellpadding="2" border="1"
+
    height="149" width="730">
    <tbody>
     <tr>
@@ -2052,7 +2005,8 @@
    The battery level codes correspond to the predefined constants. You can see them below.<br>
    <br>
   </big>
-  <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+  <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
+
    cellpadding="2" border="1">
    <tbody>
     <tr>
@@ -2103,7 +2057,7 @@
    <br>
    <i>unsigned int Gamepad::get_active() const; -</i> Return the identifier of the current active gamepad.<br>
    <br>
-   <i>bool Gamepad::check_connection(); -</i> Return true if the active gamepad has been connected.<br>
+   <i>bool Gamepad::check_connection(); -</i> Return true if the active gamepad is connected.<br>
    <br>
    <i>void Gamepad::update(); -</i> Update the gamepad state.<br>
    <br>
@@ -2159,12 +2113,9 @@
   </big>
   <h1><a id="mozTocId782338" class="mozTocH1"></a><big>Part 10. Internal details of the engine subsystems</big></h1>
   <h2><a id="mozTocId376321" class="mozTocH2"></a><big>Chapter 1. Few words for a curious programmer</big></h2>
-  <big>Each
-   subsystem has its own internal structure. This structure is hidden from
-   you, and you don't have access to it. Do you want to know about the
-   hidden things? Just read the next chapter.<br>
+  <big>Each subsystem has its own internal structure. This structure is hidden from you, and you don't have access to it. Do you want to know about the hidden things? Just read the next chapter.<br>
   </big>
-  <h2><a id="mozTocId695538" class="mozTocH2"></a><big>Chapter 2. Iinternal classes</big></h2>
+  <h2><a id="mozTocId980638" class="mozTocH2"></a><big>Chapter 2. Internal classes</big></h2>
   <big><u>The internal classes.</u><br>
    <br>
    Some classes are designed for internal use only. Don't touch them. What do these strange classes do? <br>
@@ -2196,8 +2147,7 @@
    <u><br>
     Textures.</u><br>
    <br>
-   The texture width must be a power of two. The texture height must also
-   be a power of two. Any image will be resized before uploading. <br>
+   The texture width must be a power of two. The texture height must also be a power of two. Any image will be resized before uploading. <br>
    <u><br>
     The vertex arrays and the texture coordinates array.</u><br>
    <br>
@@ -2221,7 +2171,7 @@
    All these custom types are declared in the <i>Core</i> sub-namespace.<br>
   </big>
   <h2><a id="mozTocId55684" class="mozTocH2"></a><big>Chapter 4. Gamepad</big></h2>
-  <big> The gamepad subsystem works on the top of the <a href="https://docs.microsoft.com/en-us/windows/desktop/xinput/xinput-game-controller-apis-portal">XINPUT</a>.<br>
+  <big> The gamepad subsystem works on the top of <a href="https://docs.microsoft.com/en-us/windows/desktop/xinput/xinput-game-controller-apis-portal">XInput</a>.<br>
   </big>
   <h2><a id="mozTocId934314" class="mozTocH2"></a><big>Chapter 5. User input</big></h2>
   <big><u>The input backend.</u><br>
@@ -2252,7 +2202,7 @@
   <big><br>
   </big>
   <h2><a id="mozTocId712667" class="mozTocH2"></a><big>Chapter 6. Audio</big></h2>
-  <big> The audio subsystem works on the top of the <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>. It is available as part of <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>. DirectX is pre-installed by default under the modern versions of Windows.<br>
+  <big> The audio subsystem works on the top of <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>. It is available as part of <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>. DirectX is pre-installed by default under the modern versions of Windows.<br>
   </big>
   <h2><a id="mozTocId398873" class="mozTocH2"></a><big>Version history</big></h2>
   <big> 0.1-4.1.4: The old branch.<br>
@@ -2599,7 +2549,8 @@
    8.3.2: The changes have been merged with the Eugene Game Development Kit 10.6.9.<br>
    8.3.3: The changes have been merged with the Eugene Game Development Kit 10.7.<br>
    8.3.3.1-8.3.3.2: The documentation has been updated.<br>
-   8.3.4: The changes have been merged with the Eugene Game Development Kit 10.7.1.<br>
+   8.3.3: The changes have been merged with the Eugene Game Development Kit 10.7.1.<br>
+   8.3.4: The changes have been merged with the Eugene Game Development Kit 10.7.2.<br>
   </big>
  </body>
 </html>

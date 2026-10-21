@@ -1098,7 +1098,7 @@ typedef enum
    Text* get_pointer();
    BLACKGDK::TEXT_KIND get_orientation() const;
    void set_orientation(const BLACKGDK::TEXT_KIND target);
-   bool is_font_load() const;
+   bool is_font_loaded() const;
    unsigned int get_font_width() const;
    unsigned int get_font_height() const;
    unsigned int get_x() const;
