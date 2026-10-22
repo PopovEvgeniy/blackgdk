@@ -271,8 +271,8 @@
    Disable the precompiled headers before starting compilation. The old Visual C++ users can do it via the project creation wizard.<br>
    The Visual C++ 2017 or higher users must follow these steps:<br>
    <br>
-   Go to «Project Properties — C/C++ — Precompiled Headers»<br>
-   Set the «Precompiled Header option» to «Not Using Precompiled Headers». <br>
+   Go to Project Properties — C/C++ — Precompiled Headers.<br>
+   Set the Precompiled Header option to Not Using Precompiled Headers. <br>
    <u><br>
     A note for the MINGW-w64 and TDM-GCC users.</u><br>
    <br>
@@ -318,7 +318,7 @@
    <br>
    The base graphics subsystem renders a game scene. This subsystem uses <a
 
-    href="http://opengl.org">OpenGL</a> for rendering. Mos modern video cards support hardware acceleration. The software implementation will be activated if hardware acceleration is not available. <br>
+    href="http://opengl.org">OpenGL</a> for rendering. Most modern video cards support hardware acceleration. The software implementation will be activated if hardware acceleration is not available. <br>
    <br>
    <u>The rendering performance.</u><br>
    <br>
@@ -332,7 +332,7 @@
    <br>
    The <i>Screen</i> class provides access to the base graphics subsystem. Let's look at the publicly available methods.<br>
    <br>
-   <i>void Screen::clear_screen(); -</i> Clear the screen. Fill it with black color.<br>
+   <i>void Screen::clear_screen(); -</i> Clear the screen. Fill it with a black color.<br>
    <br>
    <i>void Screen::initialize(); -</i> Initialize the base graphics subsystem with the default screen resolution.<br>
    <br>
@@ -454,8 +454,7 @@
   <big><br>
   </big>
   <h2><a id="mozTocId754547" class="mozTocH2"></a><big>Chapter 6. Background</big></h2>
-  <big> A background is a big image with a few frames. Any game has a background. The background will be scaled to fit the screen. The background transparency is always disabled.<br>
-   <br>
+  <big> A background is a large image. It contains one or more frames. The background will be scaled to fit the screen. The background transparency is always disabled.<br>
    The horizontal animated backgrounds look like horizontal photo ribbons. The vertical animated backgrounds look like vertical photo ribbons.</big><br>
   <h2><a id="mozTocId12812" class="mozTocH2"></a><big>Chapter 7. Segment</big></h2>
   <big><u>A few words about the segment.</u><br>
@@ -917,7 +916,7 @@
    <br>
    <u>The rows and columns.</u><br>
    <br>
-   The row index index starts at 0. The column index starts at 0. <br>
+   The row index starts at 0. The column index starts at 0. <br>
    <u><br>
     Working with the sheet.</u><br>
    <br>
@@ -1068,15 +1067,11 @@
    <br>
    <u>The supported format.</u><br>
    <br>
-   All images must comply with the correct specification. You can load an image from a 24-bit <a
-
-    href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</a> picture. <br>
+   All images must comply with the correct specification. You can load an image from a 24-bit <a href="https://en.wikipedia.org/wiki/Truevision_TGA">Truevision TGA</a> picture. <br>
    <br>
    <u>The recommended software.</u><br>
    <br>
-   You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a
-
-    href="https://www.gimp.org">GIMP</a> to do it. It is a powerful image editor.<br>
+   You can use a wide range of graphics software to convert your images to the correct format. I recommend using <a href="https://www.gimp.org">GIMP</a> to do it. It is a powerful image editor.<br>
   </big>
   <h2><a id="mozTocId282598" class="mozTocH2"></a><big>Chapter 19. Camera</big></h2>
   <big><u>A few words about the camera.</u><br>
@@ -1260,7 +1255,7 @@
    <br>
    <i>double Timer::get_interval() const; -</i> Return the current timer interval.<br>
    <br>
-   <i>bool Timer::check_timer(); -</i> Return true if elapsed time is greater than or equal to the specified number of seconds. Restart the timer if needed.<br>
+   <i>bool Timer::check_timer(); -</i> Return true if the elapsed time is greater than or equal to the specified number of seconds. Restart the timer if needed.<br>
   </big>
   <h2><a id="mozTocId434128" class="mozTocH2"></a><big>Chapter 4. Collision detection<br>
    </big></h2>
@@ -1295,8 +1290,7 @@
   <h2><a id="mozTocId346330" class="mozTocH2"></a><big>Chapter 5. Tilemaps</big></h2>
   <big><u>A few words about the tilemap.</u><br>
    <br>
-   The tilemap is a tile matrix. A tile is a small, non-transparent
-   sprite. A tilemap is a very useful thing for the background. <br>
+   The tilemap is a tile matrix. A tile is a small, non-transparent sprite. A tilemap is a very useful thing for the background. <br>
    <u><br>
     The rows and columns.</u><br>
    <br>
@@ -1345,13 +1339,9 @@
    <br>
    <i>unsigned long long int Memory::get_free_physical(); -</i> Return the free physical memory size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a
-
-    href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+   <i>unsigned long long int Memory::get_total_virtual(); -</i> Return the total <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <br>
-   <i>unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a
-
-    href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
+   <i>unsigned long long int Memory::get_free_virtual(); -</i> Return the free <a href="https://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> size in bytes.<br>
    <br>
    <i>unsigned long long int Memory::get_physical_usage(); -</i> Return the physical memory usage in bytes.<br>
    <br>
@@ -1362,11 +1352,7 @@
   <h2><a id="mozTocId980461" class="mozTocH2"></a><big>Chapter 3. Audio</big></h2>
   <big><u>A few words about the audio subsystem.</u><br>
    <br>
-   This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a
-
-    href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a
-
-    href="https://en.wikipedia.org/wiki/Windows_Media_Audio">Windows Media Audio</a> are supported. <br>
+   This subsystem is intended for playing music and sounds. <a href="https://en.wikipedia.org/wiki/WAV">Waveform Audio File Format</a>, <a href="https://en.wikipedia.org/wiki/MP3">MPEG Audio Layer 3</a>, and <a href="https://en.wikipedia.org/wiki/Windows_Media_Audio">Windows Media Audio</a> are supported. <br>
    <br>
    <u>Additional formats.</u><br>
    <br>
@@ -1394,7 +1380,7 @@
   </big>
   <h1><a id="mozTocId485472" class="mozTocH1"></a><big>Part 7. Misc</big></h1>
   <h2><a id="mozTocId134970" class="mozTocH2"></a><big>Chapter 1. Filesystem</big></h2>
-  <big> This module is implemented as two simple functions. Both functions is declared in the <i>Filesystem</i> sub-namespace.<br>
+  <big> This module is implemented as two simple functions. Both functions are declared in the <i>Filesystem</i> sub-namespace.<br>
    <br>
    <i>file_exists</i>: Check the target file to see if one exists.<br>
    <br>
@@ -1405,7 +1391,7 @@
   <h2><a id="mozTocId583891" class="mozTocH2"></a><big>Chapter 2. Tools</big></h2>
   <big> This module is implemented as a few functions. All these functions are declared in the <i>Tools</i> sub-namespace.<br>
    <br>
-   <i>void quit();</i> - Exit from your program and return the user to the operating system.<br>
+   <i>void quit();</i> - Exit from the application.<br>
    <br>
    <i>bool enable_logging(const char *name); -</i> Enable redirecting error messages to a log file and return false if the operation failed.<br>
    <br>
@@ -1906,7 +1892,6 @@
    <br>
   </big>
   <table style="text-align: left;" cellspacing="2" cellpadding="2" border="1"
-
    height="91" width="387">
    <tbody>
     <tr>
@@ -1981,9 +1966,9 @@
       </big></td>
     </tr>
     <tr>
-     <td style="vertical-align: top;"><big>GAMEPAD_BATTERY_ALKAINE<br>
+     <td style="vertical-align: top;"><big>GAMEPAD_BATTERY_ALKALINE<br>
       </big></td>
-     <td style="vertical-align: top;"><big>The battery type is an alkaine<br>
+     <td style="vertical-align: top;"><big>The battery type is an alkaline<br>
       </big></td>
     </tr>
     <tr>
@@ -1993,9 +1978,9 @@
       </big></td>
     </tr>
     <tr>
-     <td style="vertical-align: top;"><big>GAMEPAD_BATTERY_UNKNOW<br>
+     <td style="vertical-align: top;"><big>GAMEPAD_BATTERY_UNKNOWN<br>
       </big></td>
-     <td style="vertical-align: top;"><big>The battery type is unknow</big></td>
+     <td style="vertical-align: top;"><big>The battery type is unknown</big></td>
     </tr>
    </tbody>
   </table>
@@ -2006,7 +1991,6 @@
    <br>
   </big>
   <table style="text-align: left; width: 582px; height: 178px;" cellspacing="2"
-
    cellpadding="2" border="1">
    <tbody>
     <tr>
@@ -2051,11 +2035,11 @@
    <br>
    Use the <i>Gamepad</i> class to work with the gamepad. Let's look at the publicly available methods.<br>
    <br>
-   <i>void Gamepad::set_active(const unsigned int gamepad); -</i> Set the current active gamepad.<br>
+   <i>void Gamepad::set_active(const unsigned int gamepad); -</i> Set the currently active gamepad.<br>
    <br>
    <i>unsigned int Gamepad::get_amount(); -</i> Return the number of connected gamepads.<br>
    <br>
-   <i>unsigned int Gamepad::get_active() const; -</i> Return the identifier of the current active gamepad.<br>
+   <i>unsigned int Gamepad::get_active() const; -</i> Return the identifier of the currently active gamepad.<br>
    <br>
    <i>bool Gamepad::check_connection(); -</i> Return true if the active gamepad is connected.<br>
    <br>
@@ -2147,7 +2131,7 @@
    <u><br>
     Textures.</u><br>
    <br>
-   The texture width must be a power of two. The texture height must also be a power of two. Any image will be resized before uploading. <br>
+   The texture width must be a power of two. The texture height must also be a power of two. Any image will be resized before uploading to the video card. <br>
    <u><br>
     The vertex arrays and the texture coordinates array.</u><br>
    <br>
@@ -2202,7 +2186,7 @@
   <big><br>
   </big>
   <h2><a id="mozTocId712667" class="mozTocH2"></a><big>Chapter 6. Audio</big></h2>
-  <big> The audio subsystem works on the top of <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>. It is available as part of <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a>. DirectX is pre-installed by default under the modern versions of Windows.<br>
+  <big> The audio subsystem works on the top of <a href="https://docs.microsoft.com/en-us/windows/desktop/DirectShow/directshow">DirectShow</a>.<br>
   </big>
   <h2><a id="mozTocId398873" class="mozTocH2"></a><big>Version history</big></h2>
   <big> 0.1-4.1.4: The old branch.<br>
@@ -2549,8 +2533,9 @@
    8.3.2: The changes have been merged with the Eugene Game Development Kit 10.6.9.<br>
    8.3.3: The changes have been merged with the Eugene Game Development Kit 10.7.<br>
    8.3.3.1-8.3.3.2: The documentation has been updated.<br>
-   8.3.3: The changes have been merged with the Eugene Game Development Kit 10.7.1.<br>
-   8.3.4: The changes have been merged with the Eugene Game Development Kit 10.7.2.<br>
+   8.3.4: The changes have been merged with the Eugene Game Development Kit 10.7.1.<br>
+   8.3.5: The changes have been merged with the Eugene Game Development Kit 10.7.2.<br>
+   8.3.6: The changes have been merged with the Eugene Game Development Kit 10.7.3.<br>
   </big>
  </body>
 </html>

@@ -1814,13 +1814,13 @@ namespace BLACKGDK
     switch (battery.BatteryType)
     {
      case BATTERY_TYPE_ALKALINE:
-     battery_type=BLACKGDK::GAMEPAD_BATTERY_ALKAINE;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_ALKALINE;
      break;
      case BATTERY_TYPE_NIMH:
      battery_type=BLACKGDK::GAMEPAD_BATTERY_NIMH;
      break;
      case BATTERY_TYPE_UNKNOWN:
-     battery_type=BLACKGDK::GAMEPAD_BATTERY_UNKNOW;
+     battery_type=BLACKGDK::GAMEPAD_BATTERY_UNKNOWN;
      break;
      default:
      ;
@@ -3282,11 +3282,6 @@ namespace BLACKGDK
 
   }
 
-  void Ribbon::set_sprite_frame()
-  {
-   billboard.set_horizontal_offset(this->get_frame(),this->get_frames());
-  }
-
   Ribbon* Ribbon::get_pointer()
   {
    return this;
@@ -3299,7 +3294,7 @@ namespace BLACKGDK
    {
     this->prepare(this->get_image_width(),this->get_image_height(),this->get_image());
     this->set_size(this->get_image_width()/this->set_frames(frames),this->get_image_height());
-    this->set_sprite_frame();
+    this->set_target(0);
    }
    return this->is_loaded();
   }
@@ -3318,15 +3313,13 @@ namespace BLACKGDK
 
   unsigned int Ribbon::set_target(const unsigned int target)
   {
-   this->set_frame(target);
-   this->set_sprite_frame();
+   billboard.set_horizontal_offset(this->set_frame(target),this->get_frames());
    return this->get_frame();
   }
 
   void Ribbon::step()
   {
-   this->increase_frame();
-   this->set_sprite_frame();
+   this->set_target(this->increase_frame());
   }
 
   void Ribbon::destroy()

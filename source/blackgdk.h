@@ -122,9 +122,9 @@ typedef enum
  typedef enum
  {
   GAMEPAD_BATTERY_TYPE_ERROR=0,
-  GAMEPAD_BATTERY_ALKAINE=1,
+  GAMEPAD_BATTERY_ALKALINE=1,
   GAMEPAD_BATTERY_NIMH=2,
-  GAMEPAD_BATTERY_UNKNOW=3
+  GAMEPAD_BATTERY_UNKNOWN=3
  } GAMEPAD_BATTERY_TYPE;
 
  typedef enum
@@ -869,8 +869,6 @@ typedef enum
 
   class Ribbon:public Billboard,public Animation,public Picture
   {
-   private:
-   void set_sprite_frame();
    public:
    Ribbon();
    ~Ribbon();
